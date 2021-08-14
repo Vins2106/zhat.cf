@@ -54,13 +54,14 @@ body {
 } */
 
 a {
-  color: #b0b0b0;
+  color: white;
 }
 
 /*  */
 
 .ta-center {
-  text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .box-1 {
@@ -69,7 +70,8 @@ a {
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0px 0px 4px 0px black;
-  max-width: 452px;
+  max-width: 425px;
+  width: 425px;
 }
 
 .cv {

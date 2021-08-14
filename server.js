@@ -6,12 +6,17 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + "/public"));
 
+
 app.get('/', (req, res) => {
   res.render("index.ejs")
 });
 
 app.get('/login', async (req, res) => {
   res.render("login.ejs")
+})
+
+app.use("/", async (req, res) => {
+  res.status(404).render("404.ejs")
 })
 
 io.on('connection', (socket) => {
