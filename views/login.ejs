@@ -4,8 +4,13 @@
     <%- include("./parts/head.ejs") %>
   </head>
   <body>
+    <div class="ta-center">
     <div class="box-1 cv">
 <form>
+  <h1 style="color: #ddd; text-align: center;">
+    Welcome back!
+  </h1>
+  
   <div class="form-control">
     <label for="email-input">Email</label>
     <input type="email" class="form-input" id="email-input" aria-describedby="email-help" placeholder="Enter email">
@@ -15,8 +20,12 @@
     <label for="password-input">Password</label>
     <input type="password" class="form-input" id="password-input" placeholder="Password">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  
+  <div class="btn-submit">
+    <a style="margin-right: 10px;" href="/login/forgot-password">forgot password?</a><button type="submit" class="btn btn-primary">Submit</button>    
+  </div>
 </form>
+    </div>
     </div>
   </body>
 </html>

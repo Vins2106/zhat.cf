@@ -28,6 +28,7 @@ body {
   color: var(--second);
   cursor: pointer;
   border-radius: 4px;
+  min-width: 110px;
 }
 
 .btn:hover {
@@ -52,7 +53,15 @@ body {
   background-color: #8c2424 !important;
 } */
 
+a {
+  color: #b0b0b0;
+}
+
 /*  */
+
+.ta-center {
+  text-align: center;
+}
 
 .box-1 {
   margin: 25px 10px auto 10px;
@@ -60,6 +69,7 @@ body {
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0px 0px 4px 0px black;
+  max-width: 452px;
 }
 
 .cv {
@@ -80,4 +90,8 @@ body {
   border-radius: 3px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.btn-submit {
+  text-align: right;
 }
