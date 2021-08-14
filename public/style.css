@@ -11,6 +11,10 @@
   font-family: sans-serif;
 }
 
+*:focus {
+  outline: none;
+}
+
 
 body {
   background-color: var(--primary);
@@ -54,9 +58,8 @@ body {
   margin: 25px 10px auto 10px;
   background-color: var(--last);
   padding: 10px;
-  text-align: center;
   border-radius: 4px;
-  box-shadow: 0px 0px 3px 0px black;
+  box-shadow: 0px 0px 4px 0px black;
 }
 
 .cv {
@@ -69,4 +72,12 @@ body {
   flex-direction: column;
   color: var(--third);
   margin-top: 15px;
+}
+
+.form-input {
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
