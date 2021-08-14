@@ -1,3 +1,38 @@
+:root {
+  --primary: #1C6E8C;
+  --second: #D0CCD0;
+  --third: #FBFCFF;
+  --last: #605856;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+
 body {
   background-color: var(--primary);
+}
+
+.btn {
+  border: none;
+  background: transparent;
+  margin: 10px;
+  font-weight: 500;
+  color: var(--second);
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: var(--third);
+}
+
+.btn-primary {
+  background-color: #23a632 !important;
+}
+
+.btn-primary:hover {
+  background-color: #248c30 !important;
 }
