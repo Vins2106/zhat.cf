@@ -47,3 +47,26 @@ body {
 /* .btn-danger:hover {
   background-color: #8c2424 !important;
 } */
+
+/*  */
+
+.box-1 {
+  margin: 25px 10px auto 10px;
+  background-color: var(--last);
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0px 0px 3px 0px black;
+}
+
+.cv {
+  
+}
+
+.form-control {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  color: var(--third);
+  margin-top: 15px;
+}
