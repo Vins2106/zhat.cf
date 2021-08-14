@@ -19,10 +19,11 @@ body {
 .btn {
   border: none;
   background: transparent;
-  margin: 10px;
+  padding: 10px;
   font-weight: 500;
   color: var(--second);
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .btn:hover {
@@ -31,8 +32,18 @@ body {
 
 .btn-primary {
   background-color: #23a632 !important;
+  transition: 0.3s;
 }
 
-.btn-primary:hover {
+/* .btn-primary:hover {
   background-color: #248c30 !important;
+} */
+
+.btn-danger {
+  background-color: #a62323 !important;
+  transition: 0.3s;
 }
+
+/* .btn-danger:hover {
+  background-color: #8c2424 !important;
+} */

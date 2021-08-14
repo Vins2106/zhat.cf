@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
   res.render("index.ejs")
 });
 
+app.get('/login', async (req, res) => {
+  res.render("login.ejs")
+})
+
 io.on('connection', (socket) => {
 });
 
