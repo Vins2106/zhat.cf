@@ -211,6 +211,7 @@ a {
 
 .chat-box {
   background: aliceblue;
+  overflow: auto;
 }
 
 .he {

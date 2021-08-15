@@ -84,9 +84,9 @@ function scrollToBottom() {
         let name = document.createElement("span");
         name.setAttribute("class", `${mehe}-name`)
         if (mehe == "me") {
-          name.textContent = `${moment().format('h:mm:ss a')} - ${user.Username}`
+          name.textContent = `${moment().format('h:mm a')} - ${user.Username}`
         } else {
-          name.textContent = `${user.Username} - ${moment().format('h:mm:ss a')}`
+          name.textContent = `${user.Username} - ${moment().format('h:mm a')}`
         }
         namemsg.appendChild(name)
         
