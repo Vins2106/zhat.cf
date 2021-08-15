@@ -19,7 +19,7 @@
       </div>      
     </div>
       <form action="" class="send-msg" id="form">
-      <input id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary">send</button>
+      <input autocomplete="off" id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary">send</button>
       </form>
     </div>
     
@@ -54,7 +54,7 @@ function scrollToBottom() {
         }
         
         if (message.to == "<%= req.session.user.UID %>") {
-            if (message.author.UID == locationHref) return;
+            if (message.to == locationHref) return;
             
           return createMessage(message.author, message.content, "he")
         }

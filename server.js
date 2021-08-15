@@ -163,7 +163,7 @@ app.post("/settings", checkAuth, async (req, res) => {
   
   if (!avatar.startsWith("https://") && !avatar.startsWith("http://")) {
     return res.redirect("/settings?error=true&message=Invalid avatar url");
-  } else if (!avatar.endsWith(".png") && !avatar.endsWith(".jpg")) {
+  } else if (!avatar.endsWith(".png") && !avatar.endsWith(".jpg") && !avatar.endsWith(".gif")) {
     return res.redirect("/settings?error=true&message=Avatar url must be .png or .jpg");
   }
   
