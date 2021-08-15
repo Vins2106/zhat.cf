@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("./parts/head.ejs") %>
+  </head>
+  <body>
+    
+    <div class="ta-center">
+      
+      <% if (error) { %>
+    <div class="error">
+      <span class="error-msg"><%= msg %>.</span>
+    </div>      
+      <% } %>
+      
+    <div class="box-1 cv">
+<form method="post">
+  <h1 style="color: #ddd; text-align: center;">
+    Create your account!
+  </h1>
+  
+  <div class="form-control">
+    <label for="email-input">Email</label>
+    <input name="email" type="email" class="form-input" id="email-input" aria-describedby="email-help" placeholder="johndoe@google.com" required>
+  </div>  
+  <div class="form-control">
+    <label for="username-input">Username</label>
+    <input name="email" type="email" class="form-input" id="username-input" aria-describedby="email-help" placeholder="johndoe@google.com" required>
+  </div>
+  <div class="form-control">
+    <label for="password-input">Password</label>
+    <input name="password" type="password" class="form-input" id="password-input" placeholder="johnandjanedoe" required>
+  </div>
+  
+  <div class="btn-submit">
+    <a style="margin-right: 10px;" href="/login">already have an account?</a><button type="submit" class="btn btn-primary">Submit</button>    
+  </div>
+</form>
+    </div>
+    </div>
+  </body>
+</html>

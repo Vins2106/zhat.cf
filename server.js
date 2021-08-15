@@ -63,6 +63,10 @@ app.post('/login', async (req, res) => {
 
 app.get("/signup", async (req, res) => {
   
+  res.render("signup.ejs", {
+    error: false
+  })
+  
 });
 
 app.use("/", async (req, res) => {
