@@ -39,16 +39,24 @@
         socket.emit('message', {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'});
         e.preventDefault();
         form.reset()
+        scrollToBottom(`chat-<%= req.session.user.UID %>-${window.location.href.split("chat/")[1]}`)               
       });
+      
+function scrollToBottom (id) {
+   var div = document.getElementById(id);
+   div.scrollTop = div.scrollHeight - div.clientHeight;
+}      
       
       socket.on("message2", message => {
         console.log(message, window.location.href.split("chat/")[1])
         
         if (message.author.UID == '<%= req.session.user.UID %>') {
-          createMessage(message.author, message.content, "me")    
+          createMessage(message.author, message.content, "me")
         }
         
         if (message.to == "<%= req.session.user.UID %>") {
+            if (message.author.UID !== locationHref) return;
+            
           return createMessage(message.author, message.content, "he")
         }
         
