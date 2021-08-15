@@ -4,7 +4,15 @@
     <%- include("./parts/head.ejs") %>
   </head>
   <body>
+    
     <div class="ta-center">
+      
+      <% if (error) { %>
+    <div class="error">
+      <span class="error-msg"><%= msg %>. <a href="/signup">create account here</a></span>
+    </div>      
+      <% } %>
+      
     <div class="box-1 cv">
 <form method="post">
   <h1 style="color: #ddd; text-align: center;">
