@@ -36,7 +36,7 @@
       let chats = document.getElementById(`chat-<%= req.session.user.UID %>-${window.location.href.split("chat/")[1]}`);
       
       form.addEventListener('submit', function(e) {
-        socket.emit('message', {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: window.location.href.split("chat/")[1]});
+        socket.emit('message', {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'});
         e.preventDefault();
         form.reset()
       });
@@ -48,7 +48,7 @@
           createMessage(message.author, message.content, "me")    
         }
         
-        if (message.auhtor.UID == window.location.href.split("chat/")[1]) {
+        if (message.to == "<%= req.session.user.UID %>") {
           return createMessage(message.author, message.content, "he")
         }
         
