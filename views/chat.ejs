@@ -12,7 +12,7 @@
       </button>        
       </div>
       
-    <div class="chat-box">
+    <div class="chat-box" id="chat-list">
       <div class="he">
         <img class="he-avatar" src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg">
         <span class="he-msg">Start chatting!</span>
@@ -30,8 +30,8 @@
         <span class="he-msg">How are you?</span>
       </div>
     </div>
-      <form method="get" class="send-msg">
-      <input class="msg-input" type="text" maxlength="100" placeholder="max 100 characters"><button type="submit" class="btn btn-primary">send</button>
+      <form method="get" class="send-msg" id="form">
+      <input id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters"><button type="submit" class="btn btn-primary">send</button>
       </form>
     </div>
     
@@ -41,6 +41,37 @@
     <script>
     var socket = io();
       
+      var form = document.getElementById("form");
+      var input = document.getElementById("input");
+      let chats = document.getElementById("chat-list");
+      
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit('message', {user: <%= req.session.user %>, content: input.value});
+          input.value = '';
+        }
+      });
+      
+      socket.on("message", message => {
+        if (message.user.UID == '<%= req.session.user.UID %>') {
+            
+        }
+      })
+      
+      async function createMessage(user, content, mehe) {
+        let base = document.createElement("div");
+        base.setAttribute("class", mehe);
+        base.setParent(chats);
+        
+        let image = document.createElement("img");
+        image.setAttribute("src", user.Avatar);
+        image.setAttribute("class", `${mehe}-avatar`);
+        image.setParent(base);
+        
+        let message = document.createElement("span");
+        message.setAttribute("class", `${}`)
+      }
       
     </script>
   </body>
