@@ -17,18 +17,6 @@
         <img class="he-avatar" src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg">
         <span class="he-msg">Start chatting!</span>
       </div>      
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">Hello sir!</span>
-      </div>
-      <div class="he">
-        <img class="he-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="he-msg">Hello to!</span>
-      </div>
-      <div class="he">
-        <img class="he-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="he-msg">How are you?</span>
-      </div>
     </div>
       <form action="" class="send-msg" id="form">
       <input id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary">send</button>
@@ -36,6 +24,7 @@
     </div>
     
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
     <script>
@@ -62,17 +51,17 @@
       async function createMessage(user, content, mehe) {
         let base = document.createElement("div");
         base.setAttribute("class", mehe);
-        base.setParent(chats);
+        chats.appendChild(base);
         
         let image = document.createElement("img");
         image.setAttribute("src", user.Avatar);
         image.setAttribute("class", `${mehe}-avatar`);
-        image.setParent(base);
+        base.appendChild(image);
         
         let message = document.createElement("span");
         message.setAttribute("class", `${mehe}-msg`);
         message.textContent = content;
-        message.setParent(base);
+        base.appendChild(message);
         
         return true;
       }
