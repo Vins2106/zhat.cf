@@ -40,8 +40,10 @@ app.get('/', checkAuth, async (req, res) => {
   let Contacts = await GetContact(req.session.user.UID)
   let contacts = [];
   
-  if (contacts.List[0]) {
-    Contacts.List.forEach(async c => {
+  console.log(Contacts)
+  
+  if (Contacts.List[0]) {
+    Contacts.List.reverse().map(async c => {
       let acc = await data.findOne({UID: c});
       if (!acc) return;
       
@@ -53,11 +55,13 @@ app.get('/', checkAuth, async (req, res) => {
     });
   }
   
+  setTimeout(() => {
   res.render("index.ejs", {
     req,
     res,
     contacts
-  })
+  })    
+  }, 500)
 });
 
 app.get('/login', async (req, res) => {

@@ -23,12 +23,14 @@
       no user available
     </h1>
     <% } else { %>
+    <% contacts.map(u => { %>
     <div class="account-list">
       <div class="account">
-      <img class="account-avatar-2" alt="avatar" src="<%= req.session.user.Avatar %>">
-      <span class="account-username-2"><%= req.session.user.Username %></span>        
+      <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
+      <span class="account-username-2"><%= u.username %></span>        
       </div>
-    </div>    
+    </div>      
+    <% }) %>
     <% } %>
     
     <div class="add-contact" onclick="location.href = '/contact/add'">
