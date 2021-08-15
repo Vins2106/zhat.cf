@@ -41,21 +41,15 @@
         form.reset()
       });
       
-      socket.on("message2", message => {
+      socket.on("message2", async message => {
         console.log(message, window.location.href.split("chat/")[1], <%- JSON.stringify(he) %>)
         
-        if (message.to.UID == '<%= he.UID %>') {
-          if (message.user.UID == '<%= req.session.user.UID %>') {
-            return createMessage(message.user, message.content, "me")
-          }
-          
-          if (message.user.UID == '<%= he.UID %>') {
-            return createMessage(message.user, message.content, "he")
-          }
+        if (message.user.UID == locationHref) {
+          return await createMessage(message.user, message.content, "he")
         }
-                
-        if (message.user.UID == "<%= req.session.user.UID %>") {
-           return createMessage(message.user, message.content, "me")        
+        
+        if (message.user.UID == '<%= req.session.user.UID %>') {
+          return await createMessage(message.user, message.content, "me")  
         }
         
       })
