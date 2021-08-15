@@ -7,9 +7,13 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo');
+let data = require("./mongo/data.js");
+
+require("dotenv").config()
 
 mongoose.connect(process.env.mongo, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -20,7 +24,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({
-    mongoUrl: process.env.mongo
+    mongoUrl: process.env.mongo,
+    autoRemove: 'disabled'
   })
 }));
 
@@ -37,6 +42,12 @@ app.get('/login', async (req, res) => {
 
 app.post('/login', async (req, res) => {
   console.log(req.body);
+  
+  let checkFirstEmail = await data.findOne({Email: req.body.email});
+  if (!checkFirstEmail) return res.redirect("/login?error=true&message=Invalid+email");
+  
+  let checkFirstEmailPassword = await data.findOne({Email: req.body.email, Password: req.body.password});
+  if (!checkFirstEmailPassword) return res.redirect("/login?error=true&message=Invalid+emaile+&+password");
   
   res.redirect("/login")
 });
