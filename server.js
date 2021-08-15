@@ -38,11 +38,25 @@ app.use(express.static(__dirname + "/public"));
 app.get('/', checkAuth, async (req, res) => {
   
   let Contacts = await GetContact(req.session.user.UID)
+  let contacts = [];
+  
+  if (contacts.List[0]) {
+    Contacts.List.forEach(async c => {
+      let acc = await data.findOne({UID: c});
+      if (!acc) return;
+      
+      contacts.push({
+        username: acc.Username,
+        avatar: acc.Avatar,
+        uid: acc.UID
+      });
+    });
+  }
   
   res.render("index.ejs", {
     req,
     res,
-    contacts: Contacts
+    contacts
   })
 });
 
@@ -163,17 +177,28 @@ app.post("/settings", checkAuth, async (req, res) => {
 
 app.get("/contact/add", checkAuth, async (req, res) => {
   
+  if (req.query.success == "true") {
+    return res.render("add.ejs", {
+      req,
+      res,
+      error: false,
+      success: true
+    })
+  }
+  
   if (req.query.error == "true") {
     return res.render("add.ejs", {
       req,
       res,
       error: true,
-      msg: req.query.message
+      msg: req.query.message,
+      success: false
     })  
   }  
   
   return res.render("add.ejs", {
     error: false,
+    success: false,
     req,
     res
   })
@@ -191,10 +216,29 @@ app.post("/contact/add", checkAuth, async (req, res) => {
   if (!ourContacts) {
     let newContact = new contacts({
       UID: req.session.user.UID,
-      List: []
-    })
+      List: [checkUser.UID]
+    });
+    
+    newContact.save();
+  } else {
+   ourContacts.List.push(checkUser.UID);
+   ourContacts.save();
   }
   
+  let heContacts = await GetContact(checkUser.UID);
+  if (!heContacts) {
+    let newContact = new contacts({
+      UID: checkUser.UID,
+      List: [req.session.user.UID]
+    });
+    
+    newContact.save();
+  } else {
+   heContacts.List.push(req.session.user.UID);
+   heContacts.save();
+  }  
+  
+  res.redirect("/contact/add?success=true")
 });
 
 app.get("/logout", async (req, res) => {
