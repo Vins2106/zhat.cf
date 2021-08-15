@@ -13,6 +13,10 @@
       </div>
       
     <div class="chat-box">
+      <div class="he">
+        <img class="he-avatar" src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg">
+        <span class="he-msg">Start chatting!</span>
+      </div>      
       <div class="me">
         <img class="me-avatar" src="<%= req.session.user.Avatar %>">
         <span class="me-msg">Hello sir!</span>
@@ -25,57 +29,19 @@
         <img class="he-avatar" src="<%= req.session.user.Avatar %>">
         <span class="he-msg">How are you?</span>
       </div>
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">Im fine :D</span>
-      </div>
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div> 
-      <div class="me">
-        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
-        <span class="me-msg">p</span>
-      </div>  
     </div>
       <form method="get" class="send-msg">
       <input class="msg-input" type="text" maxlength="100" placeholder="max 100 characters"><button type="submit" class="btn btn-primary">send</button>
       </form>
     </div>
     
-    
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script>
+    var socket = io();
+      
+      
+    </script>
   </body>
 </html> 

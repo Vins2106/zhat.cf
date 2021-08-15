@@ -222,10 +222,10 @@ a {
 }
 
 .he-msg {
-    background: blue;
+    background: aqua;
     margin: 10px 10px auto 12px;
     padding: 8px;
-    color: white;
+    color: black;
     letter-spacing: 1px;
     border-radius: 20px 20px 20px 0px;
     font-weight: bold;
@@ -240,7 +240,7 @@ a {
 }
 
 .chat-box {
-    background: aliceblue;
+    background: transparent;
   padding-top: 55px;
 }
 
@@ -253,10 +253,10 @@ a {
 }
 
 .me-msg {
-    background: green;
+    background: aliceblue;
     margin: 10px 12px auto 10px;
     padding: 8px;
-    color: white;
+    color: black;
     letter-spacing: 1px;
     border-radius: 20px 20px 0px 20px;
     font-weight: bold;
