@@ -229,6 +229,7 @@ a {
     letter-spacing: 1px;
     border-radius: 20px 20px 20px 0px;
     font-weight: bold;
+  max-width
 }
 
 .he-avatar {
