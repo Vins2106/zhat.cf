@@ -34,7 +34,11 @@ app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', checkAuth, (req, res) => {
-  res.render("index.ejs")
+  
+  res.render("index.ejs", {
+    req,
+    res
+  })
 });
 
 app.get('/login', async (req, res) => {
@@ -91,14 +95,17 @@ app.post("/signup", async (req, res) => {
 
   let dataStruct = {
     Email: email,
-    Password: ,
-    Username: String,
-    UID: String    
+    Password: password,
+    Username: username,
+    UID: makeid(18)    
   }
   
-  let newData = new data({
-    
-  })
+  let newData = new data(dataStruct);
+  newData.save();
+  
+  req.session.user = dataStruct;
+  
+  res.redirect("/");
   
 });
 
