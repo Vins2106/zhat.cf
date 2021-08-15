@@ -242,6 +242,7 @@ a {
 .chat-box {
     background: transparent;
   padding-top: 55px;
+  padding-bottom: 55px;
 }
 
 .me {
