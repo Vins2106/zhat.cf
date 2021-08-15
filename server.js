@@ -5,6 +5,12 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const MongoStore = require('connect-mongo');
+
+mongoose.connect(process.env.mongo, {
+  useNewUrlParser: true
+});
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -12,7 +18,10 @@ app.use(bodyParser.json())
 app.use(session({
   secret: 'super cat',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: process.env.mongo
+  })
 }));
 
 app.use(express.static(__dirname + "/public"));
