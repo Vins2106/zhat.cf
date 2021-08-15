@@ -48,16 +48,18 @@
       var input = document.getElementById("input-msg");
       let chats = document.getElementById(`chat-list`);
       let emoji = document.querySelector('emoji-picker');
+      emoji.style.display = "none";
+      let emojiDisplay = false;
       let array = []
-      let database = JSON.parse(localStorage.getItem(locationHref));
+      let database = JSON.parse(localStorage.getItem(locationHref)) ;
       if (!database) {
         localStorage.setItem(locationHref, JSON.stringify(array));
       } else if (database[0]) {
-        database.
-      }
+        database.map(data => {
+          createMessage(data.author, data.content, data.type)
+        })
+      }   
       
-      emoji.style.display = "none";
-      let emojiDisplay = false;
       
       function emojiToggle() {
         if (emojiDisplay) {
@@ -90,7 +92,7 @@ function scrollToBottom() {
         if (message.author.UID == '<%= req.session.user.UID %>') {
             let data = JSON.parse(localStorage.getItem(locationHref));
         data.push({author: message.author, content: message.content, type: "me"});
-        localStorage.setItem(locationHref, JSON.stringify(data));
+        localStorage.setItem(locationHref, JSON.stringify(data));      
             
           createMessage(message.author, message.content, "me")
           scrollTo(0, chats.scrollHeight)
