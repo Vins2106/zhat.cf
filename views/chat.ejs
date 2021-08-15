@@ -4,25 +4,15 @@
     <%- include("./parts/head.ejs") %>
   </head>
   <body>
-    
-    <div class="navbar-brand">
-      Zhat - online chat app
-    </div>
-    <div class="navbar-account">
-      <div class="profile" onclick="location.href = '/settings'">
-      <img class="account-avatar" alt="avatar" src="<%= req.session.user.Avatar %>">
-      <span class="account-username"><%= req.session.user.Username %></span>
-      </div>
-      <button class="btn btn-danger" onclick="location.href = '/logout'">
-        Logout
-      </button>
-    </div>
 
     <div class="chats">
-    <div class="chat-box">
+      <div class="back-btn">
       <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
         Back
-      </button>
+      </button>        
+      </div>
+      
+    <div class="chat-box">
       <div class="me">
         <img class="me-avatar" src="<%= req.session.user.Avatar %>">
         <span class="me-msg">Hello sir!</span>

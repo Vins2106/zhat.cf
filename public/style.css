@@ -241,6 +241,7 @@ a {
 
 .chat-box {
     background: aliceblue;
+  padding-top: 55px;
 }
 
 .me {
@@ -267,6 +268,30 @@ a {
     object-fit: cover;
     border-radius: 50%;
     border: 1px solid black;
+}
+
+.send-msg {
+    position: fixed;
+    background: #ddd;
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    bottom: 0;
+}
+
+.msg-input {
+    width: 70%;
+    border: none;
+    padding: 10px;
+    background-color: var(--second);
+    color: black;
+}
+
+.back-btn {
+    background: aliceblue;
+    position: fixed;
+    width: 100%;
 }
 
 @media (max-width: 492px) {
