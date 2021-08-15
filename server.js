@@ -161,6 +161,42 @@ app.post("/settings", checkAuth, async (req, res) => {
   
 });
 
+app.get("/contact/add", checkAuth, async (req, res) => {
+  
+  if (req.query.error == "true") {
+    return res.render("add.ejs", {
+      req,
+      res,
+      error: true,
+      msg: req.query.message
+    })  
+  }  
+  
+  return res.render("add.ejs", {
+    error: false,
+    req,
+    res
+  })
+  
+});
+
+app.post("/contact/add", checkAuth, async (req, res) => {
+  
+  let uemail = req.body.user;
+  
+  let checkUser = await data.findOne({Email: uemail});
+  if (!checkUser) return res.redirect("/contact/add?error=true&message=User not found");
+  
+  let ourContacts = await GetContact(req.session.user.UID)
+  if (!ourContacts) {
+    let newContact = new contacts({
+      UID: req.session.user.UID,
+      List: []
+    })
+  }
+  
+});
+
 app.get("/logout", async (req, res) => {
   req.session.user = null;
   
