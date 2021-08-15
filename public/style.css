@@ -116,6 +116,34 @@ a {
     letter-spacing: 1px;
 }
 
+.navbar-account {
+    width: -webkit-fill-available;
+    height: auto;
+    display: flex;
+    align-items: center;
+    background: var(--second);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.account-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.account-username {
+    margin: 10px 10px 10px 10px;
+    font-size: 18px;
+    color: black;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    text-overflow: ellipsis;
+}
+
 @media (max-width: 492px) {
   .box-1 {
     width: auto;
