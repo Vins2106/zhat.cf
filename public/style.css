@@ -144,6 +144,37 @@ a {
     text-overflow: ellipsis;
 }
 
+.account-avatar-2 {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.account-username-2 {
+    margin: 10px 10px 10px 10px;
+    font-size: 15px;
+    color: black;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    text-overflow: ellipsis;
+}
+
+.account-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 25px;
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
 @media (max-width: 492px) {
   .box-1 {
     width: auto;

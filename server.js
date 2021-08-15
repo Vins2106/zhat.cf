@@ -34,8 +34,10 @@ app.use(session({
 app.use(express.static(__dirname + "/public"));
 
 
-app.get('/', checkAuth, (req, res) => {
+app.get('/', checkAuth, async (req, res) => {
   console.log(req.session.user) 
+  
+  let Contacts = await GetContacts(req.session.user.UID)
   
   res.render("index.ejs", {
     req,
@@ -145,3 +147,5 @@ function makeid(length) {
    }
    return result;
 }
+
+async function GetContact()
