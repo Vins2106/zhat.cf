@@ -116,6 +116,13 @@ app.post("/signup", async (req, res) => {
   
 });
 
+app.get("/settings", checkAuth, async (req, res) => {
+  res.render("settings.ejs", {
+    req,
+    res
+  })
+});
+
 app.get("/logout", async (req, res) => {
   req.session.user = null;
   

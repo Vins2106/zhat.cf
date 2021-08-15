@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("./parts/head.ejs") %>
+  </head>
+  <body>
+    
+    <div class="ta-center">
+      
+
+      
+    <div class="box-1 cv">
+<form method="post">
+  <h1 style="color: #ddd; text-align: center;">
+    Hi <%= req.session.user.Username %>!
+  </h1>
+  
+  <div class="form-control">
+    <label for="username-input">Username</label>
+    <input name="username" type="text" class="form-input" id="username-input" value="<%= req.session.user.Username %>" required>
+  </div>  
+  <div class="form-control">
+    <label for="email-input">Email</label>
+    <input name="email" type="email" class="form-input" id="email-input" aria-describedby="email-help" value="<%= req.session.user.Email %>" disabled>
+  </div>
+  <div class="form-control">
+    <label for="password-input">Password</label>
+    <input name="password" type="text" class="form-input" id="password-input" value="<%= req.session.user.Password %>" required>
+  </div>
+  <div class="form-control">
+    <label for="avatar-input">Avatar</label>
+    <input name="avatar" type="ur;" class="form-input" id="avatar-input" value="<%= req.session.user.Avatar %>" required>
+  </div>  
+  
+  <div class="btn-submit">
+    <a style="margin-right: 10px;" href="/logout">logout</a><button type="submit" class="btn btn-primary">Save</button>    
+  </div>
+</form>
+    </div>
+    </div>
+  </body>
+</html>

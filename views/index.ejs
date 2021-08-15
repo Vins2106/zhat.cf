@@ -8,8 +8,8 @@
     <div class="navbar-brand">
       Zhat - online chat app
     </div>
-    <div class="navbar-account" onclick="location.href = '/settings'">
-      <div class="profile">
+    <div class="navbar-account">
+      <div class="profile" onclick="location.href = '/settings'">
       <img class="account-avatar" alt="avatar" src="<%= req.session.user.Avatar %>">
       <span class="account-username"><%= req.session.user.Username %></span>
       </div>

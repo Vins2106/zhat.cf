@@ -124,7 +124,6 @@ a {
     align-items: center;
     background: var(--second);
     padding: 10px;
-    cursor: pointer;
   justify-content: space-between;
 }
 
@@ -199,6 +198,7 @@ a {
 .profile {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 @media (max-width: 492px) {
