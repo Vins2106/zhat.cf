@@ -323,6 +323,12 @@ a {
   text-align: right;
 }
 
+emoji-picker {
+    position: fixed;
+    bottom: 65px;
+    right: 10px;  
+}
+
 @media (max-width: 492px) {
   .box-1 {
     width: auto;
