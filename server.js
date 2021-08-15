@@ -50,15 +50,19 @@ app.get('/login', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  console.log(req.body);
   
   let checkFirstEmail = await data.findOne({Email: req.body.email});
   if (!checkFirstEmail) return res.redirect("/login?error=true&message=Invalid email");
   
   let checkFirstEmailPassword = await data.findOne({Email: req.body.email, Password: req.body.password});
-  if (!checkFirstEmailPassword) return res.redirect("/login?error=true&message=Invalid emaile & password");
+  if (!checkFirstEmailPassword) return res.redirect("/login?error=true&message=Invalid email & password");
   
-  res.redirect("/login")
+  req.session.user = checkFirstEmailPassword;
+  res.redirect("/")
+});
+
+app.get("/signup", async (req, res) => {
+  
 });
 
 app.use("/", async (req, res) => {
