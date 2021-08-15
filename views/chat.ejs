@@ -33,25 +33,29 @@
       let locationHref = window.location.href.split("chat/")[1]
       var form = document.getElementById("form");
       var input = document.getElementById("input-msg");
-      let chats = document.getElementById(`chat-<%= req.session.user.UID %>-${locationHref}`);
+      let chats = document.getElementById(`chat-<%= req.session.user.UID %>-${window.location.href.split("chat/")[1]}`);
       
       form.addEventListener('submit', function(e) {
-        socket.emit('message', {user: <%- JSON.stringify(req.session.user) %>, content: input.value, to: locationHref});
+        socket.emit('message', {user: <%- JSON.stringify(req.session.user) %>, content: input.value, to: window.location.href.split("chat/")[1]});
         e.preventDefault();
         form.reset()
       });
       
-      socket.on("message", message => {
-        console.log(message, locationHref)
+      socket.on("message2", message => {
+        console.log(message, window.location.href.split("chat/")[1])
         
-        if (message.to == locationHref) {
+        if (message.to !== '<%= he.UID %>') {
           if (message.user.UID == '<%= req.session.user.UID %>') {
             return createMessage(message.user, message.content, "me")
           }
           
-          if (message.user.UID == locationHref) {
+          if (message.user.UID == '<%= he.UID %>') {
             return createMessage(message.user, message.content, "he")
           }
+        }
+                
+        if (message.user.UID == "<%= req.session.user.UID %>") {
+           return createMessage(message.user, message.content, "me")        
         }
         
       })
