@@ -34,7 +34,7 @@ app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', checkAuth, (req, res) => {
-  
+   
   res.render("index.ejs", {
     req,
     res
@@ -97,7 +97,8 @@ app.post("/signup", async (req, res) => {
     Email: email,
     Password: password,
     Username: username,
-    UID: makeid(18)    
+    UID: makeid(18) ,
+    Avatar: "https://i.stack.imgur.com/l60Hf.png"
   }
   
   let newData = new data(dataStruct);

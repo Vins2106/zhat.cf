@@ -5,6 +5,7 @@ module.exports = model(
     Email: String,
     Password: String,
     Username: String,
-    UID: String
+    UID: String,
+    Avatar: String
   })
 );
