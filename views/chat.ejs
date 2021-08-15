@@ -41,10 +41,10 @@
       });
       
       socket.on("message", message => {
-        if (message.user.UID == '<%= req.session.user.UID %>') {
-            return createMessage(message.user, message.content, "me")
-        } else if (message.user.UID == '<%= he.UID %>') {
-          return createMessage(message.user, message.content, "he")
+        if (message.user.UID == '<%= he.UID %>') {
+            return createMessage(message.user, message.content, "he")
+        } else if (message.user.UID == '<%= req.session.user.UID %>') {
+          return createMessage(message.user, message.content, "me")
         }
       })
       
