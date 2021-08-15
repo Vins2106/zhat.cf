@@ -12,7 +12,7 @@
       </button>        
       </div>
       
-    <div class="chat-box" id="chat-<%= req.session.user.UID %>-<%= he.UID %>">
+    <div class="chat-box" id="chat-list">
       <div class="he">
         <img class="he-avatar" src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg">
         <span class="he-msg">Start chatting!</span>
@@ -33,19 +33,18 @@
       let locationHref = window.location.href.split("chat/")[1]
       var form = document.getElementById("form");
       var input = document.getElementById("input-msg");
-      let chats = document.getElementById(`chat-<%= req.session.user.UID %>-${window.location.href.split("chat/")[1]}`);
+      let chats = document.getElementById(`chat-list`);
       
       form.addEventListener('submit', function(e) {
         socket.emit('message', {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'});
         e.preventDefault();
         form.reset()
-        scrollToBottom(`chat-<%= req.session.user.UID %>-${window.location.href.split("chat/")[1]}`)               
+        scrollToBottom()
       });
       
-function scrollToBottom (id) {
-   var div = document.getElementById(id);
-   div.scrollTop = div.scrollHeight - div.clientHeight;
-}      
+function scrollToBottom() {
+  chats.scrollTop = chats.scrollHeight;
+}    
       
       socket.on("message2", message => {
         console.log(message, window.location.href.split("chat/")[1])
@@ -55,7 +54,7 @@ function scrollToBottom (id) {
         }
         
         if (message.to == "<%= req.session.user.UID %>") {
-            if (message.author.UID !== locationHref) return;
+            if (message.author.UID == locationHref) return;
             
           return createMessage(message.author, message.content, "he")
         }
