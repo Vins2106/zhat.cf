@@ -36,7 +36,7 @@
       let chats = document.getElementById(`chat-<%= req.session.user.UID %>-${locationHref}`);
       
       form.addEventListener('submit', function(e) {
-        socket.emit('message', {user: <%- JSON.stringify(req.session.user) %>, content: input.value});
+        socket.emit('message', {user: <%- JSON.stringify(req.session.user) %>, content: input.value, to: locationHref});
         e.preventDefault();
         form.reset()
       });
@@ -44,7 +44,7 @@
       socket.on("message", message => {
         console.log(message, locationHref)
         
-        if (message.user.UID == locationHref) {
+        if (message.to == locationHref) {
           if (message.user.UID == '<%= req.session.user.UID %>') {
             return createMessage(message.user, message.content, "me")
           }
