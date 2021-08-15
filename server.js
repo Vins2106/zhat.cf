@@ -36,7 +36,6 @@ app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', checkAuth, async (req, res) => {
-  console.log(req.session.user) 
   
   let Contacts = await GetContact(req.session.user.UID)
   
@@ -138,6 +137,7 @@ app.post("/settings", checkAuth, async (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
   let avatar = req.body.avatar;
+  let email = req.body.email;
   
   if (!typeof validator.isStrongPassword(password) == 'true') {
     return res.redirect("/settings?error=true&message=Password not strong")
@@ -149,8 +149,13 @@ app.post("/settings", checkAuth, async (req, res) => {
     return res.redirect("/settings?error=true&message=Avatar url must be .png or .jpg");
   }
   
-  let findAcc = await data.findOne({Email: req.body.email, Password: password});
+  let findAcc = await data.findOne({Email: req.body.email});
+  findAcc.Username = username;
+  findAcc.Password = password;
+  findAcc.Avatar = avatar;
+  findAcc.save();
   
+  req.session.user = findAcc;
   
   return res.redirect("/")
   
