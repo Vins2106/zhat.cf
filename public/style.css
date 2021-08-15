@@ -216,7 +216,7 @@ a {
 }
 
 .he {
-    width: max-content;
+    width: auto;
     display: flex;
     padding: 10px;
 }
@@ -229,7 +229,7 @@ a {
     letter-spacing: 1px;
     border-radius: 20px 20px 20px 0px;
     font-weight: bold;
-  max-width
+  word-break: break-all;
 }
 
 .he-avatar {
@@ -247,7 +247,7 @@ a {
 }
 
 .me {
-    width: max-content;
+    width: auto;
     display: flex;
     padding: 10px;
     flex-direction: row-reverse;
@@ -262,6 +262,7 @@ a {
     letter-spacing: 1px;
     border-radius: 20px 20px 0px 20px;
     font-weight: bold;
+  word-break: break-all;
 }
 
 .me-avatar {

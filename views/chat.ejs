@@ -12,7 +12,7 @@
       </button>        
       </div>
       
-    <div class="chat-box" id="chat-list">
+    <div class="chat-box" id="chat-<%= req.session.user.UID %>">
       <div class="he">
         <img class="he-avatar" src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg">
         <span class="he-msg">Start chatting!</span>
@@ -30,9 +30,10 @@
     <script>
     var socket = io();
       
+      let locationHref = window.location.href.split("chat/")[1]
       var form = document.getElementById("form");
       var input = document.getElementById("input-msg");
-      let chats = document.getElementById("chat-list");
+      let chats = document.getElementById("chat-<%= req.session.user.UID %>-" + locationHref);
       
       form.addEventListener('submit', function(e) {
         socket.emit('message', {user: <%- JSON.stringify(req.session.user) %>, content: input.value});
@@ -41,7 +42,6 @@
       });
       
       socket.on("message", message => {
-        let locationHref = window.location.href.split("chat/")[1]
         
         if (message.user.UID == locationHref) {
             return createMessage(message.user, message.content, "he")
