@@ -41,7 +41,9 @@
       });
       
       socket.on("message", message => {
-        if (message.user.UID == '<%= he.UID %>') {
+        let locationHref = window.location.href.split("chat/")[1]
+        
+        if (message.user.UID == locationHref) {
             return createMessage(message.user, message.content, "he")
         } else if (message.user.UID == '<%= req.session.user.UID %>') {
           return createMessage(message.user, message.content, "me")
