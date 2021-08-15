@@ -275,6 +275,11 @@ app.use("/", async (req, res) => {
 });
 
 io.on('connection', (socket) => {
+  
+  socket.on("message", message => {
+    io.emit("message", message)
+  })
+  
 });
 
 function checkAuth(req, res, next) {

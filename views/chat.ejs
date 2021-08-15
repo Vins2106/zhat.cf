@@ -30,8 +30,8 @@
         <span class="he-msg">How are you?</span>
       </div>
     </div>
-      <form method="get" class="send-msg" id="form">
-      <input id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters"><button type="submit" class="btn btn-primary">send</button>
+      <form action="" class="send-msg" id="form">
+      <input id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary">send</button>
       </form>
     </div>
     
@@ -42,20 +42,20 @@
     var socket = io();
       
       var form = document.getElementById("form");
-      var input = document.getElementById("input");
+      var input = document.getElementById("input-msg");
       let chats = document.getElementById("chat-list");
       
       form.addEventListener('submit', function(e) {
+        socket.emit('message', {user: <%- JSON.stringify(req.session.user) %>, content: input.value});
         e.preventDefault();
-        if (input.value) {
-          socket.emit('message', {user: <%= req.session.user %>, content: input.value});
-          input.value = '';
-        }
+        form.reset()
       });
       
       socket.on("message", message => {
         if (message.user.UID == '<%= req.session.user.UID %>') {
-            
+            return createMessage(message.user, message.content, "me")
+        } else {
+          return createMessage(message.user, message.content, "he")
         }
       })
       
@@ -70,7 +70,11 @@
         image.setParent(base);
         
         let message = document.createElement("span");
-        message.setAttribute("class", `${}`)
+        message.setAttribute("class", `${mehe}-msg`);
+        message.textContent = content;
+        message.setParent(base);
+        
+        return true;
       }
       
     </script>
