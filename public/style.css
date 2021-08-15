@@ -175,6 +175,20 @@ a {
     cursor: pointer;
 }
 
+.no-contact {
+    height: 60px;
+    width: 60px;
+    background-color: rgba(67, 83, 143, .8);
+    border-radius: 50%;
+    display: block;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+
+
 @media (max-width: 492px) {
   .box-1 {
     width: auto;

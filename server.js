@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo');
 let data = require("./mongo/data.js");
+let contacts = require("./mongo/contacts.js");
 var validator = require('validator');
 
 require("dotenv").config()
@@ -37,11 +38,12 @@ app.use(express.static(__dirname + "/public"));
 app.get('/', checkAuth, async (req, res) => {
   console.log(req.session.user) 
   
-  let Contacts = await GetContacts(req.session.user.UID)
+  let Contacts = await GetContact(req.session.user.UID)
   
   res.render("index.ejs", {
     req,
-    res
+    res,
+    contacts: Contacts
   })
 });
 
@@ -148,4 +150,20 @@ function makeid(length) {
    return result;
 }
 
-async function GetContact()
+async function GetContact(UID) {
+  let check = await contacts.findOne({UID: UID});
+  
+  if (!check) {
+    
+    let newData = new contacts({
+      UID: UID,
+      List: []
+    });
+    
+    newData.save()
+    
+    return newData;
+  }
+  
+  return check;
+}

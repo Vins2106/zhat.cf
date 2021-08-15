@@ -13,11 +13,23 @@
       <span class="account-username"><%= req.session.user.Username %></span>
     </div>
     
+    <% if (!contacts[0]) { %>
+    <h3 class="no-contact">
+      no user available
+    </h1>
+    <% } else { %>
     <div class="account-list">
       <div class="account">
       <img class="account-avatar-2" alt="avatar" src="<%= req.session.user.Avatar %>">
       <span class="account-username-2"><%= req.session.user.Username %></span>        
       </div>
+    </div>    
+    <% } %>
+    
+    <div class="add-contact">
+      <button class="add-btn">
+        +
+      </button>
     </div>
     
   </body>
