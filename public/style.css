@@ -231,6 +231,7 @@ a {
   font-weight: bold;
   word-break: break-all;
   text-align: left;
+  font-size: 18px;
 }
 
 .he-avatar {
@@ -265,6 +266,7 @@ a {
   font-weight: bold;
   word-break: break-all;
   text-align: right;
+  font-size: 18px;
 }
 
 .me-avatar {

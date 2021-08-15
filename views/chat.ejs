@@ -85,7 +85,7 @@ function scrollToBottom() {
         }
         
         if (message.to == "<%= req.session.user.UID %>") {
-            if (message.to == locationHref) return;
+            if (message.to == locationHref || message.author.UID !== locationHref) return;
             
           createMessage(message.author, message.content, "he")
           scrollTo(0, chats.scrollHeight)
