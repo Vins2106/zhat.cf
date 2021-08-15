@@ -36,20 +36,20 @@
       let chats = document.getElementById(`chat-<%= req.session.user.UID %>-${window.location.href.split("chat/")[1]}`);
       
       form.addEventListener('submit', function(e) {
-        socket.emit('message', {user: <%- JSON.stringify(req.session.user) %>, content: input.value, to: <%-JSON.stringify(he) %>});
+        socket.emit('message', {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: window.location.href.split("chat/")[1]});
         e.preventDefault();
         form.reset()
       });
       
-      socket.on("message2", async message => {
-        console.log(message, window.location.href.split("chat/")[1], <%- JSON.stringify(he) %>)
+      socket.on("message2", message => {
+        console.log(message, window.location.href.split("chat/")[1])
         
-        if (message.user.UID == locationHref) {
-          return await createMessage(message.user, message.content, "he")
+        if (message.author.UID == '<%= req.session.user.UID %>') {
+          createMessage(message.author, message.content, "me")    
         }
         
-        if (message.user.UID == '<%= req.session.user.UID %>') {
-          return await createMessage(message.user, message.content, "me")  
+        if (message.auhtor.UID == window.location.href.split("chat/")[1]) {
+          return createMessage(message.author, message.content, "he")
         }
         
       })
