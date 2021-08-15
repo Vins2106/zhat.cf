@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static(__dirname + "/public"));
 
 
-app.get('/', (req, res) => {
+app.get('/', checkAuth, (req, res) => {
   res.render("index.ejs")
 });
 
@@ -21,6 +21,12 @@ app.use("/", async (req, res) => {
 
 io.on('connection', (socket) => {
 });
+
+function checkAuth(req, res, next) {
+  if (req.session) return next();
+  
+  return res.redirect("/login")
+}
 
 http.listen(port, () => {
   console.log(`[system] running`);
