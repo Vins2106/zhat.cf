@@ -219,17 +219,18 @@ a {
     width: auto;
     display: flex;
     padding: 10px;
+    align-items: center;
 }
 
 .he-msg {
     background: aqua;
-    margin: 10px 10px auto 12px;
+    margin: 3px 10px auto 12px;
     padding: 8px;
     color: black;
     letter-spacing: 1px;
-    border-radius: 20px 20px 20px 0px;
+    border-radius: 0px 20px 20px 20px;
     font-weight: bold;
-  word-break: break-all;
+    word-break: break-all;
 }
 
 .he-avatar {
@@ -260,7 +261,7 @@ a {
     padding: 8px;
     color: black;
     letter-spacing: 1px;
-    border-radius: 20px 20px 0px 20px;
+    border-radius: 20px 0px 20px 20px;
     font-weight: bold;
   word-break: break-all;
 }
@@ -295,6 +296,28 @@ a {
     background: aliceblue;
     position: fixed;
     width: 100%;
+}
+
+.he-name-msg {
+    display: flex;
+    flex-direction: column;
+}
+
+.he-name {
+    margin-left: 12px;
+    color: white;
+    font-size: 15px;
+}
+
+.me-name-msg {
+    display: flex;
+    flex-direction: column;
+}
+
+.me-name {
+    margin-right: 12px;
+    color: white;
+    font-size: 15px;
 }
 
 @media (max-width: 492px) {
