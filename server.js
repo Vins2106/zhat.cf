@@ -26,7 +26,8 @@ app.use(session({
   saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: process.env.mongo,
-    autoRemove: 'disabled'
+    autoRemove: 'disabled',
+    touchAfter: 30000
   })
 }));
 
@@ -34,7 +35,8 @@ app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', checkAuth, (req, res) => {
-   
+  console.log(req.session.user) 
+  
   res.render("index.ejs", {
     req,
     res
@@ -108,6 +110,12 @@ app.post("/signup", async (req, res) => {
   
   res.redirect("/");
   
+});
+
+app.get("/logout", async (req, res) => {
+  req.session.user = null;
+  
+  res.redirect("/login");
 });
 
 app.use("/", async (req, res) => {
