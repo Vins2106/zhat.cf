@@ -114,6 +114,7 @@ a {
     color: white;
     font-weight: bold;
     letter-spacing: 1px;
+  
 }
 
 .navbar-account {
@@ -124,6 +125,7 @@ a {
     background: var(--second);
     padding: 10px;
     cursor: pointer;
+  justify-content: space-between;
 }
 
 .account-avatar {
@@ -176,18 +178,28 @@ a {
 }
 
 .no-contact {
-    height: 60px;
-    width: 60px;
-    background-color: rgba(67, 83, 143, .8);
-    border-radius: 50%;
-    display: block;
-    color: #fff;
     text-align: center;
-    position: relative;
-    z-index: 1;
+    padding: 10px;
 }
 
+.add-contact {
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:18px;
+	right:18px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+  cursor: pointer;
+}
 
+.profile {
+    display: flex;
+    align-items: center;
+}
 
 @media (max-width: 492px) {
   .box-1 {

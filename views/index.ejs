@@ -9,8 +9,13 @@
       Zhat - online chat app
     </div>
     <div class="navbar-account" onclick="location.href = '/settings'">
+      <div class="profile">
       <img class="account-avatar" alt="avatar" src="<%= req.session.user.Avatar %>">
       <span class="account-username"><%= req.session.user.Username %></span>
+      </div>
+      <button class="btn btn-danger" onclick="location.href = '/logout'">
+        Logout
+      </button>
     </div>
     
     <% if (!contacts[0]) { %>
@@ -26,10 +31,8 @@
     </div>    
     <% } %>
     
-    <div class="add-contact">
-      <button class="add-btn">
-        +
-      </button>
+    <div class="add-contact" onclick="location.href = '/contact/add'">
+      <i class="fa fa-plus" style="margin-top: 25%; font-size: 30px;"></i>
     </div>
     
   </body>
