@@ -24,6 +24,9 @@
       </div>      
     </div>
       <form action="" class="send-msg" id="form">
+        <button type="button" class="btn btn-primary" style="min-width: auto; width: 50px !important;" onclick="emojiToggle()">
+          🙂
+        </button>
         <emoji-picker></emoji-picker>
       <input autocomplete="off" id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary">send</button>
       </form>
@@ -45,9 +48,21 @@
       let chats = document.getElementById(`chat-list`);
       let emoji = document.querySelector('emoji-picker');
       
-      emoji.style.display = "none"
+      emoji.style.display = "none";
+      let emojiDisplay = false;
+      
+      function emojiToggle() {
+        if (emojiDisplay) {
+          emoji.style.display = "none"
+          emojiDisplay = false;
+        } else {
+          emoji.style.display = "block"
+          emojiDisplay = true;
+        }
+      }
       
       emoji.addEventListener('emoji-click', event => {
+        emojiToggle()
         input.value += event.detail.unicode;
       }); 
       
