@@ -225,6 +225,9 @@ app.post("/contact/add", checkAuth, async (req, res) => {
     
     newContact.save();
   } else {
+    let checkAlr = ourContacts.List.find(x => x == checkUser.UID);
+    if (checkAlr) return res.redirect("/contact/add?error=true&message=Already on contact")
+    
    ourContacts.List.push(checkUser.UID);
    ourContacts.save();
   }
@@ -238,11 +241,21 @@ app.post("/contact/add", checkAuth, async (req, res) => {
     
     newContact.save();
   } else {
+    let checkAlr = heContacts.List.find(x => x == req.session.user.UID);
+    if (checkAlr) return res.redirect("/contact/add?error=true&message=Already on contact")    
+    
    heContacts.List.push(req.session.user.UID);
    heContacts.save();
   }  
   
   res.redirect("/contact/add?success=true")
+});
+
+app.get("/chat/:uid", checkAuth, async (req, res) => {
+  
+  let findTarget = await data.findOne({UID: req.params.uid});
+  if (!findTarget) return res.redirect("/");
+  
 });
 
 app.get("/logout", async (req, res) => {

@@ -25,7 +25,7 @@
     <% } else { %>
     <% contacts.map(u => { %>
     <div class="account-list">
-      <div class="account">
+      <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
       <span class="account-username-2"><%= u.username %></span>        
       </div>
