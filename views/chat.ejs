@@ -17,8 +17,12 @@
         Logout
       </button>
     </div>
-    
+
+    <div class="chats">
     <div class="chat-box">
+      <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
+        Back
+      </button>
       <div class="me">
         <img class="me-avatar" src="<%= req.session.user.Avatar %>">
         <span class="me-msg">Hello sir!</span>
@@ -35,7 +39,53 @@
         <img class="me-avatar" src="<%= req.session.user.Avatar %>">
         <span class="me-msg">Im fine :D</span>
       </div>
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div> 
+      <div class="me">
+        <img class="me-avatar" src="<%= req.session.user.Avatar %>">
+        <span class="me-msg">p</span>
+      </div>  
+    </div>
+      <form method="get" class="send-msg">
+      <input class="msg-input" type="text" maxlength="100" placeholder="max 100 characters"><button type="submit" class="btn btn-primary">send</button>
+      </form>
     </div>
     
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </body>
 </html> 

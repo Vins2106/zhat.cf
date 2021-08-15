@@ -215,13 +215,13 @@ a {
     background: aliceblue;
 }
 
-.me {
+.he {
     width: max-content;
     display: flex;
     padding: 10px;
 }
 
-.me-msg {
+.he-msg {
     background: blue;
     margin: 10px 10px auto 12px;
     padding: 8px;
@@ -231,7 +231,7 @@ a {
     font-weight: bold;
 }
 
-.me-avatar {
+.he-avatar {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -243,7 +243,7 @@ a {
     background: aliceblue;
 }
 
-.he {
+.me {
     width: max-content;
     display: flex;
     padding: 10px;
@@ -251,7 +251,7 @@ a {
     margin-left: auto;
 }
 
-.he-msg {
+.me-msg {
     background: green;
     margin: 10px 12px auto 10px;
     padding: 8px;
@@ -261,7 +261,7 @@ a {
     font-weight: bold;
 }
 
-.he-avatar {
+.me-avatar {
     width: 50px;
     height: 50px;
     object-fit: cover;
