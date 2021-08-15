@@ -48,9 +48,12 @@
       var input = document.getElementById("input-msg");
       let chats = document.getElementById(`chat-list`);
       let emoji = document.querySelector('emoji-picker');
-      let database = localStorage[locationHref];
+      let array = []
+      let database = JSON.parse(localStorage.getItem(locationHref));
       if (!database) {
-        localStorage.setItem(locationHref, []);
+        localStorage.setItem(locationHref, JSON.stringify(array));
+      } else if (database[0]) {
+        database.
       }
       
       emoji.style.display = "none";
@@ -85,9 +88,9 @@ function scrollToBottom() {
         console.log(message, window.location.href.split("chat/")[1])
         
         if (message.author.UID == '<%= req.session.user.UID %>') {
-            let data = localStorage[locationHref];
-            data = data.push({author: message.author, content: message.content, type: "me"});
-            localStorage[locationHref] = data;
+            let data = JSON.parse(localStorage.getItem(locationHref));
+        data.push({author: message.author, content: message.content, type: "me"});
+        localStorage.setItem(locationHref, JSON.stringify(data));
             
           createMessage(message.author, message.content, "me")
           scrollTo(0, chats.scrollHeight)
@@ -96,9 +99,9 @@ function scrollToBottom() {
         if (message.to == "<%= req.session.user.UID %>") {
             if (message.to == locationHref || message.author.UID !== locationHref) return;
             
-            let data = localStorage[locationHref];
-            data = data.push({author: message.author, content: message.content, type: "he"});
-            localStorage[locationHref] = data;
+            let data = JSON.parse(localStorage.getItem(locationHref));
+        data.push({author: message.author, content: message.content, type: "he"});
+        localStorage.setItem(locationHref, JSON.stringify(data));
       
           createMessage(message.author, message.content, "he")
           scrollTo(0, chats.scrollHeight)
