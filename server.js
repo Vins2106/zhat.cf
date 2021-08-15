@@ -143,9 +143,16 @@ app.post("/settings", checkAuth, async (req, res) => {
     return res.redirect("/settings?error=true&message=Password not strong")
   }
   
-  if (!avatar.startsWith("http://") || !avatar.startsWith("https://") || !avatar.endsWith(".png") || !avatar.endsWith(".jpg") || !avatar.endsWith(".webp")) {
-    return res.redirect("/settings?error=true&message=Invalid new avatar url")
+  if (!avatar.startsWith("https://") && !avatar.startsWith("http://")) {
+    return res.redirect("/settings?error=true&message=Invalid avatar url");
+  } else if (!avatar.endsWith(".png") && !avatar.endsWith(".jpg")) {
+    return res.redirect("/settings?error=true&message=Avatar url must be .png or .jpg");
   }
+  
+  let findAcc = await data.findOne({Email: req.body.email, Password: password});
+  
+  
+  return res.redirect("/")
   
 });
 
