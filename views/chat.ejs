@@ -45,11 +45,10 @@
         socket.emit('message', {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'});
         e.preventDefault();
         form.reset()
-        scrollToBottom()
       });
       
 function scrollToBottom() {
-  chats.scrollTop = chats.scrollHeight;
+  scrollTo(0, chats.scrollHeight)
 }    
       
       socket.on("message2", message => {
@@ -57,12 +56,14 @@ function scrollToBottom() {
         
         if (message.author.UID == '<%= req.session.user.UID %>') {
           createMessage(message.author, message.content, "me")
+          scrollTo(0, chats.scrollHeight)
         }
         
         if (message.to == "<%= req.session.user.UID %>") {
             if (message.to == locationHref) return;
             
-          return createMessage(message.author, message.content, "he")
+          createMessage(message.author, message.content, "he")
+          scrollTo(0, chats.scrollHeight)
         }
         
       })
