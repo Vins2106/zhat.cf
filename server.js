@@ -256,6 +256,12 @@ app.get("/chat/:uid", checkAuth, async (req, res) => {
   let findTarget = await data.findOne({UID: req.params.uid});
   if (!findTarget) return res.redirect("/");
   
+  res.render("chat.ejs", {
+    req,
+    res,
+    he: findTarget
+  })
+  
 });
 
 app.get("/logout", async (req, res) => {
