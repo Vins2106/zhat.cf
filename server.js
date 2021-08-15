@@ -117,10 +117,36 @@ app.post("/signup", async (req, res) => {
 });
 
 app.get("/settings", checkAuth, async (req, res) => {
+  if (req.query.error == "true") {
+    return res.render("settings.ejs", {
+      req,
+      res,
+      error: true,
+      msg: req.query.message
+    })  
+  }
+  
   res.render("settings.ejs", {
+    error: false,
     req,
     res
   })
+});
+
+app.post("/settings", checkAuth, async (req, res) => {
+  
+  let username = req.body.username;
+  let password = req.body.password;
+  let avatar = req.body.avatar;
+  
+  if (!typeof validator.isStrongPassword(password) == 'true') {
+    return res.redirect("/settings?error=true&message=Password not strong")
+  }
+  
+  if (!avatar.startsWith("http://") || !avatar.startsWith("https://") || !avatar.endsWith(".png") || !avatar.endsWith(".jpg") || !avatar.endsWith(".webp")) {
+    return res.redirect("/settings?error=true&message=Invalid new avatar url")
+  }
+  
 });
 
 app.get("/logout", async (req, res) => {

@@ -7,7 +7,11 @@
     
     <div class="ta-center">
       
-
+      <% if (error) { %>
+    <div class="error">
+      <span class="error-msg"><%= msg %></span>
+    </div>      
+      <% } %>
       
     <div class="box-1 cv">
 <form method="post">
@@ -29,7 +33,7 @@
   </div>
   <div class="form-control">
     <label for="avatar-input">Avatar</label>
-    <input name="avatar" type="ur;" class="form-input" id="avatar-input" value="<%= req.session.user.Avatar %>" required>
+    <input name="avatar" type="url" class="form-input" id="avatar-input" value="<%= req.session.user.Avatar %>" required>
   </div>  
   
   <div class="btn-submit">
