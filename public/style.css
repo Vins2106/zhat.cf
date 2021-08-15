@@ -107,3 +107,10 @@ a {
     border-radius: 4px;
     margin-top: 15px;
 }
+
+@media (max-width: 492px) {
+  .box-1 {
+    width: auto;
+  }
+  
+}

@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo');
 let data = require("./mongo/data.js");
+var validator = require('validator');
 
 require("dotenv").config()
 
@@ -62,9 +63,41 @@ app.post('/login', async (req, res) => {
 });
 
 app.get("/signup", async (req, res) => {
+  if (req.query.error == "true") {
+    return res.render("signup.ejs", {
+      error: true,
+      msg: req.query.message
+    })
+  }  
   
   res.render("signup.ejs", {
     error: false
+  })
+  
+});
+
+app.post("/signup", async (req, res) => {
+  
+  let username = req.body.username;
+  let email = req.body.email;
+  let password = req.body.password;
+  
+  let checkEmail = await data.findOne({Email: email});
+  if (checkEmail) return res.redirect("/signup?error=true&message=Email already used");
+  
+  if (!typeof validator.isStrongPassword(password) == 'true') {
+    return res.redirect("/signup?error=true&message=Password not strong")
+  }
+
+  let dataStruct = {
+    Email: email,
+    Password: ,
+    Username: String,
+    UID: String    
+  }
+  
+  let newData = new data({
+    
   })
   
 });
