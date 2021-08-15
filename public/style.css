@@ -229,6 +229,7 @@ a {
   border-radius: 0px 20px 20px 20px;
   font-weight: bold;
   word-break: break-all;
+  text-align: left;
 }
 
 .he-avatar {
@@ -262,6 +263,7 @@ a {
   border-radius: 20px 0px 20px 20px;
   font-weight: bold;
   word-break: break-all;
+  text-align: right;
 }
 
 .me-avatar {
