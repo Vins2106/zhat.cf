@@ -300,7 +300,7 @@ app.get("/logout", async (req, res) => {
 });
 
 // api
-app.post("/api/post/message", async (req, res) => {
+app.patch("/api/post/message", async (req, res) => {
   
   let message = req.body;
   if (!message) return;
