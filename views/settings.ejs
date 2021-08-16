@@ -49,6 +49,13 @@
     </div>
     </div>
     
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
+    <script>
+      let socket = io();
+      console.log("connected")
+      socket.emit("isConnected", '<%= req.session.user.UID %>')
+    </script>
+    
     <script>
     let pass = document.getElementById('password-input');
       let type = false;

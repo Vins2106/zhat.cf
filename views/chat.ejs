@@ -45,6 +45,8 @@
       
     var socket = io();
       
+      console.log("connected")
+      socket.emit("isConnected", '<%= req.session.user.UID %>')
       
       let locationHref = window.location.href.split("chat/")[1]
       var form = document.getElementById("form");
