@@ -1,0 +1,9 @@
+{
+  "name": "Zhat Chatapp",
+  "short_name": "Zhat",
+  "theme_color": "#23a632",
+  "background_color": "#1c6e8c",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/"
+}

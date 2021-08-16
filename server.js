@@ -42,8 +42,7 @@ app.get('/', checkAuth, async (req, res) => {
   let Contacts = await GetContact(req.session.user.UID)
   let contacts = [];
   
-  console.log(Contacts)
-  
+
   if (Contacts.List[0]) {
     Contacts.List.reverse().map(async c => {
       let acc = await data.findOne({UID: c});
