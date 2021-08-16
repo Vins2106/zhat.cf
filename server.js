@@ -265,6 +265,13 @@ app.get("/chat/:uid", checkAuth, async (req, res) => {
   
 });
 
+app.get("/faq", async (req, res) => {
+  res.render("faq.ejs", {
+    req,
+    res
+  })
+});
+
 app.get("/logout", async (req, res) => {
   req.session.user = null;
   
