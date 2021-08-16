@@ -56,12 +56,15 @@
       scrollTo(0, chats.scrollHeight)
       <% if (messages.List[0]) { %>
       <% messages.List.map(msg => { %>
-      <% if (msg.author.UID == req.session.user.UID) { %>
-      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
-      <% } else { %>
-      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>',"he")
-      <% } %>
-      <% if () %>
+      
+      if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {
+          createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
+      } else if ('<%= msg.to %>' == '<%= req.session.user.UID %>') {
+        if ('<%= msg.to %>' == locationHref || '<%= msg.author.UID %>' !== locationHref) {
+          return;         
+        }
+      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "he")
+      }
       <% }) %>
       <% } %>
       
