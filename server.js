@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo');
 let data = require("./mongo/data.js");
 let contacts = require("./mongo/contacts.js");
-let bots = require("./mongo/Bots.js");
+let messages = require("./mongo/message.js");
 var validator = require('validator');
 let admins = require("./admins.json")
 
@@ -290,7 +290,29 @@ app.use("/api/post/message", async (req, res) => {
   console.log(data)
   if (!data) return;
   
+  let final;
   
+  let alr = await messages.findOne({ID: `${data.to}${data.author.UID}`}) && await messages.findOne({ID: `${data.author.UID}${data.to}`}) ;
+  if (!alr) {
+    let newData = new messages({
+      ID: `${data.to}${data.author.UID}`,
+      List: []
+    });
+    
+    newData.save();
+    final = newData;
+  } else {
+    final = alr;
+  }
+  
+  try {
+    final.List.push({author: data.author, content: data.content, time: data.time, to: data.to, type: data.type});
+    final.save();
+  } catch (e) {
+    return res.status(404).send({error: true, msg: e});
+  } finally {
+    return res.status(200).send({error: false});
+  }
   
 });
 

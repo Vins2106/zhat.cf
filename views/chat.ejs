@@ -93,11 +93,19 @@ function scrollToBottom() {
       socket.on("message2", message => {
         console.log(message, window.location.href.split("chat/")[1])
         
-        if (message.author.UID == '<%= req.session.user.UID %>') {
-            let data = JSON.parse(localStorage.getItem(locationHref));
-        data.push({author: message.author, content: message.content, type: "me"});
-        localStorage.setItem(locationHref, JSON.stringify(data));      
+        if (message.author.UID == '<%= req.session.user.UID %>') {  
             
+        fetch('https://zhat.cf/api/post/message', {
+          method: "GET",
+          body: JSON.stringify();
+        }).then(res => res.json()).then(data => {
+          if (data.error) {
+            return console.log(`cant post message: ${e}`)
+          } else {
+            return console.log(`posted:`, )
+          }
+        })
+        
           createMessage(message.author, message.content, "me")
           scrollTo(0, chats.scrollHeight)
         }
