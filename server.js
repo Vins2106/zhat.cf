@@ -362,7 +362,7 @@ io.on('connection', (socket) => {
   
   
   socket.on("message", message => {
-    io.emit("message2", message)
+    io.sockets.emit("message2", message)
   })
   
   socket.on("disconnect", reason => {
