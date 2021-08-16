@@ -40,9 +40,6 @@
       let socket = io();
       console.log("connected")
       socket.emit("isConnected", '<%= req.session.user.UID %>')
-    </script>    
-    <script>
-    navigator.clipboard.readText().then(text => document.getElementById("user-input").value = text);
     </script>
   </body>
 </html>

@@ -257,6 +257,18 @@ app.post("/contact/add", checkAuth, async (req, res) => {
   res.redirect("/contact/add?success=true")
 });
 
+app.get("/invite/:code", async (req, res, next) => {
+  
+  if (!req.params.code) return res.redirect("/")
+  
+  if (!req.session.user) {
+    return res.redirect("/login?callback=/contact/add?=" + req.params.code);
+  } else {
+    return res.redirect("/contact/add?=" + req.params.code);
+  }
+  
+})
+
 app.get("/chat/:uid", checkAuth, async (req, res) => {
   
   let findTarget = await data.findOne({UID: req.params.uid});
