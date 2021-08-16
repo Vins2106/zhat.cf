@@ -125,7 +125,7 @@ a {
   letter-spacing: 1px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .navbar-account {
@@ -225,7 +225,7 @@ a {
 }
 
 .he-msg {
-/*   background: aqua; */
+  /*   background: aqua; */
   margin: 3px 10px auto 12px;
   padding: 8px;
   color: white;
@@ -260,7 +260,7 @@ a {
 }
 
 .me-msg {
-/*   background: aliceblue; */
+  /*   background: aliceblue; */
   margin: 10px 12px auto 10px;
   padding: 8px;
   color: white;
@@ -299,12 +299,11 @@ a {
 }
 
 .back-btn {
-    background: #f0f8ff;
-    position: fixed;
-    width: 100%;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
+  background: #f0f8ff;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .he-name-msg {
@@ -332,27 +331,27 @@ a {
 }
 
 emoji-picker {
-    position: fixed;
-    bottom: 65px;
-    right: 10px;  
+  position: fixed;
+  bottom: 65px;
+  right: 10px;
 }
 
 .faq-list {
   margin: 10px;
   text-align: center;
   border-top: 1px solid #ddd;
-  color: #ddd
+  color: #ddd;
 }
 
 .faq {
-margin-top: 30px;
-    background: #212121;
-    border-radius: 4px;
-    padding: 20px 10px 20px 10px;  
+  margin-top: 30px;
+  background: #212121;
+  border-radius: 4px;
+  padding: 20px 10px 20px 10px;
 }
 
 @media (max-width: 492px) {
   .box-1 {
-    width: auto;
+    width: -webkit-fill-available;
   }
 }
