@@ -373,18 +373,16 @@ app.use("/", async (req, res) => {
 
 
 let users = {};
-let onCooldown = {};
+let cds = {};
 
 io.on('connection', (socket) => {
   
   socket.on("isDisconnect", userid => {
-    let cd = setTimeout(() => {
+    
+    cds[socket.id] = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
       delete users[socket.id]
-    }, 30000)
-    
-    console.log(onCooldown)
-    onCooldown[socket.id] = cd;
+    }, 10000);
   });
   
   socket.on("updateOnline", userid => {
@@ -392,13 +390,10 @@ io.on('connection', (socket) => {
   })
   
   socket.on("isConnected", userid => {
+    console.log(cds[socket.id])
+    clearTimeout(cds[socket.id]);
     io.sockets.emit("isOnline", userid);
-    
-    console.log(onCooldown)
-    if (onCooldown[socket.id]) {
-      console.log("clear")
-      clearTimeout(onCooldown);
-    }
+
     users[socket.id] = userid;
   })
   
@@ -408,12 +403,11 @@ io.on('connection', (socket) => {
   })
   
   socket.on("disconnect", reason => {
-    let cd = setTimeout(() => {
+    
+    cds[socket.id] = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
       delete users[socket.id]
-    }, 30000)
-    
-    onCooldown[socket.id] = cd;
+    }, 10000);
     
   })
   
