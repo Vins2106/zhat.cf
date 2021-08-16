@@ -51,21 +51,21 @@
     <script>
     let socket = io();
       
+      console.log("connected")
       socket.emit("isConnected", '<%= req.session.user.UID %>')
-      
-      setInterval(() => {
-        socket.emit("isConnect", '<%= req.session.user.UID %>')
-      }, 2000)
       
       socket.on("isOnline", userId => {
         let user = document.getElementById(userId);
         if (!user) return;
+        console.log(`${userId} is online`)
         
         user.innerHTML = 'online';
       });
+      
       socket.on("isOffine", userId => {
         let user = document.getElementById(userId);
         if (!user) return;
+        console.log(`${userId} is offline`)
         
         user.innerHTML = 'offline';        
       })

@@ -338,7 +338,21 @@ app.use("/", async (req, res) => {
 
 
 
+let users = {};
+
 io.on('connection', (socket) => {
+  
+  socket.on("isConnected", userid => {
+    io.emit("isOnline", userid);
+    
+    users[socket.id] = userid;
+  })
+  
+  socket.on("disconnect", () => {
+    io.emit("isOffline", users[socket.id]);
+    
+    delete users[socket.id];
+  })
   
   socket.on("message", message => {
     io.emit("message2", message)
