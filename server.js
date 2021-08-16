@@ -322,6 +322,10 @@ app.post("/api/post/message", async (req, res) => {
   }
   
   try {
+    let checkContent = final.List.find(x => x.content == message.content);
+    if (checkContent) return;
+    
+    console.log("3")
     final.List.push({author: message.author, content: message.content, time: message.time, to: message.to, type: message.type});
     final.save().catch(e => {})
   } catch (e) {
