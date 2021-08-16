@@ -381,8 +381,9 @@ io.on('connection', (socket) => {
     let cd = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
       delete users[socket.id]
-    }, 10000)
+    }, 30000)
     
+    console.log(onCooldown)
     onCooldown[socket.id] = cd;
   });
   
@@ -393,7 +394,9 @@ io.on('connection', (socket) => {
   socket.on("isConnected", userid => {
     io.sockets.emit("isOnline", userid);
     
+    console.log(onCooldown)
     if (onCooldown[socket.id]) {
+      console.log("clear")
       clearTimeout(onCooldown);
     }
     users[socket.id] = userid;
@@ -408,7 +411,7 @@ io.on('connection', (socket) => {
     let cd = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
       delete users[socket.id]
-    }, 10000)
+    }, 30000)
     
     onCooldown[socket.id] = cd;
     
