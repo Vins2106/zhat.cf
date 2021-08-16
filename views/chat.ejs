@@ -31,7 +31,7 @@
           🙂
         </button>
         <emoji-picker></emoji-picker>
-      <input autocomplete="off" id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary">send</button>
+      <input autocomplete="off" id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary" autofocus>send</button>
       </form>
     </div>
     
@@ -90,6 +90,7 @@
         socket.emit('message', {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'});
         e.preventDefault();
         form.reset()
+        input.focus();
       });
       
 function scrollToBottom() {
