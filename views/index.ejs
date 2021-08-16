@@ -71,7 +71,7 @@
         user.innerHTML = 'online';
       });
       
-      socket.on("isOffine", userId => {
+      socket.on("isOffline", userId => {
         let user = document.getElementById(userId);
         if (!user) return;
         console.log(`${userId} is offline`)

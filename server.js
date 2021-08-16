@@ -363,6 +363,12 @@ io.on('connection', (socket) => {
     io.emit("message2", message)
   })
   
+  socket.on("disconnect", reason => {
+    io.emit("isOffline", users[socket.id]);
+    
+    delete users[socket.id]
+  })
+  
 });
 function checkAuth(req, res, next) {
   if (req.session.user) return next();
