@@ -352,6 +352,64 @@ emoji-picker {
   padding: 20px 10px 20px 10px;
 }
 
+.account-profile {
+    position: fixed;
+    z-index: 99999;
+    background: white;
+    margin: 10px;
+    margin-top: 337px;
+    bottom: auto;
+    right: auto;
+    left: auto;
+    top: auto;
+    box-shadow: 0px 0px 10px 1px rgb(0,0,0,0.5);
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  max-width: 500px;
+}
+
+.moda-close {
+}
+
+div#avatar-name-modal {
+    display: grid;
+    text-align: center;
+}
+
+img.avatar-modal {
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+span.name-modal {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+div#id-modal {
+    display: grid;
+    text-align: left;
+    margin-top: 10px;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#id-modal input {
+    padding: 5px;
+    background: none;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
 @media (max-width: 492px) {
   .box-1 {
     width: -webkit-fill-available;
