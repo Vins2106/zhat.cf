@@ -283,6 +283,17 @@ app.get("/logout", async (req, res) => {
   res.redirect("/login");
 });
 
+// api
+app.use("/api/post/message", async (req, res) => {
+  
+  let data = req.body;
+  console.log(data)
+  if (!data) return;
+  
+  
+  
+});
+
 app.use("/", async (req, res) => {
   res.status(404).render("404.ejs")
 }); 
