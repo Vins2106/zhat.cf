@@ -342,10 +342,14 @@ let users = {};
 
 io.on('connection', (socket) => {
   
-  socket.on("disconnect", () => {
-    io.emit("isOffline", users[socket.id]);
+  socket.on("isDisconnect", userid => {
+    io.emit("isOffline", userid);
     
     delete users[socket.id]
+  });
+  
+  socket.on("updateOnline", userid => {
+    io.emit("someoneOnline", userid)
   })
   
   socket.on("isConnected", userid => {

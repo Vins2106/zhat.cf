@@ -53,10 +53,19 @@
       
       console.log("connected")
       socket.emit("isConnected", '<%= req.session.user.UID %>')
+                  
+      socket.on("someoneOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is online`);
       
+        user.innerHTML = "online"  
+      })
+                  
       socket.on("isOnline", userId => {
         let user = document.getElementById(userId);
         if (!user) return;
+        socket.emit("updateOnline", '<%= req.session.user.UID %>')
         console.log(`${userId} is online`)
         
         user.innerHTML = 'online';
