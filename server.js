@@ -377,8 +377,6 @@ let cds = {};
 
 io.on('connection', (socket) => {
   
-  console.log(socket.request)
-  
   socket.on("isDisconnect", userid => {
     
     cds[socket.id] = setTimeout(() => {
@@ -392,6 +390,7 @@ io.on('connection', (socket) => {
   })
   
   socket.on("isConnected", userid => {
+    clearTimeout(cds[socket.id]);
     io.sockets.emit("isOnline", userid);
 
     users[socket.id] = userid;
@@ -402,17 +401,12 @@ io.on('connection', (socket) => {
     io.sockets.emit("message2", message)
   })
   
-  socket.on("timeoutStatus", (id, userid) => {
-    if (cds[id]) {
-      let config = cds[id];
-      
-      clearTimeout(config.function);
-      io.emit("isOffline", userid)
-    }
-  });
-  
   socket.on("disconnect", reason => {
     
+    cds[socket.id] = setTimeout(() => {
+      io.sockets.emit("isOffline", users[socket.id]);
+      delete users[socket.id]
+    }, 10000);
     
   })
   
