@@ -334,6 +334,20 @@ emoji-picker {
     right: 10px;  
 }
 
+.faq-list {
+  margin: 10px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  color: #ddd
+}
+
+.faq {
+margin-top: 30px;
+    background: #212121;
+    border-radius: 4px;
+    padding: 20px 10px 20px 10px;  
+}
+
 @media (max-width: 492px) {
   .box-1 {
     width: auto;
