@@ -41,6 +41,11 @@
     <label for="avatar-input">Avatar</label>
     <input name="avatar" type="url" class="form-input" id="avatar-input" value="<%= req.session.user.Avatar %>" required>
   </div>  
+  <div class="form-control" onclick="copyURL()">
+    <label for="url-input">Your URL</label>
+    <input type="url" class="form-input" id="url-input" aria-describedby="url-help" value="add me on https://zhat.cf with code: <%= req.session.user.UID %>" disabled>
+    <input name="url" value="add me on https://zhat.cf with code: <%= req.session.user.UID %>" type="hidden">
+  </div>   
   
   <div class="btn-submit">
     <a style="margin-right: 10px;" href="/">back</a><a style="margin-right: 10px;" href="/logout">logout</a><button type="submit" class="btn btn-primary">Save</button>    
@@ -68,6 +73,11 @@
           type = true;
           pass.type = "text"
         }
+      }
+      
+      function copyURL() {
+        let url = '<%= req.session.user.UID %>'
+        navigator.clipboard.writeText(`add me on https://zhat.cf with code: ${url}`);
       }
     </script>
   </body>
