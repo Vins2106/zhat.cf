@@ -303,8 +303,9 @@ a {
   background: #f0f8ff;
   position: fixed;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .he-name-msg {
