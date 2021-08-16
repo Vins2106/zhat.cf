@@ -71,7 +71,9 @@
       <% }) %>
       <% } %>
       
-      scrollTo(0, chats.scrollHeight)
+      setTimeout(() => {
+        scrollTo(0, chats.scrollHeight)
+      }, 500)
       
       
       function emojiToggle() {
