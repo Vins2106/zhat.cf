@@ -104,7 +104,7 @@
       
       setTimeout(() => {
         scrollTo(0, chats.scrollHeight)
-      }, 500)
+      }, <%= messages.List.length * 10 %>)
       
       
       function emojiToggle() {
