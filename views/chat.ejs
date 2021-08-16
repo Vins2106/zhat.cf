@@ -202,15 +202,15 @@ function scrollToBottom() {
         name.setAttribute("class", `${mehe}-name`)
         if (mehe == "me") {
           if (time) {
-            name.textContent = `${time} - ${user.Username}`
+            name.textContent = `${user.Username}`
           } else {
             name.textContent = `${moment().format('h:mm a')} - ${user.Username}`
           }
         } else {
           if (time) {
-            name.textContent = `${user.Username} - ${time}`
+            name.textContent = `${user.Username}`
           } else {
-            name.textContent = `${user.Username} - ${moment().format('h:mm a')}`
+            name.textContent = `${user.Username}`
           }
         }
         namemsg.appendChild(name)
@@ -221,7 +221,7 @@ function scrollToBottom() {
         let msgContentProto = content.split(/ +/g);
         msgContentProto.map(x => {
           if (x.startsWith("https://") || x.startsWith("http://")) {
-            msgContent += ` <a href="${x}" target="_blank">${x}</a>`
+            msgContent += ` <a style="color: black;" href="${x}" target="_blank">${x}</a>`
           } else {
             msgContent += ` ${x}`;
           }
