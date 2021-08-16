@@ -299,9 +299,12 @@ a {
 }
 
 .back-btn {
-  background: aliceblue;
-  position: fixed;
-  width: 100%;
+    background: #f0f8ff;
+    position: fixed;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
 }
 
 .he-name-msg {
