@@ -220,13 +220,13 @@ function scrollToBottom() {
         let msgContent = ""
         let msgContentProto = content.split(/ +/g);
         msgContentProto.map(x => {
-          if (["https://", "http://"].includes(x)) {
-            msgContent += `<a href="${x}" target="_blank">${x}</a>`
+          if (x.startsWith("https://") || x.startsWith("http://")) {
+            msgContent += ` <a href="${x}" target="_blank">${x}</a>`
           } else {
-            msgContent += x;
+            msgContent += ` ${x}`;
           }
         });
-        message.textContent = msgContent;
+        message.innerHTML = msgContent;
         namemsg.appendChild(message);
         
         return true;
