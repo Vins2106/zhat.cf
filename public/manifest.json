@@ -1,9 +1,23 @@
 {
-  "name": "Zhat Chatapp",
-  "short_name": "Zhat",
-  "theme_color": "#23a632",
-  "background_color": "#1c6e8c",
-  "display": "standalone",
-  "scope": "/",
-  "start_url": "/"
+    "name": "Zhat Chatapp",
+    "short_name": "Zhat",
+    "theme_color": "#23a632",
+    "background_color": "#23a632",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+          "src": "https://cdn.discordapp.com/attachments/832129800914206722/876648982716219442/a_269a9fc92800e562342bae12b947e21f.png?size=4096",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "maskable"
+        },
+        {
+          "src": "https://cdn.discordapp.com/attachments/832129800914206722/876648982716219442/a_269a9fc92800e562342bae12b947e21f.png?size=4096",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any"
+        }
+    ]
 }

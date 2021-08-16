@@ -281,17 +281,7 @@ app.get("/logout", async (req, res) => {
 
 app.use("/", async (req, res) => {
   res.status(404).render("404.ejs")
-});
-
-// rest api
-app.get("/api/bot/login/:token", async (req, res) => {
-  let token = req.params.token;
-  if (!token) return;
-  
-  let checkBot = await bots.findOne({TOKEN: token});
-  if (!checkBot) return res.status(404).send({error: "Invalid token."})
-  
-})
+}); 
 
 io.on('connection', (socket) => {
   
