@@ -7,7 +7,7 @@
 
             <div class="modal">
         <div id="user-modal" class="account-profile">
-          <i class="modal-close fa fa-close" onclick="toggleModal()"></i>
+          <i style="cursor: pointer;" class="modal-close fa fa-close" onclick="toggleModal()"></i>
           <div id="avatar-name-modal">
             <img src="<%= he.Avatar %>" alt="<%= he.Username %>" class="avatar-modal">
             <span class="name-modal"><%= he.Username %></span>
@@ -24,7 +24,7 @@
       <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
         Back
       </button>
-        <span onclick="toggleModal()" class="target-name" style="margin: 18px; font-weight: bold; letter-spacing: 1px;"><%= he.Username %></span>
+        <span onclick="toggleModal()" class="target-name" style="cursor: pointer; margin: 18px; font-weight: bold; letter-spacing: 1px;"><%= he.Username %></span>
 <!--       <button class="btn btn-primary" style="margin: 10px;">
         <i class="fa fa-video-camera"></i>
         </button> -->
@@ -55,6 +55,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    
+    <script>
+    let modal = document.getElementById("user-modal");
+      
+      let display = false;
+      modal.style.display = "none";
+      
+      function toggleModal() {
+        if (display) {
+          display = false;
+          modal.style.display = "none";
+        } else {
+          display = true;
+          modal.style.display = "block";          
+        }
+      }
+    </script>
     
     <script>
       

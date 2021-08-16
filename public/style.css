@@ -379,6 +379,9 @@ img.avatar-modal {
     margin: 0 auto;
     border-radius: 50%;
     border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;  
 }
 
 span.name-modal {
