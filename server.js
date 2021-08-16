@@ -262,10 +262,26 @@ app.get("/chat/:uid", checkAuth, async (req, res) => {
   let findTarget = await data.findOne({UID: req.params.uid});
   if (!findTarget) return res.redirect("/");
   
+  let final;
+  
+  let alr = await messages.findOne({ID: `${findTarget.UID}${res.session.user.UID}`}) && await messages.findOne({ID: `${res.session.user.UID}${findTarget.UID}`}) ;
+  if (!alr) {
+    let newData = new messages({
+      ID: `${findTarget.UID}${res.session.user.UID}`,
+      List: []
+    });
+    
+    newData.save();
+    final = newData;
+  } else {
+    final = alr;
+  }  
+  
   res.render("chat.ejs", {
     req,
     res,
-    he: findTarget
+    he: findTarget,
+    messages: final
   })
   
 });
@@ -284,18 +300,18 @@ app.get("/logout", async (req, res) => {
 });
 
 // api
-app.use("/api/post/message", async (req, res) => {
+app.post("/api/post/message", async (req, res) => {
   
-  let data = req.body;
-  console.log(data)
-  if (!data) return;
+  let message = req.body;
+  console.log(message)
+  if (!message) return;
   
   let final;
   
-  let alr = await messages.findOne({ID: `${data.to}${data.author.UID}`}) && await messages.findOne({ID: `${data.author.UID}${data.to}`}) ;
+  let alr = await messages.findOne({ID: `${message.to}${message.author.UID}`}) && await messages.findOne({ID: `${message.author.UID}${message.to}`}) ;
   if (!alr) {
     let newData = new messages({
-      ID: `${data.to}${data.author.UID}`,
+      ID: `${message.to}${message.author.UID}`,
       List: []
     });
     
@@ -306,8 +322,8 @@ app.use("/api/post/message", async (req, res) => {
   }
   
   try {
-    final.List.push({author: data.author, content: data.content, time: data.time, to: data.to, type: data.type});
-    final.save();
+    final.List.push({author: message.author, content: message.content, time: message.time, to: message.to, type: message.type});
+    final.save().catch(e => {})
   } catch (e) {
     return res.status(404).send({error: true, msg: e});
   } finally {

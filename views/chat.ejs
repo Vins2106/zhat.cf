@@ -53,17 +53,13 @@
       let emoji = document.querySelector('emoji-picker');
       emoji.style.display = "none";
       let emojiDisplay = false;
-      let array = []
-      let database = JSON.parse(localStorage.getItem(locationHref)) ;
-      if (!database) {
-        localStorage.setItem(locationHref, JSON.stringify(array));
-      } else if (database[0]) {
-        database.map(data => {
-          createMessage(data.author, data.content, data.type)
-        })
-      }   
-      
       scrollTo(0, chats.scrollHeight)
+      <% if (messages.List[0]) { %>
+      <% messages.List.map(msg => { %>
+      createMessag
+      <% }) %>
+      <% } %>
+      
       
       function emojiToggle() {
         if (emojiDisplay) {
@@ -95,14 +91,19 @@ function scrollToBottom() {
         
         if (message.author.UID == '<%= req.session.user.UID %>') {  
             
+        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "me"}
+            
         fetch('https://zhat.cf/api/post/message', {
-          method: "GET",
-          body: JSON.stringify();
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+          body: JSON.stringify(POSTDATA),
         }).then(res => res.json()).then(data => {
           if (data.error) {
             return console.log(`cant post message: ${e}`)
           } else {
-            return console.log(`posted:`, )
+            return console.log(`posted:`, POSTDATA)
           }
         })
         
@@ -112,10 +113,22 @@ function scrollToBottom() {
         
         if (message.to == "<%= req.session.user.UID %>") {
             if (message.to == locationHref || message.author.UID !== locationHref) return;
+      
+        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "he"}
             
-            let data = JSON.parse(localStorage.getItem(locationHref));
-        data.push({author: message.author, content: message.content, type: "he"});
-        localStorage.setItem(locationHref, JSON.stringify(data));
+        fetch('https://zhat.cf/api/post/message', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+          body: JSON.stringify(POSTDATA),
+        }).then(res => res.json()).then(data => {
+          if (data.error) {
+            return console.log(`cant post message: ${e}`)
+          } else {
+            return console.log(`posted:`, POSTDATA)
+          }
+        })      
       
           createMessage(message.author, message.content, "he")
           scrollTo(0, chats.scrollHeight)
