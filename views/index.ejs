@@ -37,7 +37,7 @@
       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
       <span class="account-username-2"><%= u.username %></span>
-      <span class="account-isonline" id="<%= u.uid %>">offline</span>
+      <span class="account-isonline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: right; padding-right: 10px;">offline</span>
       </div>
     </div>      
     <% }) %>
