@@ -88,6 +88,11 @@ app.post('/login', async (req, res) => {
   if (!checkFirstEmailPassword) return res.redirect("/login?error=true&message=Invalid email & password");
   
   req.session.user = checkFirstEmailPassword;
+  
+  if (req.query.callback) {
+    return res.redirect(req.query.callback);
+  }
+  
   res.redirect("/")
 });
 
@@ -183,12 +188,26 @@ app.post("/settings", checkAuth, async (req, res) => {
 
 app.get("/contact/add", checkAuth, async (req, res) => {
   
+
+  let add = req.query.add;
+  
+  if (add) {
+    return res.render("add.ejs", {
+      req,
+      res,
+      error:false,
+      add: add,
+      success: false
+    })
+  }
+  
   if (req.query.success == "true") {
     return res.render("add.ejs", {
       req,
       res,
       error: false,
-      success: true
+      success: true,
+      add: false
     })
   }
   
@@ -198,7 +217,8 @@ app.get("/contact/add", checkAuth, async (req, res) => {
       res,
       error: true,
       msg: req.query.message,
-      success: false
+      success: false,
+      add: false
     })  
   }  
   
@@ -206,13 +226,14 @@ app.get("/contact/add", checkAuth, async (req, res) => {
     error: false,
     success: false,
     req,
-    res
+    res,
+    add: false
   })
   
 });
 
 app.post("/contact/add", checkAuth, async (req, res) => {
-  
+
   let uemail = req.body.user;
   
   let checkUser = await data.findOne({UID: uemail});
@@ -262,9 +283,9 @@ app.get("/invite/:code", async (req, res, next) => {
   if (!req.params.code) return res.redirect("/")
   
   if (!req.session.user) {
-    return res.redirect("/login?callback=/contact/add?=" + req.params.code);
+    return res.redirect("/login?callback=/contact/add?add=" + req.params.code);
   } else {
-    return res.redirect("/contact/add?=" + req.params.code);
+    return res.redirect("/contact/add?add=" + req.params.code);
   }
   
 })

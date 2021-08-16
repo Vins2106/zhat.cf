@@ -83,7 +83,7 @@
       
       function copyURL() {
         let url = '<%= req.session.user.UID %>'
-        navigator.clipboard.writeText(`add me on https://zhat.cf with code: ${url}`);
+        navigator.clipboard.writeText(`https://zhat.cf/invite/<%= req.session.user.UID %>`);
       }
     </script>
   </body>

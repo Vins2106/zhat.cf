@@ -25,7 +25,11 @@
   
   <div class="form-control">
     <label for="user-input">Add someone with <a href="/faq#get-user-id" target="_blank">User ID</a></label>
+    <% if (add) { %>
+    <input name="user" type="text" class="form-input" id="user-input" placeholder="user id" value="<%= add %>" required>
+    <% } else { %>
     <input name="user" type="text" class="form-input" id="user-input" placeholder="user id" required>
+    <% } %>
   </div>    
   
   <div class="btn-submit">
