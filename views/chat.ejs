@@ -56,8 +56,9 @@
       scrollTo(0, chats.scrollHeight)
       <% if (messages.List[0]) { %>
       <% messages.List.map(msg => { %>
+      if ('<%= msg.author.UID %>' == '<%%>')
       <% if (msg.author.UID == req.session.user.UID) { %>
-      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
+      reateMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
       <% } else if (msg.to == req.session.user.UID) { %>
       createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>',"he")
       <% } %>
@@ -93,9 +94,7 @@ function scrollToBottom() {
       socket.on("message2", message => {
         console.log(message, window.location.href.split("chat/")[1])
         
-        if (message.author.UID == '<%= req.session.user.UID %>') {  
-            
-        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "me"}
+        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
             
         fetch('https://zhat.cf/api/post/message', {
   method: 'POST',
@@ -109,7 +108,11 @@ function scrollToBottom() {
           } else {
             return console.log(`posted:`, POSTDATA)
           }
-        })
+        })        
+        
+        if (message.author.UID == '<%= req.session.user.UID %>') {  
+            
+
         
           createMessage(message.author, message.content, false,"me")
           scrollTo(0, chats.scrollHeight)
@@ -118,25 +121,10 @@ function scrollToBottom() {
         if (message.to == "<%= req.session.user.UID %>") {
             if (message.to == locationHref || message.author.UID !== locationHref) return;
       
-        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "he"}
-            
-        fetch('https://zhat.cf/api/post/message', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-          body: JSON.stringify(POSTDATA),
-        }).then(res => res.json()).then(data => {
-          if (data.error) {
-            return console.log(`cant post message: ${e}`)
-          } else {
-            return console.log(`posted:`, POSTDATA)
-          }
-        })      
-      
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
         }
+        
         
       })
       
