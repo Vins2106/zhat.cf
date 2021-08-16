@@ -24,21 +24,20 @@ app.use(bodyParser.json())
 
 app.use(session({
   secret: 'super cat',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: process.env.mongo,
     autoRemove: 'disabled',
     touchAfter: 30000
-  })
+  }),
+  cookie: {expires: new Date(253402300000000)}  
 }));
 
 app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', checkAuth, async (req, res) => {
-  
-  let isAdmin = false;
   
   let Contacts = await GetContact(req.session.user.UID)
   let contacts = [];

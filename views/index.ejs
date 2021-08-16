@@ -13,9 +13,14 @@
       <img class="account-avatar" alt="avatar" src="<%= req.session.user.Avatar %>">
       <span class="account-username"><%= req.session.user.Username %></span>
       </div>
+      <div class="btn-list">
+      <button class="btn btn-primary" onclick="location.href = '/settings'">
+        <i class="fa fa-gear"></i>
+      </button>
       <button class="btn btn-danger" onclick="location.href = '/logout'">
         Logout
-      </button>
+      </button>        
+      </div>
     </div>
     
     <% if (!contacts[0]) { %>
