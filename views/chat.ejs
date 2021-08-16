@@ -217,7 +217,16 @@ function scrollToBottom() {
         
         let message = document.createElement("span");
         message.setAttribute("class", `${mehe}-msg`);
-        message.textContent = content;
+        let msgContent = ""
+        let msgContentProto = content.split(/ +/g);
+        msgContentProto.map(x => {
+          if (["https://", "http://"].includes(x)) {
+            msgContent += `<a href="${x}" target="_blank">${x}</a>`
+          } else {
+            msgContent += x;
+          }
+        });
+        message.textContent = msgContent;
         namemsg.appendChild(message);
         
         return true;
