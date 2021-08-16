@@ -357,20 +357,14 @@ emoji-picker {
     z-index: 99999;
     background: white;
     margin: 10px;
-    margin-top: 337px;
-    bottom: auto;
-    right: auto;
-    left: auto;
-    top: auto;
-    box-shadow: 0px 0px 10px 1px rgb(0,0,0,0.5);
+    box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 50%);
     width: -webkit-fill-available;
-    height: -webkit-fill-available;
     border-radius: 4px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     text-align: right;
-  max-width: 500px;
+  max-width: 400px;
 }
 
 .moda-close {
@@ -408,6 +402,13 @@ div#id-modal {
     text-align: center;
     font-weight: bold;
     color: black;
+}
+
+.modal {
+    width: -webkit-fill-available;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 492px) {

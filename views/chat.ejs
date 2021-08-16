@@ -5,12 +5,7 @@
   </head>
   <body>
 
-    <div class="chats">
-      <div class="back-btn">
-      <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
-        Back
-      </button>
-        <span onclick="toggleModal()" class="target-name" style="margin: 18px; font-weight: bold; letter-spacing: 1px;"><%= he.Username %></span>
+            <div class="modal">
         <div id="user-modal" class="account-profile">
           <i class="modal-close fa fa-close" onclick="toggleModal()"></i>
           <div id="avatar-name-modal">
@@ -21,7 +16,15 @@
             <label for="id-input-modal">Click to copy</label>
             <input type="text" value="<%= he.UID %>" disabled>
           </div>
+        </div>          
         </div>
+    
+    <div class="chats">
+      <div class="back-btn">
+      <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
+        Back
+      </button>
+        <span onclick="toggleModal()" class="target-name" style="margin: 18px; font-weight: bold; letter-spacing: 1px;"><%= he.Username %></span>
 <!--       <button class="btn btn-primary" style="margin: 10px;">
         <i class="fa fa-video-camera"></i>
         </button> -->
