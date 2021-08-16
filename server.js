@@ -360,6 +360,7 @@ app.patch("/api/post/message", async (req, res) => {
   } catch (e) {
     return res.status(404).send({error: true, msg: e});
   } finally {
+    console.log(`posted`, message)
     return res.status(200).send({error: false});
   }
   
@@ -372,16 +373,17 @@ app.use("/", async (req, res) => {
 
 
 let users = {};
-let
+let onCooldown = {};
 
 io.on('connection', (socket) => {
   
   socket.on("isDisconnect", userid => {
-    setTimeout(() => {
-      if (socket.connected) return;
+    let cd = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
       delete users[socket.id]
     }, 10000)
+    
+    onCooldown[socket.id] = cd;
   });
   
   socket.on("updateOnline", userid => {
@@ -391,6 +393,9 @@ io.on('connection', (socket) => {
   socket.on("isConnected", userid => {
     io.sockets.emit("isOnline", userid);
     
+    if (onCooldown[socket.id]) {
+      clearTimeout(onCooldown);
+    }
     users[socket.id] = userid;
   })
   
@@ -400,11 +405,12 @@ io.on('connection', (socket) => {
   })
   
   socket.on("disconnect", reason => {
-    setTimeout(() => {
-      if (socket.connected) return;
+    let cd = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
       delete users[socket.id]
     }, 10000)
+    
+    onCooldown[socket.id] = cd;
     
   })
   
