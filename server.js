@@ -343,17 +343,17 @@ let users = {};
 io.on('connection', (socket) => {
   
   socket.on("isDisconnect", userid => {
-    io.broadcast.emit(userid);
+    io.sockets.emit("isOffline", userid);
     
     delete users[socket.id]
   });
   
   socket.on("updateOnline", userid => {
-    io.broadcast.emit(userid)
+    io.sockets.emit("someoneOnline", userid)
   })
   
   socket.on("isConnected", userid => {
-    io.broadcast.emit(userid);
+    io.sockets.emit("isOnline", userid);
     
     users[socket.id] = userid;
   })
@@ -364,7 +364,7 @@ io.on('connection', (socket) => {
   })
   
   socket.on("disconnect", reason => {
-    io.local.emit("isOffline", users[socket.id]);
+    io.emit("isOffline", users[socket.id]);
     
     delete users[socket.id]
   })
