@@ -336,6 +336,8 @@ app.use("/", async (req, res) => {
   res.status(404).render("404.ejs")
 }); 
 
+
+
 io.on('connection', (socket) => {
   
   socket.on("message", message => {

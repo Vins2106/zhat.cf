@@ -37,7 +37,7 @@
       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
       <span class="account-username-2"><%= u.username %></span>
-      <span class="account-isonline">offline</span>
+      <span class="account-isonline" id="<%= u.uid %>">offline</span>
       </div>
     </div>      
     <% }) %>
@@ -51,6 +51,24 @@
     <script>
     let socket = io();
       
+      socket.emit("isConnected", '<%= req.session.user.UID %>')
+      
+      setInterval(() => {
+        socket.emit("isConnect", '<%= req.session.user.UID %>')
+      }, 2000)
+      
+      socket.on("isOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        
+        user.innerHTML = 'online';
+      });
+      socket.on("isOffine", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        
+        user.innerHTML = 'offline';        
+      })
       
     </script>
   </body>
