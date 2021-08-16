@@ -215,8 +215,12 @@ app.post("/contact/add", checkAuth, async (req, res) => {
   
   let uemail = req.body.user;
   
-  let checkUser = await data.findOne({Email: uemail});
+  let checkUser = await data.findOne({UID: uemail});
   if (!checkUser) return res.redirect("/contact/add?error=true&message=User not found");
+  
+  if (checkUser.UID == req.session.user.UID) {
+    return res.redirect("/contact/add?error=true&message=You cant add yourself");
+  }
   
   let ourContacts = await GetContact(req.session.user.UID)
   if (!ourContacts) {

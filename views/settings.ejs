@@ -28,9 +28,14 @@
     <input type="email" class="form-input" id="email-input" aria-describedby="email-help" value="<%= req.session.user.Email %>" disabled>
     <input name="email" value="<%= req.session.user.Email %>" type="hidden">
   </div>
-  <div class="form-control">
-    <label for="password-input">Password</label>
-    <input name="password" type="text" class="form-input" id="password-input" value="<%= req.session.user.Password %>" required>
+  <div class="form-control" onclick="navigator.clipboard.writeText('<%= req.session.user.UID %>');">
+    <label for="uid-input">User ID (click to copy)</label>
+    <input type="uid" class="form-input" id="uid-input" aria-describedby="uid-help" value="<%= req.session.user.UID %>" disabled>
+    <input name="uid" value="<%= req.session.user.UID %>" type="hidden">
+  </div>  
+  <div class="form-control" onclick="showPass()">
+    <label for="password-input" onclick="showPass()">Password (click to show/hide)</label>
+    <input name="password" type="password" class="form-input" id="password-input" value="<%= req.session.user.Password %>" required>
   </div>
   <div class="form-control">
     <label for="avatar-input">Avatar</label>
@@ -43,5 +48,20 @@
 </form>
     </div>
     </div>
+    
+    <script>
+    let pass = document.getElementById('password-input');
+      let type = false;
+      
+      function showPass() {
+        if (type) {
+          pass.type = "password"
+          type = false;
+        } else {
+          type = true;
+          pass.type = "text"
+        }
+      }
+    </script>
   </body>
 </html>
