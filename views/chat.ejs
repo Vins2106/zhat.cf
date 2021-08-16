@@ -56,7 +56,7 @@
       scrollTo(0, chats.scrollHeight)
       <% if (messages.List[0]) { %>
       <% messages.List.map(msg => { %>
-      createMessag
+      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "<%= msg.type %>")
       <% }) %>
       <% } %>
       
@@ -107,7 +107,7 @@ function scrollToBottom() {
           }
         })
         
-          createMessage(message.author, message.content, "me")
+          createMessage(message.author, message.content, false,"me")
           scrollTo(0, chats.scrollHeight)
         }
         
@@ -130,13 +130,13 @@ function scrollToBottom() {
           }
         })      
       
-          createMessage(message.author, message.content, "he")
+          createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
         }
         
       })
       
-      async function createMessage(user, content, mehe) {
+      async function createMessage(user, content, time = false, mehe) {
         let base = document.createElement("div");
         base.setAttribute("class", mehe);
         chats.appendChild(base);
@@ -153,9 +153,17 @@ function scrollToBottom() {
         let name = document.createElement("span");
         name.setAttribute("class", `${mehe}-name`)
         if (mehe == "me") {
-          name.textContent = `${moment().format('h:mm a')} - ${user.Username}`
+          if (time) {
+            name.textContent = `${time} - ${user.Username}`
+          } else {
+            name.textContent = `${moment().format('h:mm a')} - ${user.Username}`
+          }
         } else {
-          name.textContent = `${user.Username} - ${moment().format('h:mm a')}`
+          if (time) {
+            name.textContent = `${user.Username} - ${time}`
+          } else {
+            name.textContent = `${user.Username} - ${moment().format('h:mm a')}`
+          }
         }
         namemsg.appendChild(name)
         

@@ -264,10 +264,10 @@ app.get("/chat/:uid", checkAuth, async (req, res) => {
   
   let final;
   
-  let alr = await messages.findOne({ID: `${findTarget.UID}${res.session.user.UID}`}) && await messages.findOne({ID: `${res.session.user.UID}${findTarget.UID}`}) ;
+  let alr = await messages.findOne({ID: `${findTarget.UID}${req.session.user.UID}`}) && await messages.findOne({ID: `${req.session.user.UID}${findTarget.UID}`}) ;
   if (!alr) {
     let newData = new messages({
-      ID: `${findTarget.UID}${res.session.user.UID}`,
+      ID: `${findTarget.UID}${req.session.user.UID}`,
       List: []
     });
     
