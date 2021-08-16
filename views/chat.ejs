@@ -102,11 +102,13 @@ function scrollToBottom() {
       
       socket.on("message2", message => {
         console.log(message, window.location.href.split("chat/")[1])
-        
+        let posted = false;
         
         if (message.author.UID == '<%= req.session.user.UID %>') {  
         
+            if (!posted) {
             postMsg(message)
+        }
           createMessage(message.author, message.content, false,"me")
           scrollTo(0, chats.scrollHeight)
         }
@@ -114,6 +116,9 @@ function scrollToBottom() {
         if (message.to == "<%= req.session.user.UID %>") {
             if (message.to == locationHref || message.author.UID !== locationHref) return;
       
+            if (!posted) {
+            postMsg(message)
+        }      
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
         }

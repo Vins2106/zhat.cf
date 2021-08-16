@@ -343,9 +343,11 @@ let users = {};
 io.on('connection', (socket) => {
   
   socket.on("isDisconnect", userid => {
-    io.sockets.emit("isOffline", userid);
-    
-    delete users[socket.id]
+    setTimeout(() => {
+      if (socket.connected) return;
+      io.sockets.emit("isOffline", users[socket.id]);
+      delete users[socket.id]
+    }, 10000)
   });
   
   socket.on("updateOnline", userid => {
@@ -364,9 +366,12 @@ io.on('connection', (socket) => {
   })
   
   socket.on("disconnect", reason => {
-    io.emit("isOffline", users[socket.id]);
+    setTimeout(() => {
+      if (socket.connected) return;
+      io.sockets.emit("isOffline", users[socket.id]);
+      delete users[socket.id]
+    }, 10000)
     
-    delete users[socket.id]
   })
   
 });
