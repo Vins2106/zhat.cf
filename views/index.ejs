@@ -36,7 +36,8 @@
     <div class="account-list">
       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
-      <span class="account-username-2"><%= u.username %></span>        
+      <span class="account-username-2"><%= u.username %></span>
+      <span class="account-isonline">offline</span>
       </div>
     </div>      
     <% }) %>
@@ -45,5 +46,12 @@
     <div class="add-contact" onclick="location.href = '/contact/add'">
       <i class="fa fa-plus" style="font-size: 200%;"></i>
     </div>
+    
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
+    <script>
+    let socket = io();
+      
+      
+    </script>
   </body>
 </html> 
