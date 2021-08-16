@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo');
 let data = require("./mongo/data.js");
 let contacts = require("./mongo/contacts.js");
 var validator = require('validator');
+let admins = require("./admins.json")
 
 require("dotenv").config()
 
@@ -36,6 +37,8 @@ app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', checkAuth, async (req, res) => {
+  
+  let isAdmin = false;
   
   let Contacts = await GetContact(req.session.user.UID)
   let contacts = [];
