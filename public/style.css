@@ -235,12 +235,12 @@ a {
   font-weight: bold;
   word-break: break-all;
   text-align: left;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .he-avatar {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid black;
@@ -270,12 +270,12 @@ a {
   font-weight: bold;
   word-break: break-all;
   text-align: right;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .me-avatar {
-  width: 50px;
-  height: 50px;
+    width: 40px;
+    height: 40px;
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid black;
@@ -315,7 +315,7 @@ a {
 .he-name {
   margin-left: 12px;
   color: white;
-  font-size: 15px;
+  font-size: 13px;
   text-align: left;
 }
 
@@ -327,7 +327,7 @@ a {
 .me-name {
   margin-right: 12px;
   color: white;
-  font-size: 15px;
+  font-size: 13px;
   text-align: right;
 }
 
