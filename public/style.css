@@ -172,6 +172,8 @@ a {
   white-space: nowrap;
   flex-wrap: wrap;
   text-overflow: ellipsis;
+    text-align: left;
+    width: -webkit-fill-available;  
 }
 
 .account-list {
@@ -420,7 +422,22 @@ div#id-modal {
     text-overflow: ellipsis;
     overflow: hidden;
     font-size: 14px;
-  width: -webkit-fill-available;
+    width: -webkit-fill-available;
+    background: #383434;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  color: white;
+}
+
+.account-username-isonline-2 {
+display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: left;
+    align-items: center;
+    width: -webkit-fill-available;
 }
 
 @media (max-width: 492px) {

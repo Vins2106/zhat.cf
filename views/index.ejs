@@ -38,9 +38,9 @@
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
         <div class="account-username-isonline-2">
           <span class="account-username-2"><%= u.username %></span>
-          <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: right; padding-right: 10px; margin-left: 12px;"><i class="fa fa-times"></i></span>
+          <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: left; margin-left: 12px;"><i class="fa fa-times"> offline</i></span>
         </div>
-      <span class="account-last-msg-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "" %></span>
+      <span class="account-last-msg-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %></span>
       </div>
     </div>      
     <% }) %>
@@ -66,7 +66,7 @@
         
         user.classList.remove("offline")
         user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i>'  
+        user.innerHTML = '<i class="fa fa-check"></i> online'  
       })
                   
       socket.on("isOnline", userId => {
@@ -77,7 +77,7 @@
         
         user.classList.remove("remove")
         user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i>';
+        user.innerHTML = '<i class="fa fa-check"></i> online';
       });
       
       socket.on("isOffline", userId => {
@@ -87,7 +87,7 @@
         
         user.classList.remove("online")
         user.classList.add("offline")
-        user.innerHTML = '<i class="fa fa-times"></i>';        
+        user.innerHTML = '<i class="fa fa-times"></i> offline';        
       })
       
     </script>
