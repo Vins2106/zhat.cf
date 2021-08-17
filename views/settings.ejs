@@ -36,7 +36,11 @@
   <div class="form-control">
     <label for="avatar-input">Avatar</label>
     <input name="avatar" type="url" class="form-input" id="avatar-input" value="<%= req.session.user.Avatar %>" required>
-  </div>  
+  </div> 
+  <div class="form-control">
+    <label for="wallpaper-input">Custom wallpaper</label>
+    <input name="wallpaper" type="url" class="form-input" id="wallpaper-input" value="<%= req.session.user.Wallpaper ? req.session.user.Wallpaper : "" %>">
+  </div>   
 <!--   <div class="form-control" onclick="copyURL()">
     <label for="url-input">Your URL</label>
     <input type="url" class="form-input" id="url-input" aria-describedby="url-help" value="add me on https://zhat.cf with code: <%= req.session.user.UID %>" disabled>

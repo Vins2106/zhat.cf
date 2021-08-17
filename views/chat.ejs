@@ -3,7 +3,11 @@
   <head>
     <%- include("./parts/head.ejs") %>
   </head>
+  <% if (!req.session.user.Wallpaper) { %>
   <body>
+  <% } else { %>
+  <body style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;>
+  <% } %>
 
             <div class="modal">
         <div id="user-modal" class="account-profile">

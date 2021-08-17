@@ -145,7 +145,7 @@ app.post("/signup", async (req, res) => {
     Username: username,
     UID: makeid(18) ,
     Avatar: "https://i.stack.imgur.com/l60Hf.png",
-    
+    Wallpaper: false
   }
   
   let newData = new data(dataStruct);
@@ -180,6 +180,7 @@ app.post("/settings", checkAuth, async (req, res) => {
   let password = req.body.password;
   let avatar = req.body.avatar;
   let email = req.body.email;
+  let wallpaper = req.body.wallpaper;
   
   if (!typeof validator.isStrongPassword(password) == 'true') {
     return res.redirect("/settings?error=true&message=Password not strong")
@@ -195,6 +196,9 @@ app.post("/settings", checkAuth, async (req, res) => {
   findAcc.Username = username;
   findAcc.Password = password;
   findAcc.Avatar = avatar;
+  if (wallpaper) {
+    findAcc.Wallpaper = wallpaper;
+  }
   findAcc.save();
   
   req.session.user = findAcc;
