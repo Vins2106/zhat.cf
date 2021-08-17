@@ -49,10 +49,26 @@ app.get('/', checkAuth, async (req, res) => {
       let acc = await data.findOne({UID: c});
       if (!acc) return;
       
+  let final;
+  
+  let alr = await messages.findOne({ID: `${req.session.user.UID}${acc.UID}`}) || await messages.findOne({ID: `${acc.UID}${req.session.user.UID}`})
+  if (!alr) {
+    let newData = new messages({
+      ID: `${acc.UID}${req.session.user.UID}`,
+      List: []
+    });
+    
+    newData.save();
+    final = newData;
+  } else {
+    final = alr;
+  }        
+      
       contacts.push({
         username: acc.Username,
         avatar: acc.Avatar,
-        uid: acc.UID
+        uid: acc.UID,
+        messages: final
       });
     });
   }

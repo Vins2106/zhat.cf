@@ -414,6 +414,14 @@ div#id-modal {
     justify-content: center;
 }
 
+.account-last-msg-2 {
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+}
+
 @media (max-width: 492px) {
   .box-1 {
     width: -webkit-fill-available;
