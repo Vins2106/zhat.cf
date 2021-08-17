@@ -38,7 +38,7 @@
     <input name="avatar" type="url" class="form-input" id="avatar-input" value="<%= req.session.user.Avatar %>" required>
   </div> 
   <div class="form-control">
-    <label for="wallpaper-input">Custom wallpaper</label>
+    <label for="wallpaper-input">Custom wallpaper <a href="#" onclick="removeWallpaper()">remove</a></label>
     <input name="wallpaper" type="url" class="form-input" id="wallpaper-input" value="<%= req.session.user.Wallpaper ? req.session.user.Wallpaper : "" %>">
   </div>   
 <!--   <div class="form-control" onclick="copyURL()">
@@ -116,6 +116,10 @@
       function copyURL() {
         let url = '<%= req.session.user.UID %>'
         navigator.clipboard.writeText(`https://zhat.cf/invite/<%= req.session.user.UID %>`);
+      }
+      
+      function removeWallpaper() {
+        document.getElementById("wallpaper-input").value = ""
       }
       
 (function(){
