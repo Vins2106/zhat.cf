@@ -198,6 +198,8 @@ app.post("/settings", checkAuth, async (req, res) => {
   findAcc.Avatar = avatar;
   if (wallpaper) {
     findAcc.Wallpaper = wallpaper;
+  } else {
+    findAcc.Wallpaper = null;
   }
   findAcc.save();
   
