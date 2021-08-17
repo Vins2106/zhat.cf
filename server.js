@@ -422,8 +422,6 @@ io.on('connection', (socket) => {
     socket.userid = userid;
     io.sockets.emit("isOnline", userid);
     users[socket.id] = userid;
-    clearTimeout(cds[userid])
-    delete users[userid];
   })
   
   
