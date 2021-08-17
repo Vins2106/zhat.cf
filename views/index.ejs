@@ -36,7 +36,7 @@
       no user available
     </h1>
     <% } else { %>
-    <div class="account-list">
+    <div class="account-list" style="margin-bottom: 50px;">
     <% contacts.map(u => { %>
       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
