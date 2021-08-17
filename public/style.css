@@ -20,14 +20,15 @@ body {
 }
 
 .btn {
-  border: none;
-  background: transparent;
-  padding: 10px;
-  font-weight: 500;
-  color: var(--second);
-  cursor: pointer;
-  border-radius: 4px;
-  min-width: 110px;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    font-weight: 500;
+    color: var(--second);
+    cursor: pointer;
+    border-radius: 4px;
+    max-width: 110px;
+    width: -webkit-fill-available;
 }
 
 .btn:hover {
@@ -442,6 +443,39 @@ display: flex;
     justify-content: left;
     align-items: center;
     width: -webkit-fill-available;
+}
+
+.navbar-bottom {
+    position: fixed;
+    background: black;
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: -webkit-fill-available;
+    max-height: 40px;
+}
+
+.nb-link {
+    margin: 0px 20px 0px 20px;
+    width: -webkit-fill-available;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    max-width: 42px;
+  cursor: pointer;
+}
+
+.btn-list {
+    width: -webkit-fill-available;
+    text-align: right;
 }
 
 @media (max-width: 492px) {
