@@ -37,7 +37,7 @@
       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
       <span class="account-username-2"><%= u.username %></span>
-      <span class="account-last-msg-2"><%= u.List[0] ? `${u.List[message.List.length].author.UID == req.session.user.UID ? "You" : `${u.List[message.List.length].author.Username}`}` : "" %></span>
+      <span class="account-last-msg-2" id="<%= u.uid %>-lastmsg"></span>
       <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: right; padding-right: 10px;"><i class="fa fa-times"></i></span>
       </div>
     </div>      
@@ -50,10 +50,16 @@
     
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
     <script>
+      
+      
     let socket = io();
       
       console.log("connected")
       socket.emit("isConnected", '<%= req.session.user.UID %>')
+      
+      socket.on("updateLastMsg", userid => {
+         let lastMsg
+      })
                   
       socket.on("someoneOnline", userId => {
         let user = document.getElementById(userId);

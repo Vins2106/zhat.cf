@@ -420,6 +420,7 @@ div#id-modal {
     text-overflow: ellipsis;
     overflow: hidden;
     font-size: 14px;
+  width: -webkit-fill-available;
 }
 
 @media (max-width: 492px) {
