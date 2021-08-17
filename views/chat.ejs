@@ -208,6 +208,8 @@ function scrollToBottom() {
         
         let name = document.createElement("span");
         name.setAttribute("class", `${mehe}-name`)
+        <% let user = await data.findOne({UID: ''}) %>
+                                 
         if (mehe == "me") {
           if (time) {
             name.textContent = `${user.Username}`

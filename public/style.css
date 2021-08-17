@@ -464,13 +464,17 @@ display: flex;
     width: -webkit-fill-available;
     background: transparent;
     border: none;
-    color: white;
+    color: #ddd;
     font-size: 22px;
     align-items: center;
     display: flex;
     justify-content: center;
     max-width: 42px;
   cursor: pointer;
+}
+
+.nb-link:hover {
+  color: #fff;
 }
 
 .btn-list {

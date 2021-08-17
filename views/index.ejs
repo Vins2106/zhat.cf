@@ -6,13 +6,13 @@
   <body>
     
     <div class="navbar-bottom">
-      <button class="nb-link">
+      <button class="nb-link" onclick="location.href = '/settings'">
         <i class="fa fa-gear"></i>
       </button>
-      <button class="nb-link">
+      <button class="nb-link" onclick="location.href = '/contact/add'">
         <i class="fa fa-plus"></i>
       </button>
-      <button class="nb-link">
+      <button class="nb-link" onclick="location.href = '/logout'">
         <i class="fa fa-sign-out"></i>
       </button>
     </div>
@@ -28,14 +28,6 @@
       <div class="profile" onclick="location.href = '/settings'">
       <img class="account-avatar" alt="avatar" src="<%= req.session.user.Avatar %>">
       <span class="account-username"><%= req.session.user.Username %></span>
-      </div>
-      <div class="btn-list">
-      <button class="btn btn-primary" onclick="location.href = '/settings'">
-        <i class="fa fa-gear"></i>
-      </button>
-      <button class="btn btn-danger" onclick="location.href = '/logout'">
-        Logout
-      </button>        
       </div>
     </div>
     
@@ -58,9 +50,9 @@
     </div>      
     <% } %>
     
-    <div class="add-contact" onclick="location.href = '/contact/add'">
+<!--     <div class="add-contact" onclick="location.href = '/contact/add'">
       <i class="fa fa-plus" style="font-size: 200%;"></i>
-    </div>
+    </div> -->
     
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
     <script>
