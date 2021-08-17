@@ -41,9 +41,36 @@
     
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
     <script>
-      let socket = io();
+    let socket = io();
+      
       console.log("connected")
       socket.emit("isConnected", '<%= req.session.user.UID %>')
+                  
+      socket.on("someoneOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is online`);
+      
+        user.innerHTML = "online"  
+      })
+                  
+      socket.on("isOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        socket.emit("updateOnline", '<%= req.session.user.UID %>')
+        console.log(`${userId} is online`)
+        
+        user.innerHTML = 'online';
+      });
+      
+      socket.on("isOffline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is offline`)
+        
+        user.innerHTML = 'offline';        
+      })
+      
     </script>
   </body>
 </html>

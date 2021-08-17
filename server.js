@@ -377,11 +377,12 @@ let cds = {};
 
 io.on('connection', (socket) => {
   
+  
   socket.on("isDisconnect", userid => {
     
     cds[socket.id] = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
-      delete users[socket.id]
+      delete users[userid]
     }, 10000);
   });
   
@@ -390,10 +391,10 @@ io.on('connection', (socket) => {
   })
   
   socket.on("isConnected", userid => {
-    clearTimeout(cds[socket.id]);
+    socket.userid = userid;
     io.sockets.emit("isOnline", userid);
-
     users[socket.id] = userid;
+    clearTimeout(cds[userid])
   })
   
   
@@ -403,7 +404,7 @@ io.on('connection', (socket) => {
   
   socket.on("disconnect", reason => {
     
-    cds[socket.id] = setTimeout(() => {
+    cds[socket.userid] = setTimeout(() => {
       io.sockets.emit("isOffline", users[socket.id]);
       delete users[socket.id]
     }, 10000);
