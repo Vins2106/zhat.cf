@@ -37,7 +37,7 @@
       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
       <span class="account-username-2"><%= u.username %></span>
-      <span class="account-isonline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: right; padding-right: 10px;">offline</span>
+      <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: right; padding-right: 10px;">offline</span>
       </div>
     </div>      
     <% }) %>
@@ -57,9 +57,11 @@
       socket.on("someoneOnline", userId => {
         let user = document.getElementById(userId);
         if (!user) return;
-        console.log(`${userId} is online`);
       
-        user.innerHTML = "online"  
+        
+        user.classList.remove("offline")
+        user.classList.add("online")
+        user.innerHTML = '<i class="fas fa-check"></i>'  
       })
                   
       socket.on("isOnline", userId => {
@@ -68,7 +70,9 @@
         socket.emit("updateOnline", '<%= req.session.user.UID %>')
         console.log(`${userId} is online`)
         
-        user.innerHTML = 'online';
+        user.classList.remove("remove")
+        user.classList.add("online")
+        user.innerHTML = '<i class="fas fa-check"></i>';
       });
       
       socket.on("isOffline", userId => {
@@ -76,7 +80,9 @@
         if (!user) return;
         console.log(`${userId} is offline`)
         
-        user.innerHTML = 'offline';        
+        user.classList.remove("online")
+        user.classList.add("offline")
+        user.innerHTML = '<i class="fas fa-check"></i>';        
       })
       
     </script>
