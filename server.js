@@ -342,8 +342,7 @@ app.get("/chat/:uid", checkAuth, async (req, res) => {
     res,
     he: findTarget,
     messages: final,
-    data,
-    async: true
+    data
   })
   
 });
