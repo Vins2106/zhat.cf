@@ -313,6 +313,10 @@ app.get("/chat/:uid", checkAuth, async (req, res) => {
   
   let final;
   
+  let contact = await GetContact(req.session.user.UID);
+  let findContact = contact.List.find(x => x == findTarget.UID);
+  if (!findContact) return res.redirect("/")
+  
   let alr = await messages.findOne({ID: `${req.session.user.UID}${findTarget.UID}`}) || await messages.findOne({ID: `${findTarget.UID}${req.session.user.UID}`})
   if (!alr) {
     let newData = new messages({
@@ -411,6 +415,7 @@ io.on('connection', (socket) => {
     io.sockets.emit("isOnline", userid);
     users[socket.id] = userid;
     clearTimeout(cds[userid])
+    delete users[userid];
   })
   
   
