@@ -144,7 +144,8 @@ app.post("/signup", async (req, res) => {
     Password: password,
     Username: username,
     UID: makeid(18) ,
-    Avatar: "https://i.stack.imgur.com/l60Hf.png"
+    Avatar: "https://i.stack.imgur.com/l60Hf.png",
+    
   }
   
   let newData = new data(dataStruct);

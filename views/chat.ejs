@@ -124,7 +124,13 @@
         socket.emit('message', postDataMSG);
         e.preventDefault();
         form.reset()
+        input.setAttribute("disabled", "disabled");
+        input.setAttribute("placeholder", "cooldown");
+        setTimeout(() => {
+        input.disabled = false;
+        input.setAttribute("placeholder", "max 100 characters");
         input.focus();
+        }, 3000)
       });
       
 function scrollToBottom() {
