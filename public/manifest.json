@@ -1,6 +1,6 @@
 {
-    "name": "Zhat Chatapp",
-    "short_name": "Zhat",
+    "name": "Zhatting Chatapp",
+    "short_name": "Zhatting",
     "theme_color": "#23a632",
     "background_color": "#23a632",
     "display": "standalone",
