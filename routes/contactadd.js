@@ -65,15 +65,15 @@ app.post("/add", checkAuth, async (req, res) => {
   if (!ourContacts) {
     let newContact = new contacts({
       UID: req.session.user.UID,
-      List: [checkUser.UID]
+      List: [{id: checkUser.UID, num: 1}]
     });
     
     newContact.save();
   } else {
-    let checkAlr = ourContacts.List.find(x => x == checkUser.UID);
+    let checkAlr = ourContacts.List.find(x => x.id == checkUser.UID);
     if (checkAlr) return res.redirect("/contact/add?error=true&message=Already on contact")
     
-   ourContacts.List.push(checkUser.UID);
+   ourContacts.List.push({id: checkUser.UID, num: 1});
    ourContacts.save();
   }
   
@@ -81,15 +81,15 @@ app.post("/add", checkAuth, async (req, res) => {
   if (!heContacts) {
     let newContact = new contacts({
       UID: checkUser.UID,
-      List: [req.session.user.UID]
+      List: [{id: req.session.user.UID, num: 1}]
     });
     
     newContact.save();
   } else {
-    let checkAlr = heContacts.List.find(x => x == req.session.user.UID);
+    let checkAlr = heContacts.List.find(x => x .id== req.session.user.UID);
     if (checkAlr) return res.redirect("/contact/add?error=true&message=Already on contact")    
     
-   heContacts.List.push(req.session.user.UID);
+   heContacts.List.push({id: req.session.user.UID, num: 1});
    heContacts.save();
   }  
   

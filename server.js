@@ -153,15 +153,35 @@ app.patch("/api/post/message", async (req, res) => {
   
   try {
     console.log("post")
-    let done = false;
-    let done2 = false;
+    let done;
+    let done2;
+    let current = 2;
+    let current2 = 2;
     
     let contactsList = await GetContact(message.author.UID);
-    contactsList.map(x => {
-      
-    })
-    
-    
+    if (contactsList.List[0]) {
+      contactsList.List.map(x => {
+        if (x.id == req.session.user.UID) {
+          x.num = 2;
+          current++;
+        } else {
+          x.num = current == 2 ? current + 1 : current;
+          current++;
+        }
+      })
+    }
+    let contactsList2 = await GetContact(message.to);
+    if (contactsList2.List[0]) {
+      contactsList2.List.map(x => {
+        if (x.id == req.session.user.UID) {
+          x.num = 2;
+          current2++;
+        } else {
+          x.num = current2 == 2 ? current2 + 1 : current2;
+          current2++;
+        }
+      })
+    }
     
     final.save().catch(e => {})
   } catch (e) {
