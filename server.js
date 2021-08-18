@@ -241,7 +241,6 @@ io.on('connection', (socket) => {
   })
   
   socket.on("newMessages", opt => {
-    console.log(opt)
     io.sockets.emit("newMessage", opt)
   })
   

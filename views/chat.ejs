@@ -148,38 +148,22 @@ function scrollToBottom() {
       socket.on("message2", message => {
 
         if (message.author.UID == '<%= req.session.user.UID %>') {
-          postMsg(message)    
+          postMsg(message);
+          createMessage(message.author, message.content, false, "me")
+          scrollTo(0, chats.scrollHeight)
         }
         
-        if (message.author.UID !== '<%= req.session.user.UID %>' && message.to == '<%= req.session.user.UID %>') {
-            if (message.author.UID == locationHref) {
-          
-                          
+        if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
+          audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
         }
-            return;
-        }
-        
-       if (message.to == "<%= req.session.user.UID %>" && message.author.UID !== '<%= req.session.user.UID %>') {
-            if (message.to == locationHref || message.author.UID !== locationHref) return;
-
-          audio.play()                          
-          createMessage(message.author, message.content, false, "he")
-          scrollTo(0, chats.scrollHeight)
-        }
-        
-        if (message.author.UID == '<%= req.session.user.UID %>') {
-          createMessage(message.author, message.content, false,"me")
-          scrollTo(0, chats.scrollHeight)
-        } 
                 
         
         
       })
       
       async function postMsg(message) {
-        console.log('1')
         
         let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
             
