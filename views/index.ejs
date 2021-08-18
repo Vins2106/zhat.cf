@@ -21,6 +21,7 @@
       Zhatting - online chat app
       <ul style="list-style: none; display: flex; flex-direction: row;">
         <li style="margin-left: 5px;"><a href="/faq" target="_blank">FAQ</a></li>
+        <li style="margin-left: 5px;"><a href="/updates" target="_blank">Updates</a></li>
         <li style="margin-left: 5px;"><a href="https://saweria.co/Vins2106" target="_blank">donate</a></li>
       </ul>
     </div>
@@ -37,7 +38,7 @@
     </h1>
     <% } else { %>
     <div class="account-list" style="margin-bottom: 50px;">
-    <% contacts.map(u => { %>
+    <% contacts.sort((a,b) => a.num - b.num).map(u => { %>
       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
         <div class="account-username-isonline-2">

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("./parts/head.ejs") %>
+  </head>
+  <body>
+    
+    <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
+      Back
+    </button>
+    
+    <h1 style="text-align: center; color: white;">
+      Changes Logs
+    </h1>
+    
+    <div class="faq-list">
+    <div class="faq" id="18820212">
+      <h2 onclick="navigator.clipboard.writeText(window.location.href.split('#')[0]  + '#18820212');" style="margin-bottom: 15px;">
+        18 / 8 / 2021 - 15:56 (wita)
+      </h2>
+      <p>
+        Reset <strong>messages data</strong> & <strong>contacts data</strong> to fix some issues
+      </p>
+    </div>       
+    <div class="faq" id="1882021">
+      <h2 onclick="navigator.clipboard.writeText(window.location.href.split('#')[0]  + '#1882021');" style="margin-bottom: 15px;">
+        18 / 8 / 2021 - 15:55 (wita)
+      </h2>
+      <p>
+        Made this pages
+      </p>
+    </div>       
+    </div>
+    
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
+    </script>
+    <script>
+    let socket = io();
+      
+      console.log("connected")
+      socket.emit("isConnected", '<%= req.session.user.UID %>')
+                  
+      socket.on("someoneOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is online`);
+      
+        user.innerHTML = "online"  
+      })
+                  
+      socket.on("isOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        socket.emit("updateOnline", '<%= req.session.user.UID %>')
+        console.log(`${userId} is online`)
+        
+        user.innerHTML = 'online';
+      });
+      
+      socket.on("isOffline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is offline`)
+        
+        user.innerHTML = 'offline';        
+      })
+      
+    </script>   
+  </body>
+</html>

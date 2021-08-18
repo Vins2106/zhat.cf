@@ -46,7 +46,7 @@ app.get('/', checkAuth, async (req, res) => {
   
   if (Contacts.List[0]) {
     cached = Contacts.List.reverse().map(async c => {
-      let acc = await data.findOne({UID: c});
+      let acc = await data.findOne({UID: c.id});
       if (!acc) return;
       
   let final;
@@ -68,7 +68,8 @@ app.get('/', checkAuth, async (req, res) => {
         username: acc.Username,
         avatar: acc.Avatar,
         uid: acc.UID,
-        messages: final
+        messages: final,
+        num: c.num
       });
       cached++;
     });
@@ -123,6 +124,13 @@ app.get("/faq", async (req, res) => {
     res
   })
 });
+
+app.get("/updates", async (req, res) => {
+  res.render("updates.ejs", {
+    req,
+    res
+  })
+})
 
 app.get("/logout", async (req, res) => {
   req.session.user = null;

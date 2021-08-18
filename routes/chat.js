@@ -12,7 +12,7 @@ app.get("/:uid", checkAuth, async (req, res) => {
   let final;
   
   let contact = await GetContact(req.session.user.UID);
-  let findContact = contact.List.find(x => x == findTarget.UID);
+  let findContact = contact.List.find(x => x.id == findTarget.UID);
   if (!findContact) return res.redirect("/")
   
   let alr = await messages.findOne({ID: `${req.session.user.UID}${findTarget.UID}`}) || await messages.findOne({ID: `${findTarget.UID}${req.session.user.UID}`})
