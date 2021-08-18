@@ -9,7 +9,7 @@
       <button class="nb-link" onclick="location.href = '/settings'">
         <i class="fa fa-gear"></i>
       </button>
-      <button class="nb-link" onclick="location.href = '/contact/add'">
+      <button class="nb-link" onclick="location.href = '/contact/add'">t
         <i class="fa fa-plus"></i>
       </button>
       <button class="nb-link" onclick="location.href = '/logout'">
@@ -43,7 +43,7 @@
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
         <div class="account-username-isonline-2">
           <span class="account-username-2"><%= u.username %></span>
-          <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: left; margin-left: 12px;"><i class="fa fa-times"> offline</i></span>
+          <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: left; margin-left: 12px;"><i class="fa fa-times"></i> offline</span>
         </div>
       <span class="account-last-msg-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %></span>
       </div>

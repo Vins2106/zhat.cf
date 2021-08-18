@@ -482,6 +482,15 @@ div#id-modal {
   text-align: right;
 }
 
+.offline .fa {
+  border: 2px solid white;
+}
+
+.online .fa {
+  color: green;
+  border: 2px solid white;
+}
+
 @media (max-width: 492px) {
   .box-1 {
     width: -webkit-fill-available;
