@@ -69,9 +69,11 @@
       <i class="fa fa-plus" style="font-size: 200%;"></i>
     </div> -->
     
+    <audio src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Feventually-590.mp3"></audio>
+    
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
     <script>
-      
+        const audio = document.querySelector("audio");
       
     let socket = io();
       
@@ -93,6 +95,7 @@
         if (opt.to !== '<%= req.session.user.UID %>') return;
         if (!user) return;
         
+        audio.play();
         user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
       })
                   
