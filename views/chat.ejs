@@ -126,6 +126,7 @@
       form.addEventListener('submit', function(e) {
         let postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'};
         socket.emit('message', postDataMSG);
+        socket.emit('newMessages', {id: '<%= req.session.user.UID %>', msg: input.value})
         e.preventDefault();
         form.reset()
         input.setAttribute("disabled", "disabled");

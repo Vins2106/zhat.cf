@@ -240,6 +240,11 @@ io.on('connection', (socket) => {
     io.sockets.emit("isOffline", users[socket.SID]);
   })
   
+  socket.on("newMessages", opt => {
+    console.log(opt)
+    io.sockets.emit("newMessage", opt)
+  })
+  
 });
 
 http.listen(port, () => {

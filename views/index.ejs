@@ -74,11 +74,12 @@
         user.innerHTML = '<i class="fa fa-check"></i> online'  
       })
       
-      socket.on("newMessages", userid => {
-        let user = document.getElementById(`${userid}-lastmsg`);
+      socket.on("newMessage", (opt) => {
+        console.log(opt)
+        let user = document.getElementById(`${opt.id}-lastmsg`);
         if (!user) return;
         
-        
+        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new msg)'} ${opt.msg}`;
       })
                   
       socket.on("isOnline", userId => {
