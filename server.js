@@ -153,7 +153,16 @@ app.patch("/api/post/message", async (req, res) => {
   
   try {
     console.log("post")
-    final.List.push({author: message.author, content: message.content, time: message.time, to: message.to, type: message.type});
+    let done = false;
+    let done2 = false;
+    
+    let contactsList = await GetContact(message.author.UID);
+    contactsList.map(x => {
+      
+    })
+    
+    
+    
     final.save().catch(e => {})
   } catch (e) {
     return res.status(404).send({error: true, msg: e});
