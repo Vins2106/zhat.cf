@@ -75,11 +75,11 @@
       })
       
       socket.on("newMessage", (opt) => {
-        console.log(opt)
+        if (opt.to !== '<%= req.session.user.UID %>') return;
         let user = document.getElementById(`${opt.id}-lastmsg`);
         if (!user) return;
         
-        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new msg)'} ${opt.msg}`;
+        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
       })
                   
       socket.on("isOnline", userId => {

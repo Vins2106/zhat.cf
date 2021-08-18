@@ -256,7 +256,7 @@ function checkAuth(req, res, next) {
   
   return res.redirect("/login")
 }
-
+ 
 function makeid(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

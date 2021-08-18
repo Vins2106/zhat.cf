@@ -126,7 +126,7 @@
       form.addEventListener('submit', function(e) {
         let postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'};
         socket.emit('message', postDataMSG);
-        socket.emit('newMessages', {id: '<%= req.session.user.UID %>', msg: input.value})
+        socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
         e.preventDefault();
         form.reset()
         input.setAttribute("disabled", "disabled");
@@ -209,8 +209,6 @@ function scrollToBottom() {
         
         let name = document.createElement("span");
         name.setAttribute("class", `${mehe}-name`)
-        <% let user; %>
-        
                                  
         if (mehe == "me") {
           if (time) {
