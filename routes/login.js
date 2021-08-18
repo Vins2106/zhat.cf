@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express.Routes;
+const app = express.Router();
 let data = require("../mongo/data.js");
 
 app.get('/', async (req, res) => {
@@ -31,3 +31,5 @@ app.post('/', async (req, res) => {
   
   res.redirect("/")
 });
+
+module.exports = app;

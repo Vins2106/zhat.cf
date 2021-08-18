@@ -27,7 +27,7 @@ body {
     color: var(--second);
     cursor: pointer;
     border-radius: 4px;
-    max-width: 110px;
+    max-width: 150px;
     width: -webkit-fill-available;
 }
 
