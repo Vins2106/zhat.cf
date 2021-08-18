@@ -18,8 +18,9 @@ require("dotenv").config()
 mongoose.connect(process.env.mongo, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
-
+}, () => {
+  console.log("[database] connected")
+})
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -37,13 +38,12 @@ app.use(session({
 
 app.use(express.static(__dirname + "/public"));
 
-
 app.get('/', checkAuth, async (req, res) => {
   
   let Contacts = await GetContact(req.session.user.UID)
   let contacts = [];
+  let cached = 0;
   
-
   if (Contacts.List[0]) {
     Contacts.List.reverse().map(async c => {
       let acc = await data.findOne({UID: c});
@@ -70,16 +70,18 @@ app.get('/', checkAuth, async (req, res) => {
         uid: acc.UID,
         messages: final
       });
+      cached++;
     });
   }
   
-  setTimeout(() => {
+  setInterval(() => {
+    if (cached !== Contacts.List.length) return;
   res.render("index.ejs", {
     req,
     res,
     contacts
-  })    
-  }, 500)
+  });    
+  }, )
 });
 
 // login
@@ -106,6 +108,7 @@ app.use("/chat", chatRoutes)
 const inviteRoutes = require("./routes/invite.js")
 app.use("/invite", inviteRoutes)
 
+// no routes required
 app.get("/faq", async (req, res) => {
   res.render("faq.ejs", {
     req,
@@ -147,17 +150,15 @@ app.patch("/api/post/message", async (req, res) => {
   } catch (e) {
     return res.status(404).send({error: true, msg: e});
   } finally {
-    console.log(`posted`, message)
     return res.status(200).send({error: false});
   }
   
 });
 
+// status 404
 app.use("/", async (req, res) => {
   res.status(404).render("404.ejs")
 }); 
-
-
 
 let users = {};
 let ison = {};
@@ -185,15 +186,16 @@ io.on('connection', (socket) => {
   })
   
 });
+
+http.listen(port, () => {
+  console.log(`[system] running`);
+});
+
 function checkAuth(req, res, next) {
   if (req.session.user) return next();
   
   return res.redirect("/login")
 }
-
-http.listen(port, () => {
-  console.log(`[system] running`);
-});
 
 function makeid(length) {
     var result           = '';
