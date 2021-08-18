@@ -127,18 +127,23 @@
       }); 
       
       form.addEventListener('submit', function(e) {
+        if (input.value == "") {                             
+        e.preventDefault();
+        form.reset()
+        }
+                                       
         let postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'};
         socket.emit('message', postDataMSG);
         socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
         e.preventDefault();
-        form.reset()
+        form.reset()                             
         input.setAttribute("disabled", "disabled");
         input.setAttribute("placeholder", "cooldown");
         setTimeout(() => {
         input.disabled = false;
         input.setAttribute("placeholder", "max 100 characters");
         input.focus();
-        }, 3000)
+        }, 2000)
       });
       
 function scrollToBottom() {
