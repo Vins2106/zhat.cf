@@ -174,7 +174,7 @@ app.patch("/api/post/message", async (req, res) => {
           cached.push({id: x.id, num: 2})
           current++;
         } else {
-          cached2.push({id: x.id, num: current == 2 ? current + 1 : current})
+          cached.push({id: x.id, num: current == 2 ? current + 1 : current})
           current++;
         }
       })
