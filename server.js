@@ -170,7 +170,7 @@ app.patch("/api/post/message", async (req, res) => {
     let contactsList = await GetContact(message.author.UID);
     if (contactsList.List[0]) {
       done = contactsList.List.map(x => {
-        if (x.id == req.session.user.UID) {
+        if (x.id == message.to) {
           cached.push({id: x.id, num: 2})
           current++;
         } else {
