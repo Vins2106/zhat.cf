@@ -73,6 +73,13 @@
         user.classList.add("online")
         user.innerHTML = '<i class="fa fa-check"></i> online'  
       })
+      
+      socket.on("newMessages", userid => {
+        let user = document.getElementById(`${userid}-lastmsg`);
+        if (!user) return;
+        
+        
+      })
                   
       socket.on("isOnline", userId => {
         let user = document.getElementById(userId);
