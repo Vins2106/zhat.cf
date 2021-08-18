@@ -42,10 +42,10 @@ app.get('/', checkAuth, async (req, res) => {
   
   let Contacts = await GetContact(req.session.user.UID)
   let contacts = [];
-  let cached = 0;
+  let cached;
   
   if (Contacts.List[0]) {
-    Contacts.List.reverse().map(async c => {
+    cached = Contacts.List.reverse().map(async c => {
       let acc = await data.findOne({UID: c});
       if (!acc) return;
       
@@ -74,14 +74,22 @@ app.get('/', checkAuth, async (req, res) => {
     });
   }
   
-  setInterval(() => {
-    if (cached !== Contacts.List.length) return;
-  res.render("index.ejs", {
-    req,
-    res,
-    contacts
-  });    
-  }, )
+  if (cached) {
+    return Promise.all(cached).then(() => {
+      res.render("index.ejs", {
+        req,
+        res,
+        contacts
+      })
+    })
+  } else {
+      res.render("index.ejs", {
+        req,
+        res,
+        contacts
+      })    
+  }
+  
 });
 
 // login
