@@ -487,3 +487,18 @@ display: flex;
     width: -webkit-fill-available;
   }
 }
+
+
+/* ads */
+.ads-horizontal {
+    margin: 0 auto;
+    background: #ddd;
+    padding: 5px;
+    font-size: 11px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    max-width: 500px;
+}
