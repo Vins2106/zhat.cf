@@ -20,15 +20,15 @@ body {
 }
 
 .btn {
-    border: none;
-    background: transparent;
-    padding: 10px;
-    font-weight: 500;
-    color: var(--second);
-    cursor: pointer;
-    border-radius: 4px;
-    max-width: 150px;
-    width: -webkit-fill-available;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  font-weight: 500;
+  color: var(--second);
+  cursor: pointer;
+  border-radius: 4px;
+  max-width: 150px;
+  width: -webkit-fill-available;
 }
 
 .btn:hover {
@@ -173,8 +173,8 @@ a {
   white-space: nowrap;
   flex-wrap: wrap;
   text-overflow: ellipsis;
-    text-align: left;
-    width: -webkit-fill-available;  
+  text-align: left;
+  width: -webkit-fill-available;
 }
 
 .account-list {
@@ -196,18 +196,18 @@ a {
 }
 
 .add-contact {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    bottom: 18px;
-    right: 18px;
-    background-color: #0C9;
-    color: #FFF;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 18px;
+  right: 18px;
+  background-color: #0C9;
+  color: #FFF;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile {
@@ -279,8 +279,8 @@ a {
 }
 
 .me-avatar {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid black;
@@ -308,9 +308,9 @@ a {
   background: #f0f8ff;
   position: fixed;
   width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .he-name-msg {
@@ -360,17 +360,17 @@ emoji-picker {
 }
 
 .account-profile {
-    position: fixed;
-    z-index: 99999;
-    background: white;
-    margin: 10px;
-    box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 50%);
-    width: -webkit-fill-available;
-    border-radius: 4px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    text-align: right;
+  position: fixed;
+  z-index: 99999;
+  background: white;
+  margin: 10px;
+  box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 50%);
+  width: -webkit-fill-available;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
   max-width: 400px;
 }
 
@@ -378,98 +378,98 @@ emoji-picker {
 }
 
 div#avatar-name-modal {
-    display: grid;
-    text-align: center;
+  display: grid;
+  text-align: center;
 }
 
 img.avatar-modal {
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 1px solid black;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;  
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
 span.name-modal {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 div#id-modal {
-    display: grid;
-    text-align: left;
-    margin-top: 10px;
-    color: black;
-    font-weight: bold;
-    letter-spacing: 1px;
+  display: grid;
+  text-align: left;
+  margin-top: 10px;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 #id-modal input {
-    padding: 5px;
-    background: none;
-    text-align: center;
-    font-weight: bold;
-    color: black;
+  padding: 5px;
+  background: none;
+  text-align: center;
+  font-weight: bold;
+  color: black;
 }
 
 .modal {
-    width: -webkit-fill-available;
-    text-align: center;
-    display: flex;
-    justify-content: center;
+  width: -webkit-fill-available;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .account-last-msg-2 {
-    word-break: break-all;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-size: 14px;
-    width: -webkit-fill-available;
-    background: #383434;
-    padding: 10px;
-    border-radius: 4px;
-    font-weight: bold;
-    letter-spacing: 1px;
+  word-break: break-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 14px;
+  width: -webkit-fill-available;
+  background: #383434;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 1px;
   color: white;
 }
 
 .account-username-isonline-2 {
-display: flex;
-    flex-direction: column;
-    text-align: left;
-    justify-content: left;
-    align-items: center;
-    width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+  width: -webkit-fill-available;
 }
 
 .navbar-bottom {
-    position: fixed;
-    background: black;
-    width: -webkit-fill-available;
-    display: flex;
-    justify-content: center;
-    top: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: -webkit-fill-available;
-    max-height: 40px;
+  position: fixed;
+  background: black;
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: -webkit-fill-available;
+  max-height: 40px;
 }
 
 .nb-link {
-    margin: 0px 20px 0px 20px;
-    width: -webkit-fill-available;
-    background: transparent;
-    border: none;
-    color: #ddd;
-    font-size: 22px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    max-width: 42px;
+  margin: 0px 20px 0px 20px;
+  width: -webkit-fill-available;
+  background: transparent;
+  border: none;
+  color: #ddd;
+  font-size: 22px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  max-width: 42px;
   cursor: pointer;
 }
 
@@ -478,8 +478,8 @@ display: flex;
 }
 
 .btn-list {
-    width: -webkit-fill-available;
-    text-align: right;
+  width: -webkit-fill-available;
+  text-align: right;
 }
 
 @media (max-width: 492px) {
@@ -488,17 +488,17 @@ display: flex;
   }
 }
 
-
 /* ads */
 .ads-horizontal {
-    margin: 0 auto;
-    background: #ddd;
-    padding: 5px;
-    font-size: 11px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    max-width: 500px;
+  margin: 0 auto;
+  background: #ddd;
+  padding: 5px;
+  font-size: 11px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  max-width: 500px;
+  cursor: pointer;
 }
