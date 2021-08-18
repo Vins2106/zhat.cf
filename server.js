@@ -164,34 +164,42 @@ app.patch("/api/post/message", async (req, res) => {
     let done2;
     let current = 2;
     let current2 = 2;
+    let cached = [];
+    let cached2 = [];
     
     let contactsList = await GetContact(message.author.UID);
     if (contactsList.List[0]) {
-      contactsList.List.map(x => {
+      done = contactsList.List.map(x => {
         if (x.id == req.session.user.UID) {
-          x.num = 2;
+          cached.push({id: x.id, num: 2})
           current++;
         } else {
-          x.num = current == 2 ? current + 1 : current;
+          cached2.push({id: x.id, num: current == 2 ? current + 1 : current})
           current++;
         }
       })
     }
     let contactsList2 = await GetContact(message.to);
     if (contactsList2.List[0]) {
-      contactsList2.List.map(x => {
+      done2 = contactsList2.List.map(x => {
         if (x.id == req.session.user.UID) {
-          x.num = 2;
+          cached2.push({id: x.id, num: 2})
           current2++;
         } else {
-          x.num = current2 == 2 ? current2 + 1 : current2;
-          current2++;
+          cached2.push({id: x.id, num: current2 == 2 ? current2 + 1 : current2})
+          current2++;          
         }
       })
     }
     
-    contactsList.save();
-    contactsList2.save();
+    Promise.all(done).then(() => {
+      contactsList.List = cached;
+      contactsList.save();
+    })
+    Promise.all(done2).then(() => {
+      contactsList2.List = cached2;
+      contactsList2.save();
+    })
     final.List.push({author: message.author, content: message.content, time: message.time, to: message.to, type: message.type});
     final.save().catch(e => {})
   } catch (e) {
