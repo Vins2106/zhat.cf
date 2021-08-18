@@ -38,11 +38,13 @@ app.post("/", checkAuth, async (req, res) => {
     return res.redirect("/settings?error=true&message=Avatar url must be .png, .jpg, or .gif");
   }
   
+  if (wallpaper) {
   if (!wallpaper.startsWith("https://") && !wallpaper.startsWith("http://")) {
     return res.redirect("/settings?error=true&message=Invalid wallpaper url");
   } else if (!wallpaper.endsWith(".png") && !wallpaper.endsWith(".jpg") && !wallpaper.endsWith(".gif")) {
     return res.redirect("/settings?error=true&message=Wallpaper url must be .png, .jpg, or .gif");
-  }  
+  }      
+  }
   
   let findAcc = await data.findOne({Email: req.body.email});
   findAcc.Username = username;
