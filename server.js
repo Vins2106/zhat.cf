@@ -171,11 +171,11 @@ app.patch("/api/post/message", async (req, res) => {
     if (contactsList.List[0]) {
       done = contactsList.List.map(x => {
         if (x.id == message.to) {
+          current++;
           cached.push({id: x.id, num: 2})
-          current++;
         } else {
-          cached.push({id: x.id, num: current == 2 ? current + 1 : current})
           current++;
+          cached.push({id: x.id, num: current == 2 ? current + 1 : current})
         }
       })
     }

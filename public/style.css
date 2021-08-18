@@ -484,11 +484,31 @@ div#id-modal {
 
 .offline .fa {
   border: 2px solid white;
+  background: black;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  font-size: 10px;
 }
 
 .online .fa {
-  color: green;
+  color: greenyellow;
   border: 2px solid white;
+  background: greenyellow;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  font-size: 10px;
+}
+
+.account-isonline {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.account-isonline i {
+    margin-right: 5px;
 }
 
 @media (max-width: 492px) {
