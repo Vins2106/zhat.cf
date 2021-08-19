@@ -523,6 +523,8 @@ input.chat-input {
   cursor: pointer;
 }
 
+emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
+
 @media (min-width: 992px) {
   .chats {
     margin: 0 150px;
