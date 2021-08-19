@@ -180,9 +180,10 @@ io.on('connection', (socket) => {
   })
   
   socket.on("isConnected", userid => {
-    socket.userid = userid;
     io.sockets.emit("isOnline", userid);
     users[socket.id] = userid;
+    clearTimeout(cds[userid])
+    delete cds[userid]
   })
   
   
@@ -191,7 +192,11 @@ io.on('connection', (socket) => {
   })
   
   socket.on("disconnect", reason => {
-    io.sockets.emit("isOffline", users[socket.SID]);
+    cds[users[socket.id]] = setTimeout(() => {
+      io.sockets.emit("isOffline", users[socket.id]);
+      delete users[socket.id];
+      delete cds[users[socket.id]]
+    }, 1 * 1000);
   })
   
   socket.on("newMessages", opt => {
