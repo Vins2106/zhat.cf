@@ -602,6 +602,10 @@ span.pf-click {
     align-items: center;
 }
 
+.disabled {
+  cursor: not-allowed;
+}
+
 @media (max-width: 480px) {
   .box-1 {
     width: -webkit-fill-available;
