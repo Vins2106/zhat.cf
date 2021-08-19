@@ -1,134 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include("./parts/head.ejs") %>
-  </head>
-  <body>
-    
-    <div class="navbar-bottom">
-      <button class="nb-link" onclick="location.href = '/settings'">
-        <i class="fa fa-gear"></i>
-      </button>
-      <button class="nb-link" onclick="location.href = '/contact/add'">
-        <i class="fa fa-plus"></i>
-      </button>
-      <button class="nb-link" onclick="location.href = '/logout'">
-        <i class="fa fa-sign-out"></i>
-      </button>
-    </div>
-    
-    <div class="navbar-brand">
-      Zhatting - online chat app
-      <ul style="list-style: none; display: flex; flex-direction: row;">
-        <li style="margin-left: 5px;"><a href="/faq" target="_blank">FAQ</a></li>
-        <li style="margin-left: 5px;"><a href="/updates" target="_blank">Updates</a></li>
-        <li style="margin-left: 5px;"><a href="https://saweria.co/Vins2106" target="_blank">donate</a></li>
-      </ul>
-    </div>
-    <div class="navbar-account">
-      <div class="profile" onclick="location.href = '/settings'">
-      <img class="account-avatar" alt="avatar" src="<%= req.session.user.Avatar %>">
-      <span class="account-username"><%= req.session.user.Username %></span>
-      </div>
-    </div>
-    
-    <% if (!contacts[0]) { %>
-    <h3 class="no-contact">
-      no user available
-    </h1>
-    <% } else { %>
-    <div class="account-list" style="margin-bottom: 50px;">
-    <% contacts.sort((a,b) => a.num - b.num).map(u => { %>
-      <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
-      <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
-        <div class="account-username-isonline-2">
-          <span class="account-username-2"><%= u.username %></span>
-          <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: left; margin-left: 12px;"><i class="fa fa-times"></i> offline</span>
-        </div>
-      <span class="account-last-msg-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %></span>
-      </div>
-    <% }) %>
-    </div>      
-    <% } %>
-    
-    
-<amp-ad width="100vw" height="320"
-     type="adsense"
-     data-ad-client="ca-pub-3656942267473031"
-     data-ad-slot="7963186398"
-     data-auto-format="rspv"
-     data-full-width="">
-  <div overflow=""></div>
-</amp-ad>
-    
-    <div class="ads-horizontal" onclick="location.href = 'https://zhat.cf/invite/FHmiI97XpZ97YXwVo2'">
-      <span class="ads-slot">ads slot - https://zhat.cf/invite/FHmiI97XpZ97YXwVo2</span>
-    </div>
-    
-<!--     <div class="add-contact" onclick="location.href = '/contact/add'">
-      <i class="fa fa-plus" style="font-size: 200%;"></i>
-    </div> -->
-    
-    <audio src="https://www.myinstants.com/media/sounds/discord-notification.mp3"></audio>
-    
-    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
-    <script>
-        const audio = document.querySelector("audio");
-        audio.volume = 0.3;
-      
-    let socket = io();
-      
-      console.log("connected")
-      socket.emit("isConnected", '<%= req.session.user.UID %>')
-                  
-      socket.on("someoneOnline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-      
-        
-        user.classList.remove("offline")
-        user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i> online'  
-      })
-      
-      socket.on("newMessage", (opt) => {
-        let user = document.getElementById(`${opt.id}-lastmsg`);
-        if (opt.to !== '<%= req.session.user.UID %>') return;
-        if (!user) return;
-        
-        audio.play();
-        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
-      })
-                  
-      socket.on("isOnline", userId => {
-        socket.emit("updateOnline", '<%= req.session.user.UID %>')
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is online`)
-        
-        user.classList.remove("remove")
-        user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i> online';
-      });
-      
-      socket.on("isOffline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is offline`)
-        
-        user.classList.remove("online")
-        user.classList.add("offline")
-        user.innerHTML = '<i class="fa fa-times"></i> offline';        
-      })
-      
-    </script>
-  </body>
-</html> 
-<!--  -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include("../parts/betahead.ejs") %>
+    <%- include("./parts/betahead.ejs") %>
   </head>
   <body class="loading-body" id="body">
     <div class="loading" id="loading">
@@ -143,21 +16,40 @@
            <img class="pf-img" alt="avatar" src="<%= req.session.user.Avatar %>">
            <span class="pf-status online"></span>
         </div>
-        <span class="pf-username"><%= req.session. %></span>
+        <span class="pf-username"><%= req.session.user.Username %></span>
       </div>
 <!--     navbar end -->
       <div class="contacts">
-        <div class="contact">
+<!--          -->
+    <% if (!contacts[0]) { %>
+    <h3 class="no-contact">
+      no user available
+    </h1>
+    <% } else { %>
+    <% contacts.sort((a,b) => a.num - b.num).map(u => { %>
+        <div class="contact" onclick="location.href='/me/<%= u.uid %>'">
          <div class="pf-img-stats pf-2">
-           <img class="pf-img pf-2" alt="avatar" src="https://i.stack.imgur.com/l60Hf.png">
-           <span class="pf-status pf-2 offline"></span>
+           <img class="pf-img pf-2" alt="avatar" src="<%= u.avatar %>">
+           <span class="pf-status pf-2 offline" id="<%= u.uid %>"></span>
         </div>
           <div class="pf-username-lastmsg">
-        <span class="pf-username pf-2">Username</span>
-            <span maxlength="100" class="pf-lastmsg pf-2">(you): lorem ipsum message will apear here max 100 character...</span>
+        <span class="pf-username pf-2"><%= u.username %></span>
+            <span maxlength="100" class="pf-lastmsg pf-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %></span>
           </div>
         </div>
         <hr style='border-color: black; margin-top: 10px;'>
+        
+<!--       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
+      <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
+        <div class="account-username-isonline-2">
+          <span class="account-username-2"><%= u.username %></span>
+          <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: left; margin-left: 12px;"><i class="fa fa-times"></i> offline</span>
+        </div>
+      <span class="account-last-msg-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %></span>
+      </div> -->
+    <% }) %>
+    <% } %>   
+<!--          -->
       </div>
       
       <div class="navbot">
@@ -178,6 +70,11 @@
         </div>
       </div>
     </main>
+    
+
+    <audio src="https://www.myinstants.com/media/sounds/discord-notification.mp3"></audio>
+    
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>    
     
     <script>
     let isNavbar = false;
@@ -202,6 +99,54 @@
           document.getElementById('loading').classList.add("not-showing")
         }, 1000)
       }
+    </script>
+    <script>
+        const audio = document.querySelector("audio");
+        audio.volume = 0.3;
+      
+    let socket = io();
+      
+      console.log("connected")
+      socket.emit("isConnected", '<%= req.session.user.UID %>')
+                  
+      socket.on("someoneOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+      
+        
+        user.classList.remove("offline")
+        user.classList.add("online")
+      })
+      
+      socket.on("newMessage", (opt) => {
+        let user = document.getElementById(`${opt.id}-lastmsg`);
+        if (opt.to !== '<%= req.session.user.UID %>') return;
+        if (!user) return;
+        
+        audio.play();
+        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
+      })
+                  
+      socket.on("isOnline", userId => {
+        socket.emit("updateOnline", '<%= req.session.user.UID %>')
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is online`)
+        
+        user.classList.remove("offline")
+        user.classList.add("online")
+      });
+      
+      socket.on("isOffline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is offline`)
+        
+        user.classList.remove("online")
+        user.classList.add("offline")      
+      })
+      
+    </script>    
     </script>
   </body>
 </html>
