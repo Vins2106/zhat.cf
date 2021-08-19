@@ -339,6 +339,18 @@ span.pf-username.pf-2 {
     font-size: 25px;
 }
 
+span.pf-lastmsg.pf-2 {
+    margin-left: 13px;
+    white-space: break-spaces;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pf-username-lastmsg {
+    display: flex;
+    flex-direction: column;
+}
+
 @media (min-width: 620px) {
   .navbar-toggle {
     display: none;
