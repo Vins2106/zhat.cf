@@ -2,10 +2,10 @@
     "name": "Zhatting Chatapp",
     "description": "Zhatting Chatapp, find friends here!",
     "short_name": "Zhatting",
-    "theme_color": "#23a632",
-    "background_color": "#23a632",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
     "display": "standalone",
-    "scope": "/me",
+    "scope": "/",
     "start_url": "/me",
     "icons": [
         {

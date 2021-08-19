@@ -18,6 +18,7 @@
 <meta property="twitter:title" content="Zhatting - chatting with other people on internet anywhere, anytime">
 <meta property="twitter:description" content="Zhatting gives you private chat within 2 people, you and someone, and you can use on anywhere, anytime!">
 
+<link rel="manifest" href="/manifest.json">
 <link rel="icon" href="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Ficon%20(1).ico">
 <link rel="stylesheet" type="text/css" href="/beta.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -26,5 +27,14 @@
 <script>
 console.log("%cWarning", "color: red; font-size: 65px;")
 console.log("%cDon't paste anything here, your account could be get hacked", "color: white; font-size: 30px;")
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./serviceWorker.js')
+    .then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+}  
 </script>
-<link rel="manifest" href="/manifest.json">
