@@ -93,6 +93,10 @@ app.get('/', checkAuth, async (req, res) => {
   
 });
 
+// beta
+const betaRoutes = require("./routes/beta.js");
+app.use("/beta", betaRoutes);
+
 // login
 const loginRoutes = require("./routes/login.js");
 app.use("/login", loginRoutes)
