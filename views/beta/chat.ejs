@@ -9,7 +9,30 @@
       <span class="loading-title">Loading...</span>
     </div>
     
-    <main></main>
+    <main class="main">
+      <div class="btn-back">
+        <button class="btn btn-primary" onclick="location.href='/beta/home'">
+          Back
+        </button>
+        <span class="acc-name">Username</span>
+      </div>
+      <div class="chats">
+        <div class="he-chat">
+          <img src="https://i.stack.imgur.com/l60Hf.png" alt="He avatar" class="he-avatar">
+          <div class="he-info">
+            <span class="he-name">Username</span>
+            <p class="he-msg">Lorem ipsum, message will appear here, max 100 character...</p>
+          </div>
+        </div>
+        <div class="me-chat">
+          <img src="https://i.stack.imgur.com/l60Hf.png" alt="He avatar" class="me-avatar">
+          <div class="me-info">
+            <span class="me-name">Username</span>
+            <p class="me-msg">Lorem ipsum, message will appear here, max 100 character...</p>
+          </div>
+        </div>        
+      </div>
+    </main>
     
     <script>
     let isNavbar = false;
