@@ -119,17 +119,21 @@ a:hover {
 
 .navbar-toggle-icon {
   align-items: center;
+  margin-right: 12px;
+  cursor: pointer;
 }
 
 .navbar-toggle-2 {
     width: -webkit-fill-available;
     display: flex;
+  cursor: pointer;
 }
 
 .navbar-toggle-2-icon {
     margin-left: auto;
-    margin-right: 40px;
-    font-size: 28px;
+    margin-right: 47px;
+    margin-top: 2px;
+    font-size: 29px;
     color: white;
 }
 
@@ -137,9 +141,14 @@ a:hover {
   .navbar-toggle {
     display: none;
   }
+  .navbar-toggle-2 {
+    display: none;
+  }
 }
 
 @media (max-width: 620px) {
+  
+  
   .navbar-navigation {
     flex-direction: column;
     position: fixed;

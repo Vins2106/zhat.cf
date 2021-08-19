@@ -15,8 +15,8 @@
       </div>
       <ul class="navbar-nav">
         <li class="navbar-link"><a href="/beta">Home</a></li>
-        <li class="navbar-link"><a href="/faq">Link</a></li>
-        <li class="navbar-link"><a href="/updates">Link</a></li>
+        <li class="navbar-link"><a href="/faq">FAQ</a></li>
+        <li class="navbar-link"><a href="/updates">Updates</a></li>
       </ul>
       <button style="margin-left: 16px;" class="btn btn-primary btn-getstarted" onclick="location.href='/@me'">
         Get started
@@ -25,6 +25,16 @@
       <div class="navbar-toggle" id="navbar-toggle" onclick="toggleNavbar()">
         <span class="navbar-toggle-icon"><i class="fa fa-bars"></i></span>
       </div>
+    </div>
+<!--     navbar end -->
+    
+    <div class="jumbotron">
+      <h1 class="jumbotron-title">
+        Find friend
+      </h1>
+      <p class="jumbotron-description">
+        start your journey to find friends, chatting with people on internet with real time 
+      </p>
     </div>
     
     <script>
@@ -35,8 +45,10 @@
         
         if (isNavbar) {
           navbar.classList.remove("on");
+          isNavbar = false;
         } else if (!isNavbar) {
           navbar.classList.add("on");
+          isNavbar = true;
         }
       }
     
