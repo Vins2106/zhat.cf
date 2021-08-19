@@ -410,6 +410,79 @@ span.acc-name {
   color: #0315B9;
 }
 
+.chats {
+    display: flex;
+    flex-direction: column;
+}
+
+.he-chat {
+    width: -webkit-fill-available;
+    display: flex;
+    margin: 10px;
+}
+
+.he-info {
+    margin-left: 10px;
+    color: black;
+    align-items: center;
+}
+
+img.he-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: auto 0;
+}
+
+.me-chat {
+    width: -webkit-fill-available;
+    display: flex;
+    margin: 10px;
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+img.me-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: auto 0;
+}
+
+.me-info {
+    margin-right: 10px;
+    color: black;
+    align-items: center;
+}
+
+
+
+p.me-msg {
+    background-color: #09C4FF;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px 0px 20px 20px;
+}
+
+span.me-name {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+p.he-msg {
+    background-color: #09C4FF;
+    padding: 10px 20px 10px 20px;
+    border-radius: 0px 20px 20px 20px;
+}
+
+span.he-name {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 @media (min-width: 620px) {
   .navbar-toggle {
     display: none;
