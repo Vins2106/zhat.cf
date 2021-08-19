@@ -13,6 +13,17 @@
       <span class="loading-title">Loading...</span>
     </div>
     
+    <div class="modal">
+      <div class="modal-close">
+        <i class="fa fa-close"></i>
+      </div>
+         <div class="pf-img-stats">
+           <img class="pf-img" alt="avatar" src="<%= req.session.user.Avatar %>">
+           <span class="pf-status online"></span>
+        </div>
+        <span class="pf-username"><%= req.session.user.Username %></span>      
+    </div>
+    
     <main class="main">
       <div class="btn-back">
         <button class="btn btn-primary" onclick="location.href='/me'">
@@ -173,7 +184,7 @@ function scrollToBottom() {
           if (data.error) {
             return console.log(`cant post message: ${e}`)
           } else {
-            return socket.emit("MESSAGE_CREATE", POSTDATA)
+            return;
           }
         })                
       }

@@ -205,10 +205,6 @@ io.on('connection', (socket) => {
     io.sockets.emit("newMessage", opt)
   })
   
-  socket.on("MESSAGE_CREATE", data => {
-    console.log("[MESSAGE_CREA]")
-  })
-  
 });
 
 http.listen(port, () => {

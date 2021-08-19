@@ -543,6 +543,12 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
   .box-1 {
     width: -webkit-fill-available;
   }
+  
+  emoji-picker {
+    left: 0;
+    width: 300px;
+    margin: 56px auto;
+  }
 }
 
 @media (min-width: 992px) {
