@@ -291,11 +291,11 @@ img.pf-img {
 
 span.pf-status {
     border: 3px solid black;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     display: flex;
     border-radius: 50%;
-    transform: translate(45px, -28px);
+    transform: translate(48px, -25px);
     position: absolute;
     transition: 0.5s;
 }
@@ -315,7 +315,7 @@ span.pf-username {
     color: #0315B9;
 }
 
-.contacts {background-color: #E9E9E9;width: 75%;margin: 0 auto;padding: 12px;transform: translateY(-32px);z-index: -11;display: flex;flex-direction: column;position: relative;box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.25);border-radius: 5px;}
+.contacts {background-color: #E9E9E9;width: 75%;margin: 0 auto;padding: 12px;transform: translateY(-32px);z-index: -11;display: flex;flex-direction: column;position: relative;box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.25);border-radius: 5px; padding-bottom: 50px;}
 
 .contact {
     display: flex;
@@ -330,9 +330,9 @@ img.pf-img.pf-2 {
 }
 
 span.pf-status.pf-2 {
-    width: 15px;
-    height: 15px;
-    transform: translate(32px, -21px);
+    width: 10px;
+    height: 10px;
+    transform: translate(34px, -17px);
 }
 
 span.pf-username.pf-2 {
@@ -350,6 +350,28 @@ span.pf-lastmsg.pf-2 {
     display: flex;
     flex-direction: column;
 }
+
+.navbot {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: -webkit-fill-available;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #09C4FF;
+    padding: 10px;
+}
+
+.navbot-link a {
+  font-size: 32px;
+  margin: 0 10px;
+}
+
+.navbot-link {margin: 0px 10px;height: -webkit-fill-available;align-items: center;display: flex;}
 
 @media (min-width: 620px) {
   .navbar-toggle {
