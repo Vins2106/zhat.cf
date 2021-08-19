@@ -177,15 +177,19 @@ main.main {
 }
 
 footer {
-  text-align: center;
-  height: 50px;
-  background-color: #09C4FF;
-  padding: 15px;
-  margin: 16px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    text-align: center;
+    height: 50px;
+    background-color: #09C4FF;
+    padding: 15px;
+    margin: 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: -999999;
+    margin-top: 100vh;
+    width: -webkit-fill-available;
 }
 
 .loading {
@@ -507,6 +511,18 @@ input.chat-input {
     text-align: center;
     width: -webkit-fill-available;
     align-items: center;
+}
+
+.chat-up {
+    width: -webkit-fill-available;
+    height: 60px;
+    display: flex;
+}
+
+@media (min-width: 992px) {
+  .chats {
+    margin: 0 150px;
+  }
 }
 
 @media (min-width: 620px) {
