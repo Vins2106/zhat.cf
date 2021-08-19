@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include("./parts/head.ejs") %>
+    <%- include("./parts/betahead.ejs") %>
   </head>
-  <body>
+  <body class="loading-body" id="body">
+    <div class="loading" id="loading">
+      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
+      <span class="loading-title">Loading...</span>
+    </div>
     
-    <div class="ta-center">
-      
+    <main class="main" style="display: flex; justify-content: center; align-items: center; flex-direction: ">
       <% if (error) { %>
     <div class="error">
       <span class="error-msg"><%= msg %>. <a href="/signup">create account here</a></span>
     </div>      
       <% } %>
-      
-    <div class="box-1 cv">
-<form method="post">
-  <h1 style="color: #ddd; text-align: center;">
-    Welcome back!
-  </h1>
-  
-  <div class="form-control">
-    <label for="email-input">Email</label>
-    <input name="email" type="email" class="form-input" id="email-input" aria-describedby="email-help" placeholder="johndoe@google.com" required>
-  </div>
-  <div class="form-control">
-    <label for="password-input">Password</label>
-    <input name="password" type="password" class="form-input" id="password-input" placeholder="johnandjanedoe" required>
-  </div>
-  
-  <div class="btn-submit">
-    <a style="margin-right: 10px;" href="/signup">create account</a><button type="submit" class="btn btn-primary">Login</button>    
-  </div>
-</form>
-    </div>
-    </div>
+      <div class="box-1">
+        <span class="box-1-title">Login</span>
+        <hr style='border-color: black; margin-top: 10px;'>
+        <form method="post">
+        <div class="box-1-list">
+          <div class="box-1-input">
+            <label for="email">Email</label>
+            <input class="input-box" type="email" name="email" id="email" placeholder="johndoe@gmail.com" autocomplete="on" required>
+          </div>
+          <div class="box-1-input">
+            <label for="email">Password</label>
+            <input class="input-box" type="password" name="password" id="password" placeholder="johndoe" autocomplete="off" required>
+          </div>          
+        </div>
+          <div class="box-1-submit">
+            <a href="/signup">already have an account?</a>
+            <button class="btn btn-primary" type="submit" style="margin-left: 10px;">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script>
+      window.onload = function() {
+        setTimeout(() => {
+          document.getElementById('body').classList.remove("loading-body");
+          document.getElementById('loading').classList.add("not-showing")
+        }, 1000)
+      }
+    </script>
   </body>
 </html>

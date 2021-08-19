@@ -1,12 +1,11 @@
 {
     "name": "Zhatting Chatapp",
-    "description": "Zhatting Chatapp, find friends here!",
     "short_name": "Zhatting",
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "background_color": "#000000",
     "display": "standalone",
-    "scope": "/",
     "start_url": "/me",
+    "scope": "/me",
     "icons": [
         {
           "src": "https://cdn.discordapp.com/icons/832129800378384424/7e422a3a5dd9807e31fe61388b90985e.webp?size=512",
