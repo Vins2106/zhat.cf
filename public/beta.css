@@ -136,6 +136,34 @@ a:hover {
     color: white;
 }
 
+.jumbotron {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    margin-right: 11%;
+    margin-left: 11%;
+    align-items: center;
+  margin-top: -100px;
+}
+
+.jumbotron-info {
+    color: #0315B9;
+}
+
+img.jumbotron-image {
+    width: 380px;
+    height: auto;
+}
+
+p.jumbotron-description {
+    max-width: 350px;
+    font-size: 24px;
+}
+
+h1.jumbotron-title {
+    font-size: 60px;
+}
+
 @media (min-width: 620px) {
   .navbar-toggle {
     display: none;
@@ -182,4 +210,24 @@ a:hover {
     margin-right: 18px;
     max-width: 290px;
   }
+}
+
+@media (max-width: 1000px) {
+  
+  .jumbotron {
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .jumbotron-info {
+    width: -webkit-fill-available;
+    text-align: center;
+  }
+  
+  .jumbotron-description {
+    margin: 0;
+  }
+  
 }
