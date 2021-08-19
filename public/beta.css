@@ -165,6 +165,8 @@ h1.jumbotron-title {
 
 main.main {
   height: 100vh;
+    margin-top: -15px;
+    padding-top: 15px;
 }
 
 footer {
@@ -184,12 +186,11 @@ footer {
     background: #09C4FF;
     z-index: 999;
     width: -webkit-fill-available;
-    height: 101vh;
+    height: 103vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    transform: translateY(-15px);
   overflow: hidden !important;
   transition: all 0.5s;
 }
