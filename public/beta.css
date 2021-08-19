@@ -55,3 +55,53 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* global */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 20px 10px 28px;
+    background-color: #09C4FF;
+    height: 45px;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+}
+
+.navbar-navigation {
+    display: flex;
+}
+
+.navbar-link {
+    margin: 10px 10px 10px 19px;
+}
+
+.navbar-navigation {
+    align-items: center;
+}
+
+.navbar-link a {color: white;}
+
+.navbar-link a:hover {
+    text-decoration: underline;
+}
+
+.navbar-brand.brand {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    background-color: #1BB3E3;
+    border-radius: 50%;
+    align-items: center;
+    transform: translate(-25px, -12px);
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    box-shadow: 0px 0px 7px 3px rgb(0 0 0 / 25%);
+    color: white;
+}
