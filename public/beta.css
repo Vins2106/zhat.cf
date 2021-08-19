@@ -483,6 +483,32 @@ span.he-name {
     letter-spacing: 1px;
 }
 
+form {}form {}
+
+.chat-form {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #09C4FF;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-available;
+}
+
+input.chat-input {
+    width: -webkit-fill-available;
+}
+
+.chat-form form {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: -webkit-fill-available;
+    align-items: center;
+}
+
 @media (min-width: 620px) {
   .navbar-toggle {
     display: none;
