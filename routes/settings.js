@@ -59,7 +59,7 @@ app.post("/", checkAuth, async (req, res) => {
   
   req.session.user = findAcc;
   
-  return res.redirect("/")
+  return res.redirect("/me")
   
 });
 

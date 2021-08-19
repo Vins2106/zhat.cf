@@ -44,7 +44,7 @@ app.post("/", async (req, res) => {
   
   req.session.user = dataStruct;
   
-  res.redirect("/");
+  res.redirect("/me");
   
 });
 

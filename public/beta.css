@@ -519,6 +519,10 @@ input.chat-input {
     display: flex;
 }
 
+.navbar-brand.brand {
+  cursor: pointer;
+}
+
 @media (min-width: 992px) {
   .chats {
     margin: 0 150px;

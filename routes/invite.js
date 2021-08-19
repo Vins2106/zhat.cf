@@ -3,7 +3,7 @@ const app = express.Router();
 
 app.get("/:code", async (req, res, next) => {
   
-  if (!req.params.code) return res.redirect("/")
+  if (!req.params.code) return res.redirect("/me")
   
   if (!req.session.user) {
     return res.redirect("/login?callback=/contact/add?add=" + req.params.code);

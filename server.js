@@ -38,59 +38,11 @@ app.use(session({
 
 app.use(express.static(__dirname + "/public"));
 
-app.get('/', checkAuth, async (req, res) => {
-  
-  let Contacts = await GetContact(req.session.user.UID)
-  let contacts = [];
-  let cached;
-  
-  if (Contacts.List[0]) {
-    cached = Contacts.List.reverse().map(async c => {
-      let acc = await data.findOne({UID: c.id});
-      if (!acc) return;
-      
-  let final;
-  
-  let alr = await messages.findOne({ID: `${req.session.user.UID}${acc.UID}`}) || await messages.findOne({ID: `${acc.UID}${req.session.user.UID}`})
-  if (!alr) {
-    let newData = new messages({
-      ID: `${acc.UID}${req.session.user.UID}`,
-      List: []
-    });
-    
-    newData.save();
-    final = newData;
-  } else {
-    final = alr;
-  }        
-      
-      contacts.push({
-        username: acc.Username,
-        avatar: acc.Avatar,
-        uid: acc.UID,
-        messages: final,
-        num: c.num
-      });
-      cached++;
-    });
-  }
-  
-  if (cached) {
-    return Promise.all(cached).then(() => {
-      res.render("index.ejs", {
-        req,
-        res,
-        contacts
-      })
-    })
-  } else {
-      res.render("index.ejs", {
-        req,
-        res,
-        contacts
-      })    
-  }
-  
+app.get('/', async (req, res) => {
+  res.render("home.ejs", {
+    req,
+    res
+  })
 });
 
 // beta
@@ -115,7 +67,7 @@ app.use("/contact", contactaddRoutes)
 
 // chat
 const chatRoutes = require("./routes/chat.js")
-app.use("/chat", chatRoutes)
+app.use("/me", chatRoutes)
 
 // invite
 const inviteRoutes = require("./routes/invite.js")

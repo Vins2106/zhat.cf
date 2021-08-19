@@ -29,7 +29,7 @@ app.post('/', async (req, res) => {
     return res.redirect(req.query.callback);
   }
   
-  res.redirect("/")
+  res.redirect("/me")
 });
 
 module.exports = app;

@@ -4,6 +4,61 @@ let data = require("../mongo/data.js");
 let messages = require("../mongo/message.js");
 let contacts = require("../mongo/contacts.js");
 
+app.get("/", checkAuth, async (req, res) => {
+  
+  let Contacts = await GetContact(req.session.user.UID)
+  let contacts = [];
+  let cached;
+  
+  if (Contacts.List[0]) {
+    cached = Contacts.List.reverse().map(async c => {
+      let acc = await data.findOne({UID: c.id});
+      if (!acc) return;
+      
+  let final;
+  
+  let alr = await messages.findOne({ID: `${req.session.user.UID}${acc.UID}`}) || await messages.findOne({ID: `${acc.UID}${req.session.user.UID}`})
+  if (!alr) {
+    let newData = new messages({
+      ID: `${acc.UID}${req.session.user.UID}`,
+      List: []
+    });
+    
+    newData.save();
+    final = newData;
+  } else {
+    final = alr;
+  }        
+      
+      contacts.push({
+        username: acc.Username,
+        avatar: acc.Avatar,
+        uid: acc.UID,
+        messages: final,
+        num: c.num
+      });
+      cached++;
+    });
+  }
+  
+  if (cached) {
+    return Promise.all(cached).then(() => {
+      res.render("index.ejs", {
+        req,
+        res,
+        contacts
+      })
+    })
+  } else {
+      res.render("index.ejs", {
+        req,
+        res,
+        contacts
+      })    
+  }
+    
+})
+
 app.get("/:uid", checkAuth, async (req, res) => {
   
   let findTarget = await data.findOne({UID: req.params.uid});
