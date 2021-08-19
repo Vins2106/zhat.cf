@@ -379,6 +379,11 @@ span.pf-lastmsg.pf-2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
 }
 
 .navbot {
@@ -527,7 +532,7 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
 
 @media (min-width: 992px) {
   .chats {
-    margin: 0 150px;
+    margin: 67px 150px 0px 150px;
   }
 }
 
