@@ -3,9 +3,9 @@
   <head>
     <%- include("../parts/betahead.ejs") %>
   </head>
-  <body>
+  <body class="loading-body">
     <div class="loading">
-      <img class="loading-svg">
+      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
       <span class="loading-title">Loading...</span>
     </div>
     
@@ -72,6 +72,11 @@
         }
       }
     
+    </script>
+    <script>
+    window.on("load", () => {
+      document.getElementsByTagName("body").classList.remove("loading-body");
+    })
     </script>
   </body>
 </html>
