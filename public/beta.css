@@ -432,9 +432,12 @@ span.acc-name {
 }
 
 .he-info {
-    margin-left: 10px;
+    margin-right: 10px;
     color: black;
     align-items: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
 }
 
 img.he-avatar {
@@ -467,6 +470,9 @@ img.me-avatar {
     margin-right: 10px;
     color: black;
     align-items: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
 }
 
 
@@ -474,7 +480,9 @@ img.me-avatar {
 p.me-msg {
     background-color: #09C4FF;
     padding: 10px 20px 10px 20px;
-    border-radius: 20px 0px 20px 20px;
+    border-radius: 18px;
+    height: 16px;
+    margin: auto;
 }
 
 span.me-name {
@@ -485,7 +493,9 @@ span.me-name {
 p.he-msg {
     background-color: #09C4FF;
     padding: 10px 20px 10px 20px;
-    border-radius: 0px 20px 20px 20px;
+    border-radius: 18px;
+    height: 16px;
+    margin: auto;
 }
 
 span.he-name {
