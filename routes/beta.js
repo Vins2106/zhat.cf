@@ -4,7 +4,7 @@ let data = require("../mongo/data.js");
 var validator = require('validator');
 let contacts = require("../mongo/contacts.js");
 
-app.get("/", checkAuth, async (req, res) => {
+app.get("/", async (req, res) => {
   res.render("beta/index.ejs")
 });
 
@@ -15,6 +15,10 @@ app.get("/login", async (req, res) => {
 app.get("/home", async (req, res) => {
   res.render("beta/home.ejs")
 })
+
+app.get("/chat", async (req, res) => {
+  res.render("beta/chat.ejs")
+});
 
 module.exports = app;
 
