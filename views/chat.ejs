@@ -6,7 +6,7 @@
   <% if (!req.session.user.Wallpaper) { %>
   <body class="loading-body" id="body">
   <% } else { %>
-  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;>
+<!--   <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;> -->
   <% } %>  
     <div class="loading" id="loading">
       <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
@@ -27,23 +27,16 @@
             <span class="he-name">System</span>
             <p class="he-msg">Start chatting!</p>
           </div>
-        </div>
-        <div class="me-chat">
-          <img src="https://i.stack.imgur.com/l60Hf.png" alt="He avatar" class="me-avatar">
-          <div class="me-info">
-            <span class="me-name">Jane Doe</span>
-            <p class="me-msg">Hi, im good :D</p>
-          </div>
-        </div>        
+        </div>       
       </div>
       <div class="chat-up">
         
       </div>
       <div class="chat-form">
-        <form method="get">
+        <form method="get" id="form">
           <buton type="button" class="btn btn-primary" onclick="emojiToggle()" style="margin-right: 10px; display: flex; align-items: center; justify-content: center;">😄</buton>
           <emoji-picker></emoji-picker>
-          <input class="chat-input input-box" placeholder="max 100 character...">
+          <input id="input-msg" class="chat-input input-box" placeholder="max 100 character...">
           <button style="margin-left: 10px;" type="submit" class="btn btn-primary">
             Send!
           </button>
@@ -195,7 +188,7 @@ function scrollToBottom() {
         base.appendChild(image);
         
         let namemsg = document.createElement("div");
-        namemsg.setAttribute("class", "he-name-msg");
+        namemsg.setAttribute("class", `${mehe}-info`);
         base.appendChild(namemsg);
         
         let name = document.createElement("span");
@@ -216,7 +209,7 @@ function scrollToBottom() {
         }
         namemsg.appendChild(name)
         
-        let message = document.createElement("span");
+        let message = document.createElement("p");
         message.setAttribute("class", `${mehe}-msg`);
         let msgContent = ""
         let msgContentProto = content.split(/ +/g);

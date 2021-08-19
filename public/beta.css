@@ -211,7 +211,7 @@ footer {
 }
 
 .loading-body {
-  overflow: hidden !important;
+  overflow: hidden;
 }
 
 img.loading-svg {
