@@ -9,7 +9,7 @@
       <span class="loading-title">Loading...</span>
     </div>
     
-    <main class="main" style="display: flex; justify-content: center; align-items: center; flex-direction: ">
+    <main class="main" style="display: flex; justify-content: center; align-items: center; flex-direction: column; ">
       <% if (error) { %>
     <div class="error">
       <span class="error-msg"><%= msg %>. <a href="/signup">create account here</a></span>
@@ -30,7 +30,7 @@
           </div>          
         </div>
           <div class="box-1-submit">
-            <a href="/signup">already have an account?</a>
+            <a href="/signup">not have an account?</a>
             <button class="btn btn-primary" type="submit" style="margin-left: 10px;">
               Login
             </button>

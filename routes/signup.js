@@ -19,9 +19,9 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   
-  let username = req.body.username;
-  let email = req.body.email;
-  let password = req.body.password;
+  let username = req.body.newusername;
+  let email = req.body.newemail;
+  let password = req.body.newpassword;
   
   let checkEmail = await data.findOne({Email: email});
   if (checkEmail) return res.redirect("/signup?error=true&message=Email already used");
