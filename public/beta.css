@@ -220,12 +220,11 @@ span.loading-title {
 
 .box-1 {
   width: 450px;
-  height: auto;
+  height: min-content;
   background-color: #09C4FF;
   padding: 15px;
-  margin-left: 20px;
   border-radius: 5px;
-  margin: auto;
+  margin: 0px 20px 0px 20px;
 }
 
 span.box-1-title {
