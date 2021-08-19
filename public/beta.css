@@ -138,13 +138,28 @@ a:hover {
     margin-top: -20px;
     padding-bottom: 20px;
     padding-top: 20px;
+    transition: all 1s;
+    transform: translate(0%, 0%);
+  }
+  
+  .navbar-navigation .on {
+    transform: translate(0%, 100%)
   }
 
   .navbar-nav {
     flex-direction: column;
+    width: -webkit-fill-available;
+    margin: 10px;
+    text-align: center;
   }
   
   .navbar-link {
-    margin: 0;
+    margin: 10px 10px 10px 10px;
+  }
+  
+  .btn-getstarted {
+    width: -webkit-fill-available;
+    margin-right: 18px;
+    max-width: 290px;
   }
 }
