@@ -12,12 +12,24 @@
     <main class="main">
       <div class="box-1">
         <span class="box-1-title">Login</span>
+        <form method="post">
         <div class="box-1-list">
           <div class="box-1-input">
             <label for="email">Email</label>
-            <input class="input-box" autocomplete="on" required>
+            <input class="input-box" name="email" id="email" placeholder="johndoe@gmail.com" autocomplete="on" required>
           </div>
+          <div class="box-1-input">
+            <label for="email">Password</label>
+            <input class="input-box" name="password" id="password" placeholder="johndoe" autocomplete="off" required>
+          </div>          
         </div>
+          <div class="box-1-submit">
+            <a href="/signup">already have an account?</a>
+            <button class="btn btn-primary" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
       </div>
     </main>
     <script>
