@@ -1,66 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include("./parts/head.ejs") %>
+    <%- include("./parts/betahead.ejs") %>
   </head>
   <% if (!req.session.user.Wallpaper) { %>
-  <body>
+  <body class="loading-body" id="body">
   <% } else { %>
-  <body style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;>
-  <% } %>
-
-            <div class="modal">
-        <div id="user-modal" class="account-profile">
-          <i style="cursor: pointer;" class="modal-close fa fa-close" onclick="toggleModal()"></i>
-          <div id="avatar-name-modal">
-            <img src="<%= he.Avatar %>" alt="<%= he.Username %>" class="avatar-modal">
-            <span class="name-modal"><%= he.Username %></span>
-          </div>
-          <div id="id-modal" onclick="navigator.clipboard.writeText('<%= he.UID %>');">
-            <label for="id-input-modal">Click to copy</label>
-            <input type="text" value="<%= he.UID %>" disabled>
-          </div>
-        </div>          
-        </div>
+  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;>
+  <% } %>  
+    <div class="loading" id="loading">
+      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
+      <span class="loading-title">Loading...</span>
+    </div>
     
-    <div class="chats">
-      <div class="back-btn">
-      <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
-        Back
-      </button>
-        <span onclick="toggleModal()" class="target-name" style="cursor: pointer; margin: 18px; font-weight: bold; letter-spacing: 1px;"><%= he.Username %></span>
-<!--       <button class="btn btn-primary" style="margin: 10px;">
-        <i class="fa fa-video-camera"></i>
-        </button> -->
-      </div>
-      
-    <div class="chat-box" id="chat-list">
-      <div class="he">
-        <img class="he-avatar" src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg">
-        <div class="he-name-msg">
-          <% let date = new Date(); %>
-          <% let timenow = date.getTime() %>
-        <span class="he-name">System</span>
-        <span class="he-msg">Start chatting!</span>          
-        </div>
-      </div>      
-    </div>
-      <form action="" class="send-msg" id="form">
-        <button type="button" class="btn btn-primary" style="min-width: auto; width: 50px !important;" onclick="emojiToggle()">
-          🙂
+    <main class="main">
+      <div class="btn-back">
+        <button class="btn btn-primary" onclick="location.href='/me'">
+          Back
         </button>
-        <emoji-picker></emoji-picker>
-      <input autocomplete="off" id="input-msg" class="msg-input" type="text" maxlength="100" placeholder="max 100 characters" required><button type="submit" class="btn btn-primary" autofocus>send</button>
-      </form>
-    </div>
+        <span onclick="toggleModal()" class="acc-name"><%= he.Username %></span>
+      </div>
+      <div class="chats" id="chat-list">
+        <div class="he-chat">
+          <img src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg" alt="He avatar" class="he-avatar">
+          <div class="he-info">
+            <span class="he-name">System</span>
+            <p class="he-msg">Start chatting!</p>
+          </div>
+        </div>
+        <div class="me-chat">
+          <img src="https://i.stack.imgur.com/l60Hf.png" alt="He avatar" class="me-avatar">
+          <div class="me-info">
+            <span class="me-name">Jane Doe</span>
+            <p class="me-msg">Hi, im good :D</p>
+          </div>
+        </div>        
+      </div>
+      <div class="chat-up">
+        
+      </div>
+      <div class="chat-form">
+        <form method="get">
+          <buton type="button" class="btn btn-primary" onclick="emojiToggle()" style="margin-right: 10px; display: flex; align-items: center; justify-content: center;">😄</buton>
+          <emoji-picker></emoji-picker>
+          <input class="chat-input input-box" placeholder="max 100 character...">
+          <button style="margin-left: 10px;" type="submit" class="btn btn-primary">
+            Send!
+          </button>
+        </form>
+      </div>
+    </main>
     
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
-    <audio src="https://www.myinstants.com/media/sounds/discord-notification.mp3"></audio>
-                                                                                             
+    <audio src="https://www.myinstants.com/media/sounds/discord-notification.mp3"></audio>    
+    
     <script>
     let modal = document.getElementById("user-modal");
     const audio = document.querySelector("audio");
@@ -84,7 +81,7 @@
       
     var socket = io();
       
-      let locationHref = window.location.href.split("chat/")[1]
+      let locationHref = window.location.href.split("me/")[1]
       var form = document.getElementById("form");
       var input = document.getElementById("input-msg");
       let chats = document.getElementById(`chat-list`);
@@ -189,7 +186,7 @@ function scrollToBottom() {
       
       async function createMessage(user, content, time = false, mehe) {
         let base = document.createElement("div");
-        base.setAttribute("class", mehe);
+        base.setAttribute("class", `${mehe}-chat`);
         chats.appendChild(base);
         
         let image = document.createElement("img");
@@ -281,6 +278,31 @@ function scrollToBottom() {
         user.innerHTML = '<i class="fa fa-times"></i> offline';        
       })
       
-    </script>    
+    </script>   
+    <script>
+    let isNavbar = false;
+      
+      function toggleNavbar() {
+        let navbar = document.getElementById("navbar");
+        
+        if (isNavbar) {
+          navbar.classList.remove("on");
+          isNavbar = false;
+        } else if (!isNavbar) {
+          navbar.classList.add("on");
+          isNavbar = true;
+        }
+      }
+    
+    </script>
+    <script>
+      window.onload = function() {
+        setTimeout(() => {
+          document.getElementById('body').classList.remove("loading-body");
+          document.getElementById('loading').classList.add("not-showing")
+        }, 1000)
+      }
+    </script>
   </body>
-</html> 
+</html>
+<!--  -->
