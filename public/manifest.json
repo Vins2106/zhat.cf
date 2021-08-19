@@ -8,13 +8,13 @@
     "start_url": "/me",
     "icons": [
         {
-          "src": "https://cdn.discordapp.com/attachments/832129800914206722/876648982716219442/a_269a9fc92800e562342bae12b947e21f.png?size=4096",
+          "src": "https://cdn.discordapp.com/attachments/865219234802958336/877932523378843658/20210726_055249.jpg?size=512",
           "sizes": "512x512",
           "type": "image/png",
           "purpose": "maskable"
         },
         {
-          "src": "https://cdn.discordapp.com/attachments/832129800914206722/876648982716219442/a_269a9fc92800e562342bae12b947e21f.png?size=4096",
+          "src": "https://cdn.discordapp.com/attachments/865219234802958336/877932523378843658/20210726_055249.jpg?size=512",
           "sizes": "512x512",
           "type": "image/png",
           "purpose": "any"
