@@ -9,7 +9,10 @@
       <div class="navbar-brand">
         <span class="navbar-brand brand">Z</span>
       </div>
-      <div class="navbar-navigation">
+      <div class="navbar-navigation" id="navbar">
+      <div class="navbar-toggle-2" id="navbar-toggle-2">
+        <span onclick="toggleNavbar()" class="navbar-toggle-2-icon"><i class="fa fa-close"></i></span>
+      </div>
       <ul class="navbar-nav">
         <li class="navbar-link"><a href="/beta">Home</a></li>
         <li class="navbar-link"><a href="/faq">Link</a></li>
@@ -19,9 +22,24 @@
         Get started
       </button>        
       </div>
-      <div class="navbar-toggle" id="navbar-toggle">
+      <div class="navbar-toggle" id="navbar-toggle" onclick="toggleNavbar()">
         <span class="navbar-toggle-icon"><i class="fa fa-bars"></i></span>
       </div>
     </div>
+    
+    <script>
+    let isNavbar = false;
+      
+      function toggleNavbar() {
+        let navbar = document.getElementById("navbar");
+        
+        if (isNavbar) {
+          navbar.classList.remove("on");
+        } else if (!isNavbar) {
+          navbar.classList.add("on");
+        }
+      }
+    
+    </script>
   </body>
 </html>
