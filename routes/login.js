@@ -30,6 +30,8 @@ app.post('/', async (req, res) => {
   }
   
   res.redirect("/me")
+  
+  console.log(`[LOGIN_EVENT] ${req.body.email} login - ${req.ip}`)
 });
 
 module.exports = app;

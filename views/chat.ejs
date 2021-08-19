@@ -173,7 +173,7 @@ function scrollToBottom() {
           if (data.error) {
             return console.log(`cant post message: ${e}`)
           } else {
-            return console.log(`posted:`, POSTDATA)
+            return socket.emit("MESSAGE_CREATE", POSTDATA)
           }
         })                
       }

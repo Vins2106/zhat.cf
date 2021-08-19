@@ -46,6 +46,8 @@ app.post("/", async (req, res) => {
   
   res.redirect("/me");
   
+  console.log(`[CREATED_EVENT] ${email} created - ${req.ip}`)
+  
 });
 
 module.exports = app;

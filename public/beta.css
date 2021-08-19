@@ -539,9 +539,9 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
     font-size: 16px;
 }
 
-@media (min-width: 480px) {
+@media (max-width: 480px) {
   .box-1 {
-    
+    width: -webkit-fill-available;
   }
 }
 

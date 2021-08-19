@@ -156,6 +156,7 @@ app.patch("/api/post/message", async (req, res) => {
       contactsList.List = cached;
       contactsList.save();
     Promise.all(done2).then(() => {
+      console.log(`[MESSAGE_CREATE_EVENT] author: ${message.author.Username} to: ${message.to} content: ${message.content} time: ${message.time}`)
       contactsList2.List = cached2;
       contactsList2.save();
       res.status(200).send({error: false});
@@ -202,6 +203,10 @@ io.on('connection', (socket) => {
   
   socket.on("newMessages", opt => {
     io.sockets.emit("newMessage", opt)
+  })
+  
+  socket.on("MESSAGE_CREATE", data => {
+    console.log("[MESSAGE_CREA]")
   })
   
 });
