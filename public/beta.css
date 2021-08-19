@@ -571,10 +571,20 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
     border-radius: 5px;
     margin-top: 10px;
   max-width: 300px;
+  cursor: pointer;
 }
 
 .modal.on {
     transform: translateY(0%);
+}
+
+.pf-username-click {
+    display: flex;
+    flex-direction: column;
+}
+
+span.pf-click {
+    margin-left: 17px;
 }
 
 @media (max-width: 480px) {

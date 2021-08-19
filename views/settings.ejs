@@ -65,7 +65,100 @@
     </div>
     
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
+    </script>  
+  </body>
+</html>
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./parts/betahead.ejs") %>
+  </head>
+  <body class="loading-body" id="body">
+    <div class="loading" id="loading">
+      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
+      <span class="loading-title">Loading...</span>
+    </div>
+    
+    <main class="main" style="display: flex; justify-content: center; align-items: center; flex-direction: column; ">
+      <% if (error) { %>
+    <div class="error">
+      <span class="error-msg"><%= msg %>. <a href="/signup">create account here</a></span>
+    </div>      
+      <% } %>
+      <div class="box-1">
+        <span class="box-1-title">Login</span>
+        <hr style='border-color: black; margin-top: 10px;'>
+        <form method="post">
+        <div class="box-1-list">
+          <div class="box-1-input">
+            <label for="email">Email</label>
+            <input class="input-box" type="email" name="email" id="email" placeholder="johndoe@gmail.com" autocomplete="on" required>
+          </div>
+          <div class="box-1-input">
+            <label for="email">Password</label>
+            <input class="input-box" type="password" name="password" id="password" placeholder="johndoe" autocomplete="off" required>
+          </div>          
+        </div>
+          <div class="box-1-submit">
+            <a href="/signup">not have an account?</a>
+            <button class="btn btn-primary" type="submit" style="margin-left: 10px;">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script>
+      window.onload = function() {
+        setTimeout(() => {
+          document.getElementById('body').classList.remove("loading-body");
+          document.getElementById('loading').classList.add("not-showing")
+        }, 1000)
+      }
     </script>
+    <script>
+    let pass = document.getElementById('password-input');
+      let type = false;
+      
+      function showPass() {
+        if (type) {
+          pass.type = "password"
+          type = false;
+        } else {
+          type = true;
+          pass.type = "text"
+        }
+      }
+      
+      function copyURL() {
+        let url = '<%= req.session.user.UID %>'
+        navigator.clipboard.writeText(`https://zhat.cf/invite/<%= req.session.user.UID %>`);
+      }
+      
+      function removeWallpaper() {
+        document.getElementById("wallpaper-input").value = ""
+      }
+      
+(function(){
+  
+  var shareButtons = document.querySelectorAll(".share-btn");
+
+  if (shareButtons) {
+      [].forEach.call(shareButtons, function(button) {
+      button.addEventListener("click", function(event) {
+ 				var width = 650,
+            height = 450;
+
+        event.preventDefault();
+
+        window.open(this.href, 'Share Dialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width='+width+',height='+height+',top='+(screen.height/2-height/2)+',left='+(screen.width/2-width/2));
+      });
+    });
+  }
+
+})();      
+    </script>    
     <script>
     let socket = io();
       
@@ -111,49 +204,6 @@
         user.innerHTML = '<i class="fa fa-times"></i> offline';        
       })
       
-    </script>    
-    
-    <script>
-    let pass = document.getElementById('password-input');
-      let type = false;
-      
-      function showPass() {
-        if (type) {
-          pass.type = "password"
-          type = false;
-        } else {
-          type = true;
-          pass.type = "text"
-        }
-      }
-      
-      function copyURL() {
-        let url = '<%= req.session.user.UID %>'
-        navigator.clipboard.writeText(`https://zhat.cf/invite/<%= req.session.user.UID %>`);
-      }
-      
-      function removeWallpaper() {
-        document.getElementById("wallpaper-input").value = ""
-      }
-      
-(function(){
-  
-  var shareButtons = document.querySelectorAll(".share-btn");
-
-  if (shareButtons) {
-      [].forEach.call(shareButtons, function(button) {
-      button.addEventListener("click", function(event) {
- 				var width = 650,
-            height = 450;
-
-        event.preventDefault();
-
-        window.open(this.href, 'Share Dialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width='+width+',height='+height+',top='+(screen.height/2-height/2)+',left='+(screen.width/2-width/2));
-      });
-    });
-  }
-
-})();      
-    </script>
+    </script>      
   </body>
 </html>

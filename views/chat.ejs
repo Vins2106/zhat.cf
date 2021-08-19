@@ -6,8 +6,10 @@
   <% if (!req.session.user.Wallpaper) { %>
   <body class="loading-body" id="body">
   <% } else { %>
-<!--   <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;> -->
+  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;>
   <% } %>  
+    <audio src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Farpeggio-467.mp3"></audio>   
+    
     <div class="loading" id="loading">
       <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
       <span class="loading-title">Loading...</span>
@@ -17,13 +19,13 @@
       <div class="modal-close">
         <i class="fa fa-close" onclick="toggleModal()"></i>
       </div>
-      <div class="modal-pf">
+      <div class="modal-pf" onclick="copyId()">
          <div class="pf-img-stats">
-           <img class="pf-img" alt="avatar" src="<%= req.session.user.Avatar %>">
-           <span class="pf-status online"></span>
+           <img class="pf-img" alt="avatar" src="<%= he.Avatar %>">
+           <span class="pf-status offline" id="<%= he.UID %>"></span>
         </div>
         <div class="pf-username-click">
-        <span class="pf-username"><%= req.session.user.Username %></span>
+        <span class="pf-username"><%= he.Username %></span>
         <span class="pf-click">Click to copy user id</span>             
         </div>
       </div>
@@ -58,8 +60,7 @@
           </button>
         </form>
       </div>
-    </main>
-    <audio src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Farpeggio-467.mp3"></audio>    
+    </main> 
     
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -81,20 +82,25 @@
           modal.classList.add("on")
         }
       }
+      
+      function copyId() {
+        navigator.clipboard.writeText('<%= he.UID %>');
+        alert("Copied")
+      }
     </script>
     
     <script>
       
     var socket = io();
       
+      const audio = document.querySelector("audio");
+      audio.volume = 0.3;                                                    
       let locationHref =  window.location.href.split("me/")[1].slice(0, 18)
       var form = document.getElementById("form");
       var input = document.getElementById("input-msg");
       let chats = document.getElementById(`chat-list`);
       let emoji = document.querySelector('emoji-picker');
       emoji.style.display = "none";
-      const audio = document.querySelector("audio");
-      audio.volume = 0.3;                                                    
       let emojiDisplay = false;
       
       <% if (messages.List[0]) { %>
@@ -247,45 +253,6 @@ function scrollToBottom() {
       
       console.log("connected")
       socket.emit("isConnected", '<%= req.session.user.UID %>')
-                  
-      socket.on("someoneOnline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-      
-        
-        user.classList.remove("offline")
-        user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i> online'  
-      })
-      
-      socket.on("newMessage", (opt) => {
-        let user = document.getElementById(`${opt.id}-lastmsg`);
-        if (opt.to !== '<%= req.session.user.UID %>') return;
-        if (!user) return;
-        
-        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
-      })
-                  
-      socket.on("isOnline", userId => {
-        socket.emit("updateOnline", '<%= req.session.user.UID %>')
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is online`)
-        
-        user.classList.remove("remove")
-        user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i> online';
-      });
-      
-      socket.on("isOffline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is offline`)
-        
-        user.classList.remove("online")
-        user.classList.add("offline")
-        user.innerHTML = '<i class="fa fa-times"></i> offline';        
-      })
       
     </script>   
     <script>
@@ -312,6 +279,46 @@ function scrollToBottom() {
         }, 1000)
       }
     </script>
+    <script>
+                  
+      socket.on("someoneOnline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+      
+        
+        user.classList.remove("offline")
+        user.classList.add("online")
+      })
+      
+      socket.on("newMessage", (opt) => {
+        let user = document.getElementById(`${opt.id}-lastmsg`);
+        if (opt.to !== '<%= req.session.user.UID %>') return;
+        if (!user) return;
+        
+        audio.play();
+        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
+      })
+                  
+      socket.on("isOnline", userId => {
+        socket.emit("updateOnline", '<%= req.session.user.UID %>')
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is online`)
+        
+        user.classList.remove("offline")
+        user.classList.add("online")
+      });
+      
+      socket.on("isOffline", userId => {
+        let user = document.getElementById(userId);
+        if (!user) return;
+        console.log(`${userId} is offline`)
+        
+        user.classList.remove("online")
+        user.classList.add("offline")      
+      })
+      
+    </script>    
   </body>
 </html>
 <!--  -->
