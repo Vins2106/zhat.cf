@@ -171,6 +171,9 @@ main.main {
   height: 100vh;
   margin-top: -15px;
   padding-top: 15px;
+  position: absolute;
+  width: -webkit-fill-available;
+  z-index: -1000;
 }
 
 footer {
@@ -190,7 +193,7 @@ footer {
   background: #09C4FF;
   z-index: 999;
   width: -webkit-fill-available;
-  height: 103vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,6 +352,13 @@ span.pf-lastmsg.pf-2 {
 .pf-username-lastmsg {
     display: flex;
     flex-direction: column;
+}
+
+.btn-back {
+    background-color: #09C4FF;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 .navbot {
