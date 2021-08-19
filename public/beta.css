@@ -432,7 +432,7 @@ span.acc-name {
 }
 
 .he-info {
-    margin-right: 10px;
+    margin-left: 10px;
     color: black;
     align-items: center;
     display: flex;
@@ -595,6 +595,11 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
 
 span.pf-click {
     margin-left: 17px;
+}
+
+.btn-info {
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 480px) {

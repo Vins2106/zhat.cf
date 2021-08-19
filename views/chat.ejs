@@ -6,7 +6,7 @@
   <% if (!req.session.user.Wallpaper) { %>
   <body class="loading-body" id="body">
   <% } else { %>
-  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;"">
+  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;">
   <% } %>  
     
     <div class="loading" id="loading">
@@ -36,13 +36,15 @@
         <button class="btn btn-primary" onclick="location.href='/me'">
           Back
         </button>
-        <span onclick="toggleModal()" class="acc-name"><%= he.Username %></span>
+        <div class="btn-info" onclick="toggleModal()" style="cursor: pointer;">
+        <span class="acc-name"><%= he.Username %></span>
+        <img src="<%= he.Avatar %>" alt="avatar" class="pf-img pf-2" style="margin-left: 10px;">          
+        </div>
       </div>
       <div class="chats" id="chat-list">
         <div class="he-chat">
           <img src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg" alt="He avatar" class="he-avatar">
           <div class="he-info">
-            <span class="he-name">System</span>
             <p class="he-msg">Start chatting!</p>
           </div>
         </div>       
