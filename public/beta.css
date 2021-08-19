@@ -271,6 +271,50 @@ span.box-1-title {
     text-align: right;
 }
 
+.pf-navbar {
+    background-color: #09C4FF;
+    margin: 10px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+  border-radius: 5px;
+}
+
+img.pf-img {
+    background: white;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    border-radius: 50%;
+  object-fit: cover;
+}
+
+span.pf-status {
+    border: 3px solid black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    border-radius: 50%;
+    transform: translate(45px, -28px);
+    position: absolute;
+    transition: 0.5s;
+}
+
+span.pf-status.offline {
+    background: #999999;
+}
+
+span.pf-status.online {
+    background: #4CC701;
+}
+
+span.pf-username {
+    font-size: 30px;
+    margin-left: 13px;
+    font-weight: bold;
+    color: #0315B9;
+}
+
 @media (min-width: 620px) {
   .navbar-toggle {
     display: none;
