@@ -12,6 +12,10 @@ app.get("/login", async (req, res) => {
   res.render("beta/login.ejs")
 })
 
+app.get("/home", async (req, res) => {
+  res.render("beta/home.ejs")
+})
+
 module.exports = app;
 
 function checkAuth(req, res, next) {

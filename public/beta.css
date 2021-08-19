@@ -8,6 +8,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   background-color: white;
 }
@@ -229,6 +233,43 @@ span.box-1-title {
   font-weight: bold;
   color: #0315B9;
   font-style: normal;
+}
+
+.box-1-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-1-input {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px 10px 0px;
+}
+
+.box-1-input label {
+    margin: 10px 10px 10px 0px;
+    font-size: 24px;
+    color: #0315B9;
+    font-weight: bold;
+}
+
+.input-box {
+    height: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    background-color: #FFE8E8;
+    color: black;
+}
+
+.input-box::placeholder {
+    color: #87888B;
+}
+
+.box-1-submit {
+    width: -webkit-fill-available;
+    text-align: right;
 }
 
 @media (min-width: 620px) {

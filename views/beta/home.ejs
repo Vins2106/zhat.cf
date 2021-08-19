@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../parts/betahead.ejs") %>
+  </head>
+  <body class="loading-body" id="body">
+    <div class="loading" id="loading">
+      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
+      <span class="loading-title">Loading...</span>
+    </div>
+    
+    <main class="main">
+<!--     navbar -->
+    <div class="navbar">
+      <div class="navbar-brand">
+        <span class="navbar-brand brand">Z</span>
+      </div>
+      <div class="navbar-navigation" id="navbar">
+      <div class="navbar-toggle-2" id="navbar-toggle-2">
+        <span onclick="toggleNavbar()" class="navbar-toggle-2-icon"><i class="fa fa-close"></i></span>
+      </div>
+      <ul class="navbar-nav">
+        <li class="navbar-link"><a href="/beta">Home</a></li>
+        <li class="navbar-link"><a href="/faq">FAQ</a></li>
+        <li class="navbar-link"><a href="/updates">Updates</a></li>
+      </ul>
+      <button style="margin-left: 16px;" class="btn btn-primary btn-getstarted" onclick="location.href='/@me'">
+        Get started
+      </button>        
+      </div>
+      <div class="navbar-toggle" id="navbar-toggle" onclick="toggleNavbar()">
+        <span class="navbar-toggle-icon"><i class="fa fa-bars"></i></span>
+      </div>
+    </div>
+<!--     navbar end -->
+    
+    <div class="jumbotron">
+      <div class="jumbotron-info">
+      <h1 class="jumbotron-title">
+        Find friend
+      </h1>
+      <p class="jumbotron-description">
+        find your friends here easily, take your time for your friends who are on the internet with a real time system!
+        <br>
+        <br>
+        <button class="btn btn-primary" onclick="location.href='/home'">
+          Get started!
+        </button>
+      </p>        
+      </div>
+      
+      <img class="jumbotron-image" alt="jumbotron image" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_Fresh_notification_re_whq4%20(1).svg?v=1629365848571">
+    </div>    
+    </main>
+    
+    <footer class="footer">
+      <span class="copy-right">Made with ❤️ by <a href="https://github.com/Vins2106">Vins 2106</a></span>
+    </footer>
+    
+    <script>
+    let isNavbar = false;
+      
+      function toggleNavbar() {
+        let navbar = document.getElementById("navbar");
+        
+        if (isNavbar) {
+          navbar.classList.remove("on");
+          isNavbar = false;
+        } else if (!isNavbar) {
+          navbar.classList.add("on");
+          isNavbar = true;
+        }
+      }
+    
+    </script>
+    <script>
+      window.onload = function() {
+        setTimeout(() => {
+          document.getElementById('body').classList.remove("loading-body");
+          document.getElementById('loading').classList.add("not-showing")
+        }, 1000)
+      }
+    </script>
+  </body>
+</html>
