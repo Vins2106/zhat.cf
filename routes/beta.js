@@ -8,6 +8,10 @@ app.get("/", checkAuth, async (req, res) => {
   res.render("beta/index.ejs")
 });
 
+app.get("/login", async (req, res) => {
+  res.render("beta/login.ejs")
+})
+
 module.exports = app;
 
 function checkAuth(req, res, next) {
