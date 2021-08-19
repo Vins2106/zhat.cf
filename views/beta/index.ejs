@@ -75,8 +75,10 @@
     </script>
     <script>
       window.onload = function() {
-      document.getElementById('body').classList.remove("loading-body");
-        document.getElementById('loading').style.display = "none"
+        setTimeout(() => {
+          document.getElementById('body').classList.remove("loading-body");
+          document.getElementById('loading').classList.add("not-showing")
+        }, 1000)
       }
     </script>
   </body>

@@ -191,6 +191,11 @@ footer {
     flex-direction: column;
     transform: translateY(-15px);
   overflow: hidden !important;
+  transition: all 0.5s;
+}
+
+.loading.not-showing {
+  transform: translateY(-108%)
 }
 
 .loading-body {
