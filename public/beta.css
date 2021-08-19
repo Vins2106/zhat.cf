@@ -227,11 +227,11 @@ span.loading-title {
 
 .box-1 {
   width: 450px;
-  height: -webkit-fill-available;
+  height: min-content;
   background-color: #09C4FF;
   padding: 15px;
   border-radius: 5px;
-  margin: 0px 20px 0px 20px;
+  margin: 20px;
 }
 
 span.box-1-title {
@@ -590,7 +590,6 @@ span.pf-click {
 @media (max-width: 480px) {
   .box-1 {
     width: -webkit-fill-available;
-    margin: 20px;
   }
   
   emoji-picker {

@@ -9,7 +9,7 @@
       <span class="loading-title">Loading...</span>
     </div>
     
-    <main class="main" style="display: flex; justify-content: center; align-items: center; flex-direction: column; ">
+    <main style="display: flex; justify-content: center; align-items: center; flex-direction: column; ">
       <% if (error) { %>
     <div class="error">
       <span class="error-msg"><%= msg %>. <a href="/signup">create account here</a></span>
@@ -29,7 +29,7 @@
             <input class="input-box" type="email" name="email" id="email-input" value="<%= req.session.user.Email %>" autocomplete="off" required>
           </div>  
           <div class="box-1-input">
-            <label for="password">Password</label>
+            <label for="password">Password <small onclick="showPass()" style="cursor: pointer;">(click here to show/hide)</small></label>
             <input class="input-box" type="password" name="password" id="password-input" value="<%= req.session.user.Password %>" autocomplete="off" required>
           </div>      
           <div class="box-1-input">

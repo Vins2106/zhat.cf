@@ -6,15 +6,15 @@
   <% if (!req.session.user.Wallpaper) { %>
   <body class="loading-body" id="body">
   <% } else { %>
-  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;>
+  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;"">
   <% } %>  
-    <audio src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Farpeggio-467.mp3"></audio>   
     
     <div class="loading" id="loading">
       <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
       <span class="loading-title">Loading...</span>
     </div>
     
+    <audio src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Farpeggio-467.mp3"></audio>   
     <div class="modal" id="user-modal">
       <div class="modal-close">
         <i class="fa fa-close" onclick="toggleModal()"></i>
@@ -94,13 +94,13 @@
     var socket = io();
       
       const audio = document.querySelector("audio");
-      audio.volume = 0.3;                                                    
       let locationHref =  window.location.href.split("me/")[1].slice(0, 18)
       var form = document.getElementById("form");
       var input = document.getElementById("input-msg");
       let chats = document.getElementById(`chat-list`);
       let emoji = document.querySelector('emoji-picker');
       emoji.style.display = "none";
+      audio.volume = 0.3;                                                    
       let emojiDisplay = false;
       
       <% if (messages.List[0]) { %>
