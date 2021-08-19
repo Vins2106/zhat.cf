@@ -142,7 +142,7 @@ a:hover {
     margin-right: 11%;
     margin-left: 11%;
     align-items: center;
-  margin-top: -100px;
+  margin-top: 50px;
 }
 
 .jumbotron-info {
@@ -168,7 +168,15 @@ main.main {
 }
 
 footer {
-  display: flex;
+    text-align: center;
+    height: 50px;
+    background-color: #09C4FF;
+    padding: 15px;
+    margin: 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
 }
 
 .loading {
@@ -217,8 +225,8 @@ span.loading-title {
     position: fixed;
     background-color: #09C4FF;
     width: -webkit-fill-available;
-    margin-right: 43px;
-    margin-left: -43px;
+    margin-right: 33px;
+    margin-left: -33px;
     margin-top: -20px;
     padding-bottom: 20px;
     padding-top: 20px;

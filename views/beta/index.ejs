@@ -3,8 +3,8 @@
   <head>
     <%- include("../parts/betahead.ejs") %>
   </head>
-  <body class="loading-body">
-    <div class="loading">
+  <body class="loading-body" id="body">
+    <div class="loading" id="loading">
       <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
       <span class="loading-title">Loading...</span>
     </div>
@@ -54,7 +54,7 @@
     </main>
     
     <footer class="footer">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#09C4FF" fill-opacity="1" d="M0,32L48,42.7C96,53,192,75,288,112C384,149,480,203,576,197.3C672,192,768,128,864,122.7C960,117,1056,171,1152,170.7C1248,171,1344,117,1392,90.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+      <span class="copy-right">Made with ❤️ by <a href="https://github.com/Vins2106">Vins 2106</a></span>
     </footer>
     
     <script>
@@ -74,9 +74,10 @@
     
     </script>
     <script>
-    window.on("load", () => {
-      document.getElementsByTagName("body").classList.remove("loading-body");
-    })
+      window.onload = function() {
+      document.getElementById('body').classList.remove("loading-body");
+        document.getElementById('loading').style.display = "none"
+      }
     </script>
   </body>
 </html>
