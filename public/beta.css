@@ -164,6 +164,10 @@ h1.jumbotron-title {
     font-size: 60px;
 }
 
+.wave {
+  display: flex;
+}
+
 @media (min-width: 620px) {
   .navbar-toggle {
     display: none;
@@ -226,8 +230,12 @@ h1.jumbotron-title {
     text-align: center;
   }
   
+  .jumbotron-image {
+    display: none;
+  }
+  
   .jumbotron-description {
-    margin: 0;
+    margin: auto;
   }
   
 }
