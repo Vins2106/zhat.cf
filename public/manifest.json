@@ -1,5 +1,6 @@
 {
     "name": "Zhatting Chatapp",
+    "description": "Zhatting Chatapp, find friends here!",
     "short_name": "Zhatting",
     "theme_color": "#23a632",
     "background_color": "#23a632",
@@ -8,13 +9,13 @@
     "start_url": "/me",
     "icons": [
         {
-          "src": "https://cdn.discordapp.com/attachments/865219234802958336/877932523378843658/20210726_055249.jpg?size=512",
+          "src": "https://cdn.discordapp.com/icons/832129800378384424/7e422a3a5dd9807e31fe61388b90985e.webp?size=512",
           "sizes": "512x512",
           "type": "image/png",
           "purpose": "maskable"
         },
         {
-          "src": "https://cdn.discordapp.com/attachments/865219234802958336/877932523378843658/20210726_055249.jpg?size=512",
+          "src": "https://cdn.discordapp.com/icons/832129800378384424/7e422a3a5dd9807e31fe61388b90985e.webp?size=512",
           "sizes": "512x512",
           "type": "image/png",
           "purpose": "any"
