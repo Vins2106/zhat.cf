@@ -417,6 +417,7 @@ span.acc-name {
   font-size: 20px;
   font-weight: bold;
   color: #0315B9;
+  cursor: pointer;
 }
 
 .chats {
@@ -537,6 +538,43 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
     border-radius: 5px;
     color: white;
     font-size: 16px;
+}
+
+.modal {
+    position: fixed;
+    background-color: #09C4FF;
+    width: -webkit-fill-available;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: all 0.5s;
+}
+
+.modal-close {
+    width: -webkit-fill-available;
+    text-align: right;
+    font-size: 33px;
+    color: white;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.modal-pf {
+    display: flex;
+    align-items: center;
+    width: -webkit-fill-available;
+    background-color: #24aad4;
+    padding: 7px;
+    border-radius: 5px;
+    margin-top: 10px;
+  max-width: 300px;
+}
+
+.modal.on {
+    transform: translateY(0%);
 }
 
 @media (max-width: 480px) {
