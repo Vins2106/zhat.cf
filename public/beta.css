@@ -139,7 +139,6 @@ a:hover {
 .jumbotron {
     display: flex;
     justify-content: space-between;
-    height: 100vh;
     margin-right: 11%;
     margin-left: 11%;
     align-items: center;
@@ -164,7 +163,11 @@ h1.jumbotron-title {
     font-size: 60px;
 }
 
-.wave {
+main.main {
+  height: 100vh;
+}
+
+footer {
   display: flex;
 }
 
