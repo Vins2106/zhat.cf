@@ -609,6 +609,14 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
     border-left: 8px solid #09C4FF;
 }
 
+small#showEye {
+    display: block;
+    width: -webkit-fill-available;
+    text-align: right;
+    transform: translate(0px, 39px);
+    font-size: 24px;
+}
+
 .modal.on {
     transform: translateY(0%);
 }
