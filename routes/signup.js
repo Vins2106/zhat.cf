@@ -27,8 +27,12 @@ app.post("/", async (req, res) => {
   let checkEmail = await data.findOne({Email: email});
   if (checkEmail) return res.redirect("/signup?error=true&message=Email already used");
   
-  if (!typeof validator.isStrongPassword(password) == 'true') {
-    return res.redirect("/signup?error=true&message=Password not strong")
+  if (!typeof validator.isEmail(email) == 'true') {
+    return res.redirect("/signup?error=true&message=Invalid email")
+  }
+  
+  if (!typeof validator.isStrongPassword(password, {minLength: 8, minNumber: 1, minSymbols: 1}) == 'true') {
+    return res.redirect("/signup?error=true&message=Password not strong. min length 8, min number 1, min symbols 1")
   }
 
   let dataStruct = {
