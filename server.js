@@ -109,8 +109,8 @@ app.patch("/api/post/message", async (req, res) => {
   
     let done;
     let done2;
-    let current = 3;
-    let current2 = 3;
+    let current = 2;
+    let current2 = 2;
     let cached = [];
     let cached2 = [];
     let contactsList, contactsList2;
@@ -121,6 +121,9 @@ app.patch("/api/post/message", async (req, res) => {
       done = contactsList.List.map(x => {
         if (x.id == message.to) {
           cached.push({id: x.id, num: 2})
+          if (current == 2) {
+            current++;
+          }          
         } else {
           cached.push({id: x.id, num: current})
           current++;
@@ -132,6 +135,9 @@ app.patch("/api/post/message", async (req, res) => {
       done2 = contactsList2.List.map(x => {
         if (x.id == req.session.user.UID) {
           cached2.push({id: x.id, num: 2})
+          if (current2 == 2) {
+            current2++;
+          }
         } else {
           cached2.push({id: x.id, num: current2})
           current2++;
