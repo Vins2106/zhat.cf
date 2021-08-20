@@ -206,18 +206,29 @@ function scrollToBottom() {
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
         }          
+                
         } else if (message.bot) {
-        if (message.author.UID == 'OLVGGLFUCKxRac8FOg') {
+        
+        if (message.author.UID == '<%= req.session.user.UID %>') {
+          console.log('1')  
+          
           postMsg(message);
           createMessage(message.author, message.content, false, "me")
           scrollTo(0, chats.scrollHeight)
+        } else if (message.author.UID == 'OLVGGLFUCKxRac8FOg' && message.to.UID == '<%= req.session.user.UID %>') {
+          console.log('2')
+          
+          postMsg(message);
+          createMessage(message.author, message.content, false, "he")
+          scrollTo(0, chats.scrollHeight)
+          
         if (message.to.UID == 'OLVGGLFUCKxRac8FOg') {
           let args = message.content.slice(prefix.length).trim().split(/ +/g);
           let cmd = args.shift().toLowerCase();
           
           let isCmd = cmds.find(x => x.name == cmd);
           if (isCmd) {
-            let botMsg = {author: message.to, content: isCmd.response, to: `${message.author.UID}`, bot: false};
+            let botMsg = {author: message.to, content: isCmd.response, to: `${message.author.UID}`, bot: true};
             socket.emit("message", botMsg)
             socket.emit('newMessages', {id: 'OLVGGLFUCKxRac8FOg', username: message.to.Username, to: message.author.Username, msg: isCmd.response})
           }
@@ -228,7 +239,8 @@ function scrollToBottom() {
           audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
-        }          
+        }      
+                            
         }
                 
         
