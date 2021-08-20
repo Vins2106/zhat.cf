@@ -149,7 +149,7 @@ app.patch("/api/post/message", async (req, res) => {
           } else {
           cached2.push({id: x.id, num: 2})
           if (current2 == 2) {
-            current2++;
+            current2++; 
           }              
           }
         } else {
@@ -172,7 +172,7 @@ app.patch("/api/post/message", async (req, res) => {
       contactsList2.List = cached2;
       contactsList2.save();
       res.status(200).send({error: false});
-    })
+    }) 
     })
   }
   
@@ -245,6 +245,8 @@ function makeid(length) {
 }
 
 async function GetContact(UID) {
+  if (!UID) return;
+  
   let check = await contacts.findOne({UID: UID});
   
   if (!check) {
