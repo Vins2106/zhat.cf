@@ -260,6 +260,8 @@ function scrollToBottom() {
       
       async function postMsg(message) {
         
+        console.log('[MESSAGE_CREATE]')
+        
         let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
             
         fetch('https://zhat.cf/api/post/message', {
@@ -315,14 +317,20 @@ function scrollToBottom() {
       
     </script>
     <script>
-      let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>'};
-                              
+      let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>', bot: false};
       input.addEventListener("keyup", () => {
-      if (input.value && input.value !== " ") {
+      if (input.value && input.value !== "") {
+        // 2
         subtn.innerHTML = "Send!"
         subtn.type = "submit"
-        subtn.disabled = false;          
-      } else if (!input.value && input.value == "" && input.value == " ") {
+        subtn.disabled = false;   
+        // 2
+      } else if (!input.value && input.value == "") {
+        
+      } 
+      })
+        // 1
+        // 3
         setTimeout(() => {
         subtn.type = "button"
         subtn.innerHTML = "👍"
@@ -334,14 +342,12 @@ function scrollToBottom() {
         subtn.disabled = true
         subtn.classList.add("disabled");
         
+          // 4
         setTimeout(() => {
           subtn.disabled = false
         subtn.classList.remove("disabled");
         }, 2000)
-        }
-        }, 100)
-      }        
-      })
+          
     </script>    
     <script>
       
