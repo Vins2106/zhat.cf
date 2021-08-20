@@ -118,15 +118,11 @@
       let emojiDisplay = false;
       
       <% if (messages.List[0]) { %>
-      <% let msgLoaded = messages.List.map(msg => { %>
-      if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {   
+      <% let msgLoaded = messages.List.map(msg => { %>      
+      if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
       createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
-      } else if ('<%= msg.to %>' == '<%= req.session.user.UID %>') {   
-        if ('<%= msg.to %>' == locationHref || '<%= msg.author.UID %>' !== locationHref) {
-                 
-        } else {
-      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "he")
-      }
+      } else {
+      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
       }
       <% }) %>
       <% } %>
@@ -240,7 +236,7 @@ function scrollToBottom() {
         if (command) {
           setTimeout(() => {
             let response = command.response.replace(/{{args}}/g, args.join(" "));
-          postMsg({author: <%- JSON.stringify(he) %>, content: response, to: '<%= req.session.user.UID %>', bot: false});
+          postMsg({author: <%- JSON.stringify(he) %>, content: response, to: '<%= req.session.user.UID %>', bot: false})
           createMessage(<%- JSON.stringify(he) %>, response, false, "he")
           scrollTo(0, chats.scrollHeight)            
           }, 500)
