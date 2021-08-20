@@ -241,12 +241,14 @@ function scrollToBottom() {
     </script>
     <script>
       let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>'};
-    setInterval(() => {
-      if (input.value && input.value !== " ") {
+                              
+      input.addEventListener("keyup", () => {
+      if (input.value && input.value !== "") {
         subtn.innerHTML = "Send!"
         subtn.type = "submit"
-        subtn.disabled = false;
-      } else {
+        subtn.disabled = false;          
+      } else if (!input.value && input.value == "") {
+        setTimeout(() => {
         subtn.type = "button"
         subtn.innerHTML = "👍"
         subtn.onclick = function() {
@@ -262,8 +264,9 @@ function scrollToBottom() {
         subtn.classList.remove("disabled");
         }, 2000)
         }
-      }
-    }, 1000)
+        }, 100)
+      }        
+      })
     </script>    
     <script>
       
