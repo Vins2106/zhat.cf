@@ -213,6 +213,10 @@ io.on('connection', (socket) => {
     io.sockets.emit("newMessage", opt)
   })
   
+  socket.on("message_create", opt => {
+    
+  });
+  
 });
 
 http.listen(port, () => {
