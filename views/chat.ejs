@@ -267,7 +267,19 @@ function scrollToBottom() {
         
       })
       
-      const getRandomUser = '<%= getrandomuser %>'
+      <% function RANDOMUSER() { %>
+      <%
+      data.find().then(list => {
+  let final = list.filter(x => !x.Bot && x.UID !== req.session.user.UID);
+  
+  let user = final[Math.floor(Math.random() * final.length)];
+  
+  return `https://zhat.cf/me/add?add=${user.UID}`      
+      })
+      %>
+      <% } %>
+      
+      const getRandomUser = `<%= RANDOMUSER() %>`
       
       async function postMsg(message) {
         
