@@ -22,7 +22,7 @@
       <div class="modal-pf" onclick="copyId()">
          <div class="pf-img-stats">
            <img class="pf-img" alt="avatar" src="<%= he.Avatar %>">
-           <span class="pf-status offline" id="<%= he.UID %>"></span>
+           <span class="pf-status <%= he.Bot ? "online" : "offline" %>" id="<%= he.Bot ? "" : `${he.UID}` %>"></span>
         </div>
         <div class="pf-username-click">
         <span class="pf-username"><%= he.Username %></span>

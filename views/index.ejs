@@ -30,7 +30,7 @@
         <div class="contact" onclick="location.href='/me/<%= u.uid %>'">
          <div class="pf-img-stats pf-2">
            <img class="pf-img pf-2" alt="avatar" src="<%= u.avatar %>">
-           <span class="pf-status pf-2 <%= u.bot ? "online" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"> ></span>
+           <span class="pf-status pf-2 <%= u.bot ? "online" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
         </div>
           <div class="pf-username-lastmsg">
         <span class="pf-username pf-2"><%= u.username %></span>
