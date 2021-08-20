@@ -6,9 +6,9 @@ app.get("/:code", async (req, res, next) => {
   if (!req.params.code) return res.redirect("/me")
   
   if (!req.session.user) {
-    return res.redirect("/login?callback=/contact/add?add=" + req.params.code);
+    return res.redirect("/login?callback=/me/add?add=" + req.params.code);
   } else {
-    return res.redirect("/contact/add?add=" + req.params.code);
+    return res.redirect("/me/add?add=" + req.params.code);
   }
   
 })
