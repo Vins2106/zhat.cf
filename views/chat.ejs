@@ -319,16 +319,14 @@ function scrollToBottom() {
     <script>
       let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>', bot: false};
       input.addEventListener("keyup", () => {
-      if (!input.value && input.value !== " ") {
+      if (!isEmptyOrSpaces(input.value)) {
         subtn.innerHTML = "Send!"
         subtn.type = "submit"
         subtn.disabled = false;           
-      } else if (input.value && input.value !== "") {
-        // 2
-        setTimeout(() => {
+      } else if (isEmptyOrSpaces(input.value)) {
         subtn.type = "button"
         subtn.innerHTML = "👍"
-        subtn.onclick = function() {
+        subtn.addEventListener("onclick", () => {
         console.log("thumb emoji launch")
         socket.emit('message', postDataMsgThumb);
         // socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: "👍"})
@@ -341,15 +339,18 @@ function scrollToBottom() {
         setTimeout(() => {
           subtn.disabled = false
         subtn.classList.remove("disabled");
-        }, 2000)
-        } 
-      }, 100)        
+        }, 2000)          
+        })
 
         // 2
                    }
       })
         // 1
         // 3
+      
+function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+}      
     </script>    
     <script>
       
