@@ -7,6 +7,7 @@ module.exports = model(
     Username: String,
     UID: String,
     Avatar: String,
-    Wallpaper: String
+    Wallpaper: String,
+    Bot: false
   })
 );
