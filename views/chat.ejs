@@ -267,19 +267,7 @@ function scrollToBottom() {
         
       })
       
-      function getRandomUser() {
-        let final;
-        <% let final; %>
-        <% data.find().then(x => { %>
-        <% let processGet = x.filter(x => !x.Bot && x.UID !== req.session.user.UID)
-        final = processGet[Math.floor(Math.random() * processGet.length)];
-        %>
-        %>
-        <% }) %>
-         let  final = <%- JSON.stringify(final) %>
-          
-          return `https://zhat.cf/me/add?add=${final.UID}`
-      }
+      const getRandomUser = <%- JSON.stringify(getrandomuser) %>
       
       async function postMsg(message) {
         

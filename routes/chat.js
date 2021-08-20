@@ -49,7 +49,8 @@ app.get("/", checkAuth, async (req, res) => {
         req,
         res,
         contacts,
-        data
+        data,
+        getrandomuser
       })
     })
   } else {
@@ -57,11 +58,21 @@ app.get("/", checkAuth, async (req, res) => {
         req,
         res,
         contacts,
-        data
+        data,
+        getrandomuser
       })    
   }
     
 }) 
+
+async function getrandomuser() {
+  let list = await data.find();
+  let final = list.filter(x => !x.Bot && x.UID !== req.session.user.UID);
+  
+  let user = final[Math.floor(Math.random() * final.length)];
+  
+  return `https://zhat.cf/me/add?add=${user.UID}`
+}
 
 // contact
 app.get("/add", checkAuth, async (req, res) => {
