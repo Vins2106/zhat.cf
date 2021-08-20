@@ -65,7 +65,7 @@ app.get("/", checkAuth, async (req, res) => {
     
 }) 
 
-async function getrandomuser() {
+async function getrandomuser(req) {
   let list = await data.find();
   let final = list.filter(x => !x.Bot && x.UID !== req.session.user.UID);
   
@@ -257,7 +257,8 @@ app.get("/:uid", checkAuth, async (req, res) => {
     res,
     he: findTarget,
     messages: final,
-    data
+    data,
+    getrandomuser: await getrandomuser(req)
   })
   
 });
