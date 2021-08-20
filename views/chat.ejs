@@ -208,6 +208,10 @@ function scrollToBottom() {
           {
             name: "say",
             response: "{{args}}"
+          },
+          {
+            name: "find-friend",
+            response: "{{randomFriend}}"
           }
         ]
         
@@ -239,7 +243,7 @@ function scrollToBottom() {
         let command = cmds.find(x => x.name == cmd);
         if (command) {
           setTimeout(() => {
-            let response = command.response.replace(/{{args}}/g, args.join(" "));
+            let response = command.response.replace(/{{args}}/g, args.join(" ")).replace(/{{randomFriend}}/g, getRandomUser);
           postMsg({author: <%- JSON.stringify(he) %>, content: response, to: '<%= req.session.user.UID %>', bot: false});
           createMessage(<%- JSON.stringify(he) %>, response, false, "he")
           scrollTo(0, chats.scrollHeight)            
@@ -262,6 +266,20 @@ function scrollToBottom() {
         
         
       })
+      
+      function getRandomUser() {
+        let final;
+        <% let final; %>
+        <% data.find().then(x => { %>
+        <% let processGet = x.filter(x => !x.Bot && x.UID !== req.session.user.UID)
+        final = processGet[Math.floor(Math.random() * processGet.length)];
+        %>
+        %>
+        <% }) %>
+         let  final = <%- JSON.stringify(final) %>
+          
+          return `https://zhat.cf/me/add?add=${final.UID}`
+      }
       
       async function postMsg(message) {
         

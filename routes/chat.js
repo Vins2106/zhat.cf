@@ -48,14 +48,16 @@ app.get("/", checkAuth, async (req, res) => {
       res.render("index.ejs", {
         req,
         res,
-        contacts
+        contacts,
+        data
       })
     })
   } else {
       res.render("index.ejs", {
         req,
         res,
-        contacts
+        contacts,
+        data
       })    
   }
     
