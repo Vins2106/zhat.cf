@@ -41,6 +41,16 @@
         <img src="<%= he.Avatar %>" alt="avatar" class="pf-img pf-2" style="margin-left: 10px;">          
         </div>
       </div>
+      <% if (he.UID == "OLVGGLFUCKxRac8FOg") { %>
+      <div class="chats" id="chat-list">
+        <div class="he-chat">
+          <img src="<%= he.Avatar %>" alt="He avatar" class="he-avatar">
+          <div class="he-info">
+            <p class="he-msg">Hi! im Bot, start chat with me, use <strong>#help</strong></p>
+          </div>
+        </div>       
+      </div>      
+      <% } else { %>
       <div class="chats" id="chat-list">
         <div class="he-chat">
           <img src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg" alt="He avatar" class="he-avatar">
@@ -48,7 +58,8 @@
             <p class="he-msg">Start chatting!</p>
           </div>
         </div>       
-      </div>
+      </div>      
+      <% } %>
       <div class="chat-up">
         
       </div>

@@ -263,3 +263,17 @@ async function GetContact(UID) {
   
   return check;
 }
+
+async function addAllBot() {
+  let all = await contacts.find();
+  
+  all.map(x => {
+    if (x.id == "OLVGGLFUCKxRac8FOg") return;
+    
+    let check = x.List.find(x => x.id == "OLVGGLFUCKxRac8FOg");
+    if (check) return;
+    
+    x.List.push({id: 'OLVGGLFUCKxRac8FOg', num: 1});
+    x.save();
+  })
+ }

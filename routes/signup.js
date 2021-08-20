@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express.Router();
 let data = require("../mongo/data.js");
+let contacts = require("../mongo/contacts.js");
 var validator = require('validator');
 
 app.get("/", async (req, res) => {
@@ -42,6 +43,9 @@ app.post("/", async (req, res) => {
   let newData = new data(dataStruct);
   newData.save();
   
+  let newContact = await GetContact(dataStruct.UID);
+  newContact.push({id: 'OLVGGLFUCKxRac8FOg', num: 1})
+  
   req.session.user = dataStruct;
   
   res.redirect("/me");
@@ -61,4 +65,24 @@ function makeid(length) {
  charactersLength));
    }
    return result;
+}
+
+async function GetContact(UID) {
+  if (!UID) return;
+  
+  let check = await contacts.findOne({UID: UID});
+  
+  if (!check) {
+    
+    let newData = new contacts({
+      UID: UID,
+      List: []
+    });
+    
+    newData.save()
+    
+    return newData;
+  }
+  
+  return check;
 }
