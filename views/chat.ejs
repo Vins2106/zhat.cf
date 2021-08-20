@@ -150,7 +150,7 @@
         let postDataMSG;
         
         if ('<%= he.UID %>' == "OLVGGLFUCKxRac8FOg") {
-          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%- JSON.stringify(he) %>', bot: true};
+          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>', bot: true};
         } else {
           postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>', bot: false};
         }
@@ -184,7 +184,7 @@ function scrollToBottom() {
           },
           {
             name: "my-id",
-            respone: "<%= req.session.user.UID %>"
+            response: "<%= req.session.user.UID %>"
           },
           {
             name: "help",
@@ -214,7 +214,19 @@ function scrollToBottom() {
           createMessage(message.author, message.content, false, "me")
           scrollTo(0, chats.scrollHeight)
         
-        let args = message.content.slice(prefix.length).trim().split(/ +/g)
+        let args = message.content.slice(prefix.length).trim().split(/ +/g);
+        let cmd = args.shift().toLowerCase();
+        
+        let command = cmds.find(x => x.name == cmd);
+        if (command) {
+          postMsg({author: <%- JSON.stringify(he) %>, content: command.response, to: '<%= req.session.user.UID %>', bot: false});
+          createMessage(<%- JSON.stringify(he) %>, command.response, false, "he")
+          scrollTo(0, chats.scrollHeight)
+        } else {
+          return;
+        }
+        
+        
         }
         
         if (message.to.UID == '<%= req.session.user.UID %>' && message.author.UID == 'OLVGGLFUCKxRac8FOg') {
