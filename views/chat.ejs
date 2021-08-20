@@ -150,9 +150,9 @@
         let postDataMSG;
         
         if ('<%= he.UID %>' == "OLVGGLFUCKxRac8FOg") {
-          postDataMsg = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%- JSON.stringify(he) %>', bot: true};
+          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%- JSON.stringify(he) %>', bot: true};
         } else {
-          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'};
+          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>', bot: false};
         }
         socket.emit('message', postDataMSG);
         socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
@@ -207,7 +207,7 @@ function scrollToBottom() {
           scrollTo(0, chats.scrollHeight)
         }          
         } else if (message.bot) {
-        if (message.author.UID == '<%= req.session.user.UID %>') {
+        if (message.author.UID == 'OLVGGLFUCKxRac8FOg') {
           postMsg(message);
           createMessage(message.author, message.content, false, "me")
           scrollTo(0, chats.scrollHeight)
@@ -217,8 +217,9 @@ function scrollToBottom() {
           
           let isCmd = cmds.find(x => x.name == cmd);
           if (isCmd) {
-            let botMsg = {author: <%- %>, content: input.value, to: '<%= he.UID %>'};
-            return postMsg()
+            let botMsg = {author: message.to, content: isCmd.response, to: `${message.author.UID}`, bot: false};
+            socket.emit("message", botMsg)
+            socket.emit('newMessages', {id: 'OLVGGLFUCKxRac8FOg', username: message.to.Username, to: message.author.Username, msg: isCmd.response})
           }
         }
         }
@@ -294,11 +295,11 @@ function scrollToBottom() {
       let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>'};
                               
       input.addEventListener("keyup", () => {
-      if (input.value && input.value !== "") {
+      if (input.value && input.value !== " ") {
         subtn.innerHTML = "Send!"
         subtn.type = "submit"
         subtn.disabled = false;          
-      } else if (!input.value && input.value == "") {
+      } else if (!input.value && input.value == "" && input.value == " ") {
         setTimeout(() => {
         subtn.type = "button"
         subtn.innerHTML = "👍"
