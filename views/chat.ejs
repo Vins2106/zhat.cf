@@ -120,9 +120,9 @@
       <% if (messages.List[0]) { %>
       <% let msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
-      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
       } else {
-      createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, '<%= msg.content %>', '<%= msg.time %>', "he")
       }
       <% }) %>
       <% } %>
@@ -155,9 +155,9 @@
         let postDataMSG;
         
         if ('<%= he.UID %>' == "OLVGGLFUCKxRac8FOg") {
-          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>', bot: true};
+          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: '<%= he.UID %>', bot: true};
         } else {
-          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>', bot: false};
+          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: '<%= he.UID %>', bot: false};
         }
         socket.emit('message', postDataMSG);
         socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
@@ -236,8 +236,8 @@ function scrollToBottom() {
         if (command) {
           setTimeout(() => {
             let response = command.response.replace(/{{args}}/g, args.join(" "));
-          postMsg({author: <%- JSON.stringify(he) %>, content: response, to: '<%= req.session.user.UID %>', bot: false})
-          createMessage(<%- JSON.stringify(he) %>, response, false, "he")
+          postMsg({author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, content: response, to: '<%= req.session.user.UID %>', bot: false})
+          createMessage(<%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, response, false, "he")
           scrollTo(0, chats.scrollHeight)            
           }, 500)
         } else {
@@ -260,8 +260,6 @@ function scrollToBottom() {
       })
       
       async function postMsg(message) {
-        
-        console.log('[MESSAGE_CREATE]')
         
         let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
             
@@ -319,7 +317,7 @@ function scrollToBottom() {
     </script>
     <script>
       let subtn = document.getElementById("submit-btn")
-      let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>', bot: false}
+      let postDataMsgThumb = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: '👍', to: '<%= he.UID %>', bot: false}
         subtn.onclick = function() {
           if (subtn.type !== "button") return;
           

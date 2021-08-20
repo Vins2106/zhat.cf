@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(session({
-  secret: 'super cat',
+  secret: 'super cat', 
   resave: true,
   saveUninitialized: true,
   store: MongoStore.create({
