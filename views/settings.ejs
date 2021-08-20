@@ -45,7 +45,7 @@
               Copy your id
             </button>
             <br>
-            <button type="button" class="btn btn-primary" onclick="copyURL()">
+            <button type="button" class="btn btn-primary" onclick="shareURL()">
               Share
             </button>
           </div>            
@@ -97,6 +97,19 @@
       
       function removeWallpaper() {
         document.getElementById("wallpaper-input").value = ""
+      }
+      
+      async function shareURL() {
+const shareData = {
+  title: 'Add me on Zhatting',
+  text: 'Add <%= req.session.user.Username %> on Zhatting',
+  url: 'https://zhat.cf/invite/<%= req.session.user.UID %>',
+}
+  try {
+    await navigator.share(shareData)
+  } catch(err) {
+    console.log("Cant open share pop up")
+  }    
       }
       
 (function(){
