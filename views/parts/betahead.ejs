@@ -38,29 +38,24 @@ if ('serviceWorker' in navigator) {
     });
 }  
   
-  var isInstall;
+  let isInstall;
   
 window.addEventListener("beforeinstallprompt", ev => { 
   ev.preventDefault();
-
-  if (typeof localStorage.getItem("install") == "true") return; 
   
-  let btnBase = document.getElementById("installBase");
-  let btn = document.getElementById("installBtn");
-  if (!btnBase) return;
-  if (!btn) return;
+  
+  var btnBase = document.getElementById("install-base");
+  var btn = document.getElementById("install-btn");
   
   btnBase.style.display = "none";
   
   if (localStorage.getItem("install")) return;
   btnBase.style.display = "block";
-  isInstall = ev;
+          btn.addEventListener('click', () => {
+            let promptBtn = ev.prompt();
+          });  
   
-});  
-  function installBtn() {
-    if (!isInstall) return;
-    
-    let installPrompt = isInstall.prompt();
-    console.log(installPrompt)
-  }
+  ev.userChoice.then()
+  
+});
 </script>
