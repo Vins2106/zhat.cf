@@ -67,7 +67,7 @@
         <form method="get" id="form">
           <buton type="button" class="btn btn-primary" onclick="emojiToggle()" style="margin-right: 10px; display: flex; align-items: center; justify-content: center;">😄</buton>
           <emoji-picker></emoji-picker>
-          <input autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character...">
+          <input maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character...">
           <button style="margin-left: 10px;" type="button" class="btn btn-primary" id="submit-btn">
             👍
           </button>
@@ -170,6 +170,7 @@
         input.setAttribute("disabled", "disabled");
         input.setAttribute("placeholder", "cooldown");
         thumbBtn.innerHTML = "👍"
+        thumbBtn.type = "button"
         setTimeout(() => {
         input.disabled = false;
         input.setAttribute("placeholder", "max 100 characters");
@@ -198,7 +199,7 @@ function scrollToBottom() {
           },
           {
             name: "help",
-            response: "#help, #faq, #how-to-add-user, #my-id, #updates"
+            response: "#help, #faq, #how-to-add-user, #my-id, #updates, #say [message]"
           },
           {
             name: "updates",

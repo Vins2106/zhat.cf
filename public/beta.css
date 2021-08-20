@@ -374,6 +374,7 @@ span.pf-lastmsg.pf-2 {
   white-space: break-spaces;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 .pf-username-lastmsg {
@@ -492,6 +493,7 @@ p.me-msg {
   border-radius: 18px;
   min-height: 16px;
   margin: auto;
+  word-break: break-all
 }
 
 span.me-name {
@@ -505,6 +507,7 @@ p.he-msg {
   border-radius: 18px;
   min-height: 16px;
   margin: auto;
+  word-break: break-all
 }
 
 span.he-name {
