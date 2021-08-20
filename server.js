@@ -21,6 +21,7 @@ mongoose.connect(process.env.mongo, {
 }, () => {
   console.log("[database] connected")
 })
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
