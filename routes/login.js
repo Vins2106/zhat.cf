@@ -21,7 +21,7 @@ app.post('/', async (req, res) => {
   if (!checkFirstEmail) return res.redirect("/login?error=true&message=Invalid email");
   
   let checkFirstEmailPassword = await data.findOne({Email: req.body.email, Password: req.body.password});
-  if (!checkFirstEmailPassword) return res.redirect("/login?error=true&message=Invalid email & password");
+  if (!checkFirstEmailPassword) return res.redirect("/login?error=true&message=Invalid email and password");
   
   req.session.user = checkFirstEmailPassword;
   
