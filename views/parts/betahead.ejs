@@ -38,14 +38,29 @@ if ('serviceWorker' in navigator) {
     });
 }  
   
+  var isInstall;
+  
 window.addEventListener("beforeinstallprompt", ev => { 
   ev.preventDefault();
 
   if (typeof localStorage.getItem("install") == "true") return; 
   
-  document.getElementById("installBtn").onclick = () => {
-    ev.prompt();
-    
-  };
+  let btnBase = document.getElementById("installBase");
+  let btn = document.getElementById("installBtn");
+  if (!btnBase) return;
+  if (!btn) return;
+  
+  btnBase.style.display = "none";
+  
+  if (localStorage.getItem("install")) return;
+  btnBase.style.display = "block";
+  isInstall = ev;
+  
 });  
+  function installBtn() {
+    if (!isInstall) return;
+    
+    let installPrompt = isInstall.prompt();
+    console.log(installPrompt)
+  }
 </script>
