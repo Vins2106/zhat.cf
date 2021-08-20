@@ -136,13 +136,16 @@ app.patch("/api/post/message", async (req, res) => {
       })
     }
 
-    contactsList2 = await GetContact(message.to.UID) || await GetContact(message.to);
+    
+    console.log(message)
+    contactsList2 = await GetContact(message.to)
+    
     if (contactsList2.List[0]) {
       done2 = contactsList2.List.map(x => {
         if (x.id == req.session.user.UID) {
           if (x.num == 2) {
           cached2.push({id: x.id, num: 3})
-            current2++;            
+            current2++;     
           } else {
           cached2.push({id: x.id, num: 2})
           if (current2 == 2) {
@@ -219,7 +222,7 @@ io.on('connection', (socket) => {
   });
   
 });
-
+ 
 http.listen(port, () => {
   console.log(`[system] running`);
 });

@@ -212,13 +212,13 @@ function scrollToBottom() {
         if (message.author.UID == '<%= req.session.user.UID %>') {
           console.log('1')  
           
-          postMsg(message);
+          postMsg({author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: message.to.UID, bot: true});
           createMessage(message.author, message.content, false, "me")
           scrollTo(0, chats.scrollHeight)
         } else if (message.author.UID == 'OLVGGLFUCKxRac8FOg' && message.to.UID == '<%= req.session.user.UID %>') {
           console.log('2')
           
-          postMsg(message);
+          postMsg({author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: message.to.UID, bot: true});
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
           
