@@ -68,7 +68,7 @@
           <buton type="button" class="btn btn-primary" onclick="emojiToggle()" style="margin-right: 10px; display: flex; align-items: center; justify-content: center;">😄</buton>
           <emoji-picker></emoji-picker>
           <input autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character...">
-          <button style="margin-left: 10px;" type="submit" class="btn btn-primary" id="submit-btn">
+          <button style="margin-left: 10px;" type="button" class="btn btn-primary" id="submit-btn">
             👍
           </button>
         </form>
@@ -116,8 +116,9 @@
       audio.volume = 0.3;                                                    
       let emojiDisplay = false;
       
+      <% let msgLoaded %>
       <% if (messages.List[0]) { %>
-      <% messages.List.map(msg => { %>
+      <% msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {   
       createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
       } else if ('<%= msg.to %>' == '<%= req.session.user.UID %>') {   
@@ -130,9 +131,10 @@
       <% }) %>
       <% } %>
       
-      setTimeout(() => {
-        scrollTo(0, chats.scrollHeight)
-      }, <%= messages.List.length * 10 %>)
+      <% Promise.all(msgLoaded).then(() => { %>
+      scrollTo(0, chats.scrollHeight)
+      <% }) %>
+      
       
       
       function emojiToggle() {
@@ -322,12 +324,19 @@ function scrollToBottom() {
       if (!isEmptyOrSpaces(input.value)) {
         subtn.innerHTML = "Send!"
         subtn.type = "submit"
-        subtn.disabled = false;           
+        subtn.disabled = false;     
+        subtn.onclick = null;
       } else if (isEmptyOrSpaces(input.value)) {
         subtn.type = "button"
         subtn.innerHTML = "👍"
-        subtn.onclick = function() {
         console.log("thumb emoji launch")
+
+        // 2
+                   }
+      })
+        subtn.onclick = function() {
+          if (subtn.type == "submit") return;
+          
         socket.emit('message', postDataMsgThumb);
         socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: "👍"})
                                      
@@ -342,9 +351,6 @@ function scrollToBottom() {
         }, 2000)          
         }
 
-        // 2
-                   }
-      })
         // 1
         // 3
       
