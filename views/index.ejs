@@ -18,7 +18,7 @@
         </div>
         <span class="pf-username"><%= req.session.user.Username %></span>
       <div class="share-section">
-        <i class="fa fa-share"></i>
+        <i class="fa fa-share" style="cursor: pointer;" onclick="shareURL()"></i>
       </div>
       </div>
 <!--     navbar end -->
@@ -96,6 +96,19 @@
     
     </script>
     <script>
+      async function shareURL() {
+const shareData = {
+  title: 'Add me on Zhatting',
+  text: 'Add <%= req.session.user.Username %> on Zhatting',
+  url: 'https://zhat.cf/invite/<%= req.session.user.UID %>',
+}
+  try {
+    await navigator.share(shareData)
+  } catch(err) {
+    console.log("Cant open share pop up", err)
+  }    
+      }      
+      
       window.onload = function() {
         setTimeout(() => {
           document.getElementById('body').classList.remove("loading-body");
