@@ -118,7 +118,7 @@
       let emojiDisplay = false;
       
       <% if (messages.List[0]) { %>
-      <% let msgLoaded = messages.List.map(msg => { %>      
+      <% let msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
       createMessage(<%- JSON.stringify(msg.author) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
       } else {
