@@ -147,7 +147,13 @@
         return;
         }
                                        
-        let postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'};
+        let postDataMSG;
+        
+        if ('<%= he.UID %>' == "OLVGGLFUCKxRac8FOg") {
+          postDataMsg = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%- JSON.stringify(he) %>', bot: true};
+        } else {
+          postDataMSG = {author: <%- JSON.stringify(req.session.user) %>, content: input.value, to: '<%= he.UID %>'};
+        }
         socket.emit('message', postDataMSG);
         socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
         e.preventDefault();
@@ -165,21 +171,63 @@ function scrollToBottom() {
   scrollTo(0, chats.scrollHeight)
 }    
       
+        let prefix = "#";
+        
+        let cmds = [
+          {
+            name: "faq",
+            response: "https://zhat.cf/faq"
+          },
+          {
+            name: "how-to-add-user",
+            response: "https://zhat.cf/faq#how-to-add-contact"
+          },
+          {
+            name: "my-id",
+            respone: "<%= req.session.user.UID %>"
+          },
+          {
+            name: "help",
+            response: "#help, #faq, #how-to-add-user, #my-id"
+          }
+        ]
+        
       socket.on("message2", message => {
 
+        if (!message.bot) {
         if (message.author.UID == '<%= req.session.user.UID %>') {
           postMsg(message);
           createMessage(message.author, message.content, false, "me")
           scrollTo(0, chats.scrollHeight)
         }
         
-        if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
-        if (message.to == "OLVGGLFUCKxRac8FOg") {
-          return 
-      }
+        if (message.to.UID == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
           audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
+        }          
+        } else if (message.bot) {
+        if (message.author.UID == '<%= req.session.user.UID %>') {
+          postMsg(message);
+          createMessage(message.author, message.content, false, "me")
+          scrollTo(0, chats.scrollHeight)
+        if (message.to.UID == 'OLVGGLFUCKxRac8FOg') {
+          let args = message.content.slice(prefix.length).trim().split(/ +/g);
+          let cmd = args.shift().toLowerCase();
+          
+          let isCmd = cmds.find(x => x.name == cmd);
+          if (isCmd) {
+            let botMsg = {author: <%- %>, content: input.value, to: '<%= he.UID %>'};
+            return postMsg()
+          }
+        }
+        }
+        
+        if (message.to.UID == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
+          audio.play()
+          createMessage(message.author, message.content, false, "he")
+          scrollTo(0, chats.scrollHeight)
+        }          
         }
                 
         
