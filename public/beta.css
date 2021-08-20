@@ -664,7 +664,7 @@ span.pf-click {
 }
 
 img.feature-img {
-    width: -webkit-fill-available;
+    width: auto;
     height: auto;
     max-width: -webkit-fill-available;
     border-radius: 6px;
