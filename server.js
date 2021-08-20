@@ -121,7 +121,8 @@ app.patch("/api/post/message", async (req, res) => {
       done = contactsList.List.map(x => {
         if (x.id == message.to) {
           if (x.num == 2) {
-          cached.push({id: x.id, num: 3})
+          cached.push({id: x.id, num: 2})
+            current++;
           } else {
           cached.push({id: x.id, num: 2})
           if (current == 2) {
@@ -143,7 +144,7 @@ app.patch("/api/post/message", async (req, res) => {
       done2 = contactsList2.List.map(x => {
         if (x.id == req.session.user.UID) {
           if (x.num == 2) {
-          cached2.push({id: x.id, num: 3})
+          cached2.push({id: x.id, num: 2})
             current2++;
           } else {
           cached2.push({id: x.id, num: 2})
