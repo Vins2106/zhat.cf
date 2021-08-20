@@ -593,6 +593,22 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
   cursor: pointer;
 }
 
+.faq-list {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.faq {
+    background-color: darkslategrey;
+    margin: 20px;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    border-left: 8px solid #09C4FF;
+}
+
 .modal.on {
     transform: translateY(0%);
 }
