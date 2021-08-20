@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include("./parts/head.ejs") %>
+    <%- include("./parts/betahead.ejs") %>
   </head>
-  <body>
+  <body class="loading-body" id="body">
+    <div class="loading" id="loading">
+      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
+      <span class="loading-title">Loading...</span>
+    </div>
     
-    <div class="ta-center">
-      
+    
+    <main class="main" style="display: flex; justify-content: center; align-items: center; flex-direction: column; ">
       <% if (error) { %>
     <div class="error">
       <span class="error-msg"><%= msg %></span>
@@ -15,31 +19,39 @@
       <div class="success">
         <span class="success-msg">Successfuly add</span>
       </div>
-      <% } %>
-      
-    <div class="box-1 cv">
-<form method="post">
-  <h1 style="color: #ddd; text-align: center;">
-    Hi <%= req.session.user.Username %>!
-  </h1>
-  
-  <div class="form-control">
-    <label for="user-input">Add someone with <a href="/faq#get-user-id" target="_blank">User ID</a></label>
+      <% } %>    
+      <div class="box-1">
+        <span class="box-1-title">Hi <%= req.session.user.Username %>!</span>
+        <hr style='border-color: black; margin-top: 10px;'>
+        <form method="post">
+        <div class="box-1-list">
+          <div class="box-1-input">
+            <label for="userid">Add with user id</label>
     <% if (add) { %>
-    <input name="user" type="text" class="form-input" id="user-input" placeholder="user id" value="<%= add %>" required>
+    <input class="input-box" type="text" name="user" id="user" placeholder="user id" value="<%= add %>" autocomplete="off" required>
     <% } else { %>
-    <input name="user" type="text" class="form-input" id="user-input" placeholder="user id" required>
-    <% } %>
-  </div>    
-  
-  <div class="btn-submit">
-    <a style="margin-right: 10px;" href="/">cancel</a><button type="submit" class="btn btn-primary">Add</button>    
-  </div>
-</form>
-    </div>
-    </div>
-    
-    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
+    <input class="input-box" type="text" name="user" id="user" placeholder="user id" autocomplete="off" required>
+    <% } %>            
+          </div>       
+        </div>
+          <div class="box-1-submit">
+            <a href="/me">cancel</a>
+            <button class="btn btn-primary" type="submit" style="margin-left: 10px;">
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
+    <script>
+      window.onload = function() {
+        setTimeout(() => {
+          document.getElementById('body').classList.remove("loading-body");
+          document.getElementById('loading').classList.add("not-showing")
+        }, 1000)
+      }
+    </script>
     <script>
     let socket = io();
       
@@ -85,6 +97,6 @@
         user.innerHTML = '<i class="fa fa-times"></i> offline';        
       })
       
-    </script>
+    </script>    
   </body>
 </html>
