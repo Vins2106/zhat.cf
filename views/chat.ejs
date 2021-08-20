@@ -203,6 +203,10 @@ function scrollToBottom() {
           {
             name: "updates",
             response: "https://zhat.cf/updates"
+          },
+          {
+            name: "say",
+            response: "{{args}}"
           }
         ]
         
@@ -234,8 +238,9 @@ function scrollToBottom() {
         let command = cmds.find(x => x.name == cmd);
         if (command) {
           setTimeout(() => {
-          postMsg({author: <%- JSON.stringify(he) %>, content: command.response, to: '<%= req.session.user.UID %>', bot: false});
-          createMessage(<%- JSON.stringify(he) %>, command.response, false, "he")
+            let response = command.response.replace(/{{args}}/g, args.join(" "));
+          postMsg({author: <%- JSON.stringify(he) %>, content: response, to: '<%= req.session.user.UID %>', bot: false});
+          createMessage(<%- JSON.stringify(he) %>, response, false, "he")
           scrollTo(0, chats.scrollHeight)            
           }, 500)
         } else {
