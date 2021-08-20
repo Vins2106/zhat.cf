@@ -37,4 +37,15 @@ if ('serviceWorker' in navigator) {
       console.log('ServiceWorker registration failed: ', err);
     });
 }  
+  
+window.addEventListener("beforeinstallprompt", ev => { 
+  ev.preventDefault();
+
+  if (typeof localStorage.getItem("install") == "true") return; 
+  
+  document.getElementById("installBtn").onclick = () => {
+    ev.prompt();
+    
+  };
+});  
 </script>
