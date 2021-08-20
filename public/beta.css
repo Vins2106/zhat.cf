@@ -550,6 +550,15 @@ emoji-picker {position: fixed;right: 0;bottom: 0;margin: 10px;width: 50%;}
     font-size: 16px;
 }
 
+.success {
+    background-color: seagreen;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
 .modal {
     position: fixed;
     background-color: #09C4FF;

@@ -57,15 +57,7 @@ app.use("/login", loginRoutes)
 const signupRoutes = require("./routes/signup.js")
 app.use("/signup", signupRoutes)
 
-// settings
-const settingsRoutes = require("./routes/settings.js")
-app.use("/settings", settingsRoutes)
-
-// contact
-const contactaddRoutes = require("./routes/contactadd.js")
-app.use("/contact", contactaddRoutes)
-
-// chat
+// me
 const chatRoutes = require("./routes/chat.js")
 app.use("/me", chatRoutes)
 
