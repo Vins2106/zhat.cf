@@ -112,7 +112,6 @@
       var input = document.getElementById("input-msg");
       let chats = document.getElementById(`chat-list`);
       let emoji = document.querySelector('emoji-picker');
-      let subtn = document.getElementById("submit-btn")
       emoji.style.display = "none";
       audio.volume = 0.3;                                                    
       let emojiDisplay = false;
@@ -317,7 +316,8 @@ function scrollToBottom() {
       
     </script>
     <script>
-      let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>', bot: false};
+      let subtn = document.getElementById("submit-btn")
+      let postDataMsgThumb = {author: <%- JSON.stringify(req.session.user) %>, content: '👍', to: '<%= he.UID %>', bot: false}
       input.addEventListener("keyup", () => {
       if (!isEmptyOrSpaces(input.value)) {
         subtn.innerHTML = "Send!"
@@ -326,10 +326,10 @@ function scrollToBottom() {
       } else if (isEmptyOrSpaces(input.value)) {
         subtn.type = "button"
         subtn.innerHTML = "👍"
-        subtn.addEventListener("onclick", () => {
+        subtn.onclick = function() {
         console.log("thumb emoji launch")
         socket.emit('message', postDataMsgThumb);
-        // socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: "👍"})
+        socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: "👍"})
                                      
         
         subtn.disabled = true
@@ -340,7 +340,7 @@ function scrollToBottom() {
           subtn.disabled = false
         subtn.classList.remove("disabled");
         }, 2000)          
-        })
+        }
 
         // 2
                    }
