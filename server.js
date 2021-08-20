@@ -137,12 +137,11 @@ app.patch("/api/post/message", async (req, res) => {
     }
 
     
-    console.log(message)
     contactsList2 = await GetContact(message.to)
     
     if (contactsList2.List[0]) {
       done2 = contactsList2.List.map(x => {
-        if (x.id == req.session.user.UID) {
+        if (x.id == req.session.user.UID) { 
           if (x.num == 2) {
           cached2.push({id: x.id, num: 2})
             current2++;
@@ -172,7 +171,11 @@ app.patch("/api/post/message", async (req, res) => {
       contactsList2.List = cached2;
       contactsList2.save();
       res.status(200).send({error: false});
+    }).catch(e => {
+      
     }) 
+    }).catch(e => {
+      
     })
   }
   
