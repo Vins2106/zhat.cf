@@ -36,7 +36,8 @@ app.get("/", checkAuth, async (req, res) => {
         avatar: acc.Avatar,
         uid: acc.UID,
         messages: final,
-        num: c.num
+        num: c.num,
+        bot: !acc.Bot ? false : true
       });
       cached++;
     });
