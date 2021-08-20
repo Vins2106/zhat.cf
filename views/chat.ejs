@@ -251,7 +251,7 @@ function scrollToBottom() {
         
         }
         
-        if (message.to.UID == '<%= req.session.user.UID %>' && message.author.UID == 'OLVGGLFUCKxRac8FOg') {
+        if (message.to == '<%= req.session.user.UID %>' && message.author.UID == 'OLVGGLFUCKxRac8FOg') {
           audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
