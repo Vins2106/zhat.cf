@@ -37,25 +37,18 @@ if ('serviceWorker' in navigator) {
       console.log('ServiceWorker registration failed: ', err);
     });
 }  
-  
-  let isInstall;
-  
-window.addEventListener("beforeinstallprompt", ev => { 
-  ev.preventDefault();
-  
-  
-  var btnBase = document.getElementById("install-base");
-  var btn = document.getElementById("install-btn");
-  
-  btnBase.style.display = "none";
-  
-  if (localStorage.getItem("install")) return;
-  btnBase.style.display = "block";
-          btn.addEventListener('click', () => {
-            let promptBtn = ev.prompt();
-          });  
-  
-  ev.userChoice.then()
-  
-});
 </script>
+ <script>
+window.addEventListener("beforeinstallprompt", function(e) {
+  
+  if (localStorage.getItem("installed")) return;
+  
+  e.prompt()
+  
+  e.userChoice.then(function(choiceResult) {
+    if (choiceResult.outcome === "accepted") {
+      localStorage.setItem("installed", "true");
+    }
+  });
+});
+    </script>
