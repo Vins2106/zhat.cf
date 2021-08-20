@@ -41,7 +41,7 @@
         <img src="<%= he.Avatar %>" alt="avatar" class="pf-img pf-2" style="margin-left: 10px;">          
         </div>
       </div>
-      <% if (he.UID == "OLVGGLFUCKxRac8FOg") { %>
+      <% if (he.Bot) { %>
       <div class="chats" id="chat-list">
         <div class="he-chat">
           <img src="<%= he.Avatar %>" alt="He avatar" class="he-avatar">
@@ -154,7 +154,7 @@
                                        
         let postDataMSG;
         
-        if ('<%= he.UID %>' == "OLVGGLFUCKxRac8FOg") {
+        if ('<%= he.UID %>' == locationHref) {
           postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: '<%= he.UID %>', bot: true};
         } else {
           postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: '<%= he.UID %>', bot: false};
@@ -247,7 +247,7 @@ function scrollToBottom() {
         
         }
         
-        if (message.to == '<%= req.session.user.UID %>' && message.author.UID == 'OLVGGLFUCKxRac8FOg') {
+        if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
           audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
