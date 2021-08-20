@@ -58,7 +58,7 @@ app.get("/", checkAuth, async (req, res) => {
       })    
   }
     
-})
+}) 
 
 // contact
 app.get("/add", checkAuth, async (req, res) => {

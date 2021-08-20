@@ -136,8 +136,7 @@ app.patch("/api/post/message", async (req, res) => {
       })
     }
 
-    if (!message.bot) {
-    contactsList2 = await GetContact(message.to);
+    contactsList2 = await GetContact(message.to.UID) || await GetContact(message.to);
     if (contactsList2.List[0]) {
       done2 = contactsList2.List.map(x => {
         if (x.id == req.session.user.UID) {
@@ -155,28 +154,7 @@ app.patch("/api/post/message", async (req, res) => {
           current2++;
         }
       })
-    }      
-    } else {
-    contactsList2 = await GetContact(message.to.UID);
-    if (contactsList2.List[0]) {
-      done2 = contactsList2.List.map(x => {
-        if (x.id == req.session.user.UID) {
-          if (x.num == 2) {
-          cached2.push({id: x.id, num: 3})
-            current2++;            
-          } else {
-          cached2.push({id: x.id, num: 2})
-          if (current2 == 2) {
-            current2++;
-          }              
-          }
-        } else {
-          cached2.push({id: x.id, num: current2})
-          current2++;
-        }
-      })
-    }      
-    }
+    }          
     
     final.List.push({author: message.author, content: message.content, time: message.time, to: message.to, type: message.type});
     final.save().catch(e => {})
