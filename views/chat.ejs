@@ -112,6 +112,7 @@
       var input = document.getElementById("input-msg");
       let chats = document.getElementById(`chat-list`);
       let emoji = document.querySelector('emoji-picker');
+      let thumbBtn = document.getElementById("submit-btn");
       emoji.style.display = "none";
       audio.volume = 0.3;                                                    
       let emojiDisplay = false;
@@ -168,6 +169,7 @@
         form.reset()                             
         input.setAttribute("disabled", "disabled");
         input.setAttribute("placeholder", "cooldown");
+        thumbBtn.innerHTML = "👍"
         setTimeout(() => {
         input.disabled = false;
         input.setAttribute("placeholder", "max 100 characters");
@@ -207,7 +209,7 @@ function scrollToBottom() {
       socket.on("message2", message => {
 
         if (!message.bot) {
-        if (message.author == '<%= req.session.user.UID %>') {
+        if (message.author.UID == '<%= req.session.user.UID %>') {
           postMsg(message);
           createMessage(message.author, message.content, false, "me")
           scrollTo(0, chats.scrollHeight)
