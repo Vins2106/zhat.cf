@@ -16,7 +16,8 @@
     "body-parser": "^1.19.0",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",
-    "validator": "^13.6.0"
+    "validator": "^13.6.0",
+    "gif-stop": "^0.0.1"
   },
   "engines": {
     "node": "12.x"
