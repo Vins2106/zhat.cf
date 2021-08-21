@@ -15,7 +15,7 @@
       <div class="pf-navbar">
          <div class="pf-img-stats">
            <img class="pf-img freezeframe" alt="avatar" src="<%= req.session.user.Avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
-           <span class="pf-status online"></span>
+           <span class="pf-status online" title="online"></span>
         </div>
         <span class="pf-username"><%= req.session.user.Username %></span>
       <div class="share-section">
@@ -34,11 +34,12 @@
         <div class="contact" onclick="location.href='/me/<%= u.uid %>'">
          <div class="pf-img-stats pf-2">
            <img class="pf-img pf-2 freezeframe" alt="avatar" src="<%= u.avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
-           <span class="pf-status pf-2 <%= u.bot ? "online" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
+           <span class="pf-status pf-2 <%= u.bot ? "online" : "offline" %>" title="<%= u.bot ? "online" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
         </div>
           <div class="pf-username-lastmsg">
         <span class="pf-username pf-2"><%= u.username %></span>
-            <span maxlength="100" class="pf-lastmsg pf-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %></span>
+            <% let lastMsg = u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %>
+            <span maxlength="100" class="pf-lastmsg pf-2" id="<%= u.uid %>-lastmsg" title="<%= lastMsg %>"><%= lastMsg %></span>
           </div>
         </div>
         <hr style='border-color: black; margin-top: 10px;'>
