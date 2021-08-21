@@ -13,7 +13,7 @@
 <!--     navbar -->
       <div class="pf-navbar">
          <div class="pf-img-stats">
-           <img class="pf-img" alt="avatar" src="<%= req.session.user.Avatar %>">
+           <img class="pf-img" alt="avatar" src="<%= req.session.user.Avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
            <span class="pf-status online"></span>
         </div>
         <span class="pf-username"><%= req.session.user.Username %></span>
@@ -32,7 +32,7 @@
     <% contacts.sort((a,b) => a.num - b.num).map(u => { %>
         <div class="contact" onclick="location.href='/me/<%= u.uid %>'">
          <div class="pf-img-stats pf-2">
-           <img class="pf-img pf-2" alt="avatar" src="<%= u.avatar %>">
+           <img class="pf-img pf-2" alt="avatar" src="<%= u.avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
            <span class="pf-status pf-2 <%= u.bot ? "online" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
         </div>
           <div class="pf-username-lastmsg">
