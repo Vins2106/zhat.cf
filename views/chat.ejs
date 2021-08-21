@@ -92,7 +92,7 @@
 />    
     
     <script>
-      tippy("[data-tippy-content]")
+      
       
     let modal = document.getElementById("user-modal");
       
@@ -318,7 +318,7 @@ function scrollToBottom() {
         let msgContentProto = content.split(/ +/g);
         msgContentProto.map(x => {
           if (x.startsWith("https://") || x.startsWith("http://")) {
-            msgContent += ` <a title="${x}" href="${x}" target="_blank">${x}</a>`
+            msgContent += ` <a data-tippy-content="redirect to ${x}" title="${x}" onclick="redirectMe('${x}')">${x}</a>`
           } else {
             msgContent += ` ${x}`;
           }
@@ -327,6 +327,16 @@ function scrollToBottom() {
         namemsg.appendChild(message);
         
         return true;
+      }
+      
+      function redirectMe(link) {
+        let isYes = confirm(`Are you sure to open ${link} ?`);
+        
+        if (isYes) {
+          return window.open(link, '_blank').focus();
+        } else {
+          return;
+        }
       }
       
     </script>
@@ -394,6 +404,7 @@ function isEmptyOrSpaces(str){
     </script>
     <script>
       window.onload = function() {
+        tippy("[data-tippy-content]")
         setTimeout(() => {
           document.getElementById('body').classList.remove("loading-body");
           document.getElementById('loading').classList.add("not-showing")
