@@ -621,6 +621,11 @@ emoji-picker {
   margin-top: 25px;
 }
 
+.ads {
+    text-align: center;
+    margin: 50px;
+}
+
 .faq {
   background-color: darkslategrey;
   margin: 20px;
