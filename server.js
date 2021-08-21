@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 
 app.use(session({
   secret: 'super cat', 
-  resave: true,
+  resave: true, 
   saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: process.env.mongo,

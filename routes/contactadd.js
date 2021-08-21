@@ -71,7 +71,7 @@ app.post("/add", checkAuth, async (req, res) => {
     newContact.save();
   } else {
     let checkAlr = ourContacts.List.find(x => x.id == checkUser.UID);
-    if (checkAlr) return res.redirect("/contact/add?error=true&message=Already on contact")
+    if (checkAlr) return res.redirect(`/me/${checkUser.UID}`)
     
    ourContacts.List.push({id: checkUser.UID, num: 1});
    ourContacts.save();
@@ -87,13 +87,13 @@ app.post("/add", checkAuth, async (req, res) => {
     newContact.save();
   } else {
     let checkAlr = heContacts.List.find(x => x .id== req.session.user.UID);
-    if (checkAlr) return res.redirect("/contact/add?error=true&message=Already on contact")    
+    if (checkAlr) return res.redirect(`/me/${checkUser.UID}`)   
     
    heContacts.List.push({id: req.session.user.UID, num: 1});
    heContacts.save();
   }  
   
-  res.redirect("/contact/add?success=true")
+  res.redirect(`/me/${checkUser.UID}`)
 });
 
 module.exports = app;
