@@ -56,45 +56,6 @@
       <% if (req.session.user) { %>
       socket.emit("isConnected", '<%= req.session.user.UID %>')
       <% } %>
-                  
-      socket.on("someoneOnline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-      
-        
-        user.classList.remove("offline")
-        user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i> online'  
-      })
-      
-      socket.on("newMessage", (opt) => {
-        let user = document.getElementById(`${opt.id}-lastmsg`);
-        if (opt.to !== '<%= req.session.user.UID %>') return;
-        if (!user) return;
-        
-        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
-      })
-                  
-      socket.on("isOnline", userId => {
-        socket.emit("updateOnline", '<%= req.session.user.UID %>')
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is online`)
-        
-        user.classList.remove("remove")
-        user.classList.add("online")
-        user.innerHTML = '<i class="fa fa-check"></i> online';
-      });
-      
-      socket.on("isOffline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is offline`)
-        
-        user.classList.remove("online")
-        user.classList.add("offline")
-        user.innerHTML = '<i class="fa fa-times"></i> offline';        
-      })
       
     </script>   
   </body>
