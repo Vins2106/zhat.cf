@@ -15,11 +15,11 @@
       <div class="pf-navbar">
          <div class="pf-img-stats">
            <img class="pf-img freezeframe" alt="avatar" src="<%= req.session.user.Avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
-           <span class="pf-status online" title="online"></span>
+           <span class="pf-status online" data-tippy-content="Online" title="online"></span>
         </div>
         <span class="pf-username"><%= req.session.user.Username %></span>
       <div class="share-section">
-        <i class="fa fa-share" id="tooltip" data-tooltip="Share" title="share to your friend" style="cursor: pointer;" onclick="shareURL()"></i>
+        <i class="fa fa-share" id="tooltip" data-tippy-content="Share" title="share to your friend" style="cursor: pointer;" onclick="shareURL()"></i>
       </div>
       </div>
 <!--     navbar end -->
@@ -34,7 +34,7 @@
         <div class="contact" onclick="location.href='/me/<%= u.uid %>'">
          <div class="pf-img-stats pf-2">
            <img class="pf-img pf-2 freezeframe" alt="avatar" src="<%= u.avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
-           <span class="pf-status pf-2 <%= u.bot ? "online" : "offline" %>" title="<%= u.bot ? "online" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
+           <span class="pf-status pf-2 <%= u.bot ? "online" : "offline" %>" data-tippy-content="<%= u.bot ? "online" : "offline" %>" title="<%= u.bot ? "online" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
         </div>
           <div class="pf-username-lastmsg">
         <span class="pf-username pf-2"><%= u.username %></span>
@@ -86,9 +86,13 @@
 <!-- Production -->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>    
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tippy.js@6/animations/scale.css"
+/>
     
     <script>
-tippy("[data-tooltip]")
+tippy("[data-tippy-content]")
       
     let isNavbar = false;
       

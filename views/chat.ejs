@@ -80,8 +80,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+
+<!-- Production -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>    
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tippy.js@6/animations/scale.css"
+/>    
     
     <script>
+      tippy("[data-tippy-content]")
+      
     let modal = document.getElementById("user-modal");
       
       let display = false;
@@ -287,6 +299,7 @@ function scrollToBottom() {
         image.setAttribute("src", user.Avatar);
         image.setAttribute("class", `${mehe}-avatar freezeframe`);
         image.setAttribute("alt", "avatar")
+        image.setAttribute("data-tippy-content", `${user.Username} avatar`)
         image.setAttribute("title", `${user.Username} avatar`)
         base.appendChild(image);
         
