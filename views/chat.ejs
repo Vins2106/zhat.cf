@@ -286,6 +286,8 @@ function scrollToBottom() {
         let image = document.createElement("img");
         image.setAttribute("src", user.Avatar);
         image.setAttribute("class", `${mehe}-avatar`);
+        image.setAttribute("alt", "avatar")
+        image.setAttribute("title", `${user}`)
         base.appendChild(image);
         
         let namemsg = document.createElement("div");
@@ -303,7 +305,7 @@ function scrollToBottom() {
         let msgContentProto = content.split(/ +/g);
         msgContentProto.map(x => {
           if (x.startsWith("https://") || x.startsWith("http://")) {
-            msgContent += ` <a style="color: black;" href="${x}" target="_blank">${x}</a>`
+            msgContent += ` <a title="${x}" href="${x}" target="_blank">${x}</a>`
           } else {
             msgContent += ` ${x}`;
           }

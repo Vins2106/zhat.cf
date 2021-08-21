@@ -712,6 +712,10 @@ img.feature-img {
   .chats {
     margin: 90px 150px 0px 150px;
   }
+  
+  .chat-form {
+    padding: 10px 150px;
+  }
 }
 
 @media (min-width: 620px) {
