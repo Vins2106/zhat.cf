@@ -177,12 +177,12 @@ main.main {
 }
 
 .share-section {
-    width: -webkit-fill-available;
-    text-align: right;
-    font-size: 24px;
-    color: white;
-    font-weight: bold;
-    margin-right: 10px;
+  width: -webkit-fill-available;
+  text-align: right;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 footer {
@@ -344,7 +344,7 @@ span.pf-username {
   box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   padding-bottom: 50px;
-    padding-top: 50px;  
+  padding-top: 50px;
 }
 
 .contact {
@@ -493,7 +493,7 @@ p.me-msg {
   border-radius: 18px;
   min-height: 16px;
   margin: auto;
-  word-break: break-all
+  word-break: break-all;
 }
 
 span.me-name {
@@ -507,7 +507,7 @@ p.he-msg {
   border-radius: 18px;
   min-height: 16px;
   margin: auto;
-  word-break: break-all
+  word-break: break-all;
 }
 
 span.he-name {
@@ -622,8 +622,8 @@ emoji-picker {
 }
 
 .ads {
-    text-align: center;
-    margin: 50px;
+  text-align: center;
+  margin: 50px;
 }
 
 .faq {
@@ -633,6 +633,10 @@ emoji-picker {
   color: white;
   border-radius: 5px;
   border-left: 8px solid #09C4FF;
+}
+
+.faq h2 {
+  cursor: pointer;
 }
 
 small#showEye {
@@ -666,30 +670,30 @@ span.pf-click {
 }
 
 .features {
-    display: flex;
-    justify-content: center;
-    width: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+  width: -webkit-fill-available;
 }
 
 img.feature-img {
-    width: auto;
-    height: auto;
-    max-width: -webkit-fill-available;
-    border-radius: 6px;
+  width: auto;
+  height: auto;
+  max-width: -webkit-fill-available;
+  border-radius: 6px;
 }
 
 .feature {
-    max-width: -webkit-fill-available;
-    box-shadow: 0 11px 22px 7px rgb(0 0 0 / 30%);
-    margin: 100px 10px;
-    border-radius: 6px;
-    padding: 12px;
-    width: -webkit-fill-available;
-    max-width: 700px;
-    text-align: center;
-    font-weight: bold;
-    background: #09C4FF;
-    color: black;
+  max-width: -webkit-fill-available;
+  box-shadow: 0 11px 22px 7px rgb(0 0 0 / 30%);
+  margin: 100px 10px;
+  border-radius: 6px;
+  padding: 12px;
+  width: -webkit-fill-available;
+  max-width: 700px;
+  text-align: center;
+  font-weight: bold;
+  background: #09C4FF;
+  color: black;
 }
 
 @media (max-width: 480px) {
