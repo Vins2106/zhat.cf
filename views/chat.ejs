@@ -91,7 +91,10 @@
   href="https://unpkg.com/tippy.js@6/animations/scale.css"
 />    
     
+    <script src="https://unpkg.com/@babel/standalone@7.15.3/babel.min.js"></script>
+    
     <script>
+      
       
       
     let modal = document.getElementById("user-modal");
@@ -117,7 +120,8 @@
     <script>
       
     var socket = io();
-      
+
+      // import { formatChatMessage } from "format-chat-message";
       const audio = document.querySelector("audio");
       let locationHref =  window.location.href.split("me/")[1].slice(0, 18)
       var form = document.getElementById("form");
@@ -315,6 +319,7 @@ function scrollToBottom() {
         let message = document.createElement("p");
         message.setAttribute("class", `${mehe}-msg`);
         let msgContent = ""
+        // let msgContent = formatChatMessage(content)
         let msgContentProto = content.split(/ +/g);
         msgContentProto.map(x => {
           if (x.startsWith("https://") || x.startsWith("http://")) {

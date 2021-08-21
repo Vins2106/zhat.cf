@@ -1,10 +1,12 @@
 dependencies:
+  babel: 6.23.0
   body-parser: 1.19.0
   connect-mongo: 4.4.1
   dotenv: 10.0.0
   ejs: 3.1.6
   express: 4.17.1
   express-session: 1.17.2
+  format-chat-message: 0.0.5
   gif-stop: 0.0.1
   http: 0.0.0
   mongoose: 5.13.7
@@ -74,6 +76,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0=
+  /babel/6.23.0:
+    deprecated: 'In 6.x, the babel package has been deprecated in favor of babel-cli. Check https://opencollective.com/babel to support the Babel maintainers'
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha1-0NHn2APpdHZb7qMjLU4VPA77kPQ=
   /balanced-match/1.0.2:
     dev: false
     resolution:
@@ -399,6 +407,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==
+  /format-chat-message/0.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-gk3GzPt9fYJb5TwpugujGJh8+/GgEBWfZIGT6mxGH8SRSxoleIfRI6hbTlxGT7MCTYtEHNwz+3xQkhXmDuWJfA==
   /forwarded/0.2.0:
     dev: false
     engines:
@@ -950,12 +962,14 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  babel: ^6.23.0
   body-parser: ^1.19.0
   connect-mongo: ^4.4.1
   dotenv: ^10.0.0
   ejs: ^3.1.6
   express: ^4.17.1
   express-session: ^1.17.2
+  format-chat-message: ^0.0.5
   gif-stop: ^0.0.1
   http: ^0.0.0
   mongoose: ^5.13.7
