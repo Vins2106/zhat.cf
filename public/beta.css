@@ -98,6 +98,12 @@ a:hover {
   text-decoration: underline;
 }
 
+pre {
+    background: slategrey;
+    padding: 1px 11px;
+    border-radius: 4px;  
+}
+
 .navbar-brand.brand {
   width: 70px;
   height: 70px;
@@ -495,6 +501,8 @@ p.me-msg {
   min-height: 16px;
   margin: auto;
   word-break: break-all;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 span.me-name {
@@ -509,6 +517,8 @@ p.he-msg {
   min-height: 16px;
   margin: auto;
   word-break: break-all;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 span.he-name {

@@ -320,8 +320,14 @@ function scrollToBottom() {
           if (x.startsWith("https://") || x.startsWith("http://")) {
             msgContent += ` <a data-tippy-content="redirect to ${x}" title="${x}" onclick="redirectMe('${x}')">${x}</a>`
           } else {
+let a = x.match(/`([^`]+)`+/g);
+
+if (!a) {
             msgContent += ` ${x}`;
-          }
+} else if (a) {
+msgContent += x.replace(x, ` <pre>${x.match(/`([^`]+)`/)[1]}</pre> `)
+}
+          }    
         });
         message.innerHTML = msgContent;
         namemsg.appendChild(message);
