@@ -19,7 +19,7 @@
         </div>
         <span class="pf-username"><%= req.session.user.Username %></span>
       <div class="share-section">
-        <i class="fa fa-share" style="cursor: pointer;" onclick="shareURL()"></i>
+        <i class="fa fa-share" title="share to your friend" style="cursor: pointer;" onclick="shareURL()"></i>
       </div>
       </div>
 <!--     navbar end -->
@@ -59,17 +59,17 @@
       <div class="navbot">
         <div class="navbot-link">
           <a href="/me/settings">
-          <i class="fa fa-gear"></i>
+          <i class="fa fa-gear" title="settings"></i>
           </a>
         </div>
         <div class="navbot-link">
           <a href="/me/add">
-          <i class="fa fa-plus"></i>
+          <i class="fa fa-plus" title="add contact"></i>
           </a>
         </div>
         <div class="navbot-link">
           <a href="/logout">
-          <i class="fa fa-sign-out"></i>
+          <i class="fa fa-sign-out" title="logout"></i>
           </a>
         </div>
       </div>
