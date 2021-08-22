@@ -30,6 +30,14 @@
         </div>
       </div>
     </div>
+    <div class="moda" id="me-modal">
+      <div class="modal-close">
+        <i class="fa fa-close" onclick="launchMe()"></i>
+      </div>
+      <div class="modal-content">
+        <i></i>
+      </div>
+    </div>
     
     <main class="main">
       <div class="btn-back">
@@ -328,10 +336,19 @@ function scrollToBottom() {
             msgContent += ` ${x}`;
           }    
         });
+        message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
         message.innerHTML = msgContent;
         namemsg.appendChild(message);
         
         return true;
+      }
+      
+      function meDblClick(e) {
+        launchMe(e)
+      }
+      
+      function heDblClick(e) {
+        launchHe(e)
       }
       
       function redirectMe(link) {
