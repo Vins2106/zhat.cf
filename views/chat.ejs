@@ -138,6 +138,18 @@
       audio.volume = 0.5;                                                    
       let emojiDisplay = false;
       
+      input.onkeydown = handleEnter
+      input.onkeypress = handleEnter
+      
+function handleEnter(evt) {
+    if (evt.keyCode == 13 && evt.shiftKey) {
+        if (evt.type == "keypress") {
+            pasteIntoInput(this, "\n");
+        }
+        evt.preventDefault();
+    }
+}      
+      
       <% if (messages.List[0]) { %>
       <% let msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  

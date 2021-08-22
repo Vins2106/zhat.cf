@@ -554,7 +554,7 @@ span.he-name {
   width: -webkit-fill-available;
 }
 
-input.chat-input {
+textarea.chat-input {
   width: -webkit-fill-available;
 }
 
@@ -574,7 +574,7 @@ input.chat-input {
 
 textarea {
   resize: none;
-  overflow: hidden;
+  overflow: overlay;
 }
 
 .navbar-brand.brand {
