@@ -342,7 +342,7 @@ function scrollToBottom() {
         let msgContentProto = content.split(/ +/g);
         msgContent = content.trim();
         let b = msgContent.match(/[\W\s\S.]\w*/g).join(" ")
-        msgContent = b.replace(/\n+/g, "<br>")
+        msgContent = b.replace(/\n/g, "<br>")
         
         message.setAttribute("data-tippy-content", "double click to show option")
         message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
@@ -356,7 +356,7 @@ function scrollToBottom() {
       let latin_map = [">"]
       
 function embolden( str ){
-  return str.replace("&gt;", ">")
+  return str.replace("&gt;", ">").replace("&#39;", "'")
 }
       
       
