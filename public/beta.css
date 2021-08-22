@@ -651,11 +651,12 @@ emoji-picker {
 }
 
 small#showEye {
-  display: block;
-  width: -webkit-fill-available;
-  text-align: right;
-  transform: translate(0px, 39px);
-  font-size: 24px;
+    display: block;
+    width: fit-content;
+    text-align: right;
+    transform: translate(0px, 39px);
+    font-size: 24px;
+    margin: 0 0 0 auto;
 }
 
 .modal.on {
