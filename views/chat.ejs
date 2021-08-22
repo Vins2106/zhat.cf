@@ -179,7 +179,7 @@ function handleEnter(e) {
       }); 
       
       form.addEventListener('submit', function(e) {
-        if (input.value == "") {                             
+        if (isEmptyOrSpaces(input.value)) {                             
         e.preventDefault();
         form.reset()
         return;
@@ -347,9 +347,11 @@ function scrollToBottom() {
             msgContent += ` ${x}`;
           }    
         });
-        let b = msgContent.match(/[\W\s.]\w*/g).join(" ")
-        msgContent = b.replace(/\n/g, "<br>")
+        let b = msgContent.match(/[\W\s\S.]\w*/g).join(" ")
+        msgContent = b.replace(/\n+/g, "<br>")
       
+        console.log(content)
+        
         message.setAttribute("data-tippy-content", "double click to show option")
         message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
         message.innerHTML = msgContent;
