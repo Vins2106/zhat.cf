@@ -538,9 +538,8 @@ span.he-name {
   letter-spacing: 1px;
 }
 
-form {
-}
-form {
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .chat-form {
