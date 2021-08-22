@@ -348,20 +348,25 @@ function scrollToBottom() {
       
       let meModal = document.getElementById("me-modal");
       let heModal = document.getElementById("he-modal");
+    let modal = document.getElementById("user-modal");
       
       let isMeModal = false;
       let isHeModal = false;
+      let display = false;
       function launchMe(e = false) {
         if (isHeModal) {
           heModal.classList.remove("on");
           isHeModal = false;          
-        }        
+        } 
+        
+        if (display) {
+          display = false;
+          modal.classList.remove("on")          
+        }
         
         if (!isMeModal) {
           if (e) {
-            document.getElementById("modal-copy").onclick = function() {
-              navigator.clipboard.writeText(e.innerHTML);
-            }
+            buildUserModal(e)
           }
           meModal.classList.add("on");
           isMeModal = true;
@@ -373,15 +378,18 @@ function scrollToBottom() {
       
       function launchHe(e = false) {
         if (isMeModal) {
-          heModal.classList.remove("on");
-          isHeModal = false;          
+          meModal.classList.remove("on");
+          isMeModal = false;          
         }
+        
+        if (display) {
+          display = false;
+          modal.classList.remove("on")          
+        }        
         
         if (!isHeModal) {
           if (e) {
-            document.getElementById("modal-copy").onclick = function() {
-              navigator.clipboard.writeText(e.innerHTML);
-            }
+            buildUserModal(e)
           }
           heModal.classList.add("on");
           isHeModal = true;
@@ -401,9 +409,7 @@ function scrollToBottom() {
         }
       }
       
-    let modal = document.getElementById("user-modal");
       
-      let display = false;
       
       function toggleModal() {
         if (isMeModal) {
@@ -421,7 +427,14 @@ function scrollToBottom() {
           display = true;
           modal.classList.add("on")
         }
-      }      
+      }  
+      
+      function buildUserModal(e) {
+        document.getElementById("modal-copy").onclick = function() {
+              navigator.clipboard.writeText(e.innerHTML);
+              alert("Copied")
+            }
+      } 
       
     </script>
     <script>
