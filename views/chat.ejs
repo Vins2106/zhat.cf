@@ -37,6 +37,7 @@
       </div>
       <div class="modal-content">
         <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy"></i>
+        <i class="fa fa-reply cursor-pointer opt-modal" id="modal-reply"></i>
       </div>
     </div>
     
@@ -46,6 +47,7 @@
       </div>
       <div class="modal-content">
         <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy2"></i>
+        <i class="fa fa-reply cursor-pointer opt-modal" id="modal-reply2"></i>
       </div>
     </div>
     
@@ -85,7 +87,8 @@
         <form method="get" id="form">
           <buton type="button" class="btn btn-primary" onclick="emojiToggle()" style="margin-right: 10px; display: flex; align-items: center; justify-content: center;">😄</buton>
           <emoji-picker></emoji-picker>
-          <input maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character...">
+          <textarea maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character..."></textarea>
+<!--           <input maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character..."> -->
           <button style="margin-left: 10px;" type="button" class="btn btn-primary" id="submit-btn">
             👍
           </button>
@@ -396,6 +399,9 @@ function scrollToBottom() {
               navigator.clipboard.writeText(e.innerHTML);
               alert("Copied")
             }
+            document.getElementById("modal-reply2").onclick = function() {
+              input.value = `> ${e.innerHTML} reply: `
+            }            
           }
           heModal.classList.add("on");
           isHeModal = true;

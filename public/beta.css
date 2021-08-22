@@ -572,6 +572,11 @@ input.chat-input {
   display: flex;
 }
 
+textarea {
+  resize: none;
+  overflow: hidden;
+}
+
 .navbar-brand.brand {
   cursor: pointer;
 }
