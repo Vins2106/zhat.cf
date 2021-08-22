@@ -45,7 +45,7 @@
         <i class="fa fa-close" onclick="launchHe()"></i>
       </div>
       <div class="modal-content">
-        <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy"></i>
+        <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy2"></i>
       </div>
     </div>
     
@@ -265,7 +265,7 @@ function scrollToBottom() {
         
         }
         
-        if (message.to == '<%= req.session.user.UID %>') {
+        if (message.to == '<%= req.session.user.UID %>' && message.to !) {
           audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
@@ -366,7 +366,10 @@ function scrollToBottom() {
         
         if (!isMeModal) {
           if (e) {
-            buildUserModal(e)
+            document.getElementById("modal-copy").onclick = function() {
+              navigator.clipboard.writeText(e.innerHTML);
+              alert("Copied")
+            }
           }
           meModal.classList.add("on");
           isMeModal = true;
@@ -389,7 +392,10 @@ function scrollToBottom() {
         
         if (!isHeModal) {
           if (e) {
-            buildUserModal(e)
+            document.getElementById("modal-copy2").onclick = function() {
+              navigator.clipboard.writeText(e.innerHTML);
+              alert("Copied")
+            }
           }
           heModal.classList.add("on");
           isHeModal = true;
@@ -427,14 +433,7 @@ function scrollToBottom() {
           display = true;
           modal.classList.add("on")
         }
-      }  
-      
-      function buildUserModal(e) {
-        document.getElementById("modal-copy").onclick = function() {
-              navigator.clipboard.writeText(e.innerHTML);
-              alert("Copied")
-            }
-      } 
+      }      
       
     </script>
     <script>
