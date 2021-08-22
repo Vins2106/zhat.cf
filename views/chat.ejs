@@ -361,6 +361,17 @@ function scrollToBottom() {
         
       }
       
+      let latin_map = [">"]
+      
+function embolden( str, chr ){
+    return str.replace( /[^\x00-\x80]/g,
+        function (a) { 
+            return chr == latin_map[a] ? a : a;
+        } 
+    );
+}
+      
+      
       function meDblClick(e) {
         launchMe(e)
       }
