@@ -153,9 +153,9 @@ function handleEnter(e) {
       <% if (messages.List[0]) { %>
       <% let msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, "<%= msg.content %>", '<%= msg.time %>', "me")
       } else {
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, '<%= msg.content %>', '<%= msg.time %>', "he")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "he")
       }
       <% }) %>
       <% } %>
@@ -295,7 +295,7 @@ function scrollToBottom() {
       
       async function postMsg(message) {
         
-        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
+        let POSTDATA = {author: message.author, content: `${message.content}`, time: moment().format('h:mm a'), to: message.to, type: "data"}
             
         fetch('https://zhat.cf/api/post/message', {
   method: 'PATCH',
@@ -340,7 +340,7 @@ function scrollToBottom() {
 
         // let msgContent = formatChatMessage(content)
         let msgContentProto = content.split(/ +/g);
-        msgContent = embolden(content)
+        msgContent = content;
         let b = msgContent.match(/[\W\s\S.]\w*/g).join(" ")
         msgContent = b.replace(/\n+/g, "<br>")
         
