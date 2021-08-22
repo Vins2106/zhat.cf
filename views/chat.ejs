@@ -348,8 +348,9 @@ function scrollToBottom() {
             msgContent += ` ${x}`;
           }    
         });
-        let b = msgContent.match(/[\w\s.]\w*/g).join(" ")
+        let b = msgContent.match(/[\W\s.]\w*/g).join(" ")
         msgContent = b.replace(/\n/g, "<br>")
+        msgContent = linkify(msgContent)
         
         message.setAttribute("data-tippy-content", "double click to show option")
         message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
@@ -358,6 +359,21 @@ function scrollToBottom() {
         
         return true;
       }
+      
+function linkify(inputText) {
+    var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = inputText.replace(replacePattern1, '<a data-tippy-content="redirect to $1" onclick="redirectMe($1)">$1</a>');
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+  // 
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, '$1<a data-tippy-content="redirect to $2" onclick="redirectMe("http://$2")">$2</a>');
+
+    return replacedText;
+}      
       
       function meDblClick(e) {
         launchMe(e)
