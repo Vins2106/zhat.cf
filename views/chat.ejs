@@ -348,25 +348,13 @@ function scrollToBottom() {
           }    
         });
         let b = msgContent.match(/[\W\s.]\w*/g).join(" ")
-        let doneProcess1 = b.replace(/\n/g, "<br>")
-        let doneProcess = doneProcess1.split(/ +/g)
-        msgContent = ""
-        let processMsg = doneProcess.map(ctn => {
-          console.log(ctn)
-          if (ctn.startsWith("https://") || ctn.startsWith("http://")) {
-            msgContent += ` <a data-tippy-content="redirect to ${ctn}" title="${ctn}" onclick="redirectMe('${ctn}')">${ctn}</a>`
-          } else {
-            msgContent += ` ${ctn}`;
-          }   
-        });
-        
-        Promise.all(processMsg).then(() => {
+        msgContent = b.replace(/\n/g, "<br>")
+      
         message.setAttribute("data-tippy-content", "double click to show option")
         message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
         message.innerHTML = msgContent;
         namemsg.appendChild(message);
         return true;
-        })
         
         
       }
