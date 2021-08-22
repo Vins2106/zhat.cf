@@ -341,7 +341,7 @@ function scrollToBottom() {
         // let msgContent = formatChatMessage(content)
         let msgContentProto = content.split(/ +/g);
         msgContent = content.trim();
-        let b = msgContent.match(/[\W\s\S.]\w*/g).join(" ")
+        let b = msgContent.match(/[\w\s\S.]\w*/g).join(" ")
         msgContent = b.replace(/\n/g, "<br>")
         
         message.setAttribute("data-tippy-content", "double click to show option")
