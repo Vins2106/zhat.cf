@@ -188,9 +188,9 @@ function handleEnter(e) {
         let postDataMSG;
         
         if ('<%= he.UID %>' == locationHref) {
-          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: `${input.value}`, to: `<%= he.UID %>`, bot: true};
+          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: `<%= he.UID %>`, bot: true};
         } else {
-          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: `${input.value}`, to: '<%= he.UID %>', bot: false};
+          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: '<%= he.UID %>', bot: false};
         // `
         }
         socket.emit('message', postDataMSG);
@@ -295,7 +295,7 @@ function scrollToBottom() {
       
       async function postMsg(message) {
         
-        let POSTDATA = {author: message.author, content: `${message.content}`, time: moment().format('h:mm a'), to: message.to, type: "data"}
+        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
             
         fetch('https://zhat.cf/api/post/message', {
   method: 'PATCH',
