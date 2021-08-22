@@ -153,9 +153,9 @@ function handleEnter(e) {
       <% if (messages.List[0]) { %>
       <% let msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content.replace(/`/g, "\`") %>`, '<%= msg.time %>', "me")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content.replace(/`/g, "\\`") %>`, '<%= msg.time %>', "me")
       } else {
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, "<%= msg.content.replace(/`/g, "\`") %>".replace(/\n\r?/g, '<br />'), '<%= msg.time %>', "he")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content.replace(/`/g, "\\`") %>`, '<%= msg.time %>', "he")
       }
       <% }) %>
       <% } %>
@@ -270,7 +270,7 @@ function scrollToBottom() {
         if (command) {
           setTimeout(() => {
             let response = command.response.replace(/{{args}}/g, args.join(" "));
-          postMsg({author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, content: response.replace(/\n\r?/g, '<br />'), to: '<%= req.session.user.UID %>', bot: false})
+          postMsg({author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, content: response, to: '<%= req.session.user.UID %>', bot: false})
           createMessage(<%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, response, false, "he")
           scrollTo(0, chats.scrollHeight)            
           }, 500)
@@ -295,7 +295,7 @@ function scrollToBottom() {
       
       async function postMsg(message) {
         
-        let POSTDATA = {author: message.author, content: message.content.replace(/\n\r?/g, '<br />'), time: moment().format('h:mm a'), to: message.to, type: "data"}
+        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
             
         fetch('https://zhat.cf/api/post/message', {
   method: 'PATCH',
@@ -340,7 +340,8 @@ function scrollToBottom() {
 
         // let msgContent = formatChatMessage(content)
         let msgContentProto = content.split(/ +/g);
-        msgContent = content;
+        msgContent = content.trim();
+        console.log(msgContent)
         let b = msgContent.match(/[\W\s\S.]\w*/g).join(" ")
         msgContent = b.replace(/\n+/g, "<br>")
         
