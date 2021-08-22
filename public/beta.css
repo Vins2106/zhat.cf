@@ -556,6 +556,7 @@ span.he-name {
 
 textarea.chat-input {
   width: -webkit-fill-available;
+  font-weight: bold;
 }
 
 .chat-form form {

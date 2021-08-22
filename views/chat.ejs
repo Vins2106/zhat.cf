@@ -175,7 +175,9 @@ function handleEnter(e) {
       
       emoji.addEventListener('emoji-click', event => {
         emojiToggle()
+        thumbBtn.innerHTML = "Send!"
         input.value += event.detail.unicode;
+        thumbBtn.type = "submit";
       }); 
       
       form.addEventListener('submit', function(e) {
@@ -511,7 +513,8 @@ function embolden( str ){
         // 3
       
 function isEmptyOrSpaces(str){
-    return str === null || str.match(/^ *$/) !== null;
+  let emojiRegex = /\p{Extended_Pictographic}/ug;
+    return str === null || emojiRegex.test(str) || str.match(/^ *$/) !== null;
 }      
     </script>    
     <script>
