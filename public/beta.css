@@ -573,8 +573,10 @@ textarea.chat-input {
 }
 
 textarea {
-  resize: none;
-  overflow: overlay;
+    resize: vertical;
+    max-height: 100px;
+    overflow: overlay;
+    min-height: 15px;
 }
 
 .navbar-brand.brand {
