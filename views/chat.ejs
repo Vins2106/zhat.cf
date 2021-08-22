@@ -37,7 +37,6 @@
       </div>
       <div class="modal-content">
         <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy"></i>
-        <i class="fa fa-reply cursor-pointer opt-modal" id="modal-reply"></i>
       </div>
     </div>
     
@@ -340,25 +339,36 @@ function scrollToBottom() {
         let msgContent = ""
 
         // let msgContent = formatChatMessage(content)
-        console.log()
-        let b = content.match(/[\W\s.]\w*/g).join(" ");
-        msgContent = b.replace(/\n/g, "<br>")
-        let final = "";
-        let msgContentProto = msgContent.split(/ +/g);
+        let msgContentProto = content.split(/ +/g);
         msgContentProto.map(x => {
           if (x.startsWith("https://") || x.startsWith("http://")) {
-            final += ` <a data-tippy-content="redirect to ${x}" title="${x}" onclick="redirectMe('${x}')">${x}</a>`
+            msgContent += ` <a data-tippy-content="redirect to ${x}" title="${x}" onclick="redirectMe('${x}')">${x}</a>`
           } else {
-            final += ` ${x}`;
+            msgContent += ` ${x}`;
           }    
         });
+        let b = msgContent.match(/[\W\s.]\w*/g).join(" ")
+        let doneProcess1 = b.replace(/\n/g, "<br>")
+        let doneProcess = doneProcess1.split(/ +/g)
+        msgContent = ""
+        let processMsg = doneProcess.map(ctn => {
+          console.log(ctn)
+          if (ctn.startsWith("https://") || ctn.startsWith("http://")) {
+            msgContent += ` <a data-tippy-content="redirect to ${ctn}" title="${ctn}" onclick="redirectMe('${ctn}')">${ctn}</a>`
+          } else {
+            msgContent += ` ${ctn}`;
+          }   
+        });
         
+        Promise.all(processMsg).then(() => {
         message.setAttribute("data-tippy-content", "double click to show option")
         message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
         message.innerHTML = msgContent;
         namemsg.appendChild(message);
-        
         return true;
+        })
+        
+        
       }
       
       function meDblClick(e) {
