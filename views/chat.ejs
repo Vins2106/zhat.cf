@@ -153,9 +153,9 @@ function handleEnter(e) {
       <% if (messages.List[0]) { %>
       <% let msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "me")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, '<%= msg.content %>', '<%= msg.time %>', "me")
       } else {
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "he")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, '<%= msg.content %>', '<%= msg.time %>', "he")
       }
       <% }) %>
       <% } %>
