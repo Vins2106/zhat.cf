@@ -138,16 +138,15 @@
       audio.volume = 0.5;                                                    
       let emojiDisplay = false;
       
-      input.onkeydown = handleEnter
       input.onkeypress = handleEnter
       
-function handleEnter(evt) {
-    if (evt.keyCode == 13 && evt.shiftKey) {
-        if (evt.type == "keypress") {
-            pasteIntoInput(this, "\n");
-        }
-        evt.preventDefault();
+function handleEnter(e) {
+    if(e.which === 13 && !e.shiftKey) {
+        e.preventDefault();
+    
+        $(this).closest("form").submit();
     }
+
 }      
       
       <% if (messages.List[0]) { %>
