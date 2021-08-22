@@ -60,17 +60,17 @@
       <div class="navbot">
         <div class="navbot-link">
           <a href="/me/settings">
-          <i class="fa fa-gear" title="settings"></i>
+          <i class="fa fa-gear" data-tippy-content="settings"></i>
           </a>
         </div>
         <div class="navbot-link">
           <a href="/me/add">
-          <i class="fa fa-plus" title="add contact"></i>
+          <i class="fa fa-plus" data-tippy-content="add contact"></i>
           </a>
         </div>
         <div class="navbot-link">
           <a href="/logout">
-          <i class="fa fa-sign-out" title="logout"></i>
+          <i class="fa fa-sign-out" data-tippy-content="logout"></i>
           </a>
         </div>
       </div>
@@ -132,7 +132,7 @@ const shareData = {
     </script>
     <script>
         const audio = document.querySelector("audio");
-        audio.volume = 0.3;
+        audio.volume = 0.5;
       
     let socket = io();
       

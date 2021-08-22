@@ -132,7 +132,7 @@
       let emoji = document.querySelector('emoji-picker');
       let thumbBtn = document.getElementById("submit-btn");
       emoji.style.display = "none";
-      audio.volume = 0.3;                                                    
+      audio.volume = 0.5;                                                    
       let emojiDisplay = false;
       
       <% if (messages.List[0]) { %>
@@ -234,7 +234,7 @@ function scrollToBottom() {
           scrollTo(0, chats.scrollHeight)
         }
         
-        if (message.to == '<%= req.session.user.UID %>') {
+        if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
           audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
@@ -265,7 +265,7 @@ function scrollToBottom() {
         
         }
         
-        if (message.to == '<%= req.session.user.UID %>' && message.to !) {
+        if (message.to == '<%= req.session.user.UID %>' && message.author.id == locationHref) {
           audio.play()
           createMessage(message.author, message.content, false, "he")
           scrollTo(0, chats.scrollHeight)
