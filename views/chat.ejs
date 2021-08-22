@@ -189,9 +189,10 @@ function handleEnter(e) {
         let postDataMSG;
         
         if ('<%= he.UID %>' == locationHref) {
-          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: `${input.value}`, to: '<%= he.UID %>', bot: true};
+          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: `${input.value}`, to: `<%= he.UID %>`, bot: true};
         } else {
           postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: `${input.value}`, to: '<%= he.UID %>', bot: false};
+        // `
         }
         socket.emit('message', postDataMSG);
         socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
@@ -337,6 +338,7 @@ function scrollToBottom() {
         let message = document.createElement("p");
         message.setAttribute("class", `${mehe}-msg`);
         let msgContent = ""
+
         // let msgContent = formatChatMessage(content)
         let msgContentProto = content.split(/ +/g);
         msgContentProto.map(x => {
@@ -346,6 +348,9 @@ function scrollToBottom() {
             msgContent += ` ${x}`;
           }    
         });
+        let b = msgContent.match(/[\w\s.]\w*/g).join(" ")
+        msgContent = b.replace(/\n/g, "<br>")
+        
         message.setAttribute("data-tippy-content", "double click to show option")
         message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
         message.innerHTML = msgContent;
