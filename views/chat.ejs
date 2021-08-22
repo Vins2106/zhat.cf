@@ -153,9 +153,9 @@ function handleEnter(e) {
       <% if (messages.List[0]) { %>
       <% let msgLoaded = messages.List.map(msg => { %>
       if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content.replace(/`/g, "\\`") %>`, '<%= msg.time %>', "me")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "me")
       } else {
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content.replace(/`/g, "\\`") %>`, '<%= msg.time %>', "he")
+      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "he")
       }
       <% }) %>
       <% } %>
@@ -188,9 +188,9 @@ function handleEnter(e) {
         let postDataMSG;
         
         if ('<%= he.UID %>' == locationHref) {
-          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: `<%= he.UID %>`, bot: true};
+          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: `<%= he.UID %>`, bot: true};
         } else {
-          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value, to: '<%= he.UID %>', bot: false};
+          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: '<%= he.UID %>', bot: false};
         // `
         }
         socket.emit('message', postDataMSG);
@@ -295,8 +295,8 @@ function scrollToBottom() {
       
       async function postMsg(message) {
         
-        let POSTDATA = {author: message.author, content: message.content, time: moment().format('h:mm a'), to: message.to, type: "data"}
-            
+        let POSTDATA = {author: message.author, content: message.content.replace(/`/g, "\\`"), time: moment().format('h:mm a'), to: message.to, type: "data"}
+        
         fetch('https://zhat.cf/api/post/message', {
   method: 'PATCH',
   headers: {
@@ -341,7 +341,6 @@ function scrollToBottom() {
         // let msgContent = formatChatMessage(content)
         let msgContentProto = content.split(/ +/g);
         msgContent = content.trim();
-        console.log(msgContent)
         let b = msgContent.match(/[\W\s\S.]\w*/g).join(" ")
         msgContent = b.replace(/\n+/g, "<br>")
         
@@ -490,7 +489,6 @@ function embolden( str ){
       } else if (isEmptyOrSpaces(input.value)) {
         subtn.type = "button"
         subtn.innerHTML = "👍"
-        console.log("thumb emoji launch")
 
         // 2
                    }
