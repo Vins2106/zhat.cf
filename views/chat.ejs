@@ -338,8 +338,6 @@ function scrollToBottom() {
         message.setAttribute("class", `${mehe}-msg`);
         let msgContent = ""
 
-        // let msgContent = formatChatMessage(content)
-        msgContent = content.split(/ +/g);
         msgContent = embolden(msgContent)
         let b = msgContent.match(/[\W\s\S.]\w*/g).join(" ")
         msgContent = b.replace(/\n+/g, "<br>")
