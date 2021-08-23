@@ -10,7 +10,7 @@ const client = new Discord.Client({
       status: "Good"
     },
     system: {
-      percent: `99%`,
+      percent: `100%`,
       status: "Good"
     },
     lastIncident: "None"
