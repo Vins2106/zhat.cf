@@ -1,598 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include("./parts/betahead.ejs") %>
-  </head>
-  <% if (!req.session.user.Wallpaper) { %>
-  <body class="loading-body" id="body">
-  <% } else { %>
-  <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;">
-  <% } %>  
-    
-    <div class="loading" id="loading">
-      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
-      <span class="loading-title">Loading...</span>
-    </div>
-    
-    <audio src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Farpeggio-467.mp3"></audio>   
-    <div class="modal" id="user-modal">
-      <div class="modal-close">
-        <i class="fa fa-close" onclick="toggleModal()"></i>
-      </div>
-      <div class="modal-pf" onclick="copyId()">
-         <div class="pf-img-stats">
-           <img class="pf-img freezeframe" alt="avatar" src="<%= he.Avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
-           <span class="pf-status <%= he.Bot ? "online" : "offline" %>" id="<%= he.Bot ? "" : `${he.UID}` %>"></span>
-        </div>
-        <div class="pf-username-click">
-        <span class="pf-username"><%= he.Username %></span>
-        <span class="pf-click">Click to copy user id</span>             
-        </div>
-      </div>
-    </div>
-    
-    <div class="modal" id="me-modal">
-      <div class="modal-close">
-        <i class="fa fa-close" onclick="launchMe()"></i>
-      </div>
-      <div class="modal-content">
-        <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy"></i>
-      </div>
-    </div>
-    
-    <div class="modal" id="he-modal">
-      <div class="modal-close">
-        <i class="fa fa-close" onclick="launchHe()"></i>
-      </div>
-      <div class="modal-content">
-        <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy2"></i>
-        <i class="fa fa-reply cursor-pointer opt-modal" id="modal-reply2"></i>
-      </div>
-    </div>
-    
-    <main class="main">
-      <div class="btn-back">
-        <button class="btn btn-primary" onclick="location.href='/me'">
-          Back
-        </button>
-        <div class="btn-info" onclick="toggleModal()" style="cursor: pointer;">
-        <span class="acc-name"><%= he.Username %></span>
-        <img src="<%= he.Avatar %>" alt="avatar" class="pf-img pf-2 freezeframe" style="margin-left: 10px;" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">          
-        </div>
-      </div>
-      <% if (he.Bot) { %>
-      <div class="chats" id="chat-list">
-        <div class="he-chat">
-          <img src="<%= he.Avatar %> freezeframe" alt="He avatar" class="he-avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
-          <div class="he-info">
-            <p class="he-msg">Hi! im Bot, start chat with me, use <strong>#help</strong></p>
-          </div>
-        </div>       
-      </div>      
+   <head>
+      <%- include("./parts/betahead.ejs") %>
+   </head>
+   <% if (!req.session.user.Wallpaper) { %>
+   <body class="loading-body" id="body">
       <% } else { %>
-      <div class="chats" id="chat-list">
-        <div class="he-chat">
-          <img src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg" alt="He avatar" class="he-avatar">
-          <div class="he-info">
-            <p class="he-msg">Start chatting!</p>
-          </div>
-        </div>       
-      </div>      
-      <% } %>
-      <div class="chat-up">
-        
-      </div>
-      <div class="chat-form">
-        <form method="get" id="form">
-          <buton type="button" class="btn btn-primary" onclick="emojiToggle()" style="margin-right: 10px; display: flex; align-items: center; justify-content: center;">😄</buton>
-          <emoji-picker></emoji-picker>
-          <textarea maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character..."></textarea>
-<!--           <input maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character..."> -->
-          <button style="margin-left: 10px;" type="button" class="btn btn-primary" id="submit-btn">
-            👍
-          </button>
-        </form>
-      </div>
-    </main> 
-    
-    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>    
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/tippy.js@6/animations/scale.css"
-/>    
-    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-    
-
-    
-    <script>
-      
-      function copyId() {
-        navigator.clipboard.writeText('<%= he.UID %>');
-        alert("Copied")
-      }
-    </script>
-    
-    <script>
-      
-    var socket = io();
-
-      // import { formatChatMessage } from "format-chat-message";
-      const audio = document.querySelector("audio");
-      let locationHref =  window.location.href.split("me/")[1].slice(0, 18)
-      var form = document.getElementById("form");
-      var input = document.getElementById("input-msg");
-      let chats = document.getElementById(`chat-list`);
-      let emoji = document.querySelector('emoji-picker');
-      let thumbBtn = document.getElementById("submit-btn");
-      emoji.style.display = "none";
-      audio.volume = 0.5;                                                    
-      let emojiDisplay = false;
-      
-      input.onkeypress = handleEnter
-      
-function handleEnter(e) {
-    if(e.which === 13 && !e.shiftKey) {
-        e.preventDefault();
-    
-        let evt = new CustomEvent("submit");
-      
-      form.dispatchEvent(evt)
-    }
-
-}      
-      
-      <% if (messages.List[0]) { %>
-      <% let msgLoaded = messages.List.map(msg => { %>
-      if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "me")
-      } else {
-      createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "he")
-      }
-      <% }) %>
-      <% } %>
-      
-      
-      
-      
-      function emojiToggle() {
-        if (emojiDisplay) {
-          emoji.style.display = "none"
-          emojiDisplay = false;
-        } else {
-          emoji.style.display = "block"
-          emojiDisplay = true;
-        }
-      }
-      
-      emoji.addEventListener('emoji-click', event => {
-        emojiToggle()
-        thumbBtn.innerHTML = "Send!"
-        input.value += event.detail.unicode;
-        thumbBtn.type = "submit";
-      }); 
-      
-      form.addEventListener('submit', function(e) {
-        if (isEmptyOrSpaces(input.value)) {                             
-        e.preventDefault();
-        form.reset()
-        return;
-        }
-                                       
-        let postDataMSG;
-        
-        if ('<%= he.UID %>' == locationHref) {
-          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: `<%= he.UID %>`, bot: true};
-        } else {
-          postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: '<%= he.UID %>', bot: false};
-        // `
-        }
-        socket.emit('message', postDataMSG);
-        socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
-        e.preventDefault();
-        form.reset()                             
-        input.setAttribute("disabled", "disabled");
-        input.setAttribute("placeholder", "cooldown");
-        thumbBtn.type = "button"
-        thumbBtn.innerHTML = "👍"
-        setTimeout(() => {
-        input.disabled = false;
-        input.setAttribute("placeholder", "max 100 characters");
-        input.focus();
-        }, 2000)
-      });
-      
-function scrollToBottom() {
-  scrollTo(0, chats.scrollHeight)
-}    
-      
-        let prefix = "#";
-        
-        let cmds = [
-          {
-            name: "faq",
-            response: "https://zhat.cf/faq"
-          },
-          {
-            name: "how-to-add-user",
-            response: "https://zhat.cf/faq#how-to-add-contact"
-          },
-          {
-            name: "my-id",
-            response: "<%= req.session.user.UID %>"
-          },
-          {
-            name: "help",
-            response: "#help, #faq, #how-to-add-user, #my-id, #updates, #say [message]"
-          },
-          {
-            name: "updates",
-            response: "https://zhat.cf/updates"
-          },
-          {
-            name: "say",
-            response: "{{args}}"
-          }
-        ]
-        
-      socket.on("message2", message => {
-
-        if (!message.bot) {
-        if (message.author.UID == '<%= req.session.user.UID %>' && message.to == locationHref) {
-          postMsg(message);
-          createMessage(message.author, message.content, false, "me")
-          scrollTo(0, chats.scrollHeight)
-        }
-        
-        if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
-          audio.play()
-          createMessage(message.author, message.content, false, "he")
-          scrollTo(0, chats.scrollHeight)
-        }          
-                
-        } else if (message.bot) {
-        
-        if (message.author.UID == '<%= req.session.user.UID %>' && message.to == locationHref) {
-          postMsg(message);
-          createMessage(message.author, message.content, false, "me")
-          scrollTo(0, chats.scrollHeight)
-        
-        let args = message.content.slice(prefix.length).trim().split(/ +/g);
-        let cmd = args.shift().toLowerCase();
-        
-        let command = cmds.find(x => x.name == cmd);
-        if (command) {
-          setTimeout(() => {
-            let response = command.response.replace(/{{args}}/g, args.join(" "));
-          postMsg({author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, content: response, to: '<%= req.session.user.UID %>', bot: false})
-          createMessage(<%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, response, false, "he")
-          scrollTo(0, chats.scrollHeight)            
-          }, 500)
-        } else {
-          return;
-        }
-        
-        
-        }
-        
-        if (message.to == '<%= req.session.user.UID %>' && message.author.id == locationHref) {
-          audio.play()
-          createMessage(message.author, message.content, false, "he")
-          scrollTo(0, chats.scrollHeight)
-        }           
-                            
-        }
-                
-        
-        
-      })
-      
-      async function postMsg(message) {
-        
-        let POSTDATA = {author: message.author, content: message.content.replace(/`/g, "\\`"), time: moment().format('h:mm a'), to: message.to, type: "data"}
-        
-        fetch('https://zhat.cf/api/post/message', {
-  method: 'PATCH',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-          body: JSON.stringify(POSTDATA),
-        }).then(res => res.json()).then(data => {
-          if (data.error) {
-            return console.log(`cant post message: `, data.msg)
-          } else {
-            return;
-          }
-        })                
-      }
-      
-      async function createMessage(user, content, time = false, mehe) {
-        let base = document.createElement("div");
-        base.setAttribute("class", `${mehe}-chat`);
-        chats.appendChild(base);
-        
-        let image = document.createElement("img");
-        image.setAttribute("src", user.Avatar);
-        image.setAttribute("class", `${mehe}-avatar freezeframe`);
-        image.setAttribute("alt", "avatar")
-        image.setAttribute("data-tippy-content", `${user.Username} avatar`)
-        image.setAttribute("title", `${user.Username} avatar`)
-        base.appendChild(image);
-        
-        let namemsg = document.createElement("div");
-        namemsg.setAttribute("class", `${mehe}-info`);
-        base.appendChild(namemsg);
-        
-        let name = document.createElement("span");
-        name.setAttribute("class", `${mehe}-name`)
-                                 
-
-        
-        let message = document.createElement("p");
-        message.setAttribute("class", `${mehe}-msg`);
-
-        // let msgContent = formatChatMessage(content)
-        content = content.replace(/[\n]/g, "<br>")
-        
-        message.setAttribute("data-tippy-content", "double click to show option")
-        message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
-        message.innerHTML = content;
-        namemsg.appendChild(message);
-        return true;
-        
-        
-      }
-      
-      let latin_map = [">"]
-      
-function embolden( str ){
-  return str.replace("&gt;", ">").replace("&#39;", "'")
-}
-      
-      
-      function meDblClick(e) {
-        launchMe(e)
-      }
-      
-      function heDblClick(e) {
-        launchHe(e)
-      }
-      
-      let meModal = document.getElementById("me-modal");
-      let heModal = document.getElementById("he-modal");
-    let modal = document.getElementById("user-modal");
-      
-      let isMeModal = false;
-      let isHeModal = false;
-      let display = false;
-      function launchMe(e = false) {
-        if (isHeModal) {
-          heModal.classList.remove("on");
-          isHeModal = false;          
-        } 
-        
-        if (display) {
-          display = false;
-          modal.classList.remove("on")          
-        }
-        
-        if (!isMeModal) {
-          if (e) {
-            document.getElementById("modal-copy").onclick = function() {
-              navigator.clipboard.writeText(e.innerHTML);
-              closeMeModal();
-              alert("Copied")
-              return;
-            }
-            
-            
-            function closeMeModal() {
-          isMeModal = false;
-          return meModal.classList.remove("on");              
-            }
-          }
-          meModal.classList.add("on");
-          isMeModal = true;
-        } else if (isMeModal) {
-          meModal.classList.remove("on");
-          isMeModal = false;
-        }
-      }
-      
-      function launchHe(e = false) {
-        if (isMeModal) {
-          meModal.classList.remove("on");
-          isMeModal = false;          
-        }
-        
-        if (display) {
-          display = false;
-          modal.classList.remove("on")          
-        }        
-        
-        if (!isHeModal) {
-          if (e) {
-            document.getElementById("modal-copy2").onclick = function() {
-              navigator.clipboard.writeText(e.innerHTML);
-              closeHeModal();
+      <body class="loading-body" id="body" style="background-image: url('<%= req.session.user.Wallpaper %>'); background-size: cover; background-repeat: no-repeat; object-fit: cover; background-position: center; background-attachment: fixed;">
+         <% } %>  
+         <div class="loading" id="loading">
+            <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
+            <span class="loading-title">Loading...</span>
+         </div>
+         <audio src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Farpeggio-467.mp3"></audio>
+         <div class="modal" id="user-modal">
+            <div class="modal-close">
+               <i class="fa fa-close" onclick="toggleModal()"></i>
+            </div>
+            <div class="modal-pf" onclick="copyId()">
+               <div class="pf-img-stats">
+                  <img class="pf-img freezeframe" alt="avatar" src="<%= he.Avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
+                  <span class="pf-status <%= he.Bot ? "online" : "offline" %>" id="<%= he.Bot ? "" : `${he.UID}` %>"></span>
+               </div>
+               <div class="pf-username-click">
+                  <span class="pf-username"><%= he.Username %></span>
+                  <span class="pf-click">Click to copy user id</span>             
+               </div>
+            </div>
+         </div>
+         <div class="modal" id="me-modal">
+            <div class="modal-close">
+               <i class="fa fa-close" onclick="launchMe()"></i>
+            </div>
+            <div class="modal-content">
+               <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy"></i>
+            </div>
+         </div>
+         <div class="modal" id="he-modal">
+            <div class="modal-close">
+               <i class="fa fa-close" onclick="launchHe()"></i>
+            </div>
+            <div class="modal-content">
+               <i class="fa fa-copy cursor-pointer opt-modal" id="modal-copy2"></i>
+               <i class="fa fa-reply cursor-pointer opt-modal" id="modal-reply2"></i>
+            </div>
+         </div>
+         <main class="main">
+            <div class="btn-back">
+               <button class="btn btn-primary" onclick="location.href='/me'">
+               Back
+               </button>
+               <div class="btn-info" onclick="toggleModal()" style="cursor: pointer;">
+                  <span class="acc-name"><%= he.Username %></span>
+                  <img src="<%= he.Avatar %>" alt="avatar" class="pf-img pf-2 freezeframe" style="margin-left: 10px;" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">          
+               </div>
+            </div>
+            <% if (he.Bot) { %>
+            <div class="chats" id="chat-list">
+               <div class="he-chat">
+                  <img src="<%= he.Avatar %> freezeframe" alt="He avatar" class="he-avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
+                  <div class="he-info">
+                     <p class="he-msg">Hi! im Bot, start chat with me, use <strong>#help</strong></p>
+                  </div>
+               </div>
+            </div>
+            <% } else { %>
+            <div class="chats" id="chat-list">
+               <div class="he-chat">
+                  <img src="https://img.freepik.com/free-vector/locker_53876-25496.jpg?size=626&ext=jpg" alt="He avatar" class="he-avatar">
+                  <div class="he-info">
+                     <p class="he-msg">Start chatting!</p>
+                  </div>
+               </div>
+            </div>
+            <% } %>
+            <div class="chat-up">
+            </div>
+            <div class="chat-form">
+               <form method="get" id="form">
+                  <buton type="button" class="btn btn-primary" onclick="emojiToggle()" style="margin-right: 10px; display: flex; align-items: center; justify-content: center;">😄</buton>
+                  <emoji-picker></emoji-picker>
+                  <textarea maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character..."></textarea>
+                  <!--           <input maxlength="300" autocomplete="off" id="input-msg" class="chat-input input-box" placeholder="max 100 character..."> -->
+                  <button style="margin-left: 10px;" type="button" class="btn btn-primary" id="submit-btn">
+                  👍
+                  </button>
+               </form>
+            </div>
+         </main>
+         <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+         <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+         <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+         <script src="https://unpkg.com/@popperjs/core@2"></script>
+         <script src="https://unpkg.com/tippy.js@6"></script>    
+         <link
+            rel="stylesheet"
+            href="https://unpkg.com/tippy.js@6/animations/scale.css"
+            />
+         <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+         <script>
+            function copyId() {
+              navigator.clipboard.writeText('<%= he.UID %>');
               alert("Copied")
             }
-            document.getElementById("modal-reply2").onclick = function() {
-              input.value = `${e.innerHTML}\nreply: `;
-              closeHeModal();
-              input.focus()
-            }            
+         </script>
+         <script>
+            var socket = io();
             
-            function closeHeModal() {
-          isHeModal = false;
-          return heModal.classList.remove("on");              
-            }            
-          }
-          heModal.classList.add("on");
-          isHeModal = true;
-        } else if (isHeModal) {
-          heModal.classList.remove("on");
-          isHeModal = false;
-        }
-      }      
-      
-      function redirectMe(link) {
-        let isYes = confirm(`Are you sure to open ${link} ?`);
-        
-        if (isYes) {
-          return window.open(link, '_blank').focus();
-        } else {
-          return;
-        }
-      }
-      
-      
-      
-      function toggleModal() {
-        if (isMeModal) {
-          meModal.classList.remove("on");
-          isMeModal = false;                 
-        } else if (isHeModal) {
-          heModal.classList.remove("on");
-          isHeModal = false;                 
-        }
-        
-        if (display) {
-          display = false;
-          modal.classList.remove("on")
-        } else {
-          display = true;
-          modal.classList.add("on")
-        }
-      }      
-      
-    </script>
-    <script>
-      let subtn = document.getElementById("submit-btn")
-      let postDataMsgThumb = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: '👍', to: '<%= he.UID %>', bot: false}
-        subtn.onclick = function() {
-          if (subtn.type !== "button") return;
-          
-        socket.emit('message', postDataMsgThumb);
-        socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: "👍"})
-                                     
-        
-        subtn.disabled = true
-        subtn.classList.add("disabled");
-        
-          // 4
-        setTimeout(() => {
-          subtn.disabled = false
-        subtn.classList.remove("disabled");
-        }, 2000)          
-        }
-      input.addEventListener("keyup", () => {
-      if (!isEmptyOrSpaces(input.value)) {
-        subtn.innerHTML = "Send!"
-        subtn.type = "submit"
-        subtn.disabled = false;
-      } else if (isEmptyOrSpaces(input.value)) {
-        subtn.type = "button"
-        subtn.innerHTML = "👍"
-
-        // 2
-                   }
-      })
-
-        // 1
-        // 3
-      
-function isEmptyOrSpaces(str){
-  let emojiRegex = /\p{Extended_Pictographic}/ug;
-    return str === null || str.match(/^ *$/) !== null;
-}      
-    </script>    
-    <script>
-      
-      console.log("connected")
-      socket.emit("isConnected", '<%= req.session.user.UID %>')
-      
-    </script>   
-    <script>
-    let isNavbar = false;
-      
-      function toggleNavbar() {
-        let navbar = document.getElementById("navbar");
-        
-        if (isNavbar) {
-          navbar.classList.remove("on");
-          isNavbar = false;
-        } else if (!isNavbar) {
-          navbar.classList.add("on");
-          isNavbar = true;
-        }
-      }
-    
-    </script>
-    <script>
-      window.onload = function() {
-        tippy("[data-tippy-content]")
-        setTimeout(() => {
-          document.getElementById('body').classList.remove("loading-body");
-          document.getElementById('loading').classList.add("not-showing")
-          scrollTo(0, chats.scrollHeight)
-        }, 1000)
-      }
-    </script>
-    <script>
-                  
-      socket.on("someoneOnline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-      
-        
-        user.classList.remove("offline")
-        user.classList.add("online")
-      })
-      
-      socket.on("newMessage", (opt) => {
-        let user = document.getElementById(`${opt.id}-lastmsg`);
-        if (opt.to !== '<%= req.session.user.UID %>') return;
-        if (!user) return;
-        
-        audio.play();
-        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
-      })
-                  
-      socket.on("isOnline", userId => {
-        socket.emit("updateOnline", '<%= req.session.user.UID %>')
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is online`)
-        
-        user.classList.remove("offline")
-        user.classList.add("online")
-      });
-      
-      socket.on("isOffline", userId => {
-        let user = document.getElementById(userId);
-        if (!user) return;
-        console.log(`${userId} is offline`)
-        
-        user.classList.remove("online")
-        user.classList.add("offline")      
-      })
-      
-    </script>
-    <script>
-const myPeer = new Peer(undefined, {
-  path: '/api/peer',
-  host: '/',
-  port: '443'
-})    
-    </script>
-  </body>
+              // import { formatChatMessage } from "format-chat-message";
+              const audio = document.querySelector("audio");
+              let locationHref =  window.location.href.split("me/")[1].slice(0, 18)
+              var form = document.getElementById("form");
+              var input = document.getElementById("input-msg");
+              let chats = document.getElementById(`chat-list`);
+              let emoji = document.querySelector('emoji-picker');
+              let thumbBtn = document.getElementById("submit-btn");
+              emoji.style.display = "none";
+              audio.volume = 0.5;                                                    
+              let emojiDisplay = false;
+              
+              input.onkeypress = handleEnter
+              
+            function handleEnter(e) {
+            if(e.which === 13 && !e.shiftKey) {
+                e.preventDefault();
+            
+                let evt = new CustomEvent("submit");
+              
+              form.dispatchEvent(evt)
+            }
+            
+            }      
+              
+              <% if (messages.List[0]) { %>
+              <% let msgLoaded = messages.List.map(msg => { %>
+              if ('<%= msg.author.UID %>' == '<%= req.session.user.UID %>') {  
+              createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "me")
+              } else {
+              createMessage(<%- JSON.stringify({Username: msg.author.Username, UID: msg.author.UID, Avatar: msg.author.Avatar}) %>, `<%= msg.content %>`, '<%= msg.time %>', "he")
+              }
+              <% }) %>
+              <% } %>
+              
+              
+              
+              
+              function emojiToggle() {
+                if (emojiDisplay) {
+                  emoji.style.display = "none"
+                  emojiDisplay = false;
+                } else {
+                  emoji.style.display = "block"
+                  emojiDisplay = true;
+                }
+              }
+              
+              emoji.addEventListener('emoji-click', event => {
+                emojiToggle()
+                thumbBtn.innerHTML = "Send!"
+                input.value += event.detail.unicode;
+                thumbBtn.type = "submit";
+              }); 
+              
+              form.addEventListener('submit', function(e) {
+                if (isEmptyOrSpaces(input.value)) {                             
+                e.preventDefault();
+                form.reset()
+                return;
+                }
+                                               
+                let postDataMSG;
+                
+                if ('<%= he.UID %>' == locationHref) {
+                  postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: `<%= he.UID %>`, bot: true};
+                } else {
+                  postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: '<%= he.UID %>', bot: false};
+                // `
+                }
+                socket.emit('message', postDataMSG);
+                socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: input.value})
+                e.preventDefault();
+                form.reset()                             
+                input.setAttribute("disabled", "disabled");
+                input.setAttribute("placeholder", "cooldown");
+                thumbBtn.type = "button"
+                thumbBtn.innerHTML = "👍"
+                setTimeout(() => {
+                input.disabled = false;
+                input.setAttribute("placeholder", "max 100 characters");
+                input.focus();
+                }, 2000)
+              });
+              
+            function scrollToBottom() {
+            scrollTo(0, chats.scrollHeight)
+            }    
+              
+                let prefix = "#";
+                
+                let cmds = [
+                  {
+                    name: "faq",
+                    response: "https://zhat.cf/faq"
+                  },
+                  {
+                    name: "how-to-add-user",
+                    response: "https://zhat.cf/faq#how-to-add-contact"
+                  },
+                  {
+                    name: "my-id",
+                    response: "<%= req.session.user.UID %>"
+                  },
+                  {
+                    name: "help",
+                    response: "#help, #faq, #how-to-add-user, #my-id, #updates, #say [message]"
+                  },
+                  {
+                    name: "updates",
+                    response: "https://zhat.cf/updates"
+                  },
+                  {
+                    name: "say",
+                    response: "{{args}}"
+                  }
+                ]
+                
+              socket.on("message2", message => {
+            
+                if (!message.bot) {
+                if (message.author.UID == '<%= req.session.user.UID %>' && message.to == locationHref) {
+                  postMsg(message);
+                  createMessage(message.author, message.content, false, "me")
+                  scrollTo(0, chats.scrollHeight)
+                }
+                
+                if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
+                  audio.play()
+                  createMessage(message.author, message.content, false, "he")
+                  scrollTo(0, chats.scrollHeight)
+                }          
+                        
+                } else if (message.bot) {
+                
+                if (message.author.UID == '<%= req.session.user.UID %>' && message.to == locationHref) {
+                  postMsg(message);
+                  createMessage(message.author, message.content, false, "me")
+                  scrollTo(0, chats.scrollHeight)
+                
+                let args = message.content.slice(prefix.length).trim().split(/ +/g);
+                let cmd = args.shift().toLowerCase();
+                
+                let command = cmds.find(x => x.name == cmd);
+                if (command) {
+                  setTimeout(() => {
+                    let response = command.response.replace(/{{args}}/g, args.join(" "));
+                  postMsg({author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, content: response, to: '<%= req.session.user.UID %>', bot: false})
+                  createMessage(<%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar, Bot: he.Bot}) %>, response, false, "he")
+                  scrollTo(0, chats.scrollHeight)            
+                  }, 500)
+                } else {
+                  return;
+                }
+                
+                
+                }
+                
+                if (message.to == '<%= req.session.user.UID %>' && message.author.id == locationHref) {
+                  audio.play()
+                  createMessage(message.author, message.content, false, "he")
+                  scrollTo(0, chats.scrollHeight)
+                }           
+                                    
+                }
+                        
+                
+                
+              })
+              
+              async function postMsg(message) {
+                
+                let POSTDATA = {author: message.author, content: message.content.replace(/`/g, "\\`"), time: moment().format('h:mm a'), to: message.to, type: "data"}
+                
+                fetch('https://zhat.cf/api/post/message', {
+            method: 'PATCH',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+                  body: JSON.stringify(POSTDATA),
+                }).then(res => res.json()).then(data => {
+                  if (data.error) {
+                    return console.log(`cant post message: `, data.msg)
+                  } else {
+                    return;
+                  }
+                })                
+              }
+              
+              async function createMessage(user, content, time = false, mehe) {
+                let base = document.createElement("div");
+                base.setAttribute("class", `${mehe}-chat`);
+                chats.appendChild(base);
+                
+                let image = document.createElement("img");
+                image.setAttribute("src", user.Avatar);
+                image.setAttribute("class", `${mehe}-avatar freezeframe`);
+                image.setAttribute("alt", "avatar")
+                image.setAttribute("data-tippy-content", `${user.Username} avatar`)
+                image.setAttribute("title", `${user.Username} avatar`)
+                base.appendChild(image);
+                
+                let namemsg = document.createElement("div");
+                namemsg.setAttribute("class", `${mehe}-info`);
+                base.appendChild(namemsg);
+                
+                let name = document.createElement("span");
+                name.setAttribute("class", `${mehe}-name`)
+                                         
+            
+                
+                let message = document.createElement("p");
+                message.setAttribute("class", `${mehe}-msg`);
+            
+                // let msgContent = formatChatMessage(content)
+                content = content.replace(/[\n]/g, "<br>")
+                
+                message.setAttribute("data-tippy-content", "double click to show option")
+                message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
+                message.innerHTML = content;
+                namemsg.appendChild(message);
+                return true;
+                
+                
+              }
+              
+              let latin_map = [">"]
+              
+            function embolden( str ){
+            return str.replace("&gt;", ">").replace("&#39;", "'")
+            }
+              
+              
+              function meDblClick(e) {
+                launchMe(e)
+              }
+              
+              function heDblClick(e) {
+                launchHe(e)
+              }
+              
+              let meModal = document.getElementById("me-modal");
+              let heModal = document.getElementById("he-modal");
+            let modal = document.getElementById("user-modal");
+              
+              let isMeModal = false;
+              let isHeModal = false;
+              let display = false;
+              function launchMe(e = false) {
+                if (isHeModal) {
+                  heModal.classList.remove("on");
+                  isHeModal = false;          
+                } 
+                
+                if (display) {
+                  display = false;
+                  modal.classList.remove("on")          
+                }
+                
+                if (!isMeModal) {
+                  if (e) {
+                    document.getElementById("modal-copy").onclick = function() {
+                      navigator.clipboard.writeText(e.innerHTML);
+                      closeMeModal();
+                      alert("Copied")
+                      return;
+                    }
+                    
+                    
+                    function closeMeModal() {
+                  isMeModal = false;
+                  return meModal.classList.remove("on");              
+                    }
+                  }
+                  meModal.classList.add("on");
+                  isMeModal = true;
+                } else if (isMeModal) {
+                  meModal.classList.remove("on");
+                  isMeModal = false;
+                }
+              }
+              
+              function launchHe(e = false) {
+                if (isMeModal) {
+                  meModal.classList.remove("on");
+                  isMeModal = false;          
+                }
+                
+                if (display) {
+                  display = false;
+                  modal.classList.remove("on")          
+                }        
+                
+                if (!isHeModal) {
+                  if (e) {
+                    document.getElementById("modal-copy2").onclick = function() {
+                      navigator.clipboard.writeText(e.innerHTML);
+                      closeHeModal();
+                      alert("Copied")
+                    }
+                    document.getElementById("modal-reply2").onclick = function() {
+                      input.value = `${e.innerHTML}\nreply: `;
+                      closeHeModal();
+                      input.focus()
+                    }            
+                    
+                    function closeHeModal() {
+                  isHeModal = false;
+                  return heModal.classList.remove("on");              
+                    }            
+                  }
+                  heModal.classList.add("on");
+                  isHeModal = true;
+                } else if (isHeModal) {
+                  heModal.classList.remove("on");
+                  isHeModal = false;
+                }
+              }      
+              
+              function redirectMe(link) {
+                let isYes = confirm(`Are you sure to open ${link} ?`);
+                
+                if (isYes) {
+                  return window.open(link, '_blank').focus();
+                } else {
+                  return;
+                }
+              }
+              
+              
+              
+              function toggleModal() {
+                if (isMeModal) {
+                  meModal.classList.remove("on");
+                  isMeModal = false;                 
+                } else if (isHeModal) {
+                  heModal.classList.remove("on");
+                  isHeModal = false;                 
+                }
+                
+                if (display) {
+                  display = false;
+                  modal.classList.remove("on")
+                } else {
+                  display = true;
+                  modal.classList.add("on")
+                }
+              }      
+              
+         </script>
+         <script>
+            let subtn = document.getElementById("submit-btn")
+            let postDataMsgThumb = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: '👍', to: '<%= he.UID %>', bot: false}
+              subtn.onclick = function() {
+                if (subtn.type !== "button") return;
+                
+              socket.emit('message', postDataMsgThumb);
+              socket.emit('newMessages', {id: '<%= req.session.user.UID %>', username: '<%= req.session.user.Username %>', to: '<%= he.UID %>', msg: "👍"})
+                                           
+              
+              subtn.disabled = true
+              subtn.classList.add("disabled");
+              
+                // 4
+              setTimeout(() => {
+                subtn.disabled = false
+              subtn.classList.remove("disabled");
+              }, 2000)          
+              }
+            input.addEventListener("keyup", () => {
+            if (!isEmptyOrSpaces(input.value)) {
+              subtn.innerHTML = "Send!"
+              subtn.type = "submit"
+              subtn.disabled = false;
+            } else if (isEmptyOrSpaces(input.value)) {
+              subtn.type = "button"
+              subtn.innerHTML = "👍"
+            
+              // 2
+                         }
+            })
+            
+              // 1
+              // 3
+            
+            function isEmptyOrSpaces(str){
+            let emojiRegex = /\p{Extended_Pictographic}/ug;
+            return str === null || str.match(/^ *$/) !== null;
+            }      
+         </script>    
+         <script>
+            console.log("connected")
+            socket.emit("isConnected", '<%= req.session.user.UID %>')
+            
+         </script>   
+         <script>
+            let isNavbar = false;
+              
+              function toggleNavbar() {
+                let navbar = document.getElementById("navbar");
+                
+                if (isNavbar) {
+                  navbar.classList.remove("on");
+                  isNavbar = false;
+                } else if (!isNavbar) {
+                  navbar.classList.add("on");
+                  isNavbar = true;
+                }
+              }
+            
+         </script>
+         <script>
+            window.onload = function() {
+              tippy("[data-tippy-content]")
+              setTimeout(() => {
+                document.getElementById('body').classList.remove("loading-body");
+                document.getElementById('loading').classList.add("not-showing")
+                scrollTo(0, chats.scrollHeight)
+              }, 1000)
+            }
+         </script>
+         <script>
+            socket.on("someoneOnline", userId => {
+              let user = document.getElementById(userId);
+              if (!user) return;
+            
+              
+              user.classList.remove("offline")
+              user.classList.add("online")
+            })
+            
+            socket.on("newMessage", (opt) => {
+              let user = document.getElementById(`${opt.id}-lastmsg`);
+              if (opt.to !== '<%= req.session.user.UID %>') return;
+              if (!user) return;
+              
+              audio.play();
+              user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
+            })
+                        
+            socket.on("isOnline", userId => {
+              socket.emit("updateOnline", '<%= req.session.user.UID %>')
+              let user = document.getElementById(userId);
+              if (!user) return;
+              console.log(`${userId} is online`)
+              
+              user.classList.remove("offline")
+              user.classList.add("online")
+            });
+            
+            socket.on("isOffline", userId => {
+              let user = document.getElementById(userId);
+              if (!user) return;
+              console.log(`${userId} is offline`)
+              
+              user.classList.remove("online")
+              user.classList.add("offline")      
+            })
+            
+         </script>
+         <script>
+            const myPeer = new Peer(undefined, {
+              path: '/api/peer',
+              host: '/',
+              port: '443'
+            })    
+                
+         </script>
+   </body>
 </html>
 <!--  -->
