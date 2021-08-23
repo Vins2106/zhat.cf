@@ -20,7 +20,8 @@
     "gif-stop": "^0.0.1",
     "format-chat-message": "^0.0.5",
     "babel": "^6.23.0",
-    "peer": "^0.6.1"
+    "peer": "^0.6.1",
+    "discord.js": "^12.5.3"
   },
   "engines": {
     "node": "12.x"
