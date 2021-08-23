@@ -21,7 +21,7 @@
         <span onclick="toggleNavbar()" class="navbar-toggle-2-icon"><i class="fa fa-close"></i></span>
       </div>
       <ul class="navbar-nav">
-        <li class="navbar-link"><a href="/me">Home</a></li>
+        <li class="navbar-link"><a onclick="shareURL()">Share</a></li>
         <li class="navbar-link"><a href="/faq">FAQ</a></li>
         <li class="navbar-link"><a href="/updates">Updates</a></li>
       </ul>
@@ -85,6 +85,19 @@
           document.getElementById('loading').classList.add("not-showing")
         }, 1000)
       }
+      
+      async function shareURL() {
+const shareData = {
+  title: 'Zhatting Chatapp',
+  text: 'Find friends on Zhatting',
+  url: 'https://zhat.cf',
+}
+  try {
+    await navigator.share(shareData)
+  } catch(err) {
+    console.log("Cant open share pop up", err)
+  }    
+      }         
     </script>
   </body>
 </html>
