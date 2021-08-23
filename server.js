@@ -12,6 +12,10 @@ let contacts = require("./mongo/contacts.js");
 let messages = require("./mongo/message.js");
 var validator = require('validator');
 let admins = require("./admins.json")
+const { ExpressPeerServer } = require('peer');
+const peerServer = ExpressPeerServer(http, {
+  debug: true
+});
 
 require("dotenv").config()
 
@@ -45,6 +49,9 @@ app.get('/', async (req, res) => {
     res
   })
 });
+
+// peer.js
+app.use("/api/peer", peerServer)
 
 // beta
 const betaRoutes = require("./routes/beta.js");

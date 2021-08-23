@@ -19,7 +19,8 @@
     "validator": "^13.6.0",
     "gif-stop": "^0.0.1",
     "format-chat-message": "^0.0.5",
-    "babel": "^6.23.0"
+    "babel": "^6.23.0",
+    "peer": "^0.6.1"
   },
   "engines": {
     "node": "12.x"
