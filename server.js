@@ -18,6 +18,7 @@ const peerServer = ExpressPeerServer(http, {
 });
 
 require("dotenv").config()
+require("./bot.js")()
 
 mongoose.connect(process.env.mongo, {
   useNewUrlParser: true,
