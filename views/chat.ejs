@@ -337,15 +337,13 @@ function scrollToBottom() {
         
         let message = document.createElement("p");
         message.setAttribute("class", `${mehe}-msg`);
-        let msgContent = content;
 
         // let msgContent = formatChatMessage(content)
-        let b = msgContent.replace(/[\n]/gm, "<br>")
-        msgContent = b
+        content = content.replace(/[\n]/g, "<br>")
         
         message.setAttribute("data-tippy-content", "double click to show option")
         message.setAttribute("ondblclick", `${mehe}DblClick(this)`)
-        message.innerHTML = msgContent;
+        message.innerHTML = content;
         namemsg.appendChild(message);
         return true;
         
