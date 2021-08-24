@@ -269,7 +269,7 @@
                 
                 }
                 
-                if (message.to == '<%= req.session.user.UID %>' && message.author.id == locationHref) {
+                if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
                   audio.play()
                   createMessage(message.author, message.content, false, "he")
                   scrollTo(0, chats.scrollHeight)
@@ -301,6 +301,7 @@
               }
               
               async function createMessage(user, content, time = false, mehe) {
+                
                 let base = document.createElement("div");
                 base.setAttribute("class", `${mehe}-chat`);
                 chats.appendChild(base);

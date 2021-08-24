@@ -5,7 +5,7 @@
   </head>
   <body>
     
-    <button class="btn btn-primary" onclick="location.href = '/'" style="margin: 10px;">
+    <button class="btn btn-primary" onclick="window.history.back();" style="margin: 10px;">
       Back
     </button>
     
@@ -14,6 +14,14 @@
     </h1>
     
     <div class="faq-list">
+    <div class="faq" id="2482021">
+      <h2 title="click to copy url" onclick="navigator.clipboard.writeText(window.location.href.split('#')[0]  + '#2482021');" style="margin-bottom: 15px;">
+        24 / 8 / 2021 - 13:55 (wita)
+      </h2>
+      <p>
+        Fix bugs
+      </p>
+    </div>         
     <div class="faq" id="2182021">
       <h2 title="click to copy url" onclick="navigator.clipboard.writeText(window.location.href.split('#')[0]  + '#2182021');" style="margin-bottom: 15px;">
         21 / 8 / 2021 - 13:35 (wita)
