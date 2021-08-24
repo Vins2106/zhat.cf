@@ -21,7 +21,8 @@
     "format-chat-message": "^0.0.5",
     "babel": "^6.23.0",
     "peer": "^0.6.1",
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "node-fetch": "^2.6.1"
   },
   "engines": {
     "node": "12.x"

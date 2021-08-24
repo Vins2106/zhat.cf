@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
   disabledMentions: "everyone"
 });
+const fetch = require("node-fetch");
   
   let status = {
     api: {
@@ -34,6 +35,10 @@ client.on("message", async message => {
   }
   
   if (cmd === "status") {
+    let timeNow = Date.now();
+    let apiResponse;
+    
+fetch("https://zhat.cf/api/ping", {method: "GET"}).then(res => res.json()).then(data => {
     return message.channel.send(`
 **API** : \`${status.api.percent}\` ${status.api.status}
 **System** : \`${status.system.percent}\` ${status.system.status}
@@ -45,9 +50,14 @@ _ _
 30% < = **Very Bad**
 31% - 64% = **Bad**
 65% > = **Good**
+_ _
+**API response time**
+${data.callback - timeNow}
 
 ping: **${Date.now() - message.createdTimestamp}ms**
     `)
+})    
+    
   }
 });  
 }

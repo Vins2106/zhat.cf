@@ -96,6 +96,10 @@ app.get("/logout", async (req, res) => {
 });
 
 // api
+app.get("/api/ping", async (req, res) => {
+  return res.send({callback: Date.now()})
+});
+
 app.patch("/api/post/message", async (req, res) => {
   
   let message = req.body;

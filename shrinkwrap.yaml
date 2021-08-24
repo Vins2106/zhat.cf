@@ -11,6 +11,7 @@ dependencies:
   gif-stop: 0.0.1
   http: 0.0.0
   mongoose: 5.13.7
+  node-fetch: 2.6.1
   peer: 0.6.1
   socket.io: 4.1.3
   validator: 13.6.0
@@ -1336,6 +1337,7 @@ specifiers:
   gif-stop: ^0.0.1
   http: ^0.0.0
   mongoose: ^5.13.7
+  node-fetch: ^2.6.1
   peer: ^0.6.1
   socket.io: ^4.1.3
   validator: ^13.6.0
