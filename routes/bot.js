@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.post("/create", async (req, res) => {
-  console.log(req.body)
   if (!req.body) return notFound(res, "Failed, no data we receive");
   if (!req.body.username) return notFound(res, "Failed, username not provided");
   
@@ -20,7 +19,9 @@ app.post("/create", async (req, res) => {
   let uid = makeid(18);
   
   let checkUsername = await bots.findOne({Username: username});
-  if (checkUsername) return notFound(res, "Username already used")
+  if (checkUsername) return forBidden(res, "Username already used")
+  
+  return Json(res, {text: "test success"})
   
   let botStruct = {
     Username: username,
@@ -41,6 +42,10 @@ module.exports = app;
 
 function notFound(res, str) {
   return res.status(404).json({error: {msg: str}})
+}
+
+function forBidden(res, str) {
+  return res.status(403).json(str)
 }
 
 function Json(res, str = {}) {
