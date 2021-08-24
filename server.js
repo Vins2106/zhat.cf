@@ -16,6 +16,11 @@ const { ExpressPeerServer } = require('peer');
 const peerServer = ExpressPeerServer(http, {
   debug: true
 });
+const rateLimit = require("express-rate-limit");
+const apiLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 15 minutes
+  max: 60
+});
 
 require("dotenv").config()
 require("./bot.js")()
@@ -94,6 +99,12 @@ app.get("/logout", async (req, res) => {
   
   res.redirect("/login");
 });
+
+// bot api
+app.use("/api/bot/v1", apiLimiter);
+// login as bot
+const botApiRoutes = require("./routes/bot.js");
+app.use("/api/bot/v1", botApiRoutes)
 
 // api
 app.get("/api/ping", async (req, res) => {

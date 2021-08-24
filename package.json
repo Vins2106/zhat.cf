@@ -22,7 +22,8 @@
     "babel": "^6.23.0",
     "peer": "^0.6.1",
     "discord.js": "^12.5.3",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "express-rate-limit": "^5.3.0"
   },
   "engines": {
     "node": "12.x"
