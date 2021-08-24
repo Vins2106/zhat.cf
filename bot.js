@@ -36,7 +36,7 @@ client.on("message", async message => {
   
   if (cmd === "status") {
     let timeNow = Date.now();
-    let apiResponse;
+    let botResponse = Date.now() - message.createdTimestamp;
     
 fetch("https://zhat.cf/api/ping", {method: "GET"}).then(res => res.json()).then(data => {
     return message.channel.send(`
@@ -50,7 +50,7 @@ _ _
 **${data.callback - timeNow}**ms
 
 **BOT response time**
-**${Date.now() - message.createdTimestamp}**ms
+**${botResponse}**ms
 
 **Info**
 30% < = **Very Bad**
