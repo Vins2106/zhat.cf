@@ -46,15 +46,17 @@ _ _
 **Last incident**
 \`${status.lastIncident}\`
 _ _
+**API response time**
+**${data.callback - timeNow}**ms
+
+**BOT response time**
+**${Date.now() - message.createdTimestamp}**ms
+
 **Info**
 30% < = **Very Bad**
 31% - 64% = **Bad**
 65% > = **Good**
 _ _
-**API response time**
-${data.callback - timeNow}
-
-ping: **${Date.now() - message.createdTimestamp}ms**
     `)
 })    
     
