@@ -46,6 +46,7 @@ _ _
 31% - 64% = **Bad**
 65% > = **Good**
 
+ping: **${Date.now() - message.createdTimestamp}ms**
     `)
   }
 });  
