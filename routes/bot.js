@@ -5,10 +5,14 @@ let messages = require("../mongo/message.js");
 let contacts = require("../mongo/contacts.js");
 let bots = require("../mongo/Bots.js");
 let validator = require("validator");
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-app.get("/create", async (req, res) => {
-  if (!req.body) return notFound(res, "Failed");
-  if (!req.body.username) return notFound(res, "Failed");
+app.post("/create", async (req, res) => {
+  console.log(req.body)
+  if (!req.body) return notFound(res, "Failed, no data we receive");
+  if (!req.body.username) return notFound(res, "Failed, username not provided");
   
   let username = req.body.username;
   let avatar = req.body.avatar ? req.body.avatar : null;
