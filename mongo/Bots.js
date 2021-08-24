@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 module.exports = model(
-  "Bots",
+  "BotsData",
   new Schema({
     TOKEN: String,
     UID: String,
@@ -9,6 +9,6 @@ module.exports = model(
     Email: String,
     Wallpaper: String,
     Password: String,
-    Bot: true
+    Bot: Boolean
   })
 );

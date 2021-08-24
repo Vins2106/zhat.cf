@@ -3,11 +3,34 @@ const app = express.Router();
 let data = require("../mongo/data.js");
 let messages = require("../mongo/message.js");
 let contacts = require("../mongo/contacts.js");
+let bots = require("../mongo/Bots.js");
 let validator = require("validator");
 
 app.get("/create", async (req, res) => {
   if (!req.body) return notFound(res, "Failed");
   if (!req.body.username) return notFound(res, "Failed");
+  
+  let username = req.body.username;
+  let avatar = req.body.avatar ? req.body.avatar : null;
+  let token = makeid(20);
+  let uid = makeid(18);
+  
+  let checkUsername = await bots.findOne({Username: username});
+  if (checkUsername) return notFound(res, "Username already used")
+  
+  let botStruct = {
+    Username: username,
+    Avatar: avatar,
+    TOKEN: token,
+    UID: uid,
+    Bot: true
+  }
+  
+  let newData = new bots(botStruct);
+  
+  newData.save();
+  
+  return Json(res, botStruct)
 });
 
 module.exports = app;
