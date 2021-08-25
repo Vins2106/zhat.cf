@@ -38,6 +38,19 @@ app.post("/create", async (req, res) => {
   return Json(res, botStruct)
 });
 
+app.get("/login/:token", async (req, res) => {
+  if (!req.body) return notFound(res, "No token provided")
+  let data = req.body;
+  if (!data.token) return notFound(res, "No token provided")
+  
+  let findBot = await bots.findOne({TOKEN: data.token});
+  if (!findBot) return notFound(res, "Invalid token")
+  
+  req.bot = findBot;
+  
+  return Json(res, findBot)
+});
+
 module.exports = app;
 
 function notFound(res, str) {
