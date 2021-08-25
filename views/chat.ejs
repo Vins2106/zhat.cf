@@ -176,9 +176,9 @@
                 let postDataMSG;
                 
                 if ('<%= he.Bot %>') {
-                  postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: '<%= he.UID %>', bot: false};
-                } else {
                   postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: `<%= he.UID %>`, bot: true};
+                } else {
+                  postDataMSG = {author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: '<%= he.UID %>', bot: false};
                 // `
                 }
                 socket.emit('message', postDataMSG);

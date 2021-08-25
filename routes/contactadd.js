@@ -3,6 +3,7 @@ const app = express.Router();
 let data = require("../mongo/data.js");
 var validator = require('validator');
 let contacts = require("../mongo/contacts.js");
+let bots = require("../mongo/Bots.js");
 
 app.get("/add", checkAuth, async (req, res) => {
   
@@ -54,7 +55,7 @@ app.post("/add", checkAuth, async (req, res) => {
 
   let uemail = req.body.user;
   
-  let checkUser = await data.findOne({UID: uemail});
+  let checkUser = await data.findOne({UID: uemail}) || await bots.findOne({UID: uemail})
   if (!checkUser) return res.redirect("/contact/add?error=true&message=User not found");
   
   if (checkUser.UID == req.session.user.UID) {
