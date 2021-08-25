@@ -38,7 +38,7 @@ app.post("/create", async (req, res) => {
   return Json(res, botStruct)
 });
 
-app.get("/login/:token", async (req, res) => {
+app.post("/login", async (req, res) => {
   if (!req.body) return notFound(res, "No token provided")
   let data = req.body;
   if (!data.token) return notFound(res, "No token provided")
