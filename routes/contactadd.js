@@ -55,15 +55,9 @@ app.post("/add", checkAuth, async (req, res) => {
 
   let uemail = req.body.userid;
   
-  let checKBot = await bots.findOne({UID: uemail});
+  console.log(uemail);
   let checkUser = await data.findOne({UID: uemail});
-  console.log(checkUser, checKBot);
-  if (!checkUser) { 
-    checkUser = checKBot;
-  } 
-  if (!checkUser && !checKBot) return res.redirect("/contact/add?error=true&message=User not found 1");
-  if (checkUser && !checKBot) return res.redirect("/contact/add?error=true&message=User not found 2");
-  if (!checkUser && checKBot) return res.redirect("/contact/add?error=true&message=User not found 3");
+  if (!checkUser) return res.redirect("/contact/add?error=true&message=User not found 1");
   
   if (checkUser.UID == req.session.user.UID) {
     return res.redirect("/contact/add?error=true&message=You cant add yourself");
