@@ -53,7 +53,7 @@ app.get("/add", checkAuth, async (req, res) => {
 
 app.post("/add", checkAuth, async (req, res) => {
 
-  let uemail = req.body.user;
+  let uemail = req.body.userid;
   
   let checKBot = await bots.findOne({UID: uemail});
   let checkUser = await data.findOne({UID: uemail});
