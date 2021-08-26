@@ -23,6 +23,8 @@ class Client extends BaseClient {
     super(options);
     
     this.token = process.env.ZHAT;
+    
+    Object.defineProperty(this, 'client', { value: this });
   }
   
   async login(token = this.token) {
@@ -39,9 +41,7 @@ class Client extends BaseClient {
           })
         }).then(res => res.json())
     
-    
-    console.log(this)
-    this.emit("ready", null)
+    this.client.emit("ready", connect)
   }
 }
 

@@ -56,9 +56,9 @@ app.post("/findbot", async (req, res) => {
 })
 
 app.post("/connect", async (req, res) => {
-  if (!req.body) return;
-  if (!req.body.uid) return;
-  if (!req.body.addr) return;
+  if (!req.body) return notFound(res, "Invalid bot")
+  if (!req.body.uid) return notFound(res, "Invalid bot")
+  if (!req.body.addr) return notFound(res, "Invalid bot")
   
   let findBot = await bots.findOne({
     UID: req.body.uid
