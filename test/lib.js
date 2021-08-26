@@ -24,24 +24,34 @@ class Client extends BaseClient {
     
     this.token = process.env.ZHAT;
     
+    ngrok.connect(3030).then(url => {
+      this.addr = url;
+    })   
+    
     Object.defineProperty(this, 'client', { value: this });
   }
   
   async login(token = this.token) {
-    const findBot = await fetch(`https://zhat.cf/${options.gate}/${options.v}/findbot`, {
+    fetch(`https://zhat.cf/${options.gate}/${options.v}/findbot`, {
       method: "POST",
+      headers: {
+            'Content-Type': 'application/json',
+            },
       body: JSON.stringify({ token })
-    }).then(res => res.json());
-    
-    const connect = await fetch(`https://zhat.cf/${options.gate}/${options.v}/connect`, {
+    }).then(res => res.json()).then(data => {
+    fetch(`https://zhat.cf/${options.gate}/${options.v}/connect`, {
           method: "POST",
+      headers: {
+            'Content-Type': 'application/json',
+            },
           body: JSON.stringify({
-            uid: findBot.uid,
-            addr: this.addr
+            uid: data.uid,
+            addr: this.client.addr
           })
-        }).then(res => res.json())
-    
-    this.client.emit("ready", connect)
+        }).then(res => res.json()).then(data2 => {
+        this.client.emit("ready", data2)
+    })      
+    })
   }
 }
 
