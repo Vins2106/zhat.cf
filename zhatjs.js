@@ -1,4 +1,4 @@
 module.exports = () => {
-  const WebSocket = require("socket.io");
-  let wss = WebSocket("wss://zhat.cf")
+  // const WebSocket = require("ws");
+  // let wss = new WebSocket("wss://zhat.cf")
 }
