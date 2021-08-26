@@ -62,7 +62,7 @@ app.use("/api/peer", peerServer)
 
 // ws
 const WebSocket = require("ws")
-const wss = new WebSocket.Server({server: http})
+const wss = new WebSocket.Server({server: http, path: "/ws"})
 
 wss.on('connection', function connection(ws) {
   console.log('A new client Connected!');
@@ -81,8 +81,9 @@ wss.on('connection', function connection(ws) {
 });  
 
 
-const wsRoutes = require("./routes/ws.js")
-app.use("/ws", wsRoutes);
+app.get("/ws", async (req, res) => {
+  res.render("botws.ejs")
+});
 
 // beta
 const betaRoutes = require("./routes/beta.js");
