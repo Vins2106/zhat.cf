@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const botDatas = require("./../data.js");
+const fetch = require("node-fetch")
 
 app.post("/create", async (req, res) => {
   if (!req.body) return notFound(res, "Failed, no data we receive");
@@ -74,7 +75,7 @@ app.post("/connect", async (req, res) => {
   return Json(res, findBot);
 });
 
-app.patch("/newmsg", async (req, res) => {
+app.post("/newmsg", async (req, res) => {
   
   if (!req.body) return notFound("Bot not found");
   
@@ -83,16 +84,16 @@ app.patch("/newmsg", async (req, res) => {
   
   fetch(findBotData.addr + "/newmessage", {
     method: "POST",
-    mode: "cors",
            headers: {
              'Content-Type': 'application/json'
        },    
     body: JSON.stringify(req.body)
   }).then(res => res.json()).then(data => {
-    if (!data) return Json(res, {error: {msg: "Bot is offline"}})
+    if (!data) return Json(res, {error: {msg: "Bot is offline 2"}})
     console.log(data)
   }).catch(e => {
-    return Json(res, {error: {msg: "Bot is offline"}})
+    console.log(e)
+    return Json(res, {error: {msg: "Bot is offline 3"}})
   })  
   
 });

@@ -7,6 +7,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch")
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 const cors = require("cors");
 app.use(cors());
@@ -47,7 +49,7 @@ class Client extends BaseClient {
       body: JSON.stringify({ token })
     }).then(res => res.json()).then(data => {
     fetch(`https://zhat.cf/${options.gate}/${options.v}/connect`, {
-          method: "POST",
+      method: "POST",
       headers: {
             'Content-Type': 'application/json',
             },
