@@ -15,15 +15,8 @@ module.exports = () => {
     let cmd = args.shift().toLowerCase();
     
     if (cmd == "help") {
-      return message.send("Help your self");
+      return message.author.send("Help your self");
     }
   });
-  
-  console.log(client)
-  
-  
-  
-  
-  
   
 };

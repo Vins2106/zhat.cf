@@ -19,6 +19,8 @@ const EventEmitter = require('events');
 class BaseClient extends EventEmitter {
   constructor(options = {}) {
     super();
+    
+    Object.defineProperty(this, 'client', { value: this });
   }
 }
 
@@ -33,8 +35,6 @@ class Client extends BaseClient {
       this.addr = url;
     })   
     
-    
-    Object.defineProperty(this, 'client', { value: this });
     app.post("/receive", async (req, res) => {
       if (!req.body) return;
       
@@ -44,9 +44,7 @@ class Client extends BaseClient {
           headers: {
             'Content-Type': "application/json"
           },
-          body: JSON.stringify({
-            
-          })
+          body: JSON.stringify({author: req.body.to, content: ctn, to: req.body.author.UID, bot: true })
         })
       };
       

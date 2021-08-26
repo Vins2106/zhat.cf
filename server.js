@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo');
 let data = require("./mongo/data.js");
 let contacts = require("./mongo/contacts.js");
 let messages = require("./mongo/message.js");
+let bots = require("./mongo/Bots.js");
 var validator = require('validator');
 let admins = require("./admins.json")
 const { ExpressPeerServer } = require('peer');
@@ -115,6 +116,16 @@ app.get("/api/ping", async (req, res) => {
 
 app.patch("/api/send/message", async (req, res) => {
   if (!req.body) return;
+  
+  let findBot = await bots.findOne({UID: req.body.author});
+  if (!findBot) return res.status(404).json({error: {msg: "Bot not found"}});
+  
+  req.body.author = {
+    Username: findBot.Username,
+    UID: findBot.UID,
+    Avatar: findBot.Avatar,
+    Bot: true
+  }
   
   io.sockets.emit("message2", req.body)
 })
