@@ -62,7 +62,8 @@ app.get('/', async (req, res) => {
 const WebSocket = require("ws");
 
 
-const ws = new WebSocket(http)
+const ws = new WebSocket.Server({port: 8080});
+console.log(ws)
 
 ws.on('open', function open() {
   console.log('connected');
