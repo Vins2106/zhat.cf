@@ -25,7 +25,7 @@ const fetch = require("node-fetch")
 
 //
 const WebSocket = require("ws")
-const wss = new WebSocket.Server(http)
+const wss = new WebSocket.Server({server: http})
 
 
 wss.on('connection', function connection(ws) {
