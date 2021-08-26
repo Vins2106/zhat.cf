@@ -20,7 +20,6 @@ const fetch = require("node-fetch");
 
 client.on("ready", () => {
   console.log("[BOT] ready")
-  console.log(client.ws.gateway)
 });
 
 client.login(process.env.TOKEN);

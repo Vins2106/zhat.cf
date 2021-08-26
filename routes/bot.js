@@ -50,7 +50,7 @@ app.post("/findbot", async (req, res) => {
   if (!req.body.token) return;
   
   let findBot = await bots.findOne({TOKEN: req.body.token})
-  if (!findBot) return;
+  if (!findBot) return notFound(res, "Invalid token")
   
   return Json(res, {uid: findBot.UID})
 })

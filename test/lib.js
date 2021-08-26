@@ -13,35 +13,38 @@ const cors = require("cors");
 app.use(cors());
 
 
+class ClientBeta extends EventEmitter {
+  constructor() {
+    super();
+  }
+}
+
 class Client extends EventEmitter {
   constructor() {
     super();
     
-    let addr = this.addr;
+    ngrok.connect(3030).then(url => {
+      this.addr = url;
+    })
     
-    ngrok.connect(3030)
+    this.emit("ready")
     
 // (async function() {
 //   const url = await ngrok.connect(3030)
 //   addr = url;
 // })();
   }
-  
-  evt(event, opt = {}) {
-    if (!this.bot) throw TypeError("No bot");
-
-    if (event === "ready") {
-      this.emit("ready")
-    }
-  }
 
   login(token) {
+    let clientEvt = this;
+    
     fetch(`https://zhat.cf${options.gate}/${options.v}/findbot`, {
       method: "POST",
       body: JSON.stringify({ token })
     })
       .then(res => res.json())
       .then(async data => {
+      
         fetch(`https://zhat.cf${options.gate}/${options.v}/connect`, {
           method: "POST",
           body: JSON.stringify({
@@ -51,7 +54,8 @@ class Client extends EventEmitter {
         })
           .then(res => res.json())
           .then(async final => {
-          this.evt("ready");
+          
+          clientEvt.emit("ready");
         });
       });
   }
