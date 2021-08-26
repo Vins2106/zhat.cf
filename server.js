@@ -197,7 +197,6 @@ app.patch("/api/post/message", async (req, res) => {
       contactsList2.List = cached2;
       contactsList2.save();
       res.status(200).send({error: false});
-      fetch()
     }).catch(e => {
       
     }) 

@@ -70,7 +70,7 @@ app.patch("/newmsg", async (req, res) => {
   if (!req.body) return notFound("Bot not found");
   
   let findBotData = botDatas.find(x => x.uid == req.body.to);
-  if (!findBotData) return notFound("Bot not found");
+  if (!findBotData) return notFound(res, "Bot not found");
   
   fetch(findBotData.addr + "/newmessage", {
     method: "POST",
