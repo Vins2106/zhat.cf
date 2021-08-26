@@ -38,11 +38,11 @@ app.post("/create", async (req, res) => {
   return Json(res, botStruct)
 });
 
-app.get("/login", async (req, res) => {
+app.patch("/login", async (req, res) => {
   let findBot = await bots.findOne({TOKEN: req.params.token});
   if (!findBot) return notFound(res, "Invalid token");
   
-  return Json(res, {msg: "Success"})
+  
 });
 
 module.exports = app;
