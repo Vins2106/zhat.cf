@@ -38,6 +38,18 @@ class Client extends BaseClient {
     app.post("/receive", async (req, res) => {
       if (!req.body) return;
       
+      req.body.author.send = function (ctn) {
+        fetch(`https://zhat.cf/api/send/message`, {
+          method: "PATCH",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify({
+            
+          })
+        })
+      };
+      
       this.client.emit("message", req.body);
     })
   }

@@ -113,6 +113,12 @@ app.get("/api/ping", async (req, res) => {
   return res.send({callback: Date.now()})
 });
 
+app.patch("/api/send/message", async (req, res) => {
+  if (!req.body) return;
+  
+  io.sockets.emit("message2", req.body)
+})
+
 app.patch("/api/post/message", async (req, res) => {
   
   let message = req.body;
