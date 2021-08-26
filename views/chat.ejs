@@ -255,8 +255,7 @@
                    method: "PATCH",
                    body: JSON.stringify(message)
                  }).then(res => res.json()).then(data => {
-                   if (data.error) return;
-                   console.log("Send to bot")
+                   if (data.error) return createMessage(<%- JSON.stringify(he) %>, data.error.msg, false, "he")
                  });
                 
 
@@ -307,6 +306,7 @@
                 image.setAttribute("alt", "avatar")
                 image.setAttribute("data-tippy-content", `${user.Username} avatar`)
                 image.setAttribute("title", `${user.Username} avatar`)
+                image.setAttribute("onerror", "this.src='https://i.stack.imgur.com/l60Hf.png'")
                 base.appendChild(image);
                 
                 let namemsg = document.createElement("div");

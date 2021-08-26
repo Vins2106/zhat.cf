@@ -70,16 +70,20 @@ app.patch("/newmsg", async (req, res) => {
   if (!req.body) return notFound("Bot not found");
   
   let findBotData = botDatas.find(x => x.uid == req.body.to);
-  if (!findBotData) return notFound(res, "Bot not found");
+  if (!findBotData) return Json(res, {error: {msg: "Bot is offline"}})
   
   fetch(findBotData.addr + "/newmessage", {
     method: "POST",
+    mode: "cors",
+           headers: {
+             'Content-Type': 'application/json'
+       },    
     body: JSON.stringify(req.body)
   }).then(res => res.json()).then(data => {
-    if (data.error) return;
+    console.log(data)
   }).catch(e => {
     return;
-  })
+  })  
   
 });
 
