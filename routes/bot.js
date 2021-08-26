@@ -82,6 +82,8 @@ app.post("/newmsg", async (req, res) => {
   let findBotData = botDatas.find(x => x.uid == req.body.to);
   if (!findBotData) return Json(res, {error: {msg: "Bot is offline"}})
   
+  console.log(req.body)
+  
   fetch(findBotData.addr + "/newmessage", {
     method: "POST",
            headers: {

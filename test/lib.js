@@ -10,6 +10,8 @@ const fetch = require("node-fetch")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.listen(3030)
+
 const cors = require("cors");
 app.use(cors());
 const EventEmitter = require('events');
@@ -31,13 +33,13 @@ class Client extends BaseClient {
       this.addr = url;
     })   
     
+    
+    Object.defineProperty(this, 'client', { value: this });
     app.post("/newmessage", async (req, res) => {
       if (!req.body) return;
       
-      this.emit("message", req.body);
+      this.client.emit("message", req.body);
     })
-    
-    Object.defineProperty(this, 'client', { value: this });
   }
   
   async login(token = this.token) {
