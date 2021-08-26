@@ -3,6 +3,7 @@ const app = express.Router();
 let data = require("../mongo/data.js");
 let messages = require("../mongo/message.js");
 let contacts = require("../mongo/contacts.js");
+let bots = require("../mongo/Bots.js");
 let validator = require("validator");
 
 app.get("/", checkAuth, async (req, res) => {
@@ -127,13 +128,13 @@ app.get("/add", checkAuth, async (req, res) => {
 
 app.post("/add", checkAuth, async (req, res) => {
 
-  let uemail = req.body.user;
+  let uemail = req.body.userid;
   
-  let checkUser = await data.findOne({UID: uemail});
-  if (!checkUser) return res.redirect("/me/add?error=true&message=User not found");
+  let checkUser = await data.findOne({UID: uemail}) || await bots.findOne({UID: uemail});
+  if (!checkUser) return res.status(200).redirect("/contact/add?error=true&message=User not found")
   
   if (checkUser.UID == req.session.user.UID) {
-    return res.redirect("/me/add?error=true&message=You cant add yourself");
+    return res.status(200).redirect()
   }
   
   let ourContacts = await GetContact(req.session.user.UID)
@@ -146,7 +147,7 @@ app.post("/add", checkAuth, async (req, res) => {
     newContact.save();
   } else {
     let checkAlr = ourContacts.List.find(x => x.id == checkUser.UID);
-    if (checkAlr) return res.redirect("/me/add?error=true&message=Already on contact")
+    if (checkAlr) return res.status(200).send({r: `/me/${checkUser.UID}`})
     
    ourContacts.List.push({id: checkUser.UID, num: 1});
    ourContacts.save();
@@ -162,13 +163,13 @@ app.post("/add", checkAuth, async (req, res) => {
     newContact.save();
   } else {
     let checkAlr = heContacts.List.find(x => x .id== req.session.user.UID);
-    if (checkAlr) return res.redirect("/me/add?error=true&message=Already on contact")    
+    if (checkAlr) return res.status(200).send({r: `/me/${checkUser.UID}`}) 
     
    heContacts.List.push({id: req.session.user.UID, num: 1});
    heContacts.save();
   }  
   
-  res.redirect("/me/add?success=true")
+  return res.status(200).send({r: `/me/${checkUser.UID}`})
 });
 
 // settings

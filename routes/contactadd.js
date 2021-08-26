@@ -51,7 +51,7 @@ app.get("/add", checkAuth, async (req, res) => {
   
 });
 
-app.post("/add", checkAuth, async (req, res) => {
+app.patch("/add", checkAuth, async (req, res) => {
 
   let uemail = req.body.userid;
   
