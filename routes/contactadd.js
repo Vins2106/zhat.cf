@@ -57,10 +57,10 @@ app.post("/add", checkAuth, async (req, res) => {
   
   console.log(uemail);
   let checkUser = await data.findOne({UID: uemail});
-  if (!checkUser) return res.redirect("/contact/add?error=true&message=User not found 1");
+  if (!checkUser) return res.status(200).send({r: "/contact/add?error=true&message=User not found"})
   
   if (checkUser.UID == req.session.user.UID) {
-    return res.redirect("/contact/add?error=true&message=You cant add yourself");
+    return res.status(200).send({r: "/contact/add?error=true&message=You cant add yourself"})
   }
   
   let ourContacts = await GetContact(req.session.user.UID)
@@ -73,7 +73,7 @@ app.post("/add", checkAuth, async (req, res) => {
     newContact.save();
   } else {
     let checkAlr = ourContacts.List.find(x => x.id == checkUser.UID);
-    if (checkAlr) return res.redirect(`/me/${checkUser.UID}`)
+    if (checkAlr) return res.status(200).send({r: `/me/${checkUser.UID}`})
     
    ourContacts.List.push({id: checkUser.UID, num: 1});
    ourContacts.save();
@@ -89,13 +89,13 @@ app.post("/add", checkAuth, async (req, res) => {
     newContact.save();
   } else {
     let checkAlr = heContacts.List.find(x => x .id== req.session.user.UID);
-    if (checkAlr) return res.redirect(`/me/${checkUser.UID}`)   
+    if (checkAlr) return res.status(200).send({r: `/me/${checkUser.UID}`}) 
     
    heContacts.List.push({id: req.session.user.UID, num: 1});
    heContacts.save();
   }  
   
-  res.redirect(`/me/${checkUser.UID}`)
+  return res.status(200).send({r: `/me/${checkUser.UID}`})
 });
 
 module.exports = app;
