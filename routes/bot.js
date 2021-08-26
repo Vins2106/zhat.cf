@@ -8,6 +8,7 @@ let validator = require("validator");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+const botDatas = require("./../data.js");
 
 app.post("/create", async (req, res) => {
   if (!req.body) return notFound(res, "Failed, no data we receive");
@@ -47,9 +48,39 @@ app.patch("/login", async (req, res) => {
 
 app.post("/connect", async (req, res) => {
   if (!req.body) return;
+  if (!req.body.uid) return;
   if (!req.body.addr) return;
   
+  let findBot = await bots.findOne({
+    UID: req.body.uid
+  });
+  
+  if (!findBot) return notFound(res, "Bot not found");
+  
+  botDatas.push({
+    uid: req.body.uid,
+    addr: req.body.addr
+  });
+  
   return Json(res, {listening: req.body.addr});
+});
+
+app.patch("/newmsg", async (req, res) => {
+  
+  if (!req.body) return notFound("Bot not found");
+  
+  let findBotData = botDatas.find(x => x.uid == req.body.to);
+  if (!findBotData) return notFound("Bot not found");
+  
+  fetch(findBotData.addr + "/newmessage", {
+    method: "POST",
+    body: JSON.stringify(req.body)
+  }).then(res => res.json()).then(data => {
+    if (data.error) return;
+  }).catch(e => {
+    return;
+  })
+  
 });
 
 module.exports = app;
