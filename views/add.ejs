@@ -49,13 +49,15 @@
       
       form.addEventListener("submit", evt => {
         
+        evt.preventDefault();
+        
         fetch("https://zhat.cf/me/add", {method: "POST", body: JSON.stringify({
           userid: document.getElementById("user").value ? document.getElementById("user").value : null 
         })}).then(res => res.json()).then(data => {
-          return window.location.href = data.r;
+          console.log(data)
+          return;
         });
         
-        e.preventDefault();
         
       })
       
