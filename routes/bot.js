@@ -47,10 +47,18 @@ app.post("/login", async (req, res) => {
   if (!findBot) return notFound(res, "Invalid token")
   
   req.bot = findBot;
-  startBot()
   
   return Json(res, findBot)
 });
+
+const EventEmitter = require('events');
+class startBot extends EventEmitter {
+  constructor(bot) {
+    super();
+    
+    this
+  }
+}
 
 module.exports = app;
 
