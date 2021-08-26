@@ -6,8 +6,8 @@ module.exports = () => {
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())  
   
-  app.get("/newmessage", async (req, res) => {
-    console.log(req.body)
+  app.post("/newmessage", async (req, res) => {
+    console.log(req)
   })
   
   app.listen(3030)
