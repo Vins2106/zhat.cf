@@ -251,12 +251,7 @@
                   createMessage(message.author, message.content, false, "me")
                   scrollTo(0, chats.scrollHeight)
                 
-                 fetch(`https://zhat.cf/api/bot/v1/newmsg`, {
-                   method: "POST",
-                   headers: {
-            'Content-Type': 'application/json',
-            },
-                   body: JSON.stringify({send: async function(ctn) {
+                const botSend = async function(ctn) {
                    if (!ctn) return;
                    
                    let sendData = {author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar}) %>, content: ctn.replace(/`/g, "\`"), to: '<%= req.session.user.UID %>', bot: true};
@@ -264,7 +259,14 @@
                    postMsg(sendData);
                    createMessage(sendData.author, sendData.content, false, "he");
                    scrollTo(0, chats.scrollHeight);
-                 }, author: <%- JSON.stringify({Username: req.session.user.Username, UID: req.session.user.UID, Avatar: req.session.user.Avatar}) %>, content: input.value.replace(/`/g, "\`"), to: '<%= he.UID %>', bot: false })
+                 }
+                
+                 fetch(`https://zhat.cf/api/bot/v1/newmsg`, {
+                   method: "POST",
+                   headers: {
+            'Content-Type': 'application/json',
+            },
+                   body: JSON.stringify({send: botSend, author: message.author, content: message.content, to: message.to, bot: message.bot })
                  }).then(res => res.json()).then(data => {
                    if (data.error) return createMessage(<%- JSON.stringify(he) %>, data.error.msg, false, "he")
                  });
