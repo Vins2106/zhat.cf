@@ -62,6 +62,46 @@
       </div>
 
     </main>
+<script>
+    // Create WebSocket connection.
+    const socket = new WebSocket('wss://zhat.cf');
+
+    // Connection opened
+    socket.addEventListener('open', function (event) {
+        console.log('Connected to WS Server')
+    });
+
+    // Listen for messages
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server ', event.data);
+    });
+
+    const sendMessage = () => {
+        socket.send('Hello From Client1!');
+    }
+    
+socket.send = function (message, callback) {
+    socket.waitForConnection(function () {
+        socket.send(message);
+        if (typeof callback !== 'undefined') {
+          callback();
+        }
+    }, 1000);
+};
+
+socket.waitForConnection = function (callback, interval) {
+    if (socket.readyState === 1) {
+        callback();
+    } else {
+        var that = socket;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+    }
+};
+    
+</script>    
     <script>
     let isNavbar = false;
       

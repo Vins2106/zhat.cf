@@ -60,25 +60,7 @@ app.get('/', async (req, res) => {
 // peer.js
 app.use("/api/peer", peerServer)
 
-// ws
-const WebSocket = require("ws")
-const wss = new WebSocket.Server({server: http, path: "/ws"})
-
-wss.on('connection', function connection(ws) {
-  console.log('A new client Connected!');
-  ws.send('Welcome New Client!');
-
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-
-    wss.clients.forEach(function each(client) {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
-    
-  });
-});  
+// ws 
 
 
 app.get("/ws", async (req, res) => {
