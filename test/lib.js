@@ -1,5 +1,5 @@
 const options = {
-  gate: "/api/bot",
+  gate: "api/bot",
   v: "v1"
 };
 const ngrok = require("ngrok");
@@ -12,23 +12,26 @@ const cors = require("cors");
 app.use(cors());
 const EventEmitter = require('events');
 
-
-class Client extends EventEmitter {
-  constructor() {
+class BaseClient extends EventEmitter {
+  constructor(options = {}) {
     super();
+  }
+}
+
+class Client extends BaseClient {
+  constructor(options = {}) {
+    super(options);
     
-    this.emit("ready")
-    
-    this.login(this.token);
+    this.token = process.env.ZHAT;
   }
   
   async login(token = this.token) {
-    const findBot = await fetch(`https://zhat.cf${options.gate}/${options.v}/findbot`, {
+    const findBot = await fetch(`https://zhat.cf/${options.gate}/${options.v}/findbot`, {
       method: "POST",
       body: JSON.stringify({ token })
     }).then(res => res.json());
     
-    const connect = await fetch(`https://zhat.cf${options.gate}/${options.v}/connect`, {
+    const connect = await fetch(`https://zhat.cf/${options.gate}/${options.v}/connect`, {
           method: "POST",
           body: JSON.stringify({
             uid: findBot.uid,
@@ -38,7 +41,7 @@ class Client extends EventEmitter {
     
     
     console.log(this)
-    this.emit("ready")
+    this.emit("ready", null)
   }
 }
 

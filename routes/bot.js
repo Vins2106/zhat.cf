@@ -47,7 +47,7 @@ app.patch("/login", async (req, res) => {
 });
 
 app.post("/findbot", async (req, res) => {
-  if (!req.body.token) return;
+  if (!req.body.token) return notFound(res, "Invalid token")
   
   let findBot = await bots.findOne({TOKEN: req.body.token})
   if (!findBot) return notFound(res, "Invalid token")
