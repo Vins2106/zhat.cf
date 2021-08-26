@@ -259,9 +259,23 @@
                    postMsg(sendData);
                    createMessage(sendData.author, sendData.content, false, "he");
                    scrollTo(0, chats.scrollHeight);
+                  
+                  return true;
                  }
                 
-                let finalSendData = {send: botSend, author: message.author, content: message.content, to: message.to, bot: message.bot, test: true }
+                let finalSendData = {author: message.author, content: message.content, to: message.to, bot: message.bot, reply: (ctn) => {
+                   if (!ctn) return;
+                   
+                   let sendData = {author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar}) %>, content: ctn.replace(/`/g, "\`"), to: '<%= req.session.user.UID %>', bot: true};
+                   
+                   postMsg(sendData);
+                   createMessage(sendData.author, sendData.content, false, "he");
+                   scrollTo(0, chats.scrollHeight);
+                  
+                  return true;
+                 } }
+                
+                console.log(finalSendData)
                 
                  fetch(`https://zhat.cf/api/bot/v1/receive`, {
                    method: "POST",
