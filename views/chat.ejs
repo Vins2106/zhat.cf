@@ -251,6 +251,12 @@
                   createMessage(message.author, message.content, false, "me")
                   scrollTo(0, chats.scrollHeight)
                 
+                 message.send = async function(ctn) {
+                   if (!ctn) return;
+                   
+                   let sendData = {author: <%- JSON.stringify({Username: he.Username, UID: he.UID, Avatar: he.Avatar}) %>, content: ctn.replace(/`/g, "\`"), to: '<%= req.session.user.UID %>', bot: true}
+                 }
+                
                  fetch(`https://zhat.cf/api/bot/v1/newmsg`, {
                    method: "PATCH",
                    body: JSON.stringify(message)

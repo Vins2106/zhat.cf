@@ -71,7 +71,7 @@ app.post("/connect", async (req, res) => {
     addr: req.body.addr
   });
   
-  return Json(res, {listening: req.body.addr});
+  return Json(res, findBot);
 });
 
 app.patch("/newmsg", async (req, res) => {

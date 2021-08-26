@@ -23,10 +23,17 @@ class Client extends BaseClient {
     super(options);
     
     this.token = process.env.ZHAT;
+    this.user = {}
     
     ngrok.connect(3030).then(url => {
       this.addr = url;
     })   
+    
+    app.post("/newmessage", async (req, res) => {
+      if (!req.body) return;
+      
+      this.emit("message", req.body);
+    })
     
     Object.defineProperty(this, 'client', { value: this });
   }
@@ -49,6 +56,7 @@ class Client extends BaseClient {
             addr: this.client.addr
           })
         }).then(res => res.json()).then(data2 => {
+        this.client.user = data2;
         this.client.emit("ready", data2)
     })      
     })

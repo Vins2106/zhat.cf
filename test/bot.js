@@ -4,7 +4,18 @@ module.exports = () => {
   client.login(process.env.ZHAT);
   
   client.on("ready", () => {
-    console.log("Ready!")
+    console.log(`Login as ${client.user.Username}`)
+  });
+  
+  let prefix = "!";
+  
+  client.on("message", async message => {
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    let cmd = args.shift().toLowerCase();
+    
+    if (cmd == "help") {
+      return message.send("Help your self");
+    }
   });
   
   console.log(client)
