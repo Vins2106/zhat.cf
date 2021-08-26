@@ -5,11 +5,10 @@ module.exports = () => {
   client.on("ready", () => {
     console.log("Ready!")
   });
-  client.login(process.env.ZHAT);
   
   console.log(client)
   
-  
+  client.login(process.env.ZHAT);
   
   
 };
