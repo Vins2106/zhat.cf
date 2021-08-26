@@ -25,6 +25,7 @@ const fetch = require("node-fetch")
 
 require("dotenv").config()
 require("./bot.js")()
+require("./zhatjs.js")
 
 mongoose.connect(process.env.mongo, {
   useNewUrlParser: true,
@@ -59,13 +60,6 @@ app.get('/', async (req, res) => {
 
 // peer.js
 app.use("/api/peer", peerServer)
-
-// ws 
-
-
-app.get("/ws", async (req, res) => {
-  res.render("botws.ejs")
-});
 
 // beta
 const betaRoutes = require("./routes/beta.js");
