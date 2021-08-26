@@ -9,7 +9,6 @@ const bodyParser = require("body-parser");
 const fetch = require("node-fetch")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
 app.listen(3030)
 
 const cors = require("cors");
@@ -79,5 +78,6 @@ class Client extends BaseClient {
 
 
 module.exports = {
-  Client
+  Client,
+  BaseClient
 };

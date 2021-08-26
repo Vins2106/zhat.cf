@@ -121,10 +121,10 @@ app.patch("/api/send/message", async (req, res) => {
   if (!findBot) return res.status(404).json({error: {msg: "Bot not found"}});
   
   req.body.author = {
-    Username: findBot.Username,
-    UID: findBot.UID,
-    Avatar: findBot.Avatar,
-    Bot: true
+    username: findBot.Username,
+    uid: findBot.UID,
+    avatar: findBot.Avatar,
+    bot: true
   }
   
   io.sockets.emit("message2", req.body)

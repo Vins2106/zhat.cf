@@ -273,15 +273,12 @@
                    body: JSON.stringify(finalSendData)
                  }).then(res => res.json()).then(data => {
                    if (data.error) return createMessage(<%- JSON.stringify(he) %>, data.error.msg, false, "he")
-                 });
-                
-
-                
-                
+                 });                
                 }
                 
                 if (message.to == '<%= req.session.user.UID %>' && message.author.UID == locationHref) {
                   audio.play()
+                  postMsg(message)
                   createMessage(message.author, message.content, false, "he")
                   scrollTo(0, chats.scrollHeight)
                 }           
