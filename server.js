@@ -23,27 +23,6 @@ const apiLimiter = rateLimit({
 });
 const fetch = require("node-fetch")
 
-//
-const WebSocket = require("ws")
-const wss = new WebSocket.Server({server: http})
-
-
-wss.on('connection', function connection(ws) {
-  console.log('A new client Connected!');
-  ws.send('Welcome New Client!');
-
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-
-    wss.clients.forEach(function each(client) {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
-    
-  });
-});
-
 require("dotenv").config()
 require("./bot.js")()
 
@@ -80,6 +59,10 @@ app.get('/', async (req, res) => {
 
 // peer.js
 app.use("/api/peer", peerServer)
+
+// ws
+const wsRoutes = require("./routes/ws.js")(http)
+app.use("/ws", wsRoutes);
 
 // beta
 const betaRoutes = require("./routes/beta.js");
