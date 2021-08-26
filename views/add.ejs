@@ -23,7 +23,7 @@
       <div class="box-1">
         <span class="box-1-title">Hi <%= req.session.user.Username %>!</span>
         <hr style='border-color: black; margin-top: 10px;'>
-        <form method="post">
+        <form method="post" id="form">
         <div class="box-1-list">
           <div class="box-1-input">
             <label for="userid">Add with user id</label>
@@ -45,6 +45,10 @@
     </main>
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
     <script>
+      let form = document.getElementById("form");
+      
+      form.addEvent
+      
       window.onload = function() {
         setTimeout(() => {
           document.getElementById('body').classList.remove("loading-body");
