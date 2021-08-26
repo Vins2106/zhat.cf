@@ -80,9 +80,10 @@ app.patch("/newmsg", async (req, res) => {
        },    
     body: JSON.stringify(req.body)
   }).then(res => res.json()).then(data => {
+    if (!data) return Json(res, {error: {msg: "Bot is offline"}})
     console.log(data)
   }).catch(e => {
-    return;
+    return Json(res, {error: {msg: "Bot is offline"}})
   })  
   
 });
