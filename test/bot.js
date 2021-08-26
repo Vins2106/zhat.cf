@@ -1,9 +1,9 @@
 module.exports = () => {
   const Zhat = require("./lib.js");
-  const client = new Zhat();
+  const client = new Zhat.Client();
   
+  console.log(client)
   client.on("ready", () => {
-    console.log(`Login!`)
   });
   
   client.login(process.env.ZHAT)

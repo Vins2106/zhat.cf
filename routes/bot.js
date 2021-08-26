@@ -46,6 +46,15 @@ app.patch("/login", async (req, res) => {
   return Json(res, {msg: "Success"})
 });
 
+app.post("/findbot", async (req, res) => {
+  if (!req.body.token) return;
+  
+  let findBot = await bots.findOne({TOKEN: req.body.token})
+  if (!findBot) return;
+  
+  return Json(res, {uid: findBot.UID})
+})
+
 app.post("/connect", async (req, res) => {
   if (!req.body) return;
   if (!req.body.uid) return;

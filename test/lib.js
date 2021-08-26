@@ -12,21 +12,27 @@ const fetch = require("node-fetch")
 const cors = require("cors");
 app.use(cors());
 
+
 class Client extends EventEmitter {
   constructor() {
     super();
     
-    this.startGateway()
+    let addr = this.addr;
     
-    (async function() {
-      this.gateway = await ngrok.connect(3030);
-    })();
+    ngrok.connect(3030)
+    
+// (async function() {
+//   const url = await ngrok.connect(3030)
+//   addr = url;
+// })();
   }
-
+  
   evt(event, opt = {}) {
     if (!this.bot) throw TypeError("No bot");
 
-    this.emit(event, opt);
+    if (event === "ready") {
+      this.emit("ready")
+    }
   }
 
   login(token) {
@@ -40,7 +46,7 @@ class Client extends EventEmitter {
           method: "POST",
           body: JSON.stringify({
             uid: data.uid,
-            addr: this.gateway
+            addr: this.addr
           })
         })
           .then(res => res.json())
@@ -51,11 +57,7 @@ class Client extends EventEmitter {
   }
 }
 
-class ClientGateway extends EventEmitter {
-  constructor() {
-    super();
-  }
-}
 
-
-module.exports = Client;
+module.exports = {
+  Client
+};
