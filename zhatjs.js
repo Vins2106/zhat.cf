@@ -1,20 +1,44 @@
 module.exports = () => {
-  const express = require("express");
-  const app = express();
-  const bodyParser = require("body-parser");
+//   const express = require("express");
+//   const app = express();
+//   const bodyParser = require("body-parser");
+//   let EventEmitter = require("events")
   
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())  
+// const cors = require('cors');
+// app.use(cors());  
   
-  app.post("/newmessage", async (req, res) => {
-    console.log(req)
-  })
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json())  
+
+//   class newBot extends EventEmitter {
+//     constructor() {
+//       super()
+      
+//     }
+    
+//     evtMessage(message) {
+//       this.emit("message", message)
+//     }
+//   }  
   
-  app.listen(3030)
+//   let Bot = new newBot();
   
-  const ngrok = require('ngrok');
-(async function() {
-  const url = await ngrok.connect(3030)
-  console.log(url)
-})();
+//   Bot.on("message", msg => {
+//     if (msg.content == "hello") {
+//       console.log('hello!')
+//     }
+//   })
+  
+//   app.post("/newmessage", async (req, res) => {
+//     Bot.evtMessage(req.body)
+//   })
+
+  
+//   app.listen(3030)
+  
+//   const ngrok = require('ngrok');
+// (async function() {
+//   const url = await ngrok.connect(3030)
+//   console.log(url)
+// })();
 }

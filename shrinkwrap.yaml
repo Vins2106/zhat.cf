@@ -2,6 +2,7 @@ dependencies:
   babel: 6.23.0
   body-parser: 1.19.0
   connect-mongo: 4.4.1
+  cors: 2.8.5
   discord.js: 12.5.3
   dotenv: 10.0.0
   ejs: 3.1.6
@@ -1672,6 +1673,7 @@ specifiers:
   babel: ^6.23.0
   body-parser: ^1.19.0
   connect-mongo: ^4.4.1
+  cors: ^2.8.5
   discord.js: ^12.5.3
   dotenv: ^10.0.0
   ejs: ^3.1.6
