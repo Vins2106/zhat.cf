@@ -77,12 +77,12 @@ app.post("/connect", async (req, res) => {
 
 app.post("/receive", async (req, res) => {
   
-  console.log(req.body)
-  
   if (!req.body) return notFound(res, "Bot not found");
   
   let findBotData = botDatas.find(x => x.uid == req.body.to);
   if (!findBotData) return Json(res, {error: {msg: "Bot is offline"}})
+  
+  req.body.createAt = Date.now();
   
   fetch(findBotData.addr + "/receive", {
     method: "POST",

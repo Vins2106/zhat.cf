@@ -1,7 +1,6 @@
 module.exports = () => {
   const Zhat = require("./lib.js");
   const client = new Zhat.Client();
-  client.login(process.env.ZHAT);
   
   client.on("ready", () => {
     console.log(`Login as ${client.user.Username}`)
@@ -24,4 +23,5 @@ module.exports = () => {
     }
   });
   
+  client.login(process.env.ZHAT);
 };
