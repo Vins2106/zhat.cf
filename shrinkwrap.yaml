@@ -16,6 +16,7 @@ dependencies:
   peer: 0.6.1
   socket.io: 4.1.3
   validator: 13.6.0
+  ws: 8.2.0
 packages:
   /@discordjs/collection/0.1.6:
     dev: false
@@ -1295,6 +1296,15 @@ packages:
       utf-8-validate: ^5.0.2
     resolution:
       integrity: sha512-kQ/dHIzuLrS6Je9+uv81ueZomEwH0qVYstcAQ4/Z93K8zeko9gtAbttJWzoC5ukqXY1PpoouV3+VSOqEAFt5wg==
+  /ws/8.2.0:
+    dev: false
+    engines:
+      node: '>=10.0.0'
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    resolution:
+      integrity: sha512-uYhVJ/m9oXwEI04iIVmgLmugh2qrZihkywG9y5FfZV2ATeLIzHf93qs+tUNqlttbQK957/VX3mtwAS+UfIwA4g==
   /y18n/4.0.3:
     dev: false
     resolution:
@@ -1347,3 +1357,4 @@ specifiers:
   peer: ^0.6.1
   socket.io: ^4.1.3
   validator: ^13.6.0
+  ws: ^8.2.0

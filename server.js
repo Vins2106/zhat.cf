@@ -23,6 +23,10 @@ const apiLimiter = rateLimit({
 });
 const fetch = require("node-fetch")
 
+//
+const WebSocket = require("ws")
+const ws = new WebSocket.Server({server: http})
+
 require("dotenv").config()
 require("./bot.js")()
 

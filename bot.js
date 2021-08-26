@@ -5,6 +5,7 @@ const client = new Discord.Client({
 });
 const fetch = require("node-fetch");
   
+  
   let status = {
     api: {
       percent: `100%`,
@@ -19,6 +20,7 @@ const fetch = require("node-fetch");
 
 client.on("ready", () => {
   console.log("[BOT] ready")
+  console.log(client.ws.gateway)
 });
 
 client.login(process.env.TOKEN);
