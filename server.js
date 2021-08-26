@@ -25,7 +25,7 @@ const fetch = require("node-fetch")
 
 require("dotenv").config()
 require("./bot.js")()
-require("./zhatjs.js")
+require("./zhatjs.js")()
 
 mongoose.connect(process.env.mongo, {
   useNewUrlParser: true,
