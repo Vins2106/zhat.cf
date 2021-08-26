@@ -261,12 +261,14 @@
                    scrollTo(0, chats.scrollHeight);
                  }
                 
+                let finalSendData = {send: botSend, author: message.author, content: message.content, to: message.to, bot: message.bot }
+                
                  fetch(`https://zhat.cf/api/bot/v1/newmsg`, {
                    method: "POST",
                    headers: {
             'Content-Type': 'application/json',
             },
-                   body: JSON.stringify({send: botSend, author: message.author, content: message.content, to: message.to, bot: message.bot })
+                   body: JSON.stringify(finalSendData)
                  }).then(res => res.json()).then(data => {
                    if (data.error) return createMessage(<%- JSON.stringify(he) %>, data.error.msg, false, "he")
                  });
