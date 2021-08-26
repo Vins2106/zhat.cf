@@ -35,7 +35,7 @@ class Client extends BaseClient {
     })   
     
     app.post("/receive", async (req, res) => {
-      if (!req.body) return;
+      if (!req.body) throw TypeError("Invalid body")
       
       req.body.author.send = function (ctn) {
         fetch(`https://zhat.cf/api/send/message`, {

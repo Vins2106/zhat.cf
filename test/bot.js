@@ -1,5 +1,5 @@
 module.exports = () => {
-  const Zhat = require("./lib.js");
+  const Zhat = require("./lib");
   const client = new Zhat.Client();
   
   client.on("ready", () => {
@@ -10,6 +10,8 @@ module.exports = () => {
   
   client.on("message", async message => {
     
+    console.log(message)
+    
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     let cmd = args.shift().toLowerCase();
     
@@ -18,6 +20,7 @@ module.exports = () => {
     }
     
     if (cmd == "ping") {
+      console.log("launch ping")
       let timeNow = Date.now();
       return message.author.send(`ping: ${timeNow - message.createAt}ms`)
     }
