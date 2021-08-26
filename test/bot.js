@@ -11,8 +11,6 @@ module.exports = () => {
   
   client.on("message", async message => {
     
-    return console.log(message)
-    
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     let cmd = args.shift().toLowerCase();
     

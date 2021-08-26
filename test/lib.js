@@ -35,7 +35,7 @@ class Client extends BaseClient {
     
     
     Object.defineProperty(this, 'client', { value: this });
-    app.post("/newmessage", async (req, res) => {
+    app.post("/receive", async (req, res) => {
       if (!req.body) return;
       
       this.client.emit("message", req.body);

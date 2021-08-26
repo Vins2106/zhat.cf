@@ -75,27 +75,25 @@ app.post("/connect", async (req, res) => {
   return Json(res, findBot);
 });
 
-app.post("/newmsg", async (req, res) => {
+app.post("/receive", async (req, res) => {
   
-  if (!req.body) return notFound("Bot not found");
+  console.log(req.body)
+  
+  if (!req.body) return notFound(res, "Bot not found");
   
   let findBotData = botDatas.find(x => x.uid == req.body.to);
   if (!findBotData) return Json(res, {error: {msg: "Bot is offline"}})
   
-  console.log(req.body) 
-  
-  fetch(findBotData.addr + "/newmessage", {
+  fetch(findBotData.addr + "/receive", {
     method: "POST",
            headers: {
              'Content-Type': 'application/json'
        },    
     body: JSON.stringify(req.body)
   }).then(res => res.json()).then(data => {
-    if (!data) return Json(res, {error: {msg: "Bot is offline 2"}})
-    console.log(data)
+    if (!data) return Json(res, {error: {msg: "Bot is offline"}})
   }).catch(e => {
-    console.log(e)
-    return Json(res, {error: {msg: "Bot is offline 3"}})
+    return Json(res, {error: {msg: "Bot is offline"}})
   })  
   
 });
