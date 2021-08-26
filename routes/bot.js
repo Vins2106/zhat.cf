@@ -51,15 +51,6 @@ app.post("/login", async (req, res) => {
   return Json(res, findBot)
 });
 
-const EventEmitter = require('events');
-class startBot extends EventEmitter {
-  constructor(bot) {
-    super();
-    
-    this
-  }
-}
-
 module.exports = app;
 
 function notFound(res, str) {
