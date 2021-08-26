@@ -251,6 +251,15 @@
                   createMessage(message.author, message.content, false, "me")
                   scrollTo(0, chats.scrollHeight)
                 
+                fetch(`https://zhat.cf/api/bot/v1/newmsg/<%= he.UID %>`, {
+                  method: "PATCH",
+                  body: JSON.stringify(message);
+                }).then(res => res.json()).then(data => {
+                  if (data.error) return;
+                  
+                  console.log(`[BOT] receive ${data.content}`)
+                });
+                
                 let args = message.content.slice(prefix.length).trim().split(/ +/g);
                 let cmd = args.shift().toLowerCase();
                 
