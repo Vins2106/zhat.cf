@@ -127,6 +127,8 @@ app.patch("/api/send/message", async (req, res) => {
     Bot: true
   }
   
+  req.body.createAt = Date.now();
+  
   io.sockets.emit("message2", req.body)
 })
 

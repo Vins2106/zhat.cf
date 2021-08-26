@@ -17,6 +17,11 @@ module.exports = () => {
     if (cmd == "help") {
       return message.author.send("Help your self");
     }
+    
+    if (cmd == "ping") {
+      let timeNow = Date.now();
+      return message.author.send(`ping: ${timeNow - message.createAt}`)
+    }
   });
   
 };

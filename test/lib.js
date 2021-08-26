@@ -44,7 +44,7 @@ class Client extends BaseClient {
           headers: {
             'Content-Type': "application/json"
           },
-          body: JSON.stringify({author: req.body.to, content: ctn, to: req.body.author.UID, bot: true })
+          body: JSON.stringify({author: req.body.to, content: ctn, to: req.body.author.UID, bot: true, createAt: Date.now() })
         })
       };
       
