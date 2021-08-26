@@ -45,11 +45,11 @@ app.patch("/login", async (req, res) => {
   return Json(res, {msg: "Success"})
 });
 
-app.patch("/newmsg/:uid", async (req, res) => {
-  let uid = req.params.uid;
-  if (!uid) return notFound(res, "No id provided");
+app.post("/connect", async (req, res) => {
+  if (!req.body) return;
+  if (!req.body.addr) return;
   
-  
+  return Json(res, {listening: req.body.addr});
 });
 
 module.exports = app;
