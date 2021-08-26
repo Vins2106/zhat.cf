@@ -327,6 +327,10 @@ span.pf-status.offline {
   background: #999999;
 }
 
+span.pf-status.bot {
+    background: deepskyblue;
+}
+
 span.pf-status.online {
   background: #4CC701;
 }

@@ -47,6 +47,7 @@ app.post("/login", async (req, res) => {
   if (!findBot) return notFound(res, "Invalid token")
   
   req.bot = findBot;
+  startBot()
   
   return Json(res, findBot)
 });
