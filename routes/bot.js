@@ -47,7 +47,9 @@ app.patch("/login", async (req, res) => {
 
 app.patch("/newmsg/:uid", async (req, res) => {
   let uid = req.params.uid;
-  if (!uid) return notFound(res, "No id provided")
+  if (!uid) return notFound(res, "No id provided");
+  
+  
 });
 
 module.exports = app;
