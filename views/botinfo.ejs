@@ -13,7 +13,7 @@
 <!--     navbar -->
     <div class="navbar">
       <div class="navbar-brand">
-        <span class="navbar-brand brand" onclick="location.href='/'">Z</span>
+        <span class="navbar-brand brand" onclick="location.href='/me/developer'">D</span>
       </div>
       <div class="navbar-navigation" id="navbar">
       <div class="navbar-toggle-2" id="navbar-toggle-2">
@@ -37,27 +37,35 @@
         <div class="bi-box bi-avatar-username">
           <img src="<%= bot.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
           <form method="post">
+            <input style="margin-top: 20px;" class="input-box" type="url" name="avatar" id="avatar" placeholder="Bot avatar" value="<%= bot.Avatar ? bot.Avatar : "" %>" autocomplete="off" onchange="nameChange()" required>   
             <input style="margin-top: 20px;" class="input-box" type="text" name="username" id="username" placeholder="John Doe" value="<%= bot.Username %>" autocomplete="off" onchange="nameChange()" required>   
             <button class="btn btn-primary" type="submit" style="display: none; margin: 10px auto;" id="btn1">
-              Change name
+              Save
             </button>
           </form>
         </div>
         <div class="bi-box">
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="navigator.clipboard.writeText('<%= bot.UID %>'), alert('Copied')">
             Copy id
           </button>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="copyToken()">
             Copy token
           </button>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="regenerateToken()">
             Regenerate token
           </button>
+          <button class="btn btn-primary" onclick="navigator.clipboard.writeText('https://zhat.cf/invite/<%= bot.UID %>'), alert('Copied')">
+            Copy invite
+          </button>          
         </div>
       </div>
 
     </main>
     <script>
+      <% if (req.query.error) { %>
+      alert('<%= req.query.error %>')
+      <% } %>
+      
       let input = document.getElementById("username");
       let token = '<%= bot.TOKEN %>';
       
@@ -81,7 +89,8 @@
       }
       
       function copyToken() {
-        n
+        navigator.clipboard.writeText(token);
+        return alert("Copied")
       }
       
       function regenerateToken() {
@@ -91,12 +100,11 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: {
-            token
-          }
+          body: JSON.stringify({token: token})
         }).then(res => res.json()).then(data => {
           if (data.error) return alert(data.error.msg);
           token = data.TOKEN;
+          alert("Token has been regenerate")
         });
         
       }

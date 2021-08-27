@@ -264,6 +264,12 @@ app.post("/developer/:uid", checkAuth, async (req, res) => {
   let findBot = await bots.findOne({OWNER: req.session.user.UID, UID: req.params.uid});
   if (!findBot) return res.redirect("/me/developer");
   
+  if (req.body.avatar) {
+  if (!req.body.avatar.endsWith(".jpg") || !req.body.avatar.endsWith(".png") || !req.body.avatar.endsWith(".webp")) {
+    return res.redirect(`/me/developer/${req.params.uid}?error=Invalid avatar url`);
+  } else
+  }
+  
   findBot.Username = req.body.username;
   findBot.save()
   
