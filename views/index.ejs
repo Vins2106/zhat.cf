@@ -51,7 +51,7 @@
           <span class="account-isonline offline" id="<%= u.uid %>" style="width: -webkit-fill-available; text-align: left; margin-left: 12px;"><i class="fa fa-times"></i> offline</span>
         </div>
       <span class="account-last-msg-2" id="<%= u.uid %>-lastmsg"><%= u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %></span>
-      </div> -->
+      </div> -->t>
     <% }) %>
     <% } %>   
 <!--          -->
@@ -87,10 +87,11 @@
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>    
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <!-- Production -->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>    
+<script src="https://unpkg.com/tippy.js@6"></script>
 <link
   rel="stylesheet"
   href="https://unpkg.com/tippy.js@6/animations/scale.css"
@@ -159,7 +160,7 @@ const shareData = {
         if (!user) return;
         
         audio.play();
-        user.innerHTML = `${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`;
+        user.innerHTML = marked(`${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`);
       })
                   
       socket.on("isOnline", userId => {
