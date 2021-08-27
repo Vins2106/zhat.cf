@@ -28,6 +28,7 @@ let prefix = "#"
 
 client.on("message", async message => {
   if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
   let args = message.content.slice(prefix.length).trim().split(/ +/g)
   let cmd = args.shift().toLowerCase();
   
