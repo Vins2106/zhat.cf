@@ -192,6 +192,19 @@ main.main {
   margin-right: 10px;
 }
 
+.create-bot {background: #09C4FF;position: absolute;z-index: 99999;top: 0;bottom: 0;left: 0;right: 0;max-height: 300px;margin: auto;padding: 10px;max-width: 300px;display: flex;flex-direction: column;border-radius: 5px;}
+
+.create-bot-err {
+    background: indianred;
+    padding: 5px;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin: 10px 0;
+  display: none;
+}
+
 footer {
   text-align: center;
   height: 50px;
