@@ -15,9 +15,9 @@
         <div class="create-bot-err" id="error">
           <span class="create-err" id="error2">This is example</span>
         </div>
-        <form method="post" style="display: flex; flex-direction: column; height: -webkit-fill-available;">
+        <form method="post" id="form" style="display: flex; flex-direction: column; height: -webkit-fill-available;">
           <label for="username" style="color: black; font-weight: bold; margin: 10px 0; font-size: 24px;">Bot Name</label>
-          <input class="input-box" type="text" name="newusername" id="username" placeholder="John Doe" autocomplete="off" required>           
+          <input class="input-box" type="text" name="username" id="username" placeholder="John Doe" autocomplete="off" required>           
           <button class="btn btn-primary" id="submit-btn" style="margin-top: auto; margin-left: auto;">
             Create
           </button>
@@ -36,7 +36,7 @@
       <ul class="navbar-nav">
         <li class="navbar-link"><a onclick="shareURL()">Share</a></li>
         <li class="navbar-link"><a href="/faq">FAQ</a></li>
-        <li class="navbar-link"><a href="/updates">Npm</a></li>
+        <li class="navbar-link"><a href="https://www.npmjs.com/package/zhat.js">Npm</a></li>
       </ul>
       <button style="margin-left: 16px;" class="btn btn-primary btn-getstarted" onclick="createBot()">
         Create Bot
@@ -46,8 +46,32 @@
         <span class="navbar-toggle-icon"><i class="fa fa-bars"></i></span>
       </div>
     </div>
+      
+      <div class="bots">
+        <div class="bot">
+          <img src="<%= req.session.user.Avatar %>" >
+        </div>
+      </div>
 
     </main>
+    <script>
+      let modal = document.getElementById("modal");
+      modal.style.display = "none";
+      let userBots = Number(`<%= req.session.user.Bots || 0 %>`)
+      let display = false;
+      let form = document.getElementById("form");
+      
+      function createBot() {
+        if (userBots >= 3) return alert("You reach max bots")
+        if (display) {
+          modal.style.display = "none"
+          display = false;
+        } else {
+          modal.style.display = "block"
+          display = true
+        }
+      }
+    </script>
     <script>
     let isNavbar = false;
       
