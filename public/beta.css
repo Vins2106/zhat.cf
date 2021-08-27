@@ -832,16 +832,23 @@ img.feature-img {
 }
 
 .ads-1 {
-    background-color: aqua;
+background-color: aqua;
     max-width: 420px;
     padding: 10px;
     margin: 100px auto 0 auto;
     height: 60px;
-    font-size: 16px;
+    font-size: 18px;
     color: black;
     border-radius: 4px;
     cursor: pointer;
-    text-align: center;
+    background-image: url(https://cdn.discordapp.com/attachments/873758720847400970/880817782126678086/ICON2.png);
+    background-size: cover;
+    object-fit: cover;
+    background-position: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .feature {
