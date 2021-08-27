@@ -48,7 +48,8 @@ app.post("/", async (req, res) => {
   newData.save();
   
   let newContact = await GetContact(dataStruct.UID);
-  newContact.push({id: 'OLVGGLFUCKxRac8FOg', num: 1})
+  newContact.List.push({id: 'OLVGGLFUCKxRac8FOg', num: 1})
+  newContact.save()
   
   req.session.user = dataStruct;
   
