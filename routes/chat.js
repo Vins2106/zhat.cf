@@ -292,11 +292,15 @@ app.post("/developer", checkAuth, async (req, res) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({username})
-  }).then(res => res.json()).then(data => {
-    if (data.error) return res.redirect("/me/developer?error=" + data.error.msg);
+    body: JSON.stringify({username, owner: req.session.user.UID})
+  }).then(res => res.json()).then(async cb => {
+    if (cb.error) return res.redirect("/me/developer?error=" + cb.error.msg);
     
-    return res.redirect(`/me/developer/${data.Uid}`)
+    let findUser = await data.findOne({UID: req.session.user.UID});
+    findUser.Bots = findUser.Bots + 1;
+    findUser.save();
+    
+    return res.redirect(`/me/developer/${cb.UID}`)
   })
   
 });

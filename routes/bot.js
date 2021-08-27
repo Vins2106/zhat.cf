@@ -16,6 +16,7 @@ app.post("/create", async (req, res) => {
   if (!req.body.username) return notFound(res, "Failed, username not provided");
   
   let username = req.body.username;
+  let owner = req.body.owner;
   let avatar = req.body.avatar ? req.body.avatar : null;
   let token = makeid(20);
   let uid = makeid(18);
@@ -24,6 +25,7 @@ app.post("/create", async (req, res) => {
   if (checkUsername) return forBidden(res, "Username already used")
   
   let botStruct = {
+    OWNER: owner,
     Username: username,
     Avatar: avatar,
     TOKEN: token,
