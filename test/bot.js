@@ -18,7 +18,6 @@ module.exports = () => {
     }
     
     if (cmd == "ping") {
-      console.log("A")
       let timeNow = Date.now();
       return message.author.send(`ping: ${timeNow - message.createAt}ms`)
     }
