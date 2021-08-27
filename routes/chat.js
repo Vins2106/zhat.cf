@@ -245,6 +245,17 @@ app.get("/developer", checkAuth, async (req, res) => {
   })
 });
 
+app.post("/developer", checkAuth, async (req, res) => {
+  
+  let username = req.body.username;
+  
+  let findBot = await bots.findOne({Username: username});
+  if (findBot) return res.redirect("/me/developer?error=Username already used");
+  
+  fetch("https://zhat.cf/api/bot/v1/create", {meth})
+  
+});
+
 app.get("/:uid", checkAuth, async (req, res) => {
   
   let findTarget = await data.findOne({UID: req.params.uid}) || await bots.findOne({UID: req.params.uid})

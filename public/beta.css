@@ -205,6 +205,40 @@ main.main {
   display: none;
 }
 
+.bots {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: -webkit-fill-available;
+    justify-content: center;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.bot {
+    display: flex;
+    flex-direction: column;
+    background: darkslategrey;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px;
+    transition: 0.5s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bot:hover {
+    transform: scale(1.05);
+}
+
+.bot img {border-radius: 16px;}
+
+.bot span {
+    text-align: center;
+    margin: 5px 0 0 0;
+}
+
 footer {
   text-align: center;
   height: 50px;
