@@ -178,10 +178,10 @@ cached.push({id: x.id, num: 3})
 if (current == 3) {
 current++;
 }
+}
 current++;          
           cached.push({id: x.id, num: current})
           current++;
-}
         }
       })
     }
