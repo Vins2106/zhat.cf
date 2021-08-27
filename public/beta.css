@@ -18,7 +18,7 @@ body {
 
 /* button */
 .btn {
-  width: 120px;
+  min-width: 120px;
   height: 36px;
   border: none;
   border-radius: 3px;
@@ -242,6 +242,33 @@ main.main {
 .bot span {
     text-align: center;
     margin: 5px 0 0 0;
+}
+
+.bi-box img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.bot-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.bi-box.bi-avatar-username {
+    text-align: center;
+    flex-direction: column;
+}
+
+.bi-box {
+    background: darkslategrey;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 footer {

@@ -36,7 +36,12 @@
       <div class="bot-info">
         <div class="bi-box bi-avatar-username">
           <img src="<%= bot.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <input class="input-box" type="text" name="username" id="username" placeholder="John Doe" autocomplete="off" required>    
+          <form method="post">
+            <input style="margin-top: 20px;" class="input-box" type="text" name="username" id="username" placeholder="John Doe" value="<%= bot.Username %>" autocomplete="off" required>   
+            <button class="btn btn-primary" type="submit" style="display: none; display: block; margin: 10px auto;" id="btn1">
+              Change name
+            </button>
+          </form>
         </div>
         <div class="bi-box">
           <button class="btn btn-primary">
@@ -52,6 +57,14 @@
       </div>
 
     </main>
+    <script>
+      let input = document.getElementById("username");
+      input.addEventL
+      
+    function nameChange() {
+      document.getElementById("btn1").style.display = "block"
+    }
+    </script>
     <script>
     let isNavbar = false;
       
