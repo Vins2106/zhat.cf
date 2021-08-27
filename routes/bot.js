@@ -40,12 +40,26 @@ app.post("/create", async (req, res) => {
   return Json(res, botStruct)
 });
 
+app.post("/delete", async (req, res) => {
+  if (!req.body) return notFound(res, "Failed, no data we receive");
+  if (!req.body.token) return notFound(res, "Failed, token not provided");
+  if (!req.body.uid) return notFound(res, "Failed, token not provided");
+  
+  let findBot = await bots.findOne({TOKEN: req.body.token, OWNER: req.body.uid});
+  if (!findBot) return notFound(res, "Bot not found");  
+  
+  findBot.remove();
+  
+  return Json(res, {msg: "success"})
+});
+
 app.post("/regenerate", async (req, res) => {
   
   if (!req.body) return notFound(res, "Failed, no data we receive");
   if (!req.body.token) return notFound(res, "Failed, token not provided");
+  if (!req.body.owner) return notFound(res, "Failed, token not provided");
   
-  let findBot = await bots.findOne({TOKEN: req.body.token});
+  let findBot = await bots.findOne({TOKEN: req.body.token, OWNER: req.body.owner});
   if (!findBot) return notFound(res, "Bot not found");
   
   findBot.TOKEN = makeid(20);

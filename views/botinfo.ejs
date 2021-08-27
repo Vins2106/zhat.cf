@@ -76,7 +76,19 @@
         let yn = confirm("Are you sure to delete this bot?");
         if (!yn) return;
         
-        fetch()
+        fetch("https://zhat.cf/api/bot/v1/delete", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            token: token,
+            uid: '<%= req.session.user.UID %>'
+          })
+        }).then(res => res.json()).then(data => {
+          if (data.error) return alert(data.error.msg);
+          return location.href = '/me/developer'
+        })
       }
       
     function nameChange() {
@@ -113,7 +125,7 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({token: token})
+          body: JSON.stringify({token: token, owner: '<%= req.session.user.UID %>'})
         }).then(res => res.json()).then(data => {
           if (data.error) return alert(data.error.msg);
           token = data.TOKEN;
