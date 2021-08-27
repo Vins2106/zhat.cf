@@ -56,7 +56,10 @@
           </button>
           <button class="btn btn-primary" onclick="navigator.clipboard.writeText('https://zhat.cf/invite/<%= bot.UID %>'), alert('Copied')">
             Copy invite
-          </button>          
+          </button>  
+          <button class="btn btn-primary" onclick="deleteBot()">
+            Delete
+          </button>            
         </div>
       </div>
 
@@ -68,6 +71,13 @@
       
       let input = document.getElementById("username");
       let token = '<%= bot.TOKEN %>';
+      
+      function deleteBot() {
+        let yn = confirm("Are you sure to delete this bot?");
+        if (!yn) return;
+        
+        fetch()
+      }
       
     function nameChange() {
       document.getElementById("btn1").style.display = "block"

@@ -192,7 +192,26 @@ main.main {
   margin-right: 10px;
 }
 
-.create-bot {background: #09C4FF;position: absolute;z-index: 99999;top: 0;bottom: 0;left: 0;right: 0;max-height: 300px;margin: auto;padding: 10px;max-width: 300px;display: flex;flex-direction: column;border-radius: 5px;}
+.create-bot {
+    background: #09C4FF;
+    position: absolute;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 10px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    height: fit-content;  
+}
+
+.bi-box button {
+    margin: 10px;
+}
 
 .create-bot-err {
     background: indianred;
@@ -269,6 +288,7 @@ main.main {
     display: flex;
     align-items: center;
     justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 footer {

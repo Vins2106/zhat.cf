@@ -286,6 +286,8 @@ app.post("/developer", checkAuth, async (req, res) => {
   
   let findBot = await bots.findOne({Username: username});
   if (findBot) return res.redirect("/me/developer?error=Username already used");
+  let findUser = await data.findOne({UID: req.session.user.UID});
+  if (findUser.Bots >= 3) return res.redirect("/me/developer?error=Max bot reached");
   
   fetch("https://zhat.cf/api/bot/v1/create", {
     method: "POST",
@@ -296,7 +298,6 @@ app.post("/developer", checkAuth, async (req, res) => {
   }).then(res => res.json()).then(async cb => {
     if (cb.error) return res.redirect("/me/developer?error=" + cb.error.msg);
     
-    let findUser = await data.findOne({UID: req.session.user.UID});
     findUser.Bots = findUser.Bots + 1;
     findUser.save();
     
