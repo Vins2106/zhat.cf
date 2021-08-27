@@ -10,20 +10,6 @@
     </div>
     
     <main class="main">
-      
-      <div class="create-bot" id="modal">
-        <div class="create-bot-err" id="error">
-          <span class="create-err" id="error2"></span>
-        </div>
-        <form method="post" id="form" style="display: flex; flex-direction: column; height: -webkit-fill-available;">
-          <label for="username" style="color: black; font-weight: bold; margin: 10px 0; font-size: 24px;">Bot Name</label>
-          <input class="input-box" type="text" name="username" id="username" placeholder="John Doe" autocomplete="off" required>           
-          <button class="btn btn-primary" id="submit-btn" style="margin-top: auto; margin-left: auto;">
-            Create
-          </button>
-        </form>
-      </div>
-      
 <!--     navbar -->
     <div class="navbar">
       <div class="navbar-brand">
@@ -47,42 +33,25 @@
       </div>
     </div>
       
-      <div class="bots">
-        <% bots.map(bot => { %>
-        <div class="bot" onclick="location.href='/me/developer/<%= bot.UID %>'">
+      <div class="bot-info">
+        <div class="bi-box bi-avatar-username">
           <img src="<%= bot.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= bot.Username %></span>
+          <input class="input-box" type="text" name="username" id="username" placeholder="John Doe" autocomplete="off" required>    
         </div>
-        <% }) %>
+        <div class="bi-box">
+          <button class="btn btn-primary">
+            Copy id
+          </button>
+          <button class="btn btn-primary">
+            Copy token
+          </button>
+          <button class="btn btn-primary">
+            Regenerate token
+          </button>
+        </div>
       </div>
 
     </main>
-    <script>
-      let modal = document.getElementById("modal");
-      modal.style.display = "none";
-      let userBots = Number(`<%= req.session.user.Bots || 0 %>`)
-      let display = false;
-      let form = document.getElementById("form");
-      let err1 = document.getElementById("error");
-      let err2 = document.getElementById("error2");
-      
-      <% if (req.query.error) { %>
-      err2.innerHTML = '<%= req.query.error %>'
-      err1.style.display = "block"
-      createBot();
-      <% } %>
-      
-      function createBot() {
-        if (userBots >= 3) return alert("You reach max bots")
-        if (display) {
-          modal.style.display = "none"
-          display = false;
-        } else {
-          modal.style.display = "block"
-          display = true
-        }
-      }
-    </script>
     <script>
     let isNavbar = false;
       

@@ -245,6 +245,20 @@ app.get("/developer", checkAuth, async (req, res) => {
   })
 });
 
+app.get("/developer/:uid", checkAuth, async (req, res) => {
+  
+  let findBot = await bots.findOne({OWNER: req.session.user.UID, UID: req.params.uid});
+  if (!findBot) return res.redirect("/me/developer");
+  
+  return res.render("botinfo.ejs", {
+    req,
+    res,
+    bot: findBot,
+    error: null
+  })
+  
+});
+
 app.post("/developer", checkAuth, async (req, res) => {
   
   let username = req.body.username;
