@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./parts/betahead.ejs") %>    
+  </head>
+  <body class="loading-body" id="body">
+    <div class="loading" id="loading">
+      <img class="loading-svg" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_building_websites_i78t.svg?v=1629368423963" alt="loading...">
+      <span class="loading-title">Loading...</span>
+    </div>
+    
+    <main class="main">
+      
+      <div class="create-bot" id="modal">
+        <div class="create-bot-err" id="error">
+          <span class="create-err" id="error2">This is example</span>
+        </div>
+        <form method="post">
+          <label for="username">Bot Name</label>
+          <input class="input-box" type="text" name="newusername" id="username" placeholder="John Doe" autocomplete="off" required>          
+          <button class="btn btn-primary" id="submit-btn">
+            Create
+          </button>
+        </form>
+      </div>
+      
+<!--     navbar -->
+    <div class="navbar">
+      <div class="navbar-brand">
+        <span class="navbar-brand brand" onclick="location.href='/'">Z</span>
+      </div>
+      <div class="navbar-navigation" id="navbar">
+      <div class="navbar-toggle-2" id="navbar-toggle-2">
+        <span onclick="toggleNavbar()" class="navbar-toggle-2-icon"><i class="fa fa-close"></i></span>
+      </div>
+      <ul class="navbar-nav">
+        <li class="navbar-link"><a onclick="shareURL()">Share</a></li>
+        <li class="navbar-link"><a href="/faq">FAQ</a></li>
+        <li class="navbar-link"><a href="/updates">Npm</a></li>
+      </ul>
+      <button style="margin-left: 16px;" class="btn btn-primary btn-getstarted" onclick="createBot()">
+        Create Bot
+      </button>        
+      </div>
+      <div class="navbar-toggle" id="navbar-toggle" onclick="toggleNavbar()">
+        <span class="navbar-toggle-icon"><i class="fa fa-bars"></i></span>
+      </div>
+    </div>
+
+    </main>
+    <script>
+    let isNavbar = false;
+      
+      function toggleNavbar() {
+        let navbar = document.getElementById("navbar");
+        
+        if (isNavbar) {
+          navbar.classList.remove("on");
+          isNavbar = false;
+        } else if (!isNavbar) {
+          navbar.classList.add("on");
+          isNavbar = true;
+        }
+      }
+    
+    </script>
+    <script>
+      window.onload = function() {
+        setTimeout(() => {
+          document.getElementById('body').classList.remove("loading-body");
+          document.getElementById('loading').classList.add("not-showing")
+        }, 1000)
+      }
+      
+      async function shareURL() {
+const shareData = {
+  title: 'Zhatting Chatapp',
+  text: 'Find friends on Zhatting',
+  url: 'https://zhat.cf',
+}
+  try {
+    await navigator.share(shareData)
+  } catch(err) {
+    console.log("Cant open share pop up", err)
+  }    
+      }         
+    </script>
+  </body>
+</html>

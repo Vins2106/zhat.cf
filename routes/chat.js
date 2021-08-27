@@ -233,6 +233,18 @@ app.post("/settings", checkAuth, async (req, res) => {
   
 });
 
+app.get("/developer", checkAuth, async (req, res) => {
+  
+  let findBots = await bots.find({OWNER: req.session.user.UID});
+  
+  return res.render("developers.ejs", {
+    req,
+    res,
+    bots: findBots,
+    error: null
+  })
+});
+
 app.get("/:uid", checkAuth, async (req, res) => {
   
   let findTarget = await data.findOne({UID: req.params.uid}) || await bots.findOne({UID: req.params.uid})
