@@ -5,6 +5,7 @@ let messages = require("../mongo/message.js");
 let contacts = require("../mongo/contacts.js");
 let bots = require("../mongo/Bots.js");
 let validator = require("validator");
+const fetch = require("node-fetch")
 
 app.get("/", checkAuth, async (req, res) => {
   
@@ -265,9 +266,11 @@ app.post("/developer/:uid", checkAuth, async (req, res) => {
   if (!findBot) return res.redirect("/me/developer");
   
   if (req.body.avatar) {
-  if (!req.body.avatar.endsWith(".jpg") || !req.body.avatar.endsWith(".png") || !req.body.avatar.endsWith(".webp")) {
+  if (!req.body.avatar.endsWith(".jpg") && !req.body.avatar.endsWith(".png") && !req.body.avatar.endsWith(".webp")) {
     return res.redirect(`/me/developer/${req.params.uid}?error=Invalid avatar url`);
-  } else
+  } else {
+    findBot.Avatar = req.body.avatar;
+  }
   }
   
   findBot.Username = req.body.username;
@@ -289,9 +292,7 @@ app.post("/developer", checkAuth, async (req, res) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: {
-      username
-    }
+    body: JSON.stringify({username})
   }).then(res => res.json()).then(data => {
     if (data.error) return res.redirect("/me/developer?error=" + data.error.msg);
     

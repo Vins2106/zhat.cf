@@ -49,7 +49,7 @@
       
       <div class="bots">
         <% bots.map(bot => { %>
-        <div class="bot" onclick="location.href='/me/developer/<%= bot.UID %>'">
+        <div class="bot-box" onclick="location.href='/me/developer/<%= bot.UID %>'">
           <img src="<%= bot.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
           <span class="bot-title"><%= bot.Username %></span>
         </div>

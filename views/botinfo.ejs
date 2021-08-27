@@ -37,7 +37,7 @@
         <div class="bi-box bi-avatar-username">
           <img src="<%= bot.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
           <form method="post">
-            <input style="margin-top: 20px;" class="input-box" type="url" name="avatar" id="avatar" placeholder="Bot avatar" value="<%= bot.Avatar ? bot.Avatar : "" %>" autocomplete="off" onchange="nameChange()" required>   
+            <input style="margin-top: 20px;" class="input-box" type="url" name="avatar" id="avatar" placeholder="Bot avatar" value="<%= bot.Avatar ? bot.Avatar : "" %>" autocomplete="off" onchange="nameChange()">   
             <input style="margin-top: 20px;" class="input-box" type="text" name="username" id="username" placeholder="John Doe" value="<%= bot.Username %>" autocomplete="off" onchange="nameChange()" required>   
             <button class="btn btn-primary" type="submit" style="display: none; margin: 10px auto;" id="btn1">
               Save
@@ -94,6 +94,9 @@
       }
       
       function regenerateToken() {
+        
+        let yn = confirm("Are you sure to regenerate bot token?");
+        if (!yn) return;
         
         fetch("https://zhat.cf/api/bot/v1/regenerate", {
           method: "POST",

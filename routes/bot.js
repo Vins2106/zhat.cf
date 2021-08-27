@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 const botDatas = require("./../data.js");
 const fetch = require("node-fetch")
 
-app.post("/create", checkAuth, async (req, res) => {
+app.post("/create", async (req, res) => {
   if (!req.body) return notFound(res, "Failed, no data we receive");
   if (!req.body.username) return notFound(res, "Failed, username not provided");
   

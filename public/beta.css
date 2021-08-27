@@ -215,7 +215,7 @@ main.main {
     margin: 20px auto;
 }
 
-.bot {
+.bot-box {
     display: flex;
     flex-direction: column;
     background: darkslategrey;
@@ -228,18 +228,18 @@ main.main {
     cursor: pointer;
 }
 
-.bot:hover {
+.bot-box:hover {
     transform: scale(1.05);
 }
 
-.bot img {
+.bot-box img {
     border-radius: 16px;
     width: 150px;
     height: 150px;
     object-fit: cover;  
 }
 
-.bot span {
+.bot-box span {
     text-align: center;
     margin: 5px 0 0 0;
 }
