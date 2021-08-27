@@ -66,6 +66,7 @@
       let form = document.getElementById("form");
       let err1 = document.getElementById("error");
       let err2 = document.getElementById("error2");
+      let isNavbar = false;
       
       <% if (req.query.error) { %>
       err2.innerHTML = '<%= req.query.error %>'
@@ -74,6 +75,10 @@
       <% } %>
       
       function createBot() {
+        if (isNavbar) {
+          toggleNavbar();
+        }
+        
         if (userBots >= 3) return alert("You reach max bots")
         if (display) {
           modal.style.display = "none"
@@ -83,11 +88,12 @@
           display = true
         }
       }
-    </script>
-    <script>
-    let isNavbar = false;
       
       function toggleNavbar() {
+        if (display) {
+          createBot()
+        }
+        
         let navbar = document.getElementById("navbar");
         
         if (isNavbar) {

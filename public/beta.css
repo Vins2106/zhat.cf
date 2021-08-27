@@ -59,6 +59,13 @@ a:hover {
   text-decoration: underline;
 }
 
+/* chat format */
+code {
+    background: dimgrey;
+    padding: 3px 10px;
+    border-radius: 4px;
+}
+
 /* global */
 .navbar {
   display: flex;
