@@ -173,8 +173,15 @@ app.patch("/api/post/message", async (req, res) => {
           }              
           }
         } else {
+if (x.num == 2) {
+cached.push({id: x.id, num: 3})
+if (current == 3) {
+current++;
+}
+current++;          
           cached.push({id: x.id, num: current})
           current++;
+}
         }
       })
     }
@@ -195,8 +202,16 @@ app.patch("/api/post/message", async (req, res) => {
           }              
           }
         } else {
+if (x.num == 2) {
+cached2.push({id: x.id, num: 3})
+if (current2 == 3) {
+current2++;
+}
+} else {
+current2++;             
           cached2.push({id: x.id, num: current2})
           current2++;
+}
         }
       })
     }          
