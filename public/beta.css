@@ -846,9 +846,16 @@ background-color: aqua;
     object-fit: cover;
     background-position: 0;
     font-weight: bold;
-    display: flex;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+span.ads-msg {width: -webkit-fill-available;}
+
+span.ads-info {
+    font-size: 12px;
 }
 
 .feature {
