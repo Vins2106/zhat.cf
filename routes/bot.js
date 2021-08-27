@@ -38,6 +38,20 @@ app.post("/create", checkAuth, async (req, res) => {
   return Json(res, botStruct)
 });
 
+app.post("/regenerate", async (req, res) => {
+  
+  if (!req.body) return notFound(res, "Failed, no data we receive");
+  if (!req.body.token) return notFound(res, "Failed, token not provided");
+  
+  let findBot = await bots.findOne({TOKEN: req.body.token});
+  if (!findBot) return notFound(res, "Bot not found");
+  
+  findBot.TOKEN = makeid(20);
+  findBot.save();
+  
+  return Json(res, findBot);
+});
+
 app.patch("/login", async (req, res) => {
   let findBot = await bots.findOne({TOKEN: req.params.token});
   if (!findBot) return notFound(res, "Invalid token");
