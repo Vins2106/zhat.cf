@@ -13,7 +13,7 @@
       
       <div class="create-bot" id="modal">
         <div class="create-bot-err" id="error">
-          <span class="create-err" id="error2">This is example</span>
+          <span class="create-err" id="error2"></span>
         </div>
         <form method="post" id="form" style="display: flex; flex-direction: column; height: -webkit-fill-available;">
           <label for="username" style="color: black; font-weight: bold; margin: 10px 0; font-size: 24px;">Bot Name</label>
@@ -48,38 +48,12 @@
     </div>
       
       <div class="bots">
+        <% bots.map(bot => { %>
         <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
+          <img src="<%= bot.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
+          <span class="bot-title"><%= bot.Username %></span>
         </div>
-        <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
-        </div>
-        <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
-        </div>
-        <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
-        </div>
-        <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
-        </div>
-        <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
-        </div>
-        <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
-        </div>
-        <div class="bot">
-          <img src="<%= req.session.user.Avatar %>" alt="Bot avatar" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'" loading="lazy">
-          <span class="bot-title"><%= req.session.user.Username %></span>
-        </div>
+        <% }) %>
       </div>
 
     </main>
@@ -89,6 +63,14 @@
       let userBots = Number(`<%= req.session.user.Bots || 0 %>`)
       let display = false;
       let form = document.getElementById("form");
+      let err1 = document.getElementById("error");
+      let err2 = document.getElementById("error2");
+      
+      <% if (req.query.error) { %>
+      err2.innerHTML = '<%= req.query.error %>'
+      err1.style.display = "block"
+      createBot();
+      <% } %>
       
       function createBot() {
         if (userBots >= 3) return alert("You reach max bots")

@@ -252,7 +252,19 @@ app.post("/developer", checkAuth, async (req, res) => {
   let findBot = await bots.findOne({Username: username});
   if (findBot) return res.redirect("/me/developer?error=Username already used");
   
-  fetch("https://zhat.cf/api/bot/v1/create", {meth})
+  fetch("https://zhat.cf/api/bot/v1/create", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: {
+      username
+    }
+  }).then(res => res.json()).then(data => {
+    if (data.error) return res.redirect("/me/developer?error=" + data.error.msg);
+    
+    return res.redirect(`/me/developer/${data.Uid}`)
+  })
   
 });
 

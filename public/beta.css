@@ -232,7 +232,12 @@ main.main {
     transform: scale(1.05);
 }
 
-.bot img {border-radius: 16px;}
+.bot img {
+    border-radius: 16px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;  
+}
 
 .bot span {
     text-align: center;
