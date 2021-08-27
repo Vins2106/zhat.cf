@@ -8,6 +8,7 @@ module.exports = model(
     UID: String,
     Avatar: String,
     Wallpaper: String,
-    Bot: false
+    Bot: false,
+    Bots: Number
   })
 );
