@@ -824,6 +824,19 @@ img.feature-img {
   border-radius: 6px;
 }
 
+.ads-1 {
+    background-color: aqua;
+    max-width: 420px;
+    padding: 10px;
+    margin: 100px auto 0 auto;
+    height: 60px;
+    font-size: 16px;
+    color: black;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
 .feature {
   max-width: -webkit-fill-available;
   box-shadow: 0 11px 22px 7px rgb(0 0 0 / 30%);
