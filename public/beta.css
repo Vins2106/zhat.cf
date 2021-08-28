@@ -61,9 +61,9 @@ a:hover {
 
 /* chat format */
 code {
-    background: dimgrey;
-    padding: 3px 10px;
-    border-radius: 4px;
+  background: dimgrey;
+  padding: 3px 10px;
+  border-radius: 4px;
   color: #ddd;
 }
 
@@ -201,20 +201,20 @@ main.main {
 }
 
 .create-bot {
-    background: #09C4FF;
-    position: absolute;
-    z-index: 99999;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    padding: 10px;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    height: fit-content;
+  background: #09C4FF;
+  position: absolute;
+  z-index: 99999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  height: fit-content;
   transition: 0.5s;
   transform: scale(0);
 }
@@ -224,84 +224,84 @@ main.main {
 }
 
 .bi-box button {
-    margin: 10px;
+  margin: 10px;
 }
 
 .create-bot-err {
-    background: indianred;
-    padding: 5px;
-    border-radius: 4px;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    margin: 10px 0;
+  background: indianred;
+  padding: 5px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin: 10px 0;
   display: none;
 }
 
 .bots {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: -webkit-fill-available;
-    justify-content: center;
-    max-width: 800px;
-    margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: -webkit-fill-available;
+  justify-content: center;
+  max-width: 800px;
+  margin: 20px auto;
 }
 
 .bot-box {
-    display: flex;
-    flex-direction: column;
-    background: darkslategrey;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    margin: 10px;
-    transition: 0.5s;
-    border-radius: 5px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background: darkslategrey;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px;
+  transition: 0.5s;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .bot-box:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .bot-box img {
-    border-radius: 16px;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;  
+  border-radius: 16px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
 
 .bot-box span {
-    text-align: center;
-    margin: 5px 0 0 0;
+  text-align: center;
+  margin: 5px 0 0 0;
 }
 
 .bi-box img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 20px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 .bot-info {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .bi-box.bi-avatar-username {
-    text-align: center;
-    flex-direction: column;
+  text-align: center;
+  flex-direction: column;
 }
 
 .bi-box {
-    background: darkslategrey;
-    padding: 10px;
-    margin: 20px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  background: darkslategrey;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -441,7 +441,7 @@ span.pf-status.offline {
 }
 
 span.pf-status.bot {
-    background: deepskyblue;
+  background: deepskyblue;
 }
 
 span.pf-status.online {
@@ -839,30 +839,32 @@ img.feature-img {
 }
 
 .ads-1 {
-background-color: aqua;
-    max-width: 420px;
-    padding: 10px;
-    margin: 100px auto 0 auto;
-    height: 60px;
-    font-size: 18px;
-    color: black;
-    border-radius: 4px;
-    cursor: pointer;
-    background-image: url(https://cdn.discordapp.com/attachments/873758720847400970/880817782126678086/ICON2.png);
-    background-size: cover;
-    object-fit: cover;
-    background-position: 0;
-    font-weight: bold;
-    align-items: flex-end;
-    justify-content: space-between;
+  background-color: aqua;
+  max-width: 420px;
+  padding: 10px;
+  margin: 100px auto 0 auto;
+  height: 60px;
+  font-size: 18px;
+  color: black;
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: url(https://cdn.discordapp.com/attachments/873758720847400970/880817782126678086/ICON2.png);
+  background-size: cover;
+  object-fit: cover;
+  background-position: 0;
+  font-weight: bold;
+  align-items: flex-end;
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
 }
 
-span.ads-msg {width: -webkit-fill-available;}
+span.ads-msg {
+  width: -webkit-fill-available;
+}
 
 span.ads-info {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .feature {
