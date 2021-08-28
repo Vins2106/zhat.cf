@@ -84,8 +84,6 @@ async function GetContact(UID) {
       List: []
     });
     
-    newData.save()
-    
     return newData;
   }
   
