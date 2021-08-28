@@ -14,12 +14,16 @@ module.exports = () => {
     let cmd = args.shift().toLowerCase();
     
     if (cmd == "help") {
-      return message.author.send("Help your self");
+      return message.author.send("!ping, !avatar");
     }
     
     if (cmd == "ping") {
       let timeNow = Date.now();
       return message.author.send(`ping: ${timeNow - message.createAt}ms`)
+    }
+    
+    if (cmd == "avatar") {
+      return message.author.send(`${message.author.avatar}`)
     }
   });
   
