@@ -213,7 +213,13 @@ main.main {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    height: fit-content;  
+    height: fit-content;
+  transition: 0.5s;
+  transform: scale(0);
+}
+
+.modal-on {
+  transform: scale(1);
 }
 
 .bi-box button {

@@ -60,7 +60,6 @@
     </main>
     <script>
       let modal = document.getElementById("modal");
-      modal.style.display = "none";
       let userBots = Number(`<%= req.session.user.Bots || 0 %>`)
       let display = false;
       let form = document.getElementById("form");
@@ -81,10 +80,10 @@
         
         if (userBots >= 3) return alert("You reach max bots")
         if (display) {
-          modal.style.display = "none"
+          modal.classList.remove("modal-on")
           display = false;
         } else {
-          modal.style.display = "block"
+          modal.classList.add("modal-on")
           display = true
         }
       }
