@@ -298,7 +298,7 @@ app.post("/developer", checkAuth, async (req, res) => {
   }).then(res => res.json()).then(async cb => {
     if (cb.error) return res.redirect("/me/developer?error=" + cb.error.msg);
     
-    findUser.Bots = findUser.Bots + 1;
+    findUser.Bots = parseInt(findUser.Bots) + 1;
     findUser.save();
     
     return res.redirect(`/me/developer/${cb.UID}`)
