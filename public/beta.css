@@ -53,6 +53,7 @@ a {
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
+  word-break: break-all;
 }
 
 a:hover {
