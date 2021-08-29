@@ -19,7 +19,7 @@ dependencies:
   socket.io: 4.1.3
   validator: 13.6.0
   ws: 8.2.0
-  zhat.js: 1.1.6
+  zhat.js: 1.2.0
 packages:
   /@discordjs/collection/0.1.6:
     dev: false
@@ -1667,7 +1667,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
-  /zhat.js/1.1.6:
+  /zhat.js/1.2.0:
     dependencies:
       body-parser: 1.19.0
       cors: 2.8.5
@@ -1678,7 +1678,7 @@ packages:
     engines:
       node: 12.x
     resolution:
-      integrity: sha512-ZuDE00BsJqXVDlRhpE6Z5iBWO7vDfyuIB3jj7lt72/Gu8We11hPqs1o+47Yg3l9teM7X9nrDugJBqLr9zacEnw==
+      integrity: sha512-GsbaqGrndQrRqz4/D+wPpKLLjMJ438GAAOlfd0RgaPnZc+0/W93bSCtX4eC/7W7Fmq23FnuyufRrQxy8J8ys4A==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -1703,4 +1703,4 @@ specifiers:
   socket.io: ^4.1.3
   validator: ^13.6.0
   ws: ^8.2.0
-  zhat.js: ^1.1.6
+  zhat.js: ^1.2.0
