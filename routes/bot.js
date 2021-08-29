@@ -45,9 +45,13 @@ app.post("/delete", async (req, res) => {
   if (!req.body.token) return notFound(res, "Failed, token not provided");
   if (!req.body.uid) return notFound(res, "Failed, token not provided");
   
+  let findUser = await data.findOne({UID: req.body.uid});
+  if (!findUser) return notFound(res, "User not found")
   let findBot = await bots.findOne({TOKEN: req.body.token, OWNER: req.body.uid});
   if (!findBot) return notFound(res, "Bot not found");  
   
+  findUser.bots = findUser.bots - 1;
+  findUser.save()
   findBot.remove();
   
   return Json(res, {msg: "success"})
