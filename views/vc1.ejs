@@ -14,9 +14,9 @@
         <div class="vid" id="vid">
           
         </div>
-        <div class="myvid" id="myvid">
+        <video class="myvid" id="myvid">
           
-        </div>
+        </video>
         <div class="settings">
           <ul class="settings-items">
             <li class="set-item"><i class="fa fa-microphone-slash"></i></li>
@@ -24,6 +24,20 @@
         </div>
       </div>
     </main> 
+    <script>
+      let myVid = document.getElementById("myvid");
+      
+navigator.mediaDevices.getUserMedia({
+  video: true,
+  audio: true
+}).then(stream => {
+  myVid.srcObject = stream;
+})
+      
+myVid.addEventListener('loadedmetadata', () => {
+    myVid.play()
+  })      
+    </script>
     <script>
       window.onload = function() {
         setTimeout(() => {
