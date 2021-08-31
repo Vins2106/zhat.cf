@@ -331,7 +331,12 @@ app.get("/:uid/:vidid", checkAuth, async (req, res) => {
   }  
   
   if (req.params.vidid) {
-    res.render("vc1")
+    res.render("vc1.ejs", {
+      req,
+      res,
+      he: findTarget,
+      data
+    })
     return;
   }  
   
