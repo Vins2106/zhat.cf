@@ -306,7 +306,7 @@ app.post("/developer", checkAuth, async (req, res) => {
   
 });
 
-app.get("/:uid", checkAuth, async (req, res) => {
+app.get("/:uid/:vidid", checkAuth, async (req, res) => {
   
   let findTarget = await data.findOne({UID: req.params.uid}) || await bots.findOne({UID: req.params.uid})
   if (!findTarget) return res.redirect("/");
@@ -328,6 +328,11 @@ app.get("/:uid", checkAuth, async (req, res) => {
     final = newData;
   } else {
     final = alr;
+  }  
+  
+  if (req.params.vidid) {
+    res.render("vc1")
+    return;
   }  
   
   res.render("chat.ejs", {
