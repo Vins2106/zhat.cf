@@ -11,9 +11,9 @@
     
     <main class="main">
       <div id="vidcal" class="vidcal">
-        <div class="vid" id="vid">
+        <video class="vid" id="vid">
           
-        </div>
+        </video>
         <video class="myvid" id="myvid">
           
         </video>
@@ -25,12 +25,12 @@
       </div>
     </main> 
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
-    <script type="application/octet-stream" src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.2/peerjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.2/peerjs.js" integrity="sha512-Us7lczoIk7ihPZfJ7UgbG8jQU/oK7NnpbXisL+t3WSv3GDokuzMOwfMAwIzPMuF3SPfKoJYUw80Y7moQkID+7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script>
       let myVid = document.getElementById("myvid");
       myVid.muted = true;
-      let ROOM_ID = window.location.href.split("/")[3];
+      let ROOM_ID = window.location.href.split("/")[5];
 const socket = io()
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer();
