@@ -306,6 +306,43 @@ app.post("/developer", checkAuth, async (req, res) => {
   
 });
 
+app.get("/:uid", checkAuth, async (req, res) => {
+  
+  let findTarget = await data.findOne({UID: req.params.uid}) || await bots.findOne({UID: req.params.uid})
+  if (!findTarget) return res.redirect("/");
+  
+  let final;
+  
+  let contact = await GetContact(req.session.user.UID);
+  let findContact = contact.List.find(x => x.id == findTarget.UID);
+  if (!findContact) return res.redirect("/")
+  
+  let alr = await messages.findOne({ID: `${req.session.user.UID}${findTarget.UID}`}) || await messages.findOne({ID: `${findTarget.UID}${req.session.user.UID}`})
+  if (!alr) {
+    let newData = new messages({
+      ID: `${findTarget.UID}${req.session.user.UID}`,
+      List: []
+    });
+    
+    newData.save();
+    final = newData;
+  } else {
+    final = alr;
+  }  
+  
+  res.render("chat.ejs", {
+    req,
+    res,
+    he: findTarget,
+    messages: final,
+    data,
+    getrandomuser: async function(req) {
+      return getrandomuser(req)
+    }
+  })
+  
+});
+
 app.get("/:uid/:vidid", checkAuth, async (req, res) => {
   
   let findTarget = await data.findOne({UID: req.params.uid}) || await bots.findOne({UID: req.params.uid})
@@ -331,25 +368,15 @@ app.get("/:uid/:vidid", checkAuth, async (req, res) => {
   }  
   
   if (req.params.vidid) {
-    res.render("vc1.ejs", {
+    return res.render("vc1.ejs", {
       req,
       res,
       he: findTarget,
       data
     })
-    return;
   }  
   
-  res.render("chat.ejs", {
-    req,
-    res,
-    he: findTarget,
-    messages: final,
-    data,
-    getrandomuser: async function(req) {
-      return getrandomuser(req)
-    }
-  })
+  res.redirect(`/me/${req.params.uid}`)
   
 });
 
