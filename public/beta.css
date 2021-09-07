@@ -477,6 +477,7 @@ span.pf-username {
   align-items: center;
   margin: 21px 0px;
   cursor: pointer;
+  justify-content: center;
 }
 
 img.pf-img.pf-2 {
@@ -630,9 +631,22 @@ p.me-msg {
 }
 
 .me-msg img {
-  height: auto;
-  width: auto;
+  height: 150px;
+  width: 150px;
   object-fit: cover;
+  border-radius: 4px;
+}
+
+.he-msg img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.pf-lastmsg img {
+  max-width: -webkit-fill-available;
+  width: auto;
 }
 
 span.me-name {
