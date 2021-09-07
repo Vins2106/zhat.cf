@@ -629,6 +629,12 @@ p.me-msg {
   user-select: none;
 }
 
+.me-msg img {
+  height: auto;
+  width: auto;
+  object-fit: cover;
+}
+
 span.me-name {
   font-weight: bold;
   letter-spacing: 1px;
