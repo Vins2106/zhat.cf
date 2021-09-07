@@ -476,8 +476,8 @@ span.pf-username {
   display: flex;
   align-items: center;
   margin: 21px 0px;
-  cursor: pointer;
-  justify-content: center;
+  cursor: pointer; 
+  justify-content: left;
 }
 
 img.pf-img.pf-2 {
