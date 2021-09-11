@@ -9,6 +9,10 @@ const fetch = require("node-fetch")
 
 app.get("/", checkAuth, async (req, res) => {
   
+  let uptSes = await data.findOne({UID: req.session.user.UID});
+  if (!uptSes) return res.send("an error occured, please refresh")
+  req.session.user = uptSes;
+  
   let Contacts = await GetContact(req.session.user.UID)
   let contacts = [];
   let cached;
