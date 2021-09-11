@@ -23,7 +23,7 @@
       </div>
       </div>
 <!--     navbar end -->
-      <div class="contacts">
+      <div class="contacts" id="contacts">
 <!--          -->
     <% if (!contacts[0]) { %>
     <h3 class="no-contact">
@@ -41,8 +41,8 @@
             <% let lastMsg = u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %>
             <span maxlength="100" class="pf-lastmsg pf-2" id="<%= u.uid %>-lastmsg" title="<%= lastMsg %>"><%= lastMsg %></span>
           </div>
-        </div>
-        <hr style='border-color: black; margin-top: 10px;'>
+          </div>
+        <hr style='border-color: black; margin-top: 10px;' id="hr-<%= u.uid %>">
         
 <!--       <div class="account" onclick="location.href = '/chat/<%= u.uid %>'" >
       <img class="account-avatar-2" alt="avatar" src="<%= u.avatar %>">
@@ -145,6 +145,7 @@ const shareData = {
     <script>
         const audio = document.querySelector("audio");
         audio.volume = 0.5;
+      let kontak = document.getElementById("contacts")
       
     let socket = io();
       
@@ -163,12 +164,14 @@ const shareData = {
       socket.on("newMessage", (opt) => {
         let uBox = document.getElementById(`c-${opt.id}`)
         if (!uBox) return;
+        let uHr = document.getElementById(`hr-${opt.id}`)
         let user = document.getElementById(`${opt.id}-lastmsg`);
         if (opt.to !== '<%= req.session.user.UID %>') return;
         if (!user) return;
         
-        audio.play();
-        uBox.style.order = 1;
+        audio.play()
+        kontak.prepend(uHr)
+        kontak.prepend(uBox)
         user.innerHTML = marked(`${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`);
       })
                   
