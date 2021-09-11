@@ -9,6 +9,7 @@ module.exports = model(
     Avatar: String,
     Wallpaper: String,
     Bot: false,
-    Bots: Number
+    Bots: Number,
+    Verified: Boolean
   })
 );
