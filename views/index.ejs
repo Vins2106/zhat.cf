@@ -31,7 +31,7 @@
     </h1>
     <% } else { %>
     <% contacts.sort((a,b) => a.num - b.num).map(u => { %>
-        <div class="contact" onclick="location.href='/me/<%= u.uid %>'">
+        <div class="contact" onclick="location.href='/me/<%= u.uid %>'" id="c-<%= u.uid %>">
          <div class="pf-img-stats pf-2">
            <img class="pf-img pf-2 freezeframe" alt="avatar" src="<%= u.avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
            <span class="pf-status pf-2 <%= u.bot ? "bot" : "offline" %>" data-tippy-content="<%= u.bot ? "bot" : "offline" %>" title="<%= u.bot ? "bot" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
@@ -161,11 +161,14 @@ const shareData = {
       })
       
       socket.on("newMessage", (opt) => {
+        let uBox = document.getElementById(`c-${opt.id}`)
+        if (!uBox) return;
         let user = document.getElementById(`${opt.id}-lastmsg`);
         if (opt.to !== '<%= req.session.user.UID %>') return;
         if (!user) return;
         
         audio.play();
+        uBox.style.order = 1;
         user.innerHTML = marked(`${opt.id == '<%= req.session.user.UID %>' ? '(you):' : '(new messages):'} ${opt.msg}`);
       })
                   
