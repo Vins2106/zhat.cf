@@ -17,7 +17,7 @@
            <img class="pf-img freezeframe" alt="avatar" src="<%= req.session.user.Avatar %>" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">
            <span class="pf-status online" data-tippy-content="Online" title="online"></span>
         </div>
-        <span class="pf-username"><%= req.session.user.Username  %> <%= req.session.user.Verified ? '<img src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2F20210911_160923.png">' : "" %></span>
+        <span class="pf-username"><%= req.session.user.Username  %> <% if (!req.session.user.Verified) {} else if (req.session.user.Verified) { %> <img style="width: 15px; height: 15px;" data-tippy-content="Verified" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2F20210911_160923.png"> <% } %></span>
       <div class="share-section">
         <i class="fa fa-share" id="tooltip" data-tippy-content="Share" title="share to your friend" style="cursor: pointer;" onclick="shareURL()"></i>
       </div>

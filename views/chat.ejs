@@ -23,7 +23,7 @@
                   <span class="pf-status <%= he.Bot ? "bot" : "offline" %>" id="<%= he.Bot ? "" : `${he.UID}` %>"></span>
                </div>
                <div class="pf-username-click">
-                  <span class="pf-username"><%= he.Username %></span>
+                  <span class="pf-username" style="flex-direction: row;"><%= he.Username + ` ${if (!he.Verified) {} else if (he.Verified) {  %> <img style="width: 15px; height: 15px;" data-tippy-content="Verified" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2F20210911_160923.png"> <% }}` %></span>
                   <span class="pf-click">Click to copy user id</span>             
                </div>
             </div>
@@ -51,7 +51,7 @@
                Back
                </button>              
                <div class="btn-info" onclick="toggleModal()" style="cursor: pointer;">
-                  <span class="acc-name"><%= he.Username %></span>
+                  <span class="acc-name"><%= he.Username %> <% if (!he.Verified) {} else if (he.Verified) {  %> <img style="style: 15px; height: 15px;" data-tippy-content="Verified" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2F20210911_160923.png"> <% } %></span>
                   <img src="<%= he.Avatar %>" alt="avatar" class="pf-img pf-2 freezeframe" style="margin-left: 10px;" onerror="this.src='https://i.stack.imgur.com/l60Hf.png'">          
                </div>
             </div>
