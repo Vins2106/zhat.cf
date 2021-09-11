@@ -37,7 +37,7 @@
            <span class="pf-status pf-2 <%= u.bot ? "bot" : "offline" %>" data-tippy-content="<%= u.bot ? "bot" : "offline" %>" title="<%= u.bot ? "bot" : "offline" %>" id="<%= u.bot ? "" : `${u.uid}` %>"></span>
         </div>
           <div class="pf-username-lastmsg">
-        <span class="pf-username pf-2"><%= u.username %> <%= u.verify ? <img src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2F20210911_160923.png">' : "" %></span>
+        <span class="pf-username pf-2"><%= u.username %> <% if (!u.verify) {} else if (u.verify) { %> <img style="width: 15px; height: 15px;" data-tippy-content="Verified" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2F20210911_160923.png?v=1631348362366"> <% } %></span>
             <% let lastMsg = u.messages.List[u.messages.List.length - 1] ? u.messages.List[u.messages.List.length - 1].author.UID == req.session.user.UID ? `(you): ${u.messages.List[u.messages.List.length - 1].content}` : `(${u.messages.List[u.messages.List.length - 1].author.Username}): ${u.messages.List[u.messages.List.length - 1].content}` : "No messages yet" %>
             <span maxlength="100" class="pf-lastmsg pf-2" id="<%= u.uid %>-lastmsg" title="<%= lastMsg %>"><%= lastMsg %></span>
           </div>
