@@ -37,6 +37,7 @@ app.get("/", checkAuth, async (req, res) => {
         username: acc.Username,
         avatar: acc.Avatar,
         uid: acc.UID,
+        verify: acc.Verified ? true : false,
         messages: final,
         num: c.num,
         bot: !acc.Bot ? false : true
