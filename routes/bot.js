@@ -99,7 +99,7 @@ app.post("/connect", async (req, res) => {
   
   if (!findBot) return notFound(res, "Bot not found");
   
-  botDatas.set(req.body.uid)
+  botDatas.set(req.body.uid, req.body.addr)
   return Json(res, findBot);
 });
 
@@ -111,7 +111,7 @@ app.post("/receive", async (req, res) => {
   
   req.body.createAt = Date.now();
   
-  fetch(findBotData.addr + "/receive", {
+  fetch(findBotData + "/receive", {
     method: "POST",
            headers: {
              'Content-Type': 'application/json'
