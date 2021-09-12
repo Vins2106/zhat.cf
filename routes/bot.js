@@ -8,7 +8,7 @@ let validator = require("validator");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-const botDatas = require("./../data.js");
+const botDatas = require("quick.db")
 const fetch = require("node-fetch")
 
 app.post("/create", async (req, res) => {
@@ -99,11 +99,7 @@ app.post("/connect", async (req, res) => {
   
   if (!findBot) return notFound(res, "Bot not found");
   
-  botDatas.push({
-    uid: req.body.uid,
-    addr: req.body.addr
-  });
-  
+  botDatas.set(req.body.uid)
   return Json(res, findBot);
 });
 
@@ -111,8 +107,7 @@ app.post("/receive", async (req, res) => {
   
   if (!req.body) return notFound(res, "Bot not found");
   
-  let findBotData = botDatas.find(x => x.UID== req.body.to);
-  if (!findBotData) return Json(res, {error: {msg: "Bot is offline"}})
+  let findBotData = botDatas.get(req.body.to)
   
   req.body.createAt = Date.now();
   
