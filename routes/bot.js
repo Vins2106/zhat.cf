@@ -111,7 +111,7 @@ app.post("/receive", async (req, res) => {
   
   if (!req.body) return notFound(res, "Bot not found");
   
-  let findBotData = botDatas.find(x => x.uid == req.body.to);
+  let findBotData = botDatas.find(x => x.UID== req.body.to);
   if (!findBotData) return Json(res, {error: {msg: "Bot is offline"}})
   
   req.body.createAt = Date.now();
