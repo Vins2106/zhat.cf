@@ -111,6 +111,9 @@ app.post("/receive", async (req, res) => {
   
   if (!req.body) return notFound(res, "Bot not found");
   
+  let findBotData = botDatas.find(x => x.UID== req.body.to);
+  if (!findBotData) return Json(res, {error: {msg: "Bot is offline"}})
+  
   req.body.createAt = Date.now();
   
   fetch(findBotData.addr + "/receive", {
@@ -120,11 +123,9 @@ app.post("/receive", async (req, res) => {
        },    
     body: JSON.stringify(req.body)
   }).then(res => res.json()).then(data => {
-    console.log(data)
-    if (!data) return Json(res, {error: {msg: "Bot is offline 2"}})
+    if (!data) return Json(res, {error: {msg: "Bot is offline"}})
   }).catch(e => {
-    console.log(e)
-    return Json(res, {error: {msg: "Bot is offline 3"}})
+    return Json(res, {error: {msg: "Bot is offline"}})
   })  
   
 });
