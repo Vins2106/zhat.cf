@@ -850,12 +850,14 @@ span.pf-click {
   display: flex;
   justify-content: center;
   width: -webkit-fill-available;
+  width: -moz-available;
 }
 
 img.feature-img {
   width: auto;
   height: auto;
   max-width: -webkit-fill-available;
+  max-width: -moz-available;
   border-radius: 6px;
 }
 
