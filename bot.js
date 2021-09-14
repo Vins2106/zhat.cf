@@ -12,8 +12,8 @@ const fetch = require("node-fetch");
       status: "Good"
     },
     system: {
-      percent: `40%`,
-      status: "Bad"
+      percent: `100%`,
+      status: "Good"
     },
     lastIncident: "Website DNS not found"
   }
