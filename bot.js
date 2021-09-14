@@ -12,10 +12,10 @@ const fetch = require("node-fetch");
       status: "Good"
     },
     system: {
-      percent: `100%`,
-      status: "Good"
+      percent: `40%`,
+      status: "Bad"
     },
-    lastIncident: "None"
+    lastIncident: "Website DNS not found"
   }
 
 client.on("ready", () => {
