@@ -25,8 +25,8 @@
         <li class="navbar-link"><a href="/faq">FAQ</a></li>
         <li class="navbar-link"><a href="/updates">Updates</a></li>
       </ul>
-      <button style="margin-left: 16px;" class="btn btn-primary btn-getstarted" onclick="location.href='/me'">
-        Get started
+      <button style="margin-left: 16px;" id="installbtn" class="btn btn-primary btn-getstarted" onclick="instalPWA()">
+        Install
       </button>        
       </div>
       <div class="navbar-toggle" id="navbar-toggle" onclick="toggleNavbar()">
@@ -53,9 +53,10 @@
       <img class="jumbotron-image" alt="jumbotron image" src="https://cdn.glitch.com/8d554e23-44aa-49a6-8cbc-b5907d9296e9%2Fundraw_Fresh_notification_re_whq4%20(1).svg?v=1629365848571">
     </div>   
       
-      <div class="ads-1" onclick="window.open('https://discord.gg/WzwBUG8U', '_blank')" id="ad-1">
-        <span class="ads-info">ad</span>
-        <span class='ads-msg'>Nadu Developer Comunity</span>
+<!--       <div class="ads-1" onclick="window.open('https://discord.gg/WzwBUG8U', '_blank')" id="ad-1"> -->
+      <div class="ads-1" id="ad-1">
+        <span class="ads-info">iklan</span>
+        <span class='ads-msg'>iklan kamu</span>
       </div> 
       
       
@@ -67,6 +68,14 @@
       </div>
 
     </main>
+    <script>
+    let installBtn = document.getElementById("installbtn");
+      
+      function instalPWA() {
+event = new Event('beforeinstallprompt')
+window.dispatchEvent(event)        
+      }
+    </script>
 <script>
     // Create WebSocket connection.
     const socket = new WebSocket('wss://zhat.cf');
