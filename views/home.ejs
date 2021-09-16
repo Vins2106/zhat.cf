@@ -25,7 +25,7 @@
         <li class="navbar-link"><a href="/faq">FAQ</a></li>
         <li class="navbar-link"><a href="/updates">Updates</a></li>
       </ul>
-      <button style="margin-left: 16px;" id="installbtn" class="btn btn-primary btn-getstarted" onclick="instalPWA()">
+      <button style="margin-left: 16px;" id="installbtn" class="btn btn-primary btn-getstarted">
         Install
       </button>        
       </div>
@@ -54,7 +54,7 @@
     </div>   
       
 <!--       <div class="ads-1" onclick="window.open('https://discord.gg/WzwBUG8U', '_blank')" id="ad-1"> -->
-      <div class="ads-1" id="ad-1">
+      <div class="ads-1" id="ad-1" onclick="alert('message https://zhat.cf/invite/FHmiI97XpZ97YXwVo2')">
         <span class="ads-info">iklan</span>
         <span class='ads-msg'>iklan kamu</span>
       </div> 
@@ -71,51 +71,22 @@
     <script>
     let installBtn = document.getElementById("installbtn");
       
-      function instalPWA() {
-event = new Event('beforeinstallprompt')
-window.dispatchEvent(event)        
-      }
-    </script>
-<script>
-    // Create WebSocket connection.
-    const socket = new WebSocket('wss://zhat.cf');
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  let deferredPrompt = e;
 
-    // Connection opened
-    socket.addEventListener('open', function (event) {
-        console.log('Connected to WS Server')
-    });
-
-    // Listen for messages
-    socket.addEventListener('message', function (event) {
-        console.log('Message from server ', event.data);
-    });
-
-    const sendMessage = () => {
-        socket.send('Hello From Client1!');
-    }
-    
-socket.send = function (message, callback) {
-    socket.waitForConnection(function () {
-        socket.send(message);
-        if (typeof callback !== 'undefined') {
-          callback();
-        }
-    }, 1000);
-};
-
-socket.waitForConnection = function (callback, interval) {
-    if (socket.readyState === 1) {
-        callback();
-    } else {
-        var that = socket;
-        // optional: implement backoff for interval here
-        setTimeout(function () {
-            that.waitForConnection(callback, interval);
-        }, interval);
-    }
-};
-    
-</script>    
+  installBtn.addEventListener('click', (e) => {
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+        deferredPrompt = null;
+      });
+  });
+});      
+    </script>    
     <script>
     let isNavbar = false;
       
