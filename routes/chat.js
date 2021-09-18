@@ -72,6 +72,10 @@ app.get("/", checkAuth, async (req, res) => {
     
 }) 
 
+app.post("/", async (req, res) => {
+  res.redirect("/me")
+})
+
 async function randomUser(req) {
   return await getrandomuser(req);
 }
@@ -204,6 +208,18 @@ app.post("/settings", checkAuth, async (req, res) => {
   let email = req.body.email;
   let wallpaper = req.body.wallpaper;
   
+  if (!username) {
+    return res.redirect("/me/settings")
+  } else if (!password) {
+    return res.redirect("/me/settings")
+  } else if (!avatar) {
+    return res.redirect("/me/settings")
+  } else if (!email) {
+    return res.redirect("/me/settings")
+  } else if (!wallpaper) {
+    return res.redirect("/me/settings")
+  }
+  
   if (!typeof validator.isStrongPassword(password) == 'true') {
     return res.redirect("/me/settings?error=true&message=Password not strong")
   }
@@ -288,6 +304,7 @@ app.post("/developer/:uid", checkAuth, async (req, res) => {
 app.post("/developer", checkAuth, async (req, res) => {
   
   let username = req.body.username;
+  if (!username) return res.redirect("/me/developer")
   
   let findBot = await bots.findOne({Username: username});
   if (findBot) return res.redirect("/me/developer?error=Username already used");
